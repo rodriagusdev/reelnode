@@ -1,0 +1,229 @@
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\ProjectoNuevo.exe.config
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\ProjectoNuevo.exe
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\ProjectoNuevo.pdb
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\BouncyCastle.Cryptography.dll
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\Google.Protobuf.dll
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\K4os.Compression.LZ4.dll
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\K4os.Hash.xxHash.dll
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\MySql.Data.dll
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\System.Buffers.dll
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\System.Configuration.ConfigurationManager.dll
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\System.IO.Pipelines.dll
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\System.Memory.dll
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\System.Numerics.Vectors.dll
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\System.Text.Encodings.Web.dll
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\System.Text.Json.dll
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\System.ValueTuple.dll
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\ZstdSharp.dll
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\BouncyCastle.Cryptography.xml
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\Google.Protobuf.pdb
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\Google.Protobuf.xml
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\K4os.Compression.LZ4.xml
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\K4os.Hash.xxHash.xml
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\MySql.Data.xml
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\System.Buffers.xml
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\System.Configuration.ConfigurationManager.xml
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\System.IO.Pipelines.xml
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\System.Memory.xml
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\System.Numerics.Vectors.xml
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\System.Text.Encodings.Web.xml
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\System.Text.Json.xml
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\bin\Debug\System.ValueTuple.xml
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\obj\Debug\Reelnode.csproj.AssemblyReference.cache
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\obj\Debug\ProjectoNuevo.exe.config
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\obj\Debug\ProjectoNuevo.FormMain.resources
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\obj\Debug\ProjectoNuevo.FormAdmin.resources
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\obj\Debug\ProjectoNuevo.FormLogin.resources
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\obj\Debug\ProjectoNuevo.FormRegistrar.resources
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\obj\Debug\ProjectoNuevo.Properties.Resources.resources
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\obj\Debug\Reelnode.csproj.GenerateResource.cache
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\obj\Debug\Reelnode.csproj.CoreCompileInputs.cache
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\obj\Debug\Reelnode.csproj.Up2Date
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\obj\Debug\ProjectoNuevo.exe
+C:\dev\hilet\Algoritmos II\reelnode\ProyectoNuevo\obj\Debug\ProjectoNuevo.pdb
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\ProjectoNuevo.exe.config
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\ProjectoNuevo.exe
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\ProjectoNuevo.pdb
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\BouncyCastle.Cryptography.dll
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\Google.Protobuf.dll
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\K4os.Compression.LZ4.dll
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\K4os.Hash.xxHash.dll
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\MySql.Data.dll
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\System.Buffers.dll
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\System.Configuration.ConfigurationManager.dll
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\System.IO.Pipelines.dll
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\System.Memory.dll
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\System.Numerics.Vectors.dll
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\System.Text.Encodings.Web.dll
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\System.Text.Json.dll
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\System.ValueTuple.dll
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\ZstdSharp.dll
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\BouncyCastle.Cryptography.xml
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\Google.Protobuf.pdb
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\Google.Protobuf.xml
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\K4os.Compression.LZ4.xml
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\K4os.Hash.xxHash.xml
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\MySql.Data.xml
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\System.Buffers.xml
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\System.Configuration.ConfigurationManager.xml
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\System.IO.Pipelines.xml
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\System.Memory.xml
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\System.Numerics.Vectors.xml
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\System.Text.Encodings.Web.xml
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\System.Text.Json.xml
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\System.ValueTuple.xml
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\Reelnode.csproj.AssemblyReference.cache
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.exe.config
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.FormMain.resources
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.FormAdmin.resources
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.FormLogin.resources
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.FormRegistrar.resources
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.Properties.Resources.resources
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\Reelnode.csproj.GenerateResource.cache
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\Reelnode.csproj.CoreCompileInputs.cache
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\Reelnode.csproj.Up2Date
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.exe
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.pdb
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.FormCrearPelicula.resources
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\ProjectoNuevo.exe.config
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\ProjectoNuevo.exe
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\ProjectoNuevo.pdb
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\BouncyCastle.Cryptography.dll
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\Google.Protobuf.dll
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\K4os.Compression.LZ4.dll
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\K4os.Compression.LZ4.Streams.dll
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\K4os.Hash.xxHash.dll
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\MySql.Data.dll
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\System.Buffers.dll
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\System.Configuration.ConfigurationManager.dll
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\System.IO.Pipelines.dll
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\System.Memory.dll
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\System.Numerics.Vectors.dll
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\System.Text.Encodings.Web.dll
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\System.Text.Json.dll
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\System.ValueTuple.dll
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\ZstdSharp.dll
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\BouncyCastle.Cryptography.xml
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\Google.Protobuf.pdb
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\Google.Protobuf.xml
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\K4os.Compression.LZ4.xml
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\K4os.Compression.LZ4.Streams.xml
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\K4os.Hash.xxHash.xml
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\MySql.Data.xml
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\System.Buffers.xml
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\System.Configuration.ConfigurationManager.xml
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\System.IO.Pipelines.xml
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\System.Memory.xml
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\System.Numerics.Vectors.xml
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\System.Text.Encodings.Web.xml
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\System.Text.Json.xml
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\System.ValueTuple.xml
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.csproj.AssemblyReference.cache
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\ProjectoNuevo.FormMain.resources
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\ProjectoNuevo.FormLogin.resources
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\ProjectoNuevo.FormRegistrar.resources
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\ProjectoNuevo.Properties.Resources.resources
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.csproj.GenerateResource.cache
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.csproj.CoreCompileInputs.cache
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.csproj.Up2Date
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\ProjectoNuevo.exe
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\ProjectoNuevo.pdb
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.FormGestionUsuarios.resources
+D:\n\reelnode\Reelnode\bin\Debug\ProjectoNuevo.exe.config
+D:\n\reelnode\Reelnode\bin\Debug\ProjectoNuevo.exe
+D:\n\reelnode\Reelnode\bin\Debug\ProjectoNuevo.pdb
+D:\n\reelnode\Reelnode\bin\Debug\BouncyCastle.Cryptography.dll
+D:\n\reelnode\Reelnode\bin\Debug\Google.Protobuf.dll
+D:\n\reelnode\Reelnode\bin\Debug\itextsharp.dll
+D:\n\reelnode\Reelnode\bin\Debug\K4os.Compression.LZ4.dll
+D:\n\reelnode\Reelnode\bin\Debug\K4os.Compression.LZ4.Streams.dll
+D:\n\reelnode\Reelnode\bin\Debug\K4os.Hash.xxHash.dll
+D:\n\reelnode\Reelnode\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+D:\n\reelnode\Reelnode\bin\Debug\MySql.Data.dll
+D:\n\reelnode\Reelnode\bin\Debug\System.Buffers.dll
+D:\n\reelnode\Reelnode\bin\Debug\System.Configuration.ConfigurationManager.dll
+D:\n\reelnode\Reelnode\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+D:\n\reelnode\Reelnode\bin\Debug\System.IO.Pipelines.dll
+D:\n\reelnode\Reelnode\bin\Debug\System.Memory.dll
+D:\n\reelnode\Reelnode\bin\Debug\System.Numerics.Vectors.dll
+D:\n\reelnode\Reelnode\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\n\reelnode\Reelnode\bin\Debug\System.Text.Encodings.Web.dll
+D:\n\reelnode\Reelnode\bin\Debug\System.Text.Json.dll
+D:\n\reelnode\Reelnode\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\n\reelnode\Reelnode\bin\Debug\System.ValueTuple.dll
+D:\n\reelnode\Reelnode\bin\Debug\ZstdSharp.dll
+D:\n\reelnode\Reelnode\bin\Debug\BouncyCastle.Cryptography.xml
+D:\n\reelnode\Reelnode\bin\Debug\Google.Protobuf.pdb
+D:\n\reelnode\Reelnode\bin\Debug\Google.Protobuf.xml
+D:\n\reelnode\Reelnode\bin\Debug\itextsharp.xml
+D:\n\reelnode\Reelnode\bin\Debug\K4os.Compression.LZ4.xml
+D:\n\reelnode\Reelnode\bin\Debug\K4os.Compression.LZ4.Streams.xml
+D:\n\reelnode\Reelnode\bin\Debug\K4os.Hash.xxHash.xml
+D:\n\reelnode\Reelnode\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+D:\n\reelnode\Reelnode\bin\Debug\MySql.Data.xml
+D:\n\reelnode\Reelnode\bin\Debug\System.Buffers.xml
+D:\n\reelnode\Reelnode\bin\Debug\System.Configuration.ConfigurationManager.xml
+D:\n\reelnode\Reelnode\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+D:\n\reelnode\Reelnode\bin\Debug\System.IO.Pipelines.xml
+D:\n\reelnode\Reelnode\bin\Debug\System.Memory.xml
+D:\n\reelnode\Reelnode\bin\Debug\System.Numerics.Vectors.xml
+D:\n\reelnode\Reelnode\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\n\reelnode\Reelnode\bin\Debug\System.Text.Encodings.Web.xml
+D:\n\reelnode\Reelnode\bin\Debug\System.Text.Json.xml
+D:\n\reelnode\Reelnode\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\n\reelnode\Reelnode\bin\Debug\System.ValueTuple.xml
+D:\n\reelnode\Reelnode\obj\Debug\Reelnode.csproj.AssemblyReference.cache
+D:\n\reelnode\Reelnode\obj\Debug\ProjectoNuevo.FormCrearPelicula.resources
+D:\n\reelnode\Reelnode\obj\Debug\ProjectoNuevo.FormGestionUsuarios.resources
+D:\n\reelnode\Reelnode\obj\Debug\ProjectoNuevo.FormMain.resources
+D:\n\reelnode\Reelnode\obj\Debug\ProjectoNuevo.FormAdmin.resources
+D:\n\reelnode\Reelnode\obj\Debug\ProjectoNuevo.FormLogin.resources
+D:\n\reelnode\Reelnode\obj\Debug\ProjectoNuevo.FormRegistrar.resources
+D:\n\reelnode\Reelnode\obj\Debug\ProjectoNuevo.Properties.Resources.resources
+D:\n\reelnode\Reelnode\obj\Debug\Reelnode.csproj.GenerateResource.cache
+D:\n\reelnode\Reelnode\obj\Debug\Reelnode.csproj.CoreCompileInputs.cache
+D:\n\reelnode\Reelnode\obj\Debug\Reelnode.csproj.Up2Date
+D:\n\reelnode\Reelnode\obj\Debug\ProjectoNuevo.exe
+D:\n\reelnode\Reelnode\obj\Debug\ProjectoNuevo.pdb
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\itextsharp.dll
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\itextsharp.xml
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.FormActualizarPelicula.resources
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.ControlGestionPeliculasCargar.resources
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.ControlAdmin.resources
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.ControlGestionPeliculasListarPeliculas.resources
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.ControlGestionUsuarios.resources
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\ProjectoNuevo.ControlAdmin.resources
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\ProjectoNuevo.ControlGestionPeliculasCargar.resources
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\ProjectoNuevo.ControlGestionPeliculasListarPeliculas.resources
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\ProjectoNuevo.ControlGestionUsuarios.resources
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\itextsharp.dll
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\itextsharp.xml
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\ProjectoNuevo.ControlGestionPeliculasActualizar.resources
