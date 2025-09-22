@@ -26,11 +26,11 @@ ToolStripMenu: ToolStpMenuX
 
 ✅Crear peliculas
 
-❌Actualizar peliculas
+✅Actualizar peliculas
 
-❌Obtener peliculas
+✅Obtener peliculas
 
-❌Borrar peliculas
+✅Borrar peliculas
 
 ✅Importar peliculas/series desde un JSON y Base de datos.
 
