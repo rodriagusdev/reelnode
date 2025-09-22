@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,22 +63,14 @@ namespace ProjectoNuevo
                 cmd.ExecuteNonQuery();             
             }
         }
-
-        public static void CargarUsuario()
-        {
+          public static void CargarUsuario()
+          {
             usuariosRegistrados.Clear();
 
-            string query =
-                "SELECT " +
-                "u.nombre_usuario, " +
-                "u.password_usuario, " +
-                "u.email_usuario," +
-                "r.tipo_rol as nombre_rol\r\n" +
-                "FROM usuario u\r\n" +
-                "INNER JOIN rol r on r.id_rol = u.id_rol;";
-
-            using (MySqlCommand cmd = new MySqlCommand(query, UtilsBD.Conexion.GetConnection()))
+            using (MySqlCommand cmd = new MySqlCommand("sp_listar_usuarios", UtilsBD.Conexion.GetConnection()))
             {
+                cmd.CommandType = CommandType.StoredProcedure;
+
                 using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
@@ -94,7 +87,8 @@ namespace ProjectoNuevo
                     }
                 }
             }
-        }
+          }
+
 
         private static string ObtenerRolUsuario(string rol)
         {
