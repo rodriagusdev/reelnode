@@ -15,6 +15,8 @@ namespace ProjectoNuevo
         public override string Descripcion { get; set; }
         public override string Director {  get; set; }
         public override Image Imagen { get; set; }
+
+        public override string Tipo { get; set; }
         public string Duracion { get; set; }
 
         public Pelicula() { }
@@ -26,6 +28,7 @@ namespace ProjectoNuevo
             this.Director = director;
             this.Imagen = img;
             this.Duracion = duracion;
+            this.Tipo = "Pelicula";
         }
         
     }

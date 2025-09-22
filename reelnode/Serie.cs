@@ -15,8 +15,26 @@ namespace ProjectoNuevo
         public override string Descripcion { get; set; }
         public override string Director { get; set; }
         public override Image Imagen { get; set; }
+
+        public override string Tipo { get; set; }
         public string Temporadas { get; set; }
 
+
         public List<string> Network { get; set; }
+
+        public Serie() { }
+
+        public Serie(int id, string nombre, DateTime fecha, string descripcion, string director, string temporadas, List<string> network)
+        {
+            this.Id = id;
+            this.Nombre = nombre;
+            this.FechaEstreno = fecha;
+            this.Descripcion = descripcion;
+            this.Director = director;
+            this.Temporadas = temporadas;
+            this.Network = network;
+            this.Imagen = null;
+            this.Tipo = "Serie";
+        }
     }
 }

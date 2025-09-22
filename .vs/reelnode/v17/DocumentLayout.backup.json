@@ -1,46 +1,38 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\agustina\\proyecto\\reelnode\\",
+  "WorkspaceRootPath": "D:\\Rodrigo\\Algoritmos2\\reelnode\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|d:\\agustina\\proyecto\\reelnode\\reelnode\\utilsbd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|d:\\rodrigo\\algoritmos2\\reelnode\\reelnode\\controlgestionpeliculascargar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|solutionrelative:reelnode\\controlgestionpeliculascargar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|D:\\Rodrigo\\Algoritmos2\\reelnode\\reelnode\\formmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|solutionrelative:reelnode\\formmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|d:\\rodrigo\\algoritmos2\\reelnode\\reelnode\\utilsbd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|solutionrelative:reelnode\\utilsbd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|D:\\agustina\\proyecto\\reelnode\\reelnode\\controlgestionusuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|solutionrelative:reelnode\\controlgestionusuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|d:\\rodrigo\\algoritmos2\\reelnode\\reelnode\\controlgestionpeliculascargar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|solutionrelative:reelnode\\controlgestionpeliculascargar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|D:\\agustina\\proyecto\\reelnode\\reelnode\\pelicula.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|solutionrelative:reelnode\\pelicula.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|D:\\agustina\\proyecto\\reelnode\\reelnode\\serie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|solutionrelative:reelnode\\serie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|D:\\agustina\\proyecto\\reelnode\\reelnode\\media.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|D:\\Rodrigo\\Algoritmos2\\reelnode\\reelnode\\media.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|solutionrelative:reelnode\\media.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|D:\\agustina\\proyecto\\reelnode\\reelnode\\controlgestionpeliculasactualizar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|solutionrelative:reelnode\\controlgestionpeliculasactualizar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|d:\\rodrigo\\algoritmos2\\reelnode\\reelnode\\prototipocrearmedia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|solutionrelative:reelnode\\prototipocrearmedia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|D:\\agustina\\proyecto\\reelnode\\reelnode\\controlgestionpeliculasactualizar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|solutionrelative:reelnode\\controlgestionpeliculasactualizar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|D:\\Rodrigo\\Algoritmos2\\reelnode\\reelnode\\serie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|solutionrelative:reelnode\\serie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|D:\\agustina\\proyecto\\reelnode\\reelnode\\controlgestionpeliculaslistarpeliculas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|solutionrelative:reelnode\\controlgestionpeliculaslistarpeliculas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|D:\\agustina\\proyecto\\reelnode\\reelnode\\controlgestionpeliculasactualizar.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|solutionrelative:reelnode\\controlgestionpeliculasactualizar.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|D:\\agustina\\proyecto\\reelnode\\reelnode\\formmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|solutionrelative:reelnode\\formmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|D:\\Rodrigo\\Algoritmos2\\reelnode\\reelnode\\pelicula.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}|Reelnode\\Reelnode.csproj|solutionrelative:reelnode\\pelicula.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,128 +42,109 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 0,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ControlGestionPeliculasCargar.cs [Dise\u00F1o]",
+              "DocumentMoniker": "D:\\Rodrigo\\Algoritmos2\\reelnode\\reelnode\\ControlGestionPeliculasCargar.cs",
+              "RelativeDocumentMoniker": "reelnode\\ControlGestionPeliculasCargar.cs",
+              "ToolTip": "D:\\Rodrigo\\Algoritmos2\\reelnode\\reelnode\\ControlGestionPeliculasCargar.cs [Dise\u00F1o]*",
+              "RelativeToolTip": "reelnode\\ControlGestionPeliculasCargar.cs [Dise\u00F1o]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-22T15:09:22.886Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FormMain.cs [Dise\u00F1o]",
+              "DocumentMoniker": "D:\\Rodrigo\\Algoritmos2\\reelnode\\reelnode\\FormMain.cs",
+              "RelativeDocumentMoniker": "reelnode\\FormMain.cs",
+              "ToolTip": "D:\\Rodrigo\\Algoritmos2\\reelnode\\reelnode\\FormMain.cs [Dise\u00F1o]",
+              "RelativeToolTip": "reelnode\\FormMain.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-22T13:50:04.87Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PrototipoCrearMedia.cs",
+              "DocumentMoniker": "D:\\Rodrigo\\Algoritmos2\\reelnode\\reelnode\\PrototipoCrearMedia.cs",
+              "RelativeDocumentMoniker": "reelnode\\PrototipoCrearMedia.cs",
+              "ToolTip": "D:\\Rodrigo\\Algoritmos2\\reelnode\\reelnode\\PrototipoCrearMedia.cs",
+              "RelativeToolTip": "reelnode\\PrototipoCrearMedia.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAgwE4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-22T14:49:11.074Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "Media.cs",
-              "DocumentMoniker": "D:\\agustina\\proyecto\\reelnode\\reelnode\\Media.cs",
+              "DocumentMoniker": "D:\\Rodrigo\\Algoritmos2\\reelnode\\reelnode\\Media.cs",
               "RelativeDocumentMoniker": "reelnode\\Media.cs",
-              "ToolTip": "D:\\agustina\\proyecto\\reelnode\\reelnode\\Media.cs",
+              "ToolTip": "D:\\Rodrigo\\Algoritmos2\\reelnode\\reelnode\\Media.cs",
               "RelativeToolTip": "reelnode\\Media.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABEAAAADAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-19T15:01:32.91Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Serie.cs",
-              "DocumentMoniker": "D:\\agustina\\proyecto\\reelnode\\reelnode\\Serie.cs",
-              "RelativeDocumentMoniker": "reelnode\\Serie.cs",
-              "ToolTip": "D:\\agustina\\proyecto\\reelnode\\reelnode\\Serie.cs",
-              "RelativeToolTip": "reelnode\\Serie.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABAAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-19T15:04:56.882Z"
+              "WhenOpened": "2025-09-22T14:28:02.458Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Pelicula.cs",
-              "DocumentMoniker": "D:\\agustina\\proyecto\\reelnode\\reelnode\\Pelicula.cs",
-              "RelativeDocumentMoniker": "reelnode\\Pelicula.cs",
-              "ToolTip": "D:\\agustina\\proyecto\\reelnode\\reelnode\\Pelicula.cs",
-              "RelativeToolTip": "reelnode\\Pelicula.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-19T15:01:44.548Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ControlGestionUsuarios.cs [Dise\u00F1o]",
-              "DocumentMoniker": "D:\\agustina\\proyecto\\reelnode\\reelnode\\ControlGestionUsuarios.cs",
-              "RelativeDocumentMoniker": "reelnode\\ControlGestionUsuarios.cs",
-              "ToolTip": "D:\\Rodrigo\\Algoritmos2\\reelnode\\reelnode\\ControlGestionUsuarios.cs [Dise\u00F1o]",
-              "RelativeToolTip": "..\\..\\..\\Rodrigo\\Algoritmos2\\reelnode\\reelnode\\ControlGestionUsuarios.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-19T14:42:11.616Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ControlGestionPeliculasListarPeliculas.cs [Dise\u00F1o]",
-              "DocumentMoniker": "D:\\agustina\\proyecto\\reelnode\\reelnode\\ControlGestionPeliculasListarPeliculas.cs",
-              "RelativeDocumentMoniker": "reelnode\\ControlGestionPeliculasListarPeliculas.cs",
-              "ToolTip": "D:\\Rodrigo\\Algoritmos2\\reelnode\\reelnode\\ControlGestionPeliculasListarPeliculas.cs [Dise\u00F1o]",
-              "RelativeToolTip": "..\\..\\..\\Rodrigo\\Algoritmos2\\reelnode\\reelnode\\ControlGestionPeliculasListarPeliculas.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-19T14:42:10.179Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "UtilsBD.cs",
-              "DocumentMoniker": "D:\\agustina\\proyecto\\reelnode\\reelnode\\UtilsBD.cs",
+              "DocumentMoniker": "D:\\Rodrigo\\Algoritmos2\\reelnode\\reelnode\\UtilsBD.cs",
               "RelativeDocumentMoniker": "reelnode\\UtilsBD.cs",
-              "ToolTip": "D:\\agustina\\proyecto\\reelnode\\reelnode\\UtilsBD.cs",
+              "ToolTip": "D:\\Rodrigo\\Algoritmos2\\reelnode\\reelnode\\UtilsBD.cs",
               "RelativeToolTip": "reelnode\\UtilsBD.cs",
-              "ViewState": "AgIAAEIAAAAAAAAAAAAwwFIAAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAAFgAAAAAAAAAAAAqwKMAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-19T13:55:58.048Z",
+              "WhenOpened": "2025-09-22T13:50:24.442Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ControlGestionPeliculasCargar.cs",
+              "DocumentMoniker": "D:\\Rodrigo\\Algoritmos2\\reelnode\\reelnode\\ControlGestionPeliculasCargar.cs",
+              "RelativeDocumentMoniker": "reelnode\\ControlGestionPeliculasCargar.cs",
+              "ToolTip": "D:\\Rodrigo\\Algoritmos2\\reelnode\\reelnode\\ControlGestionPeliculasCargar.cs*",
+              "RelativeToolTip": "reelnode\\ControlGestionPeliculasCargar.cs*",
+              "ViewState": "AgIAADEAAAAAAAAAAAAowDgAAAB2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-22T15:09:55.087Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "ControlGestionPeliculasActualizar.cs [Dise\u00F1o]",
-              "DocumentMoniker": "D:\\agustina\\proyecto\\reelnode\\reelnode\\ControlGestionPeliculasActualizar.cs",
-              "RelativeDocumentMoniker": "reelnode\\ControlGestionPeliculasActualizar.cs",
-              "ToolTip": "D:\\Rodrigo\\Algoritmos2\\reelnode\\reelnode\\ControlGestionPeliculasActualizar.cs [Dise\u00F1o]",
-              "RelativeToolTip": "..\\..\\..\\Rodrigo\\Algoritmos2\\reelnode\\reelnode\\ControlGestionPeliculasActualizar.cs [Dise\u00F1o]",
+              "Title": "Serie.cs",
+              "DocumentMoniker": "D:\\Rodrigo\\Algoritmos2\\reelnode\\reelnode\\Serie.cs",
+              "RelativeDocumentMoniker": "reelnode\\Serie.cs",
+              "ToolTip": "D:\\Rodrigo\\Algoritmos2\\reelnode\\reelnode\\Serie.cs",
+              "RelativeToolTip": "reelnode\\Serie.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAA2wCQAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-19T13:45:53.461Z"
+              "WhenOpened": "2025-09-22T14:25:52.301Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ControlGestionPeliculasActualizar.cs",
-              "DocumentMoniker": "D:\\agustina\\proyecto\\reelnode\\reelnode\\ControlGestionPeliculasActualizar.cs",
-              "RelativeDocumentMoniker": "reelnode\\ControlGestionPeliculasActualizar.cs",
-              "ToolTip": "D:\\agustina\\proyecto\\reelnode\\reelnode\\ControlGestionPeliculasActualizar.cs",
-              "RelativeToolTip": "reelnode\\ControlGestionPeliculasActualizar.cs",
-              "ViewState": "AgIAAFAAAAAAAAAAAAAawF0AAAANAAAAAAAAAA==",
+              "DocumentIndex": 7,
+              "Title": "Pelicula.cs",
+              "DocumentMoniker": "D:\\Rodrigo\\Algoritmos2\\reelnode\\reelnode\\Pelicula.cs",
+              "RelativeDocumentMoniker": "reelnode\\Pelicula.cs",
+              "ToolTip": "D:\\Rodrigo\\Algoritmos2\\reelnode\\reelnode\\Pelicula.cs",
+              "RelativeToolTip": "reelnode\\Pelicula.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAA2wBcAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-19T13:46:46.513Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ControlGestionPeliculasActualizar.Designer.cs",
-              "DocumentMoniker": "D:\\agustina\\proyecto\\reelnode\\Reelnode\\ControlGestionPeliculasActualizar.Designer.cs",
-              "RelativeDocumentMoniker": "Reelnode\\ControlGestionPeliculasActualizar.Designer.cs",
-              "ToolTip": "D:\\agustina\\proyecto\\reelnode\\Reelnode\\ControlGestionPeliculasActualizar.Designer.cs",
-              "RelativeToolTip": "Reelnode\\ControlGestionPeliculasActualizar.Designer.cs",
-              "ViewState": "AgIAAHoBAAAAAAAAAAAlwIIBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-19T14:42:56.538Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "FormMain.cs [Dise\u00F1o]",
-              "DocumentMoniker": "D:\\agustina\\proyecto\\reelnode\\reelnode\\FormMain.cs",
-              "RelativeDocumentMoniker": "reelnode\\FormMain.cs",
-              "ToolTip": "D:\\Rodrigo\\Algoritmos2\\reelnode\\reelnode\\FormMain.cs [Dise\u00F1o]",
-              "RelativeToolTip": "..\\..\\..\\Rodrigo\\Algoritmos2\\reelnode\\reelnode\\FormMain.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-19T14:29:35.192Z"
+              "WhenOpened": "2025-09-22T14:25:51.395Z",
+              "EditorCaption": ""
             }
           ]
         }

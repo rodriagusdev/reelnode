@@ -163,6 +163,7 @@
     <Compile Include="Pelicula.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PrototipoCrearMedia.cs" />
     <Compile Include="Rol.cs" />
     <Compile Include="Serie.cs" />
     <Compile Include="Usuario.cs" />

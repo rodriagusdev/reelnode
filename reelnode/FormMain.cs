@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using ProjectoNuevo.ProjectoNuevo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -69,5 +70,10 @@ namespace ProjectoNuevo
             UtilsBD.usuariosRegistrados = JsonSerializer.Deserialize<List<Usuario>>(json);
         }
 
+        private void noTocarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GeneradorPeliculas.Insertar20PeliculasAleatorias();
+            UtilsBD.CargarPeliculas();
+        }
     }
 }

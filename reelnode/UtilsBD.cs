@@ -105,11 +105,13 @@ namespace ProjectoNuevo
 
         public static void InsertarPeliculaBD(Pelicula nuevaPelicula)
         {
+
             try
             {
                 string query = @"
                 INSERT INTO peliculas (nombre, fecha_estreno, descripcion, director, imagen, duracion) 
-                VALUES (@nombre, @fecha_estreno, @descripcion, @director, @imagen, @duracion);";
+                VALUES (@nombre, @fecha_estreno, @descripcion, @director, @imagen, @duracion);
+                SELECT LAST_INSERT_ID();";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, Conexion.GetConnection()))
                 {
@@ -121,12 +123,16 @@ namespace ProjectoNuevo
                     cmd.Parameters.AddWithValue("@duracion", nuevaPelicula.Duracion);
                     cmd.ExecuteNonQuery();
 
+                    object result = cmd.ExecuteScalar();
+                    if (result != null)
+                        nuevaPelicula.Id = Convert.ToInt32(result);
+
                     peliculasCargadas.Add(nuevaPelicula);
 
-                    MessageBox.Show("Pelicula cargada con éxito", "Carga Exitosa",
+                    /*MessageBox.Show("Pelicula cargada con éxito", "Carga Exitosa",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.
-                    Information);
+                    Information);*/
                 }
             } catch (Exception ex) 
             { 
@@ -137,6 +143,7 @@ namespace ProjectoNuevo
 
         public static void CargarPeliculas()
         {
+            peliculasCargadas.Clear();
 
             string query =
                 "SELECT " +
@@ -249,9 +256,3 @@ namespace ProjectoNuevo
         }
     }
 }
-/*nombre VARCHAR(255) NOT NULL,
-    fecha_estreno DATE NOT NULL,
-    descripcion VARCHAR(255),
-    director VARCHAR(255),
-    imagen MEDIUMBLOB,
-    duracion VARCHAR(50)*/

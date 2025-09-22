@@ -50,6 +50,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.LblPanelPelicula = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.BtnPrevisualizar = new System.Windows.Forms.Button();
             this.PanelPeliculaCreacion.SuspendLayout();
             this.PanelDescripcion.SuspendLayout();
             this.PanelImagen.SuspendLayout();
@@ -58,11 +62,15 @@
             this.PanelDirector.SuspendLayout();
             this.PanelFecha.SuspendLayout();
             this.PanelUsuario.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // PanelPeliculaCreacion
             // 
             this.PanelPeliculaCreacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
+            this.PanelPeliculaCreacion.Controls.Add(this.BtnPrevisualizar);
+            this.PanelPeliculaCreacion.Controls.Add(this.label7);
+            this.PanelPeliculaCreacion.Controls.Add(this.panel1);
             this.PanelPeliculaCreacion.Controls.Add(this.BtnSalir);
             this.PanelPeliculaCreacion.Controls.Add(this.BtnCargarPelicula);
             this.PanelPeliculaCreacion.Controls.Add(this.PanelDescripcion);
@@ -91,7 +99,7 @@
             this.BtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSalir.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnSalir.ForeColor = System.Drawing.Color.White;
-            this.BtnSalir.Location = new System.Drawing.Point(625, 286);
+            this.BtnSalir.Location = new System.Drawing.Point(625, 224);
             this.BtnSalir.Name = "BtnSalir";
             this.BtnSalir.Size = new System.Drawing.Size(205, 35);
             this.BtnSalir.TabIndex = 34;
@@ -106,7 +114,7 @@
             this.BtnCargarPelicula.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCargarPelicula.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnCargarPelicula.ForeColor = System.Drawing.Color.White;
-            this.BtnCargarPelicula.Location = new System.Drawing.Point(625, 187);
+            this.BtnCargarPelicula.Location = new System.Drawing.Point(625, 178);
             this.BtnCargarPelicula.Name = "BtnCargarPelicula";
             this.BtnCargarPelicula.Size = new System.Drawing.Size(205, 35);
             this.BtnCargarPelicula.TabIndex = 33;
@@ -157,7 +165,7 @@
             this.PanelImagen.Location = new System.Drawing.Point(331, 57);
             this.PanelImagen.Name = "PanelImagen";
             this.PanelImagen.Padding = new System.Windows.Forms.Padding(5);
-            this.PanelImagen.Size = new System.Drawing.Size(205, 202);
+            this.PanelImagen.Size = new System.Drawing.Size(160, 115);
             this.PanelImagen.TabIndex = 31;
             // 
             // PicPelicula
@@ -165,7 +173,8 @@
             this.PicPelicula.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PicPelicula.Location = new System.Drawing.Point(5, 5);
             this.PicPelicula.Name = "PicPelicula";
-            this.PicPelicula.Size = new System.Drawing.Size(195, 192);
+            this.PicPelicula.Size = new System.Drawing.Size(150, 105);
+            this.PicPelicula.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.PicPelicula.TabIndex = 0;
             this.PicPelicula.TabStop = false;
             // 
@@ -331,6 +340,57 @@
             this.LblPanelPelicula.TabIndex = 22;
             this.LblPanelPelicula.Text = "Nombre de la pelicula";
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(47)))), ((int)(((byte)(71)))));
+            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Location = new System.Drawing.Point(331, 205);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(5);
+            this.panel1.Size = new System.Drawing.Size(205, 35);
+            this.panel1.TabIndex = 29;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(47)))), ((int)(((byte)(71)))));
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox1.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.ForeColor = System.Drawing.Color.White;
+            this.textBox1.Location = new System.Drawing.Point(5, 5);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(195, 22);
+            this.textBox1.TabIndex = 12;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Enabled = false;
+            this.label7.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(328, 185);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(105, 17);
+            this.label7.TabIndex = 35;
+            this.label7.Text = "URL de la imagen";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
+            // 
+            // BtnPrevisualizar
+            // 
+            this.BtnPrevisualizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(47)))), ((int)(((byte)(71)))));
+            this.BtnPrevisualizar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnPrevisualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnPrevisualizar.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnPrevisualizar.ForeColor = System.Drawing.Color.White;
+            this.BtnPrevisualizar.Location = new System.Drawing.Point(331, 248);
+            this.BtnPrevisualizar.Name = "BtnPrevisualizar";
+            this.BtnPrevisualizar.Size = new System.Drawing.Size(205, 35);
+            this.BtnPrevisualizar.TabIndex = 36;
+            this.BtnPrevisualizar.Text = "Previsualizar";
+            this.BtnPrevisualizar.UseVisualStyleBackColor = false;
+            this.BtnPrevisualizar.Click += new System.EventHandler(this.BtnPrevisualizar_Click);
+            // 
             // ControlGestionPeliculasCargar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -351,6 +411,8 @@
             this.PanelFecha.ResumeLayout(false);
             this.PanelUsuario.ResumeLayout(false);
             this.PanelUsuario.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -379,5 +441,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label LblPanelPelicula;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button BtnPrevisualizar;
     }
 }

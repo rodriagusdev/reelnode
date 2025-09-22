@@ -318,19 +318,19 @@
             this.CtxMenuSubModificar,
             this.CtxMenuSubEliminar});
             this.CtxMenu.Name = "CtxMenu";
-            this.CtxMenu.Size = new System.Drawing.Size(181, 70);
+            this.CtxMenu.Size = new System.Drawing.Size(158, 48);
             // 
             // CtxMenuSubModificar
             // 
             this.CtxMenuSubModificar.Name = "CtxMenuSubModificar";
-            this.CtxMenuSubModificar.Size = new System.Drawing.Size(180, 22);
+            this.CtxMenuSubModificar.Size = new System.Drawing.Size(157, 22);
             this.CtxMenuSubModificar.Text = "Modificar datos";
             this.CtxMenuSubModificar.Click += new System.EventHandler(this.CtxMenuSubModificar_Click);
             // 
             // CtxMenuSubEliminar
             // 
             this.CtxMenuSubEliminar.Name = "CtxMenuSubEliminar";
-            this.CtxMenuSubEliminar.Size = new System.Drawing.Size(180, 22);
+            this.CtxMenuSubEliminar.Size = new System.Drawing.Size(157, 22);
             this.CtxMenuSubEliminar.Text = "Eliminar";
             this.CtxMenuSubEliminar.Click += new System.EventHandler(this.CtxMenuSubEliminar_Click);
             // 
