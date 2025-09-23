@@ -19,18 +19,16 @@ namespace ProjectoNuevo
 
         public static void RegistrarUsuarioBD(Usuario nuevoUsuario)
         {
-            string query = @"
-            INSERT INTO usuario (nombre_usuario, password_usuario, email_usuario, avatar, fecha_registro, id_rol) 
-            VALUES (@nombre, @password, @email, @avatar, @fecha_registro, @rol);";
-
-            using (MySqlCommand cmd = new MySqlCommand(query, Conexion.GetConnection()))
+            using (MySqlCommand cmd = new MySqlCommand("sp_insertar_usuario", Conexion.GetConnection()))
             {
-                cmd.Parameters.AddWithValue("@nombre", nuevoUsuario.NombreUsuario);
-                cmd.Parameters.AddWithValue("@password", nuevoUsuario.Password);
-                cmd.Parameters.AddWithValue("@email", nuevoUsuario.Email);
-                cmd.Parameters.AddWithValue("@avatar", null);
-                cmd.Parameters.AddWithValue("@fecha_registro", nuevoUsuario.FechaRegistro);
-                cmd.Parameters.AddWithValue("@rol", ObtenerRolUsuario(nuevoUsuario.RolUsuario));
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("p_nombre", nuevoUsuario.NombreUsuario);
+                cmd.Parameters.AddWithValue("p_password", nuevoUsuario.Password);
+                cmd.Parameters.AddWithValue("p_email", nuevoUsuario.Email);
+                cmd.Parameters.AddWithValue("p_avatar", null);
+                cmd.Parameters.AddWithValue("p_fecha_registro", nuevoUsuario.FechaRegistro);
+                cmd.Parameters.AddWithValue("p_id_rol", ObtenerRolUsuario(nuevoUsuario.RolUsuario));
 
                 cmd.ExecuteNonQuery();
 
@@ -42,7 +40,7 @@ namespace ProjectoNuevo
         {
             string nombreUsuario = data.CurrentRow.Cells["NombreUsuario"].Value.ToString();
 
-            if(nombreUsuario == usuarioActual.NombreUsuario)
+            if (nombreUsuario == usuarioActual.NombreUsuario)
             {
                 MessageBox.Show("No puedes modificar tu propio rol mientras estás logueado.", "Modificación no permitida",
                     MessageBoxButtons.OK,
@@ -50,17 +48,13 @@ namespace ProjectoNuevo
                 return;
             }
 
-            string query = @"
-            UPDATE usuario
-            SET id_rol = @idRol
-            WHERE nombre_usuario = @usuario;";
-
-            using (MySqlCommand cmd = new MySqlCommand(query, Conexion.GetConnection()))
+            using (MySqlCommand cmd = new MySqlCommand("sp_modificar_rol_usuario", Conexion.GetConnection()))
             {
-                cmd.Parameters.AddWithValue("@usuario", nombreUsuario);
-                cmd.Parameters.AddWithValue("@idRol", data.Tag.ToString());
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("p_nombre_usuario", nombreUsuario);
+                cmd.Parameters.AddWithValue("p_id_rol", data.Tag.ToString());
 
-                cmd.ExecuteNonQuery();             
+                cmd.ExecuteNonQuery();
             }
         }
           public static void CargarUsuario()
@@ -108,19 +102,17 @@ namespace ProjectoNuevo
 
             try
             {
-                string query = @"
-                INSERT INTO peliculas (nombre, fecha_estreno, descripcion, director, imagen, duracion) 
-                VALUES (@nombre, @fecha_estreno, @descripcion, @director, @imagen, @duracion);
-                SELECT LAST_INSERT_ID();";
-
-                using (MySqlCommand cmd = new MySqlCommand(query, Conexion.GetConnection()))
+                using (MySqlCommand cmd = new MySqlCommand("sp_insertar_pelicula", Conexion.GetConnection()))
                 {
-                    cmd.Parameters.AddWithValue("@nombre", nuevaPelicula.Nombre);
-                    cmd.Parameters.AddWithValue("@fecha_estreno", nuevaPelicula.FechaEstreno);
-                    cmd.Parameters.AddWithValue("@descripcion", nuevaPelicula.Descripcion);
-                    cmd.Parameters.AddWithValue("@director", nuevaPelicula.Director);
-                    cmd.Parameters.AddWithValue("@imagen", nuevaPelicula.Imagen);
-                    cmd.Parameters.AddWithValue("@duracion", nuevaPelicula.Duracion);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("p_nombre", nuevaPelicula.Nombre);
+                    cmd.Parameters.AddWithValue("p_fecha", nuevaPelicula.FechaEstreno);
+                    cmd.Parameters.AddWithValue("p_descripcion", nuevaPelicula.Descripcion);
+                    cmd.Parameters.AddWithValue("p_director", nuevaPelicula.Director);
+                    cmd.Parameters.AddWithValue("p_imagen", nuevaPelicula.Imagen);
+                    cmd.Parameters.AddWithValue("p_duracion", nuevaPelicula.Duracion);
+
                     cmd.ExecuteNonQuery();
 
                     object result = cmd.ExecuteScalar();
@@ -129,47 +121,38 @@ namespace ProjectoNuevo
 
                     peliculasCargadas.Add(nuevaPelicula);
 
-                    /*MessageBox.Show("Pelicula cargada con éxito", "Carga Exitosa",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.
-                    Information);*/
+                    MessageBox.Show("Película cargada con éxito", "Carga Exitosa",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                 }
-            } catch (Exception ex) 
-            { 
-                MessageBox.Show(ex.Message); 
             }
-            
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public static void CargarPeliculas()
         {
             peliculasCargadas.Clear();
 
-            string query =
-                "SELECT " +
-                "p.id_pelicula," +
-                "p.nombre, " +
-                "p.fecha_estreno, " +
-                "p.director," +
-                "p.descripcion," +
-                "p.duracion\r\n" +
-                "FROM peliculas p\r\n";
-
-            using (MySqlCommand cmd = new MySqlCommand(query, UtilsBD.Conexion.GetConnection()))
+            using (MySqlCommand cmd = new MySqlCommand("sp_listar_peliculas", UtilsBD.Conexion.GetConnection()))
             {
+                cmd.CommandType = CommandType.StoredProcedure;
+
                 using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        Pelicula nueva = new Pelicula();
+                        Pelicula nueva = new Pelicula
                         {
-                            nueva.Id = reader.GetInt32("id_pelicula");
-                            nueva.Nombre = reader.GetString("nombre");
-                            nueva.FechaEstreno = reader.GetDateTime("fecha_estreno");
-                            nueva.Director = reader.GetString("director");
-                            nueva.Duracion = reader.GetString("duracion");
-                            nueva.Descripcion = reader.GetString("descripcion");
-                        }
+                            Id = reader.GetInt32("id_pelicula"),
+                            Nombre = reader.GetString("nombre"),
+                            FechaEstreno = reader.GetDateTime("fecha_estreno"),
+                            Director = reader.GetString("director"),
+                            Duracion = reader.GetString("duracion"),
+                            Descripcion = reader.GetString("descripcion")
+                        };
 
                         peliculasCargadas.Add(nueva);
                     }
@@ -181,15 +164,11 @@ namespace ProjectoNuevo
         {
             try
             {
-                string query =
-                    "DELETE " +
-                    "FROM peliculas " +
-                    "WHERE id_pelicula = @idPeli";
-
-                using (MySqlCommand cmd = new MySqlCommand(query, Conexion.GetConnection()))
+                using (MySqlCommand cmd = new MySqlCommand("sp_eliminar_pelicula_sin_trasaccion", Conexion.GetConnection()))
                 {
-                    cmd.Parameters.AddWithValue("@idPeli", id);
-               
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("p_id", id);
+
                     int filasAfectadas = cmd.ExecuteNonQuery();
 
                     if (filasAfectadas > 0)
@@ -207,52 +186,47 @@ namespace ProjectoNuevo
                                         MessageBoxButtons.OK,
                                         MessageBoxIcon.Warning);
                     }
-
                 }
             }
-            catch (Exception e) { }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error: " + e.Message, "Excepción",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            }
         }
 
         public static void ActualizarPelicula(Pelicula actualizarPelicula) 
         {
             MessageBox.Show(actualizarPelicula.Id.ToString());
-
             try
             {
-                string query = "UPDATE peliculas SET " +
-               "nombre = @nombre, " +
-               "descripcion = @descripcion, " +
-               "director = @director, " +
-               "imagen = @imagen, " +
-               "duracion = @duracion " +
-               "WHERE id_pelicula = @idPelicula";
-
-                using (MySqlCommand cmd = new MySqlCommand(query, Conexion.GetConnection()))
+                using (MySqlCommand cmd = new MySqlCommand("sp_actualizar_pelicula", Conexion.GetConnection()))
                 {
-                    cmd.Parameters.AddWithValue("@nombre", actualizarPelicula.Nombre);
-                    cmd.Parameters.AddWithValue("@fecha_estreno", actualizarPelicula.FechaEstreno);
-                    cmd.Parameters.AddWithValue("@descripcion", actualizarPelicula.Descripcion);
-                    cmd.Parameters.AddWithValue("@director", actualizarPelicula.Director);
-                    cmd.Parameters.AddWithValue("@imagen", actualizarPelicula.Imagen);
-                    cmd.Parameters.AddWithValue("@duracion", actualizarPelicula.Duracion);
-                    cmd.Parameters.AddWithValue("@idPelicula", actualizarPelicula.Id);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("p_id", actualizarPelicula.Id);
+                    cmd.Parameters.AddWithValue("p_nombre", actualizarPelicula.Nombre);
+                    cmd.Parameters.AddWithValue("p_fecha_estreno", actualizarPelicula.FechaEstreno);
+                    cmd.Parameters.AddWithValue("p_descripcion", actualizarPelicula.Descripcion);
+                    cmd.Parameters.AddWithValue("p_director", actualizarPelicula.Director);
+                    cmd.Parameters.AddWithValue("p_imagen", actualizarPelicula.Imagen);
+                    cmd.Parameters.AddWithValue("p_duracion", actualizarPelicula.Duracion);
 
                     cmd.ExecuteNonQuery();
 
                     peliculasCargadas.Clear();
                     UtilsBD.CargarPeliculas();
 
-                    MessageBox.Show("Pelicula cargada con éxito", "Carga Exitosa",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.
-                    Information);
+                    MessageBox.Show("Película actualizada con éxito", "Actualización Exitosa",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-            }            
-           
+                MessageBox.Show("Error al actualizar la película: " + ex.Message);
+            }
         }
     }
 }
