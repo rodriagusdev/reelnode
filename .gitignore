@@ -3,3 +3,7 @@
 *.backup.json
 bin/
 obj/
+*.cache
+*.pdb
+*.dll
+*.exe
