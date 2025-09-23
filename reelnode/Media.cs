@@ -14,8 +14,7 @@ namespace ProjectoNuevo
         public abstract DateTime FechaEstreno { get; set; }
         public abstract string Descripcion { get; set; }
         public abstract string Director { get; set; }
-        public abstract Image Imagen { get; set; }
-
+        public abstract string Imagen { get; set; }
         public abstract string Tipo { get; set; }
     }
 }

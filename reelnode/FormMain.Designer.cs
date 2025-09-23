@@ -31,8 +31,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ToolStpMenuAdmin = new System.Windows.Forms.ToolStripMenuItem();
-            this.PanelMain = new System.Windows.Forms.Panel();
             this.noTocarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PanelMain = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -65,6 +65,13 @@
             this.ToolStpMenuAdmin.Text = "Administrar Contenido";
             this.ToolStpMenuAdmin.Click += new System.EventHandler(this.ToolStpMenuAdmin_Click);
             // 
+            // noTocarToolStripMenuItem
+            // 
+            this.noTocarToolStripMenuItem.Name = "noTocarToolStripMenuItem";
+            this.noTocarToolStripMenuItem.Size = new System.Drawing.Size(63, 22);
+            this.noTocarToolStripMenuItem.Text = "no tocar";
+            this.noTocarToolStripMenuItem.Click += new System.EventHandler(this.noTocarToolStripMenuItem_Click);
+            // 
             // PanelMain
             // 
             this.PanelMain.AutoSize = true;
@@ -75,13 +82,6 @@
             this.PanelMain.Size = new System.Drawing.Size(937, 473);
             this.PanelMain.TabIndex = 1;
             this.PanelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
-            // 
-            // noTocarToolStripMenuItem
-            // 
-            this.noTocarToolStripMenuItem.Name = "noTocarToolStripMenuItem";
-            this.noTocarToolStripMenuItem.Size = new System.Drawing.Size(63, 22);
-            this.noTocarToolStripMenuItem.Text = "no tocar";
-            this.noTocarToolStripMenuItem.Click += new System.EventHandler(this.noTocarToolStripMenuItem_Click);
             // 
             // FormMain
             // 
