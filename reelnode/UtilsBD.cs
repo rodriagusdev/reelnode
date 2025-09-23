@@ -151,8 +151,7 @@ namespace ProjectoNuevo
                             FechaEstreno = reader.GetDateTime("fecha_estreno"),
                             Director = reader.GetString("director"),
                             Duracion = reader.GetString("duracion"),
-                            Descripcion = reader.GetString("descripcion"),
-                            Imagen = reader.GetString("imagen")
+                            Descripcion = reader.GetString("descripcion")
                         };
 
                         peliculasCargadas.Add(nueva);
