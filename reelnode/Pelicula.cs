@@ -14,13 +14,13 @@ namespace ProjectoNuevo
         public override DateTime FechaEstreno {  get; set; }
         public override string Descripcion { get; set; }
         public override string Director {  get; set; }
-        public override Image Imagen { get; set; }
+        public override string Imagen { get; set; }
 
         public override string Tipo { get; set; }
         public string Duracion { get; set; }
 
         public Pelicula() { }
-        public Pelicula(string nombre, DateTime fechaEstreno, string descripcion, string director, Image img, string duracion ) 
+        public Pelicula(string nombre, DateTime fechaEstreno, string descripcion, string director, string img, string duracion ) 
         {
             this.Nombre = nombre;
             this.FechaEstreno = fechaEstreno;

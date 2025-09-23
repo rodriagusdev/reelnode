@@ -14,7 +14,7 @@ namespace ProjectoNuevo
         public override DateTime FechaEstreno { get; set; }
         public override string Descripcion { get; set; }
         public override string Director { get; set; }
-        public override Image Imagen { get; set; }
+        public override string Imagen { get; set; }
 
         public override string Tipo { get; set; }
         public string Temporadas { get; set; }
@@ -24,7 +24,7 @@ namespace ProjectoNuevo
 
         public Serie() { }
 
-        public Serie(int id, string nombre, DateTime fecha, string descripcion, string director, string temporadas, List<string> network)
+        public Serie(int id, string nombre, DateTime fecha, string descripcion, string director, string img, string temporadas, List<string> network)
         {
             this.Id = id;
             this.Nombre = nombre;
@@ -33,7 +33,7 @@ namespace ProjectoNuevo
             this.Director = director;
             this.Temporadas = temporadas;
             this.Network = network;
-            this.Imagen = null;
+            this.Imagen = img;
             this.Tipo = "Serie";
         }
     }

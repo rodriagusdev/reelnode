@@ -46,7 +46,7 @@ namespace ProjectoNuevo
                 actualizarPelicula.Director = TxtDirector.Text;
                 actualizarPelicula.Duracion = TxtDuracion.Text;
                 actualizarPelicula.Descripcion = TxtDescripcion.Text;
-                actualizarPelicula.Imagen = PicPelicula.Image;
+                actualizarPelicula.Imagen = "";
             }
 
             UtilsBD.ActualizarPelicula(actualizarPelicula);

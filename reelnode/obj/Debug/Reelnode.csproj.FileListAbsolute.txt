@@ -93,9 +93,7 @@ C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\System.Text.Json.xml
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\System.ValueTuple.xml
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\Reelnode.csproj.AssemblyReference.cache
-C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.exe.config
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.FormMain.resources
-C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.FormAdmin.resources
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.FormLogin.resources
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.FormRegistrar.resources
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.Properties.Resources.resources
@@ -104,8 +102,6 @@ C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\Reelnode.csproj.CoreCompi
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\Reelnode.csproj.Up2Date
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.exe
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.pdb
-C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.FormCrearPelicula.resources
-C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.FormGestionUsuarios.resources
 D:\n\reelnode\Reelnode\bin\Debug\ProjectoNuevo.exe.config
 D:\n\reelnode\Reelnode\bin\Debug\ProjectoNuevo.exe
 D:\n\reelnode\Reelnode\bin\Debug\ProjectoNuevo.pdb
@@ -164,7 +160,6 @@ D:\n\reelnode\Reelnode\obj\Debug\ProjectoNuevo.exe
 D:\n\reelnode\Reelnode\obj\Debug\ProjectoNuevo.pdb
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\itextsharp.dll
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\itextsharp.xml
-C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.FormActualizarPelicula.resources
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.ControlGestionPeliculasCargar.resources
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.ControlAdmin.resources
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.ControlGestionPeliculasListarPeliculas.resources
@@ -227,3 +222,4 @@ D:\agustina\proyecto\reelnode\Reelnode\obj\Debug\Reelnode.csproj.CoreCompileInpu
 D:\agustina\proyecto\reelnode\Reelnode\obj\Debug\Reelnode.csproj.Up2Date
 D:\agustina\proyecto\reelnode\Reelnode\obj\Debug\ProjectoNuevo.exe
 D:\agustina\proyecto\reelnode\Reelnode\obj\Debug\ProjectoNuevo.pdb
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.ControlGestionPeliculasActualizar.resources
