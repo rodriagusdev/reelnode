@@ -44,7 +44,7 @@ ToolStripMenu: ToolStpMenuX
 
 ❌Moderar comentarios
 
-❌Carga de imagenes
+✅Carga de imagenes
 
 # Usuario
 ❌Registrar Calificaciones
