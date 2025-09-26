@@ -1,13 +1,15 @@
 create database ReelNode;
 use ReelNode;
 
+-- Tablas -----------------------------------------------
+
 CREATE TABLE peliculas (
     id_pelicula INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(255) NOT NULL,
     fecha_estreno DATE NOT NULL,
     descripcion VARCHAR(255),
     director VARCHAR(255),
-    imagen MEDIUMBLOB,
+    imagen varchar(255),
     duracion VARCHAR(50)
 );
 
@@ -23,7 +25,7 @@ CREATE TABLE serie (
     fecha_fin DATE,
     descripcion VARCHAR(255),
     director VARCHAR(255),
-    imagen MEDIUMBLOB,
+    imagen varchar(255),
     cant_temporadas INT,
     id_network INT,
     FOREIGN KEY (id_network) REFERENCES network(id_network)
@@ -60,18 +62,16 @@ values ("Admin"), ("Usuario");
 
 CREATE TABLE usuario (
     id_usuario INT PRIMARY KEY AUTO_INCREMENT,
-    nombre_usuario VARCHAR(255) NOT NULL,
+    nombre_usuario VARCHAR(255) unique,
     email_usuario varchar(255) not null,
     password_usuario varchar (255) not null,
-    avatar MEDIUMBLOB,
+    avatar varchar(255),
     fecha_registro DATE NOT NULL,
     id_rol INT,
     FOREIGN KEY (id_rol) REFERENCES rol(id_rol)
 );
-ALTER TABLE usuario
-ADD CONSTRAINT nombre_usuario UNIQUE (nombre_usuario);
 
-select* from usuario;
+select* from peliculas;
 
 insert into usuario (nombre_usuario, email_usuario, password_usuario, avatar, fecha_registro, id_rol)
 values("rodri", "rodri@gmail.com", "1", null, now(), 1),
@@ -146,6 +146,95 @@ foreign key (id_usuario) references usuario(id_usuario),
 foreign key (id_rol) references rol(id_rol)
 );
 
+-- Auditorias    ------------------------------------------------------------
+
+create table auditoria_login(
+	id_auditoria int primary key auto_increment,
+    id_usuario int,
+    fecha datetime not null,
+    exitoso boolean,
+    foreign key (id_usuario) references usuario(id_usuario)
+);
+
+-- para cambiar los roles mas seguro
+CREATE TABLE auditoria_roles (
+    id_auditoria int primary key auto_increment,
+    id_usuario int,
+    rol_anterior int,
+    rol_nuevo int,
+    fecha datetime not null,
+    foreign key (id_usuario) references usuario(id_usuario)
+);
+
+CREATE TABLE auditoria_visualizaciones (
+    id_auditoria int primary key auto_increment,
+    id_usuario int,
+    id_serie int null,
+    id_pelicula int null,
+    fecha datetime not null,
+    foreign key (id_usuario) references usuario(id_usuario),
+    foreign key (id_serie) references serie(id_serie),
+   foreign key (id_pelicula) references peliculas(id_pelicula)
+);
+
+-- 2. Películas y Series (Admin): ABM, carga de imágenes, importación/exportación JSON.
+create table auditoria_peliculas_serie(
+	id_auditoria int auto_increment primary key,
+    tabla_afectada varchar(255),
+    accion varchar(255),
+    id_registro int,
+    fecha_hora datetime,
+    detalle varchar(255)
+);
+
+-- 5. Comentarios (Usuario común): ingresar comentarios de texto, verlos, Admin puede eliminarlos.
+
+create table auditoria_comentarios_usuario (
+    id_auditoria int auto_increment primary key,
+    tabla_afectada varchar(50),
+    accion varchar(20),
+    id_registro int,
+    id_usuario int,
+    fecha_hora datetime,
+    detalle varchar(255)
+);
+ALTER TABLE auditoria_comentarios_usuario
+ADD CONSTRAINT fk_auditoriac_usuario
+FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario);
+
+-- para comentarios de peli:
+ALTER TABLE auditoria_comentarios_usuario
+ADD CONSTRAINT fk_auditoriac_comentario_peli
+FOREIGN KEY (id_registro) REFERENCES comentarios_peli(id_comentario);
+
+-- para comentarios de serie (si id_registro corresponde a comentarios_serie):
+ALTER TABLE auditoria_comentarios_usuario
+ADD CONSTRAINT fk_auditoriac_comentario_serie
+FOREIGN KEY (id_registro) REFERENCES comentarios_serie(id_comentario);
+
+
+-- Indices --------------------------------------------------
+
+create index idx_usuario_email on usuario(email_usuario); -- Índice para acelerar búsquedas por email
+create index idx_usuario_rol on usuario(id_rol); -- Índice para buscar por rol
+
+-- 4. Visualizaciones (Usuario común): registrar visualización y consultar historial.
+-- índice para buscar visualizaciones por usuario
+create index idx_visualizaciones_usuario_serie on visualizaciones_serie(id_usuario);
+create index  idx_visualizaciones_usuario_pelicula on visualizaciones_pelicula(id_usuario);
+
+-- índice para buscar visualizaciones por serie/película
+create index idx_visualizaciones_serie on visualizaciones_serie(id_serie);
+create index  idx_visualizaciones_pelicula on visualizaciones_pelicula(id_pelicula);
+
+create index idx_peliculas_nombre on peliculas(nombre);
+create index idx_series_nombre on serie(nombre);
+create index idx_serie_network on serie(id_network);
+
+create index idx_comentarios_usuario_peli on comentarios_peli(id_usuario);
+create index idx_comentarios_usuario_serie on comentarios_serie(id_usuario);
+
+-- Procedimientos --------------------------------------------------------------
 -- Insertar un usuario
 DELIMITER //
 CREATE PROCEDURE sp_insertar_usuario(
@@ -187,173 +276,7 @@ BEGIN
 END //
 DELIMITER ;
 
-/* -- Usuario común: comentar y visualizar
-DELIMITER //
-CREATE PROCEDURE sc_comentar_vizualizar(
-    IN p_id_usuario INT,
-    IN p_id_objeto INT,
-    IN p_comentario VARCHAR(255),
-    IN p_tipo_objeto VARCHAR(255) -- pelicula o serie
-)
-BEGIN
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION
-    BEGIN 
-        ROLLBACK;
-        SELECT "no se pudo registrar la accion del usuario" AS mensaje;
-    END;
-        
-    START TRANSACTION;
-    
-    -- Solo un usuario común puede ejecutar esto
-    IF NOT EXISTS (
-        SELECT 1
-        FROM rol_x_usuario ru
-        JOIN rol r ON ru.id_rol = r.id_rol
-        WHERE ru.id_usuario = p_id_usuario AND r.tipo_rol = "Usuario"
-    ) THEN
-        SIGNAL SQLSTATE "45000"
-        SET MESSAGE_TEXT = "no tienes permiso para realizar esta accion";
-    END IF;
-    
-    -- Registrar según el tipo de objeto
-    IF p_tipo_objeto = "pelicula" THEN
-        INSERT INTO visualizaciones_pelicula(id_usuario, id_pelicula)
-        VALUES(p_id_usuario, p_id_objeto);
-     
-        INSERT INTO comentarios_peli(id_usuario, id_pelicula, fecha_comentario, texto)
-        VALUES(p_id_usuario, p_id_objeto, CURDATE(), p_comentario);
-     
-    ELSEIF p_tipo_objeto = "serie" THEN
-        INSERT INTO visualizaciones_serie(id_usuario, id_serie)
-        VALUES(p_id_usuario, p_id_objeto);
-
-        INSERT INTO comentarios_serie(id_usuario, id_serie, fecha_comentario, texto)
-        VALUES(p_id_usuario, p_id_objeto, CURDATE(), p_comentario);
-        
-    ELSE 
-        SIGNAL SQLSTATE "45000" 
-        SET MESSAGE_TEXT = 'Tipo de objeto inválido, debe ser "pelicula" o "serie"';
-    END IF;
-        
-    COMMIT;
-    SELECT CONCAT("Accion registrada correctamente en ", p_tipo_objeto) AS mensaje;
-END //
-DELIMITER ;
-
-
--- Usuario administrador: asignar rol y permisos
-DELIMITER //
-CREATE PROCEDURE sa_signar_rol_permisos(
-    IN p_id_admin INT,
-    IN p_id_usuario INT,
-    IN p_id_rol INT,
-    IN p_id_permisos INT
-)
-BEGIN
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION 
-    BEGIN
-        ROLLBACK;
-        SELECT "no puede asignar rol y permisos" AS mensaje;
-    END;
-    
-    START TRANSACTION;
-    
-    -- Solo un administrador puede ejecutar esto
-    IF NOT EXISTS(
-        SELECT 1 
-        FROM rol_x_usuario ru 
-        JOIN rol r ON ru.id_rol = r.id_rol
-        WHERE ru.id_usuario = p_id_admin AND r.tipo_rol = "Admin"
-    ) THEN
-        SIGNAL SQLSTATE "45000" SET MESSAGE_TEXT = "No tienes permisos de administrador";
-    END IF;
-        
--- Asignar rol al usuario
-    INSERT INTO rol_x_usuario(id_usuario, id_rol) 
-    VALUES(p_id_usuario, p_id_rol);
-
--- Asignar permiso al usuario
-    INSERT INTO permisos_usuarios(id_usuario, id_permiso)
-    VALUES(p_id_usuario, p_id_permisos);
-      
-    COMMIT;
-    SELECT "rol y permisos asignados correctamente" AS mensaje;
-END //
-DELIMITER ;
-
-
--- Procedimiento para administrar peliculas o series (solo administrador)
-DELIMITER //
-CREATE PROCEDURE ad_modificar_contenido(
-    IN p_id_admin INT,
-    IN p_tipo_objeto VARCHAR(20),  -- 'pelicula' o 'serie'
-    IN p_accion VARCHAR(20),       -- 'agregar' o 'eliminar'
-    IN p_id_objeto INT,            -- usado para eliminar
-    IN p_nombre VARCHAR(255),      -- usado para agregar
-    IN p_fecha DATE,               -- fecha de estreno
-    IN p_descripcion VARCHAR(255),
-    IN p_director VARCHAR(255),
-    IN p_duracion VARCHAR(50),     -- solo películas
-    IN p_cant_temporadas INT,      -- solo series
-    IN p_id_network INT            -- solo series
-)
-BEGIN
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION
-    BEGIN
-        ROLLBACK;
-        SELECT "no se pudo completar la operacion" AS mensaje;
-    END;
-    
-    START TRANSACTION;
-    
-    IF NOT EXISTS (
-        SELECT 1 
-        FROM rol_x_usuario ru
-        JOIN rol r ON ru.id_rol = r.id_rol
-        WHERE ru.id_usuario = p_id_admin AND r.tipo_rol = "Admin"
-    ) THEN
-        SIGNAL SQLSTATE "45000" SET MESSAGE_TEXT = "No tienes permisos de administrador";
-    END IF;
-    
-    -- Acciones según tipo y operación
-    IF p_tipo_objeto = "pelicula" THEN
-        IF p_accion = "agregar" THEN
-            INSERT INTO peliculas (nombre, fecha_estreno, descripcion, director, duracion)
-            VALUES (p_nombre, p_fecha, p_descripcion, p_director, p_duracion);
-        
-        ELSEIF p_accion = "eliminar" THEN
-            DELETE FROM peliculas WHERE id_pelicula = p_id_objeto;
-        ELSE 
-            SIGNAL SQLSTATE "45000" SET MESSAGE_TEXT = "accion invalida";
-        END IF;
-        
-    ELSEIF p_tipo_objeto = "serie" THEN
-        IF p_accion = "agregar" THEN
-            INSERT INTO serie(nombre, fecha_estreno, descripcion, director, cant_temporadas, id_network) 
-            VALUES (p_nombre, p_fecha, p_descripcion, p_director, p_cant_temporadas, p_id_network);
-        ELSEIF p_accion = "eliminar" THEN
-            DELETE FROM serie WHERE id_serie = p_id_objeto;
-        ELSE
-            SIGNAL SQLSTATE "45000" SET MESSAGE_TEXT = "accion invalida";
-        END IF;
-    ELSE
-        SIGNAL SQLSTATE "45000" SET MESSAGE_TEXT = "tipo de objeto invalido";
-    END IF;
-        
-    COMMIT;
-    SELECT CONCAT('Operación ', p_accion, ' realizada correctamente en ', p_tipo_objeto) AS mensaje;
-END //
-DELIMITER ;*/
-
 -- 1. Login inicial con validación de credenciales y carga de rol.
--- sin uso
-create table auditoria_login(
-	id_auditoria int primary key auto_increment,
-    id_usuario int,
-    fecha datetime not null,
-    exitoso boolean,
-    foreign key (id_usuario) references usuario(id_usuario)
-);
 
 DELIMITER //
 create procedure login_user(
@@ -367,10 +290,6 @@ begin
     where u.email_usuario = p_email and u.password_usuario =md5(p_password); -- compara con hash
 end //
 DELIMITER ;
-
--- 3. Usuarios (Admin): CRUD y cambio de roles.
-create index idx_usuario_email on usuario(email_usuario); -- Índice para acelerar búsquedas por email
-create index idx_usuario_rol on usuario(id_rol); -- Índice para buscar por rol
 
 -- Procedimientos almacenados con crud
 DELIMITER //
@@ -418,47 +337,33 @@ begin
 end //
 DELIMITER ;
 
--- para cambiar los roles mas seguro
-CREATE TABLE auditoria_roles (
-    id_auditoria int primary key auto_increment,
-    id_usuario int,
-    rol_anterior int,
-    rol_nuevo int,
-    fecha datetime not null,
-    id_admin int, -- quien hizo el cambio
-    foreign key (id_usuario) references usuario(id_usuario),
-    foreign key (id_admin) references usuario(id_usuario)
-);
-
 DELIMITER //
 create procedure sp_cambiar_rol(
-	in p_id_usuario int,
-    in p_id_nuevo_rol int,
-    in p_id_admin int
+IN p_id_usuario INT,
+    IN p_id_nuevo_rol INT
 )
-begin
-	declare v_rol_anterior int;
-	
-    start transaction;
-    
-    -- obtener rol anterior
-    
-    select id_rol into v_rol_anterior
-    from usuario
-    where id_usuario = p_id_usuario;
-    
-    -- actualizar rol
-    update usuario
-    set id_rol = p_id_nuevo_rol
-    where id_usuario = p_id_usuario;
-    
-    -- registrar auditoria
-    insert into auditoria_roles(id_usuario, rol_anterior, rol_nuevo, fecha, id_admin)
-    values (p_id_usuario, v_rol_anterior, p_id_nuevo_rol, NOW(), p_id_admin);
-    
-    commit;
+BEGIN
+    DECLARE v_rol_anterior INT;
+
+    START TRANSACTION;
+
+    -- Obtener rol anterior
+    SELECT id_rol INTO v_rol_anterior
+    FROM usuario
+    WHERE id_usuario = p_id_usuario;
+
+    -- Actualizar rol
+    UPDATE usuario
+    SET id_rol = p_id_nuevo_rol
+    WHERE id_usuario = p_id_usuario;
+
+    INSERT INTO auditoria_roles(id_usuario, rol_anterior, rol_nuevo, fecha)
+    VALUES (p_id_usuario, v_rol_anterior, p_id_nuevo_rol, NOW());
+
+    COMMIT;
 end //
 DELIMITER ;
+
 DELIMITER //
 CREATE PROCEDURE sp_modificar_rol_usuario(
     IN p_nombre_usuario VARCHAR(255),
@@ -469,26 +374,6 @@ BEGIN
     SET id_rol = p_id_rol
     WHERE nombre_usuario = p_nombre_usuario;
 END //
-DELIMITER ;
--- 4. Visualizaciones (Usuario común): registrar visualización y consultar historial.
--- índice para buscar visualizaciones por usuario
-create index idx_visualizaciones_usuario_serie on visualizaciones_serie(id_usuario);
-create index  idx_visualizaciones_usuario_pelicula on visualizaciones_pelicula(id_usuario);
-
--- índice para buscar visualizaciones por serie/película
-create index idx_visualizaciones_serie on visualizaciones_serie(id_serie);
-create index  idx_visualizaciones_pelicula on visualizaciones_pelicula(id_pelicula);
-
-CREATE TABLE auditoria_visualizaciones (
-    id_auditoria int primary key auto_increment,
-    id_usuario int,
-    id_serie int null,
-    id_pelicula int null,
-    fecha datetime not null,
-    foreign key (id_usuario) references usuario(id_usuario),
-    foreign key (id_serie) references serie(id_serie),
-   foreign key (id_pelicula) references peliculas(id_pelicula)
-);
 
 -- Procedimiento almacenado para registrar visualización
 DELIMITER //
@@ -614,81 +499,48 @@ begin
 end //
 DELIMITER ;
 
--- 2. Películas y Series (Admin): ABM, carga de imágenes, importación/exportación JSON.
-create table auditoria_peliculas_serie(
-	id_auditoria int auto_increment primary key,
-    tabla_afectada varchar(255),
-    accion varchar(255),
-    id_registro int,
-    id_usuario_admin int,
-    fecha_hora datetime,
-    detalle varchar(255)
-);
-
-ALTER TABLE auditoria_peliculas_serie
-ADD CONSTRAINT fk_auditoriap_usuario
-FOREIGN KEY (id_usuario_admin) REFERENCES usuario(id_usuario);
-
-create index idx_peliculas_nombre on peliculas(nombre);
-create index idx_series_nombre on serie(nombre);
-create index idx_serie_network on serie(id_network);
-
 DELIMITER //
-create trigger trg_insert_pelicula
-after insert on peliculas
-for each row
-begin
-    insert into auditoria_peliculas_series(tabla_afectada, accion, id_registro, id_usuario_admin, fecha_hora, detalle)
-    values ('peliculas', 'INSERT', new.id_pelicula, null, NOW(), new.nombre);
-end //
-
-create trigger trg_update_pelicula
-after update on peliculas
-for each row
-begin
-    insert into auditoria_peliculas_series(tabla_afectada, accion, id_registro, id_usuario_admin, fecha_hora, detalle)
-    values ('peliculas', 'UPDATE', new.id_pelicula, null, now(), concat('De: ', old.nombre, ' A: ', new.nombre));
-end //
--- Triggers de auditoría
-create trigger trg_delete_pelicula
-after delete on peliculas
-for each row
-begin
-    insert into auditoria_peliculas_series(tabla_afectada, accion, id_registro, id_usuario_admin, fecha_hora, detalle)
-    values ('peliculas', 'DELETE', old.id_pelicula, null, now(), old.nombre);
-end //
-
+CREATE TRIGGER trg_insert_pelicula
+AFTER INSERT ON peliculas
+FOR EACH ROW
+BEGIN
+    INSERT INTO auditoria_peliculas_serie(
+        tabla_afectada, accion, id_registro, fecha_hora, detalle
+    )
+    VALUES (
+        'peliculas', 'INSERT', NEW.id_pelicula, NOW(), NEW.nombre
+    );
+END //
 DELIMITER ;
 
 -- Procedimientos almacenados 
 -- Alta de película
 DELIMITER //
-create procedure sp_insertar_pelicula(
-    in p_nombre varchar(255),
-    in p_fecha date,
-    in p_descripcion varchar(255),
-    in p_director varchar(255),
-    in p_duracion varchar(50),
-    in p_id_admin int
+CREATE PROCEDURE sp_insertar_pelicula(
+    IN p_nombre VARCHAR(255),
+    IN p_fecha DATE,
+    IN p_descripcion VARCHAR(255),
+    IN p_director VARCHAR(255),
+    IN p_duracion VARCHAR(50)
 )
-begin
-    insert into peliculas(nombre, fecha_estreno, descripcion, director, duracion)
-    values(p_nombre, p_fecha, p_descripcion, p_director, p_duracion);
+BEGIN
+    INSERT INTO peliculas(nombre, fecha_estreno, descripcion, director, duracion)
+    VALUES(p_nombre, p_fecha, p_descripcion, p_director, p_duracion);
 
-    insert intoauditoria_peliculas_series(tabla_afectada, accion, id_registro, id_usuario_admin, fecha_hora, detalle)
-    values ('peliculas', 'INSERT', LAST_INSERT_ID(), p_id_admin, NOW(), p_nombre);
-end //
+    INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, detalle)
+    VALUES ('peliculas', 'INSERT', LAST_INSERT_ID(), NOW(), p_nombre);
+END //
 DELIMITER ;
 
 -- Actualizar película
-DELIMITER //
+/*DELIMITER //
 create procedure sp_actualizar_pelicula(
     in p_id int,
     in p_nombre varchar(255),
     in p_descripcion varchar(255),
     in p_director varchar(255),
     in p_duracion varchar(50),
-    in p_id_admin int
+
 )
 begin
     update peliculas
@@ -699,39 +551,63 @@ begin
     where id_pelicula = p_id;
 
     insert into auditoria_peliculas_series(tabla_afectada, accion, id_registro, id_usuario_admin, fecha_hora, detalle)
-    values ('peliculas', 'UPDATE', p_id, p_id_admin, NOW(), p_nombre);
+    values ('peliculas', 'UPDATE', p_id, NOW(), p_nombre);
 end //
+DELIMITER ; */
+DELIMITER //
+CREATE PROCEDURE sp_actualizar_pelicula(
+    IN p_id INT,
+    IN p_nombre VARCHAR(255),
+    IN p_fecha_estreno DATE,
+    IN p_descripcion VARCHAR(255),
+    IN p_director VARCHAR(255),
+    IN p_imagen MEDIUMBLOB,
+    IN p_duracion VARCHAR(50)
+)
+BEGIN
+    START TRANSACTION;
+    
+    -- Actualizar película
+    UPDATE peliculas
+    SET nombre = p_nombre,
+        fecha_estreno = p_fecha_estreno,
+        descripcion = p_descripcion,
+        director = p_director,
+        imagen = p_imagen,
+        duracion = p_duracion
+    WHERE id_pelicula = p_id;
+    
+    COMMIT;
+END //
 DELIMITER ;
 
 -- Eliminar película con transacción
 DELIMITER //
 create procedure sp_eliminar_pelicula(
-    in p_id int,
-    in p_id_admin int
+  IN p_id INT
 )
 BEGIN
-    declare exit handler for sqlexception
-    begin
-        rollback;
-        select 'Error al eliminar la película' as mensaje;
-    end;
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SELECT 'Error al eliminar la película' AS mensaje;
+    END;
 
-    start transaction;
+    START TRANSACTION;
 
     -- Eliminar dependencias
-   delete from comentarios_peli where id_pelicula = p_id;
-    delete from visualizaciones_pelicula where id_pelicula = p_id;
-    delete from calificaciones_peliculas where id_pelicula = p_id;
+    DELETE FROM comentarios_peli WHERE id_pelicula = p_id;
+    DELETE FROM visualizaciones_pelicula WHERE id_pelicula = p_id;
+    DELETE FROM calificaciones_peliculas WHERE id_pelicula = p_id;
 
     -- Eliminar película
-    delete from peliculas where id_pelicula = p_id;
+    DELETE FROM peliculas WHERE id_pelicula = p_id;
 
-    -- Registrar auditoría
-    insert into auditoria_peliculas_series(tabla_afectada, accion, id_registro, id_usuario_admin, fecha_hora, detalle)
-    values ('peliculas', 'DELETE', p_id, p_id_admin, NOW(), 'Eliminada en cascada');
+    INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, detalle)
+    VALUES ('peliculas', 'DELETE', p_id, NOW(), 'Eliminada en cascada');
 
-    commit;
-    select 'Película eliminada correctamente' as mensaje;
+    COMMIT;
+    SELECT 'Película eliminada correctamente' AS mensaje;
 end //
 DELIMITER ;
 
@@ -754,32 +630,6 @@ end //
 DELIMITER ;
 
 -- 5. Comentarios (Usuario común): ingresar comentarios de texto, verlos, Admin puede eliminarlos.
-
-create table auditoria_comentarios_usuario (
-    id_auditoria int auto_increment primary key,
-    tabla_afectada varchar(50),
-    accion varchar(20),
-    id_registro int,
-    id_usuario int,
-    fecha_hora datetime,
-    detalle varchar(255)
-);
-ALTER TABLE auditoria_comentarios_usuario
-ADD CONSTRAINT fk_auditoriac_usuario
-FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario);
-
--- para comentarios de peli:
-ALTER TABLE auditoria_comentarios_usuario
-ADD CONSTRAINT fk_auditoriac_comentario_peli
-FOREIGN KEY (id_registro) REFERENCES comentarios_peli(id_comentario);
-
--- para comentarios de serie (si id_registro corresponde a comentarios_serie):
-ALTER TABLE auditoria_comentarios_usuario
-ADD CONSTRAINT fk_auditoriac_comentario_serie
-FOREIGN KEY (id_registro) REFERENCES comentarios_serie(id_comentario);
-
-create index idx_comentarios_usuario_peli on comentarios_peli(id_usuario);
-create index idx_comentarios_usuario_serie on comentarios_serie(id_usuario);
 
 -- Procedimiento almacenado
 DELIMITER //
@@ -836,5 +686,42 @@ BEGIN
         r.tipo_rol AS nombre_rol
     FROM usuario u
     INNER JOIN rol r ON r.id_rol = u.id_rol;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_listar_peliculas()
+BEGIN
+    SELECT 
+        id_pelicula,
+        nombre,
+        fecha_estreno,
+        director,
+        descripcion,
+        duracion
+    FROM peliculas;
+END //
+DELIMITER ;
+select * from peliculas
+
+DELIMITER //
+CREATE PROCEDURE sp_eliminar_pelicula_sin_trasaccion(IN p_id INT)
+BEGIN
+    DELETE FROM peliculas
+    WHERE id_pelicula = p_id;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_actualizar_password(
+    IN p_nombre_usuario VARCHAR(255),
+    IN p_email VARCHAR(255),
+    IN p_nueva_password VARCHAR(255)
+)
+BEGIN
+    UPDATE usuario
+    SET password_usuario = p_nueva_password
+    WHERE nombre_usuario = p_nombre_usuario
+      AND email_usuario = p_email;
 END //
 DELIMITER ;
