@@ -112,8 +112,8 @@
             this.BtnPrevisualizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(184)))), ((int)(((byte)(193)))));
             this.BtnPrevisualizar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnPrevisualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnPrevisualizar.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnPrevisualizar.ForeColor = System.Drawing.Color.White;
+            this.BtnPrevisualizar.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnPrevisualizar.ForeColor = System.Drawing.Color.Black;
             this.BtnPrevisualizar.Location = new System.Drawing.Point(331, 286);
             this.BtnPrevisualizar.Name = "BtnPrevisualizar";
             this.BtnPrevisualizar.Size = new System.Drawing.Size(205, 35);
@@ -162,8 +162,8 @@
             this.BtnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(184)))), ((int)(((byte)(193)))));
             this.BtnSalir.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnSalir.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnSalir.ForeColor = System.Drawing.Color.White;
+            this.BtnSalir.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnSalir.ForeColor = System.Drawing.Color.Black;
             this.BtnSalir.Location = new System.Drawing.Point(625, 286);
             this.BtnSalir.Name = "BtnSalir";
             this.BtnSalir.Size = new System.Drawing.Size(205, 35);
@@ -177,8 +177,8 @@
             this.BtnCargarPelicula.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(184)))), ((int)(((byte)(193)))));
             this.BtnCargarPelicula.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnCargarPelicula.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnCargarPelicula.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCargarPelicula.ForeColor = System.Drawing.Color.White;
+            this.BtnCargarPelicula.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCargarPelicula.ForeColor = System.Drawing.Color.Black;
             this.BtnCargarPelicula.Location = new System.Drawing.Point(625, 205);
             this.BtnCargarPelicula.Name = "BtnCargarPelicula";
             this.BtnCargarPelicula.Size = new System.Drawing.Size(205, 35);

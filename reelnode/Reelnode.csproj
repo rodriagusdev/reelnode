@@ -135,6 +135,24 @@
     <Compile Include="ControlGestionPeliculasListarPeliculas.Designer.cs">
       <DependentUpon>ControlGestionPeliculasListarPeliculas.cs</DependentUpon>
     </Compile>
+    <Compile Include="ControlGestionSeriesActualizar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlGestionSeriesActualizar.Designer.cs">
+      <DependentUpon>ControlGestionSeriesActualizar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlGestionSeriesCargar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlGestionSeriesCargar.Designer.cs">
+      <DependentUpon>ControlGestionSeriesCargar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlGestionSeriesListarSeries.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlGestionSeriesListarSeries.Designer.cs">
+      <DependentUpon>ControlGestionSeriesListarSeries.cs</DependentUpon>
+    </Compile>
     <Compile Include="ControlGestionUsuarios.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -181,6 +199,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ControlGestionPeliculasListarPeliculas.resx">
       <DependentUpon>ControlGestionPeliculasListarPeliculas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlGestionSeriesActualizar.resx">
+      <DependentUpon>ControlGestionSeriesActualizar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlGestionSeriesCargar.resx">
+      <DependentUpon>ControlGestionSeriesCargar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlGestionSeriesListarSeries.resx">
+      <DependentUpon>ControlGestionSeriesListarSeries.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ControlGestionUsuarios.resx">
       <DependentUpon>ControlGestionUsuarios.cs</DependentUpon>

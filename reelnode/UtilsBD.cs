@@ -136,7 +136,7 @@ namespace Reelnode
         {
             peliculasCargadas.Clear();
 
-            /*using (MySqlCommand cmd = new MySqlCommand("sp_listar_peliculas", UtilsBD.Conexion.GetConnection()))
+            using (MySqlCommand cmd = new MySqlCommand("sp_listar_peliculas", UtilsBD.Conexion.GetConnection()))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
 
@@ -158,7 +158,7 @@ namespace Reelnode
                         peliculasCargadas.Add(nueva);
                     }
                 }
-            }*/
+            }
         }
 
         public static void EliminarPelicula(int id) 

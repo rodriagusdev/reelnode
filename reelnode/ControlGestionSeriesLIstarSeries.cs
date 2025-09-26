@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProjectoNuevo
+namespace Reelnode
 {
     public partial class ControlGestionSeriesListarSeries : UserControl
     {
         public ControlGestionSeriesListarSeries()
         {
             InitializeComponent();
+        }
+
+        private void PanelListar_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

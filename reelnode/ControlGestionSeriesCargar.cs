@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProjectoNuevo
+namespace Reelnode
 {
     public partial class ControlGestionSeriesCargar : UserControl
     {
@@ -19,12 +19,12 @@ namespace ProjectoNuevo
 
         private void BtnCargarSerie_Click(object sender, EventArgs e)
         {
-            Serie nuevaserie = new Serie
+            /*Serie nuevaserie = new Serie
                 (
                     Nombre = txtNombreSerie.Text,
 
                 
-                );
+                );*/
         }
 
         private void PanelSerieCreacion_Paint(object sender, PaintEventArgs e)

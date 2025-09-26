@@ -1,4 +1,4 @@
-﻿namespace ProjectoNuevo
+﻿namespace Reelnode
 {
     partial class ControlGestionSeriesListarSeries
     {
@@ -40,10 +40,10 @@
             this.PanelListar.Controls.Add(this.DataGridSeries);
             this.PanelListar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelListar.Location = new System.Drawing.Point(0, 0);
-            this.PanelListar.Margin = new System.Windows.Forms.Padding(4);
             this.PanelListar.Name = "PanelListar";
-            this.PanelListar.Size = new System.Drawing.Size(1327, 833);
+            this.PanelListar.Size = new System.Drawing.Size(995, 677);
             this.PanelListar.TabIndex = 1;
+            this.PanelListar.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelListar_Paint);
             // 
             // DataGridSeries
             // 
@@ -51,23 +51,23 @@
             this.DataGridSeries.AllowUserToDeleteRows = false;
             this.DataGridSeries.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(27)))), ((int)(((byte)(43)))));
             this.DataGridSeries.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridSeries.Location = new System.Drawing.Point(140, 25);
-            this.DataGridSeries.Margin = new System.Windows.Forms.Padding(4);
+            this.DataGridSeries.Location = new System.Drawing.Point(105, 20);
             this.DataGridSeries.Name = "DataGridSeries";
             this.DataGridSeries.ReadOnly = true;
             this.DataGridSeries.RowHeadersVisible = false;
             this.DataGridSeries.RowHeadersWidth = 51;
             this.DataGridSeries.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridSeries.Size = new System.Drawing.Size(911, 283);
+            this.DataGridSeries.Size = new System.Drawing.Size(683, 230);
             this.DataGridSeries.TabIndex = 2;
             // 
             // ControlGestionSeriesListarSeries
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.PanelListar);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ControlGestionSeriesListarSeries";
-            this.Size = new System.Drawing.Size(1327, 833);
+            this.Size = new System.Drawing.Size(995, 677);
             this.PanelListar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridSeries)).EndInit();
             this.ResumeLayout(false);

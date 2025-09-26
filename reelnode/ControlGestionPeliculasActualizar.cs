@@ -89,19 +89,14 @@ namespace Reelnode
 
         private void CtxMenuSubModificar_Click(object sender, EventArgs e)
         {
-            TxtNombre.Text = "";
-            TxtDirector.Text = "";
-            TxtDuracion.Text = "";
-            TxtDescripcion.Text = "";
-
             if (filaSeleccionada != null)
             {
                 TxtNombre.Text = filaSeleccionada.Cells["Nombre"].Value.ToString();
                 TxtDirector.Text = filaSeleccionada.Cells["Director"].Value.ToString();
                 TxtDuracion.Text = filaSeleccionada.Cells["Duracion"].Value.ToString();
-                //TxtDescripcion.Text = filaSeleccionada.Cells["Descripcion"].Value.ToString();
+                TxtDescripcion.Text = filaSeleccionada.Cells["Descripcion"].Value.ToString();
                 DtpFechaEstreno.Value = Convert.ToDateTime(filaSeleccionada.Cells["FechaEstreno"].Value);
-                PicPelicula.Image = null;
+                Utils.CargarImagenDesdeURL(PicPelicula, TxtURLImagen.Text);
             }
             else
             {

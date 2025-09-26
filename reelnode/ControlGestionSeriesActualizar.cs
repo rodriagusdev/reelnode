@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProjectoNuevo
+namespace Reelnode
 {
     public partial class ControlGestionSeriesActualizar : UserControl
     {
@@ -23,6 +23,11 @@ namespace ProjectoNuevo
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
