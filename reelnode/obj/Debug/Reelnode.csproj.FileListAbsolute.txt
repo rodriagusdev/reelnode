@@ -282,3 +282,6 @@ D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.csproj.CoreCompileIn
 D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.csproj.Up2Date
 D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\ProjectoNuevo.exe
 D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\ProjectoNuevo.pdb
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlGestionSeriesActualizar.resources
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlGestionSeriesCargar.resources
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlGestionSeriesListarSeries.resources

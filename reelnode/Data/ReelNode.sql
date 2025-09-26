@@ -12,7 +12,7 @@ CREATE TABLE peliculas (
     imagen varchar(255),
     duracion VARCHAR(50)
 );
-
+select * from peliculas;
 CREATE TABLE network (
     id_network INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(255) NOT NULL
@@ -211,7 +211,6 @@ FOREIGN KEY (id_registro) REFERENCES comentarios_peli(id_comentario);
 ALTER TABLE auditoria_comentarios_usuario
 ADD CONSTRAINT fk_auditoriac_comentario_serie
 FOREIGN KEY (id_registro) REFERENCES comentarios_serie(id_comentario);
-
 
 -- Indices --------------------------------------------------
 
@@ -531,7 +530,7 @@ BEGIN
     VALUES ('peliculas', 'INSERT', LAST_INSERT_ID(), NOW(), p_nombre);
 END //
 DELIMITER ;
-
+select * from peliculas;
 -- Actualizar película
 /*DELIMITER //
 create procedure sp_actualizar_pelicula(
@@ -698,7 +697,8 @@ BEGIN
         fecha_estreno,
         director,
         descripcion,
-        duracion
+        duracion,
+        imagen
     FROM peliculas;
 END //
 DELIMITER ;

@@ -99,7 +99,7 @@ namespace Reelnode
 
         public static void InsertarPeliculaBD(Pelicula nuevaPelicula)
         {
-
+            MessageBox.Show("2");
             try
             {
                 using (MySqlCommand cmd = new MySqlCommand("sp_insertar_pelicula", Conexion.GetConnection()))
@@ -114,10 +114,6 @@ namespace Reelnode
                     cmd.Parameters.AddWithValue("p_duracion", nuevaPelicula.Duracion);
 
                     cmd.ExecuteNonQuery();
-
-                    object result = cmd.ExecuteScalar();
-                    if (result != null)
-                        nuevaPelicula.Id = Convert.ToInt32(result);
 
                     peliculasCargadas.Add(nuevaPelicula);
 

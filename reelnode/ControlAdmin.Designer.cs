@@ -31,12 +31,16 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ToolStpMenuArchivo = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStpMenuUsuarios = new System.Windows.Forms.ToolStripMenuItem();
+            this.cargarSerieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStpMenuPeliculas = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStpSubMenuCargarPeliculas = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStpSubMenuListarPeliculas = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStpMenuActualizarPelicula = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStpMenuSeries = new System.Windows.Forms.ToolStripMenuItem();
+            this.cargarSerieToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.PanelAdmin = new System.Windows.Forms.Panel();
+            this.listarSeriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.actualizarSerieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,11 +66,19 @@
             // 
             // ToolStpMenuUsuarios
             // 
+            this.ToolStpMenuUsuarios.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cargarSerieToolStripMenuItem});
             this.ToolStpMenuUsuarios.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ToolStpMenuUsuarios.Name = "ToolStpMenuUsuarios";
             this.ToolStpMenuUsuarios.Size = new System.Drawing.Size(136, 22);
             this.ToolStpMenuUsuarios.Text = "Gestionar Usuarios";
             this.ToolStpMenuUsuarios.Click += new System.EventHandler(this.ToolStpMenuUsuarios_Click);
+            // 
+            // cargarSerieToolStripMenuItem
+            // 
+            this.cargarSerieToolStripMenuItem.Name = "cargarSerieToolStripMenuItem";
+            this.cargarSerieToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.cargarSerieToolStripMenuItem.Text = "Cargar Serie";
             // 
             // ToolStpMenuPeliculas
             // 
@@ -102,10 +114,21 @@
             // 
             // ToolStpMenuSeries
             // 
+            this.ToolStpMenuSeries.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cargarSerieToolStripMenuItem1,
+            this.listarSeriesToolStripMenuItem,
+            this.actualizarSerieToolStripMenuItem});
             this.ToolStpMenuSeries.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ToolStpMenuSeries.Name = "ToolStpMenuSeries";
             this.ToolStpMenuSeries.Size = new System.Drawing.Size(117, 22);
             this.ToolStpMenuSeries.Text = "Gestionar Series";
+            // 
+            // cargarSerieToolStripMenuItem1
+            // 
+            this.cargarSerieToolStripMenuItem1.Name = "cargarSerieToolStripMenuItem1";
+            this.cargarSerieToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.cargarSerieToolStripMenuItem1.Text = "Cargar Serie";
+            this.cargarSerieToolStripMenuItem1.Click += new System.EventHandler(this.cargarSerieToolStripMenuItem1_Click);
             // 
             // PanelAdmin
             // 
@@ -117,6 +140,19 @@
             this.PanelAdmin.Size = new System.Drawing.Size(863, 535);
             this.PanelAdmin.TabIndex = 3;
             this.PanelAdmin.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelAdmin_Paint);
+            // 
+            // listarSeriesToolStripMenuItem
+            // 
+            this.listarSeriesToolStripMenuItem.Name = "listarSeriesToolStripMenuItem";
+            this.listarSeriesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.listarSeriesToolStripMenuItem.Text = "Listar Series";
+            // 
+            // actualizarSerieToolStripMenuItem
+            // 
+            this.actualizarSerieToolStripMenuItem.Name = "actualizarSerieToolStripMenuItem";
+            this.actualizarSerieToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.actualizarSerieToolStripMenuItem.Text = "Actualizar Serie";
+            this.actualizarSerieToolStripMenuItem.Click += new System.EventHandler(this.actualizarSerieToolStripMenuItem_Click);
             // 
             // ControlAdmin
             // 
@@ -144,5 +180,9 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStpMenuActualizarPelicula;
         private System.Windows.Forms.ToolStripMenuItem ToolStpMenuSeries;
         private System.Windows.Forms.Panel PanelAdmin;
+        private System.Windows.Forms.ToolStripMenuItem cargarSerieToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cargarSerieToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem listarSeriesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem actualizarSerieToolStripMenuItem;
     }
 }

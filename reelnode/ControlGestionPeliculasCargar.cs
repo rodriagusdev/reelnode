@@ -23,7 +23,7 @@ namespace Reelnode
         {
             InitializeComponent();
 
-            BtnCargarPelicula.FlatAppearance.BorderColor = Color.FromArgb(25, 47, 71);
+            BtnCargar.FlatAppearance.BorderColor = Color.FromArgb(25, 47, 71);
             BtnSalir.FlatAppearance.BorderColor = Color.FromArgb(25, 47, 71);
             BtnPrevisualizar.FlatAppearance.BorderColor = Color.FromArgb(25, 47, 71);
 
@@ -46,20 +46,7 @@ namespace Reelnode
             PanelPeliculaCreacion.Invalidate();
         }
 
-        private void BtnCargarPelicula_Click(object sender, EventArgs e)
-        {
-            Pelicula nuevaPelicula = new Pelicula
-            {
-                Nombre = TxtNombre.Text,
-                Director = TxtDirector.Text,
-                Duracion = TxtDuracion.Text,
-                FechaEstreno = DtpFechaEstreno.Value,
-                Descripcion = TxtDescripcion.Text,
-                Imagen = TxtURLImagen.Text
-            };
 
-            UtilsBD.InsertarPeliculaBD(nuevaPelicula);
-        }
 
         private void BtnSalir_Click(object sender, EventArgs e)
         {
@@ -74,6 +61,22 @@ namespace Reelnode
         private void BtnPrevisualizar_Click(object sender, EventArgs e)
         {
             Utils.CargarImagenDesdeURL(PicPelicula, TxtURLImagen.Text);
+        }
+
+        private void BtnCargar_Click(object sender, EventArgs e)
+        {
+            Pelicula nuevaPelicula = new Pelicula
+            {
+                Nombre = TxtNombre.Text,
+                Director = TxtDirector.Text,
+                Duracion = TxtDuracion.Text,
+                FechaEstreno = DtpFechaEstreno.Value,
+                Descripcion = TxtDescripcion.Text,
+                Imagen = TxtURLImagen.Text
+            };
+
+            UtilsBD.InsertarPeliculaBD(nuevaPelicula);
+        
         }
     }
 }

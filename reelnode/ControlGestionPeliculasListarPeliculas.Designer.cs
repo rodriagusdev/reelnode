@@ -49,7 +49,8 @@
             // 
             this.DataGridPeliculas.AllowUserToAddRows = false;
             this.DataGridPeliculas.AllowUserToDeleteRows = false;
-            this.DataGridPeliculas.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(27)))), ((int)(((byte)(43)))));
+            this.DataGridPeliculas.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
+            this.DataGridPeliculas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DataGridPeliculas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridPeliculas.Location = new System.Drawing.Point(105, 20);
             this.DataGridPeliculas.Name = "DataGridPeliculas";

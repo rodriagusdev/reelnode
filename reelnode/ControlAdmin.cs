@@ -22,7 +22,8 @@ namespace Reelnode
         private ControlGestionPeliculasListarPeliculas controlListarPeliculas;
         private ControlGestionPeliculasActualizar controlActualizarPeliculas;
         private ControlGestionUsuarios controlGestionUsuarios;
-
+        private ControlGestionSeriesCargar controlSeriesCargar;
+        private ControlGestionSeriesActualizar controlSeriesActualizar;
         public ControlAdmin()
         {
             InitializeComponent();
@@ -31,10 +32,15 @@ namespace Reelnode
             PanelAdmin.Controls.Add(controlListarPeliculas = new ControlGestionPeliculasListarPeliculas());
             PanelAdmin.Controls.Add(controlGestionUsuarios = new ControlGestionUsuarios());
             PanelAdmin.Controls.Add(controlActualizarPeliculas = new ControlGestionPeliculasActualizar());
+            PanelAdmin.Controls.Add(controlSeriesCargar = new ControlGestionSeriesCargar());
+            PanelAdmin.Controls.Add(controlSeriesActualizar = new ControlGestionSeriesActualizar());
+
             controlCargarPelicula.Visible = false;
             controlListarPeliculas.Visible = false;
             controlGestionUsuarios.Visible = false;
             controlActualizarPeliculas.Visible = false;
+            controlSeriesCargar.Visible = false;
+            controlSeriesActualizar.Visible = false;
 
             PanelAdmin.Paint += PanelAdmin_Paint;
         }
@@ -73,6 +79,16 @@ namespace Reelnode
             _c2 = color2;
             _modo = modo;
             PanelAdmin.Invalidate();
+        }
+
+        private void cargarSerieToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Utils.ShowControl(controlSeriesCargar, PanelAdmin);
+        }
+
+        private void actualizarSerieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.ShowControl(controlSeriesActualizar, PanelAdmin);
         }
     }
 }

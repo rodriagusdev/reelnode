@@ -232,9 +232,9 @@
             this.BtnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnActualizar.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnActualizar.ForeColor = System.Drawing.Color.Black;
-            this.BtnActualizar.Location = new System.Drawing.Point(702, 440);
+            this.BtnActualizar.Location = new System.Drawing.Point(545, 440);
             this.BtnActualizar.Name = "BtnActualizar";
-            this.BtnActualizar.Size = new System.Drawing.Size(205, 35);
+            this.BtnActualizar.Size = new System.Drawing.Size(362, 35);
             this.BtnActualizar.TabIndex = 54;
             this.BtnActualizar.Text = "Actualizar Pelicula";
             this.BtnActualizar.UseVisualStyleBackColor = false;
@@ -247,7 +247,7 @@
             this.PanelDescripcion.Location = new System.Drawing.Point(545, 223);
             this.PanelDescripcion.Name = "PanelDescripcion";
             this.PanelDescripcion.Padding = new System.Windows.Forms.Padding(5);
-            this.PanelDescripcion.Size = new System.Drawing.Size(362, 107);
+            this.PanelDescripcion.Size = new System.Drawing.Size(362, 181);
             this.PanelDescripcion.TabIndex = 49;
             // 
             // TxtDescripcion
@@ -260,7 +260,7 @@
             this.TxtDescripcion.Location = new System.Drawing.Point(5, 5);
             this.TxtDescripcion.Multiline = true;
             this.TxtDescripcion.Name = "TxtDescripcion";
-            this.TxtDescripcion.Size = new System.Drawing.Size(352, 97);
+            this.TxtDescripcion.Size = new System.Drawing.Size(352, 171);
             this.TxtDescripcion.TabIndex = 12;
             // 
             // PanelImagen
@@ -276,6 +276,7 @@
             // PicPelicula
             // 
             this.PicPelicula.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
+            this.PicPelicula.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.PicPelicula.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PicPelicula.Location = new System.Drawing.Point(5, 5);
             this.PicPelicula.Name = "PicPelicula";
