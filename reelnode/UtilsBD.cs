@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProjectoNuevo
+namespace Reelnode
 {
     public static class UtilsBD
     {
@@ -136,7 +136,7 @@ namespace ProjectoNuevo
         {
             peliculasCargadas.Clear();
 
-            using (MySqlCommand cmd = new MySqlCommand("sp_listar_peliculas", UtilsBD.Conexion.GetConnection()))
+            /*using (MySqlCommand cmd = new MySqlCommand("sp_listar_peliculas", UtilsBD.Conexion.GetConnection()))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
 
@@ -158,7 +158,7 @@ namespace ProjectoNuevo
                         peliculasCargadas.Add(nueva);
                     }
                 }
-            }
+            }*/
         }
 
         public static void EliminarPelicula(int id) 

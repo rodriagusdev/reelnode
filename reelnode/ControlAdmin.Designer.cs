@@ -1,4 +1,4 @@
-﻿namespace ProjectoNuevo
+﻿namespace Reelnode
 {
     partial class ControlAdmin
     {
@@ -116,6 +116,7 @@
             this.PanelAdmin.Name = "PanelAdmin";
             this.PanelAdmin.Size = new System.Drawing.Size(863, 535);
             this.PanelAdmin.TabIndex = 3;
+            this.PanelAdmin.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelAdmin_Paint);
             // 
             // ControlAdmin
             // 

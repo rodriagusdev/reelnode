@@ -5,19 +5,41 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProjectoNuevo
+namespace Reelnode
 {
-    public partial class ControlGestionUsuarios : UserControl
+    public partial class ControlGestionUsuarios : UserControl, ITemaPersonalizable
     {
+
+        private Color _c1 = Color.FromArgb(20, 30, 48);
+        private Color _c2 = Color.FromArgb(36, 59, 85);
+        private LinearGradientMode _modo = LinearGradientMode.Vertical;
         public ControlGestionUsuarios()
         {
             InitializeComponent();
+        }
+
+        private void PanelGestionUsuarios_Paint(object sender, PaintEventArgs e)
+        {
+            using (var brush = new LinearGradientBrush(PanelGestionUsuarios.ClientRectangle, _c1, _c2, _modo))
+            {
+                e.Graphics.FillRectangle(brush, PanelGestionUsuarios.ClientRectangle);
+            }
+        }
+
+        public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
+        {
+            _c1 = color1;
+            _c2 = color2;
+            _modo = modo;
+            PanelGestionUsuarios.Invalidate();
         }
 
         private void BtnExportar_Click(object sender, EventArgs e)

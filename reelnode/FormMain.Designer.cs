@@ -1,4 +1,4 @@
-﻿namespace ProjectoNuevo
+﻿namespace Reelnode
 {
     partial class FormMain
     {
@@ -43,7 +43,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(937, 31);
+            this.panel1.Size = new System.Drawing.Size(1059, 31);
             this.panel1.TabIndex = 0;
             // 
             // menuStrip1
@@ -53,7 +53,7 @@
             this.noTocarToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(937, 26);
+            this.menuStrip1.Size = new System.Drawing.Size(1059, 26);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -79,7 +79,7 @@
             this.PanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelMain.Location = new System.Drawing.Point(0, 31);
             this.PanelMain.Name = "PanelMain";
-            this.PanelMain.Size = new System.Drawing.Size(937, 473);
+            this.PanelMain.Size = new System.Drawing.Size(1059, 578);
             this.PanelMain.TabIndex = 1;
             this.PanelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
@@ -87,10 +87,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(937, 504);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1059, 609);
             this.Controls.Add(this.PanelMain);
             this.Controls.Add(this.panel1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reelnode";

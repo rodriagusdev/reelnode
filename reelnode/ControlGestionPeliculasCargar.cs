@@ -3,27 +3,47 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProjectoNuevo
+namespace Reelnode
 {
-    public partial class ControlGestionPeliculasCargar : UserControl
+    public partial class ControlGestionPeliculasCargar : UserControl, ITemaPersonalizable
     {
+        private Color _c1 = Color.FromArgb(20, 30, 48);
+        private Color _c2 = Color.FromArgb(36, 59, 85);
+        private LinearGradientMode _modo = LinearGradientMode.Vertical;
         public ControlGestionPeliculasCargar()
         {
             InitializeComponent();
 
             BtnCargarPelicula.FlatAppearance.BorderColor = Color.FromArgb(25, 47, 71);
             BtnSalir.FlatAppearance.BorderColor = Color.FromArgb(25, 47, 71);
+            BtnPrevisualizar.FlatAppearance.BorderColor = Color.FromArgb(25, 47, 71);
 
             foreach (Panel pnl in PanelPeliculaCreacion.Controls.OfType<Panel>()) { 
                 Utils.RedondearBordes(pnl, 20);
             }
+        }
+        private void PanelPeliculaCreacion_Paint(object sender, PaintEventArgs e)
+        {
+            using (var brush = new LinearGradientBrush(PanelPeliculaCreacion.ClientRectangle, _c1, _c2, _modo))
+            {
+                e.Graphics.FillRectangle(brush, PanelPeliculaCreacion.ClientRectangle);
+            }
+        }
+        public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
+        {
+            _c1 = color1;
+            _c2 = color2;
+            _modo = modo;
+            PanelPeliculaCreacion.Invalidate();
         }
 
         private void BtnCargarPelicula_Click(object sender, EventArgs e)
@@ -35,7 +55,7 @@ namespace ProjectoNuevo
                 Duracion = TxtDuracion.Text,
                 FechaEstreno = DtpFechaEstreno.Value,
                 Descripcion = TxtDescripcion.Text,
-                Imagen = PicPelicula.Image
+                Imagen = TxtURLImagen.Text
             };
 
             UtilsBD.InsertarPeliculaBD(nuevaPelicula);
@@ -53,21 +73,7 @@ namespace ProjectoNuevo
 
         private void BtnPrevisualizar_Click(object sender, EventArgs e)
         {
-
-            string url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnCWNzOcPXS0uzGe6e3cMRX8NZB-HDMX8nFg&s";
-            Image img;
-
-            using (WebClient wc = new WebClient())  // Creamos el cliente web
-            {
-                byte[] bytes = wc.DownloadData(url);  // Descargamos los datos en bytes
-                using (MemoryStream ms = new MemoryStream(bytes))  // Convertimos los bytes en un stream
-                {
-                    img = Image.FromStream(ms);  // Creamos la imagen en memoria
-                }
-            }
-
-            PicPelicula.Image = img;
-
+            Utils.CargarImagenDesdeURL(PicPelicula, TxtURLImagen.Text);
         }
     }
 }

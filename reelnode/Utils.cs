@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProjectoNuevo
+namespace Reelnode
 {
     public static class Utils
     {
@@ -37,6 +37,25 @@ namespace ProjectoNuevo
             }
             controlToShow.Visible = true;
             controlToShow.Dock = DockStyle.Fill;
+        }
+
+        public static void CargarImagenDesdeURL(PictureBox pictureBox, string url)
+        {
+            try
+            {
+                using (var webClient = new System.Net.WebClient())
+                {
+                    byte[] imageBytes = webClient.DownloadData(url);
+                    using (var ms = new MemoryStream(imageBytes))
+                    {
+                        pictureBox.Image = Image.FromStream(ms);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar la imagen: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

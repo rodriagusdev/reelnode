@@ -159,6 +159,7 @@
     <Compile Include="FormRegistrar.Designer.cs">
       <DependentUpon>FormRegistrar.cs</DependentUpon>
     </Compile>
+    <Compile Include="ITemaPersonalizable.cs" />
     <Compile Include="Media.cs" />
     <Compile Include="Pelicula.cs" />
     <Compile Include="Program.cs" />

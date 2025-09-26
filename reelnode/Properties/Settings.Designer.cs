@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProjectoNuevo.Properties
+namespace Reelnode.Properties
 {
 
 

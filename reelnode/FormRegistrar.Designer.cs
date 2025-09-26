@@ -1,4 +1,4 @@
-﻿namespace ProjectoNuevo
+﻿namespace Reelnode
 {
     partial class FormRegistrar
     {
@@ -223,8 +223,8 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Image = global::ProjectoNuevo.Properties.Resources.logo1;
-            this.pictureBox1.InitialImage = global::ProjectoNuevo.Properties.Resources.logo1;
+            this.pictureBox1.Image = global::Reelnode.Properties.Resources.logo1;
+            this.pictureBox1.InitialImage = global::Reelnode.Properties.Resources.logo1;
             this.pictureBox1.Location = new System.Drawing.Point(15, 10);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(377, 149);

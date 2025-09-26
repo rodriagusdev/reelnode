@@ -1,21 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProjectoNuevo
+namespace Reelnode
 {
-    public partial class ControlGestionPeliculasActualizar: UserControl
+    public partial class ControlGestionPeliculasActualizar: UserControl, ITemaPersonalizable
     {
+        private Color _c1 = Color.FromArgb(20, 30, 48);
+        private Color _c2 = Color.FromArgb(36, 59, 85);
+        private LinearGradientMode _modo = LinearGradientMode.Vertical;
+
         private DataGridViewRow filaSeleccionada;
         public ControlGestionPeliculasActualizar()
         {
             InitializeComponent();
+
+            BtnPrevisualizar.FlatAppearance.BorderColor = Color.FromArgb(74, 184, 192);
+            BtnActualizar.FlatAppearance.BorderColor = Color.FromArgb(74, 184, 192);
+            BtnBuscarPelicula.FlatAppearance.BorderColor = Color.FromArgb(74, 184, 192);
+        }
+        private void PanelMain_Paint(object sender, PaintEventArgs e)
+        {
+            using (var brush = new LinearGradientBrush(PanelMain.ClientRectangle, _c1, _c2, _modo))
+            {
+                e.Graphics.FillRectangle(brush, PanelMain.ClientRectangle);
+            }
+        }
+
+        public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
+        {
+            _c1 = color1;
+            _c2 = color2;
+            _modo = modo;
+            PanelMain.Invalidate();
         }
 
         private void BtnBuscarPelicula_Click(object sender, EventArgs e)
@@ -38,19 +65,26 @@ namespace ProjectoNuevo
 
         private void BtnActualizar_Click(object sender, EventArgs e)
         {
-            Pelicula actualizarPelicula = new Pelicula();
+            if (filaSeleccionada != null) 
             {
-                actualizarPelicula.Id = int.Parse(filaSeleccionada.Cells["Id"].Value.ToString());
-                actualizarPelicula.Nombre = TxtNombre.Text;
-                actualizarPelicula.FechaEstreno = DtpFechaEstreno.Value;
-                actualizarPelicula.Director = TxtDirector.Text;
-                actualizarPelicula.Duracion = TxtDuracion.Text;
-                actualizarPelicula.Descripcion = TxtDescripcion.Text;
-                actualizarPelicula.Imagen = "";
-            }
+                Pelicula actualizarPelicula = new Pelicula();
+                {
+                    actualizarPelicula.Id = int.Parse(filaSeleccionada.Cells["Id"].Value.ToString());
+                    actualizarPelicula.Nombre = TxtNombre.Text;
+                    actualizarPelicula.FechaEstreno = DtpFechaEstreno.Value;
+                    actualizarPelicula.Director = TxtDirector.Text;
+                    actualizarPelicula.Duracion = TxtDuracion.Text;
+                    actualizarPelicula.Descripcion = TxtDescripcion.Text;
+                    actualizarPelicula.Imagen = TxtURLImagen.Text;
+                }
 
-            UtilsBD.ActualizarPelicula(actualizarPelicula);
-            DataGridPeliculas.DataSource = null;
+                UtilsBD.ActualizarPelicula(actualizarPelicula);
+                DataGridPeliculas.DataSource = null;
+            }         
+            else
+            {
+                MessageBox.Show("No se ha seleccionado ninguna fila.");
+            }
         }
 
         private void CtxMenuSubModificar_Click(object sender, EventArgs e)
@@ -97,6 +131,11 @@ namespace ProjectoNuevo
                 UtilsBD.EliminarPelicula(id);
 
             } else MessageBox.Show("No se ha seleccionado ninguna fila.");
+        }
+
+        private void BtnPrevisualizar_Click(object sender, EventArgs e)
+        {
+            Utils.CargarImagenDesdeURL(PicPelicula, TxtURLImagen.Text);
         }
     }
 }

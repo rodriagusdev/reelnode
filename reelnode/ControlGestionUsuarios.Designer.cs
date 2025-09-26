@@ -1,4 +1,4 @@
-﻿namespace ProjectoNuevo
+﻿namespace Reelnode
 {
     partial class ControlGestionUsuarios
     {
@@ -159,6 +159,7 @@
             this.PanelGestionUsuarios.Name = "PanelGestionUsuarios";
             this.PanelGestionUsuarios.Size = new System.Drawing.Size(882, 562);
             this.PanelGestionUsuarios.TabIndex = 0;
+            this.PanelGestionUsuarios.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelGestionUsuarios_Paint);
             // 
             // ControlGestionUsuarios
             // 
