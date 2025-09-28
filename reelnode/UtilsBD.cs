@@ -57,8 +57,8 @@ namespace Reelnode
                 cmd.ExecuteNonQuery();
             }
         }
-          public static void CargarUsuario()
-          {
+        public static void CargarUsuario()
+        {
             usuariosRegistrados.Clear();
 
             using (MySqlCommand cmd = new MySqlCommand("sp_listar_usuarios", UtilsBD.Conexion.GetConnection()))
@@ -81,7 +81,7 @@ namespace Reelnode
                     }
                 }
             }
-          }
+        }
 
 
         private static string ObtenerRolUsuario(string rol)
@@ -157,7 +157,7 @@ namespace Reelnode
             }
         }
 
-        public static void EliminarPelicula(int id) 
+        public static void EliminarPelicula(int id)
         {
             try
             {
@@ -193,7 +193,7 @@ namespace Reelnode
             }
         }
 
-        public static void ActualizarPelicula(Pelicula actualizarPelicula) 
+        public static void ActualizarPelicula(Pelicula actualizarPelicula)
         {
             MessageBox.Show(actualizarPelicula.Id.ToString());
             try
@@ -225,5 +225,123 @@ namespace Reelnode
                 MessageBox.Show("Error al actualizar la película: " + ex.Message);
             }
         }
+
+        public static bool CambiarPassword(string nombreUsuario, string email, string nuevaPassword)
+        {
+            using (MySqlCommand cmd = new MySqlCommand("sp_actualizar_password", Conexion.GetConnection()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("p_nombre_usuario", nombreUsuario);
+                cmd.Parameters.AddWithValue("p_email", email);
+                cmd.Parameters.AddWithValue("p_nueva_password", nuevaPassword);
+
+                int filasAfectadas = cmd.ExecuteNonQuery();
+                return filasAfectadas > 0;
+            }
+        }
+
+        public static bool ActualizarSerie(
+       int idSerie,
+       string nombre,
+       DateTime fechaEstreno,
+       string descripcion,
+       string director,
+       string imagen,
+       int cantTemporadas,
+       int? idNetwork)
+        {
+            using (MySqlConnection conn = Conexion.GetConnection())
+            using (MySqlCommand cmd = new MySqlCommand("sp_actualizar_serie", conn))
+            {
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("p_id_serie", idSerie);
+                cmd.Parameters.AddWithValue("p_nombre", nombre);
+                cmd.Parameters.AddWithValue("p_fecha_estreno", fechaEstreno);
+                cmd.Parameters.AddWithValue("p_descripcion", string.IsNullOrEmpty(descripcion) ? (object)DBNull.Value : descripcion);
+                cmd.Parameters.AddWithValue("p_director", string.IsNullOrEmpty(director) ? (object)DBNull.Value : director);
+                cmd.Parameters.AddWithValue("p_imagen", string.IsNullOrEmpty(imagen) ? (object)DBNull.Value : imagen);
+                cmd.Parameters.AddWithValue("p_cant_temporadas", cantTemporadas);
+                cmd.Parameters.AddWithValue("p_id_network", idNetwork.HasValue ? (object)idNetwork.Value : DBNull.Value);
+                try
+                {
+                    conn.Open();
+                    int filas = cmd.ExecuteNonQuery();
+                    return filas > 0;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al actualizar serie: " + ex.Message);
+                    return false;
+                }
+            }
+        }
+
+        public static bool InsertarSerieBD(
+                        string nombre,
+                        DateTime fechaEstreno,
+                        DateTime? fechaFin,
+                        string descripcion,
+                        string director,
+                        string imagen,
+                        int cantTemporadas,
+                        int? idNetwork)
+        {
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand("sp_insertar_serie", Conexion.GetConnection()))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("p_nombre", nombre);
+                    cmd.Parameters.AddWithValue("p_fecha_estreno", fechaEstreno);
+                    cmd.Parameters.AddWithValue("p_fecha_fin", fechaFin.HasValue ? (object)fechaFin.Value : DBNull.Value);
+                    cmd.Parameters.AddWithValue("p_descripcion", string.IsNullOrEmpty(descripcion) ? (object)DBNull.Value : descripcion);
+                    cmd.Parameters.AddWithValue("p_director", string.IsNullOrEmpty(director) ? (object)DBNull.Value : director);
+                    cmd.Parameters.AddWithValue("p_imagen", string.IsNullOrEmpty(imagen) ? (object)DBNull.Value : imagen);
+                    cmd.Parameters.AddWithValue("p_cant_temporadas", cantTemporadas);
+                    cmd.Parameters.AddWithValue("p_id_network", idNetwork.HasValue ? (object)idNetwork.Value : DBNull.Value);
+
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+                    return filasAfectadas > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al insertar serie: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        /*public static void CargarSeries()
+        {
+            seriesCargadas.Clear();
+
+            using (MySqlCommand cmd = new MySqlCommand("sp_listar_series", Conexion.GetConnection()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Serie nueva = new Serie
+                        {
+                            Id = reader.GetInt32("id_serie"),
+                            Nombre = reader.GetString("nombre"),
+                            FechaEstreno = reader.GetDateTime("fecha_estreno"),
+                            Descripcion = reader.IsDBNull(reader.GetOrdinal("descripcion")) ? null : reader.GetString("descripcion"),
+                            Director = reader.IsDBNull(reader.GetOrdinal("director")) ? null : reader.GetString("director"),
+                            Imagen = reader.IsDBNull(reader.GetOrdinal("imagen")) ? null : reader.GetString("imagen"),
+                            CantTemporadas = reader.GetInt32("cant_temporadas"),
+                            IdNetwork = reader.IsDBNull(reader.GetOrdinal("id_network")) ? (int?)null : reader.GetInt32("id_network")
+                        };
+
+                        seriesCargadas.Add(nueva);
+                    }
+                }
+            }
+        }*/
+
     }
 }

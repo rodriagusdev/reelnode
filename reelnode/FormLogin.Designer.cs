@@ -43,6 +43,7 @@
             this.TxtPassword = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.LblOlvidarPassword = new System.Windows.Forms.Label();
             this.PanelUsuario.SuspendLayout();
             this.panel1.SuspendLayout();
             this.PanelPassword.SuspendLayout();
@@ -114,6 +115,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(104)))), ((int)(((byte)(124)))));
+            this.panel1.Controls.Add(this.LblOlvidarPassword);
             this.panel1.Controls.Add(this.BtnSalir);
             this.panel1.Controls.Add(this.LblRegistrar);
             this.panel1.Controls.Add(this.PanelPassword);
@@ -148,7 +150,7 @@
             this.LblRegistrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.LblRegistrar.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblRegistrar.ForeColor = System.Drawing.Color.Turquoise;
-            this.LblRegistrar.Location = new System.Drawing.Point(98, 275);
+            this.LblRegistrar.Location = new System.Drawing.Point(97, 274);
             this.LblRegistrar.Name = "LblRegistrar";
             this.LblRegistrar.Size = new System.Drawing.Size(206, 18);
             this.LblRegistrar.TabIndex = 24;
@@ -206,8 +208,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Image = global::Reelnode.Properties.Resources.logo1;
-            this.pictureBox1.InitialImage = global::Reelnode.Properties.Resources.logo1;
+            this.pictureBox1.InitialImage = null;
             this.pictureBox1.Location = new System.Drawing.Point(15, 10);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(377, 149);
@@ -218,6 +219,20 @@
             // errorProvider
             // 
             this.errorProvider.ContainerControl = this;
+            // 
+            // LblOlvidarPassword
+            // 
+            this.LblOlvidarPassword.AutoSize = true;
+            this.LblOlvidarPassword.BackColor = System.Drawing.Color.Transparent;
+            this.LblOlvidarPassword.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LblOlvidarPassword.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblOlvidarPassword.ForeColor = System.Drawing.Color.Turquoise;
+            this.LblOlvidarPassword.Location = new System.Drawing.Point(84, 301);
+            this.LblOlvidarPassword.Name = "LblOlvidarPassword";
+            this.LblOlvidarPassword.Size = new System.Drawing.Size(236, 18);
+            this.LblOlvidarPassword.TabIndex = 26;
+            this.LblOlvidarPassword.Text = "¿Olvido la contraseña? Recuperar aquí";
+            this.LblOlvidarPassword.Click += new System.EventHandler(this.LblOlvidarPassword_Click);
             // 
             // FormLogin
             // 
@@ -260,5 +275,6 @@
         private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.Label LblRegistrar;
         private System.Windows.Forms.Button BtnSalir;
+        private System.Windows.Forms.Label LblOlvidarPassword;
     }
 }
