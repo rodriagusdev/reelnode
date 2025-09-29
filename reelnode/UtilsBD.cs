@@ -16,6 +16,7 @@ namespace Reelnode
         public static Usuario usuarioActual = new Usuario();
         public static List<Usuario> usuariosRegistrados = new List<Usuario>();
         public static List<Pelicula> peliculasCargadas = new List<Pelicula>();
+        public static List<Serie> seriesCargadas = new List<Serie>();
 
         public static void RegistrarUsuarioBD(Usuario nuevoUsuario)
         {
@@ -313,31 +314,33 @@ namespace Reelnode
             }
         }
 
-        /*public static void CargarSeries()
-        {
-            seriesCargadas.Clear();
-
-            using (MySqlCommand cmd = new MySqlCommand("sp_listar_series", Conexion.GetConnection()))
+        /*
+         * public static void CargarSeries()
             {
-                cmd.CommandType = CommandType.StoredProcedure;
+                seriesCargadas.Clear();
 
-                using (MySqlDataReader reader = cmd.ExecuteReader())
+                using (MySqlCommand cmd = new MySqlCommand("sp_listar_series", Conexion.GetConnection()))
                 {
-                    while (reader.Read())
-                    {
-                        Serie nueva = new Serie
-                        {
-                            Id = reader.GetInt32("id_serie"),
-                            Nombre = reader.GetString("nombre"),
-                            FechaEstreno = reader.GetDateTime("fecha_estreno"),
-                            Descripcion = reader.IsDBNull(reader.GetOrdinal("descripcion")) ? null : reader.GetString("descripcion"),
-                            Director = reader.IsDBNull(reader.GetOrdinal("director")) ? null : reader.GetString("director"),
-                            Imagen = reader.IsDBNull(reader.GetOrdinal("imagen")) ? null : reader.GetString("imagen"),
-                            CantTemporadas = reader.GetInt32("cant_temporadas"),
-                            IdNetwork = reader.IsDBNull(reader.GetOrdinal("id_network")) ? (int?)null : reader.GetInt32("id_network")
-                        };
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                        seriesCargadas.Add(nueva);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Serie nueva = new Serie
+                            {
+                                Id = reader.GetInt32("id_serie"),
+                                Nombre = reader.GetString("nombre"),
+                                FechaEstreno = reader.GetDateTime("fecha_estreno"),
+                                Descripcion = reader.IsDBNull(reader.GetOrdinal("descripcion")) ? null : reader.GetString("descripcion"),
+                                Director = reader.IsDBNull(reader.GetOrdinal("director")) ? null : reader.GetString("director"),
+                                Imagen = reader.IsDBNull(reader.GetOrdinal("imagen")) ? null : reader.GetString("imagen"),
+                                CantTemporadas = reader.GetInt32("cant_temporadas"),
+                                IdNetwork = reader.IsDBNull(reader.GetOrdinal("id_network")) ? (int?)null : reader.GetInt32("id_network")
+                            };
+
+                            seriesCargadas.Add(nueva);
+                        }
                     }
                 }
             }
