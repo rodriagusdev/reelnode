@@ -20,7 +20,7 @@ ToolStripMenu: ToolStpMenuX
 
 ✅Registrarse en el sistema
 
-✅¿Olvide mi contraseña? (lo hizo mandu) ![Insignia ejemplo](https://img.shields.io/badge/Estado-Activo-brightgreen)
+✅¿Olvide mi contraseña? (lo hizo mandu) 
 
 # Administrador
 
@@ -31,6 +31,14 @@ ToolStripMenu: ToolStpMenuX
 ✅Obtener peliculas
 
 ✅Borrar peliculas
+
+✅Crear series 🎖️ -> mandu
+
+✅Actualizar series🎖️ -> mandu
+
+✅Obtener series 🎖️ -> mandu
+
+❌Borrar series
 
 ✅Importar peliculas/series desde un JSON y Base de datos.
 
