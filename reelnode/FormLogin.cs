@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectoNuevo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -112,6 +113,12 @@ namespace Reelnode
         private void BtnSalir_Click_1(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void LblOlvidarPassword_Click(object sender, EventArgs e)
+        {
+            FormPassword password = new FormPassword();
+            password.Show();
         }
     }
 }

@@ -159,6 +159,7 @@
     <Compile Include="ControlGestionUsuarios.Designer.cs">
       <DependentUpon>ControlGestionUsuarios.cs</DependentUpon>
     </Compile>
+    <Compile Include="CorreoHelper.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +171,12 @@
     </Compile>
     <Compile Include="FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPassword.Designer.cs">
+      <DependentUpon>FormPassword.cs</DependentUpon>
     </Compile>
     <Compile Include="FormRegistrar.cs">
       <SubType>Form</SubType>
@@ -217,6 +224,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPassword.resx">
+      <DependentUpon>FormPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRegistrar.resx">
       <DependentUpon>FormRegistrar.cs</DependentUpon>
