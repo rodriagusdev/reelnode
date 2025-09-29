@@ -9,23 +9,25 @@ CREATE TABLE peliculas (
     fecha_estreno DATE NOT NULL,
     descripcion VARCHAR(255),
     director VARCHAR(255),
-    imagen varchar(255),
+    imagen VARCHAR(255),
     duracion VARCHAR(50)
 );
-select * from peliculas;
+
 CREATE TABLE network (
     id_network INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(255) NOT NULL
 );
 
+insert into network(nombre) values("Dreamworks"), ("Pixar"), ("Disney"), ("Warner Bros"), ("Universal");
+
 CREATE TABLE serie (
     id_serie INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(255) NOT NULL,
     fecha_estreno DATE NOT NULL,
-    fecha_fin DATE,
+    fecha_fin DATE NOT NULL,
     descripcion VARCHAR(255),
     director VARCHAR(255),
-    imagen varchar(255),
+    imagen VARCHAR(255),
     cant_temporadas INT,
     id_network INT,
     FOREIGN KEY (id_network) REFERENCES network(id_network)
@@ -62,8 +64,8 @@ values ("Admin"), ("Usuario");
 
 CREATE TABLE usuario (
     id_usuario INT PRIMARY KEY AUTO_INCREMENT,
-    nombre_usuario VARCHAR(255) unique,
-    email_usuario varchar(255) not null,
+    nombre_usuario VARCHAR(255) unique not null,
+    email_usuario varchar(255)  unique not null,
     password_usuario varchar (255) not null,
     avatar varchar(255),
     fecha_registro DATE NOT NULL,
@@ -212,6 +214,7 @@ ALTER TABLE auditoria_comentarios_usuario
 ADD CONSTRAINT fk_auditoriac_comentario_serie
 FOREIGN KEY (id_registro) REFERENCES comentarios_serie(id_comentario);
 
+
 -- Indices --------------------------------------------------
 
 create index idx_usuario_email on usuario(email_usuario); -- Índice para acelerar búsquedas por email
@@ -239,11 +242,12 @@ DELIMITER //
 CREATE PROCEDURE sp_insertar_usuario(
     IN p_nombre VARCHAR(255),
     IN p_password VARCHAR(255),  
-    IN p_id_rol INT
+    IN p_id_rol INT,
+    in p_email varchar(255)
 )
 BEGIN 
-    INSERT INTO usuario(nombre_usuario, password_usuario, fecha_registro, id_rol)
-    VALUES(p_nombre, p_password, CURDATE(), p_id_rol);
+    INSERT INTO usuario(nombre_usuario, password_usuario, email_usuario, fecha_registro, id_rol)
+    VALUES(p_nombre, p_password, p_email, CURDATE(), p_id_rol);
 END //
 DELIMITER ;
 
@@ -530,7 +534,7 @@ BEGIN
     VALUES ('peliculas', 'INSERT', LAST_INSERT_ID(), NOW(), p_nombre);
 END //
 DELIMITER ;
-select * from peliculas;
+
 -- Actualizar película
 /*DELIMITER //
 create procedure sp_actualizar_pelicula(
@@ -560,7 +564,7 @@ CREATE PROCEDURE sp_actualizar_pelicula(
     IN p_fecha_estreno DATE,
     IN p_descripcion VARCHAR(255),
     IN p_director VARCHAR(255),
-    IN p_imagen MEDIUMBLOB,
+    IN p_imagen VARCHAR(255),
     IN p_duracion VARCHAR(50)
 )
 BEGIN
@@ -697,8 +701,8 @@ BEGIN
         fecha_estreno,
         director,
         descripcion,
-        duracion,
-        imagen
+        imagen,
+        duracion
     FROM peliculas;
 END //
 DELIMITER ;
@@ -725,3 +729,75 @@ BEGIN
       AND email_usuario = p_email;
 END //
 DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_insertar_serie(
+    IN p_nombre VARCHAR(255),
+    IN p_fecha_estreno DATE,
+    IN p_fecha_fin DATE,
+    IN p_descripcion TEXT,
+    IN p_director VARCHAR(255),
+    IN p_imagen VARCHAR(255),
+    IN p_cant_temporadas INT,
+    IN p_id_network INT
+)
+BEGIN
+    START TRANSACTION;
+    INSERT INTO serie (nombre, fecha_estreno, fecha_fin, descripcion, director, imagen, cant_temporadas, id_network)
+    VALUES (p_nombre, p_fecha_estreno, p_fecha_fin, p_descripcion, p_director, p_imagen, p_cant_temporadas, p_id_network);
+
+    INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, detalle)
+    VALUES ('serie', 'INSERT', LAST_INSERT_ID(), NOW(), p_nombre);
+
+    COMMIT;
+END //
+DELIMITER ;
+
+
+DELIMITER //
+CREATE PROCEDURE sp_actualizar_serie(
+    IN p_id_serie INT,
+    IN p_nombre VARCHAR(255),
+    IN p_fecha_estreno DATE,
+    IN p_descripcion VARCHAR(255),
+    IN p_director VARCHAR(255),
+    IN p_imagen VARCHAR(255),
+    IN p_cant_temporadas INT,
+    IN p_id_network INT
+)
+BEGIN
+    START TRANSACTION;
+
+    UPDATE serie
+    SET nombre = COALESCE(p_nombre, nombre),
+        fecha_estreno = p_fecha_estreno,
+        descripcion = COALESCE(p_descripcion, descripcion),
+        director = COALESCE(p_director, director),
+        imagen = COALESCE(p_imagen, imagen),
+        cant_temporadas = COALESCE(p_cant_temporadas, cant_temporadas),
+        id_network = COALESCE(p_id_network, id_network)
+    WHERE id_serie = p_id_serie;
+
+    COMMIT;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_listar_series()
+BEGIN
+    SELECT 
+        id_serie,
+        nombre,
+        fecha_estreno,
+        fecha_fin,
+        descripcion,
+        director,
+        imagen,
+        cant_temporadas,
+        id_network
+    FROM serie;
+END //
+DELIMITER ;
+SET SQL_SAFE_UPDATES = 0;
+select * from usuario
+delete from peliculas

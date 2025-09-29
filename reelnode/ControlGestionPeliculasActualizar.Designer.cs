@@ -381,6 +381,7 @@
             this.DataGridPeliculas.ReadOnly = true;
             this.DataGridPeliculas.Size = new System.Drawing.Size(868, 106);
             this.DataGridPeliculas.TabIndex = 47;
+            this.DataGridPeliculas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridPeliculas_CellContentClick);
             this.DataGridPeliculas.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridPeliculas_CellMouseDown);
             // 
             // CtxMenu

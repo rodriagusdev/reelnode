@@ -46,8 +46,22 @@ namespace Reelnode
 
         private void BtnCargar_Click(object sender, EventArgs e)
         {
+            Serie nuevaSerie = new Serie
+            {
+                Nombre = TxtNombre.Text,
+                Director = TxtDirector.Text,
+                FechaEstreno = DtpFechaEstreno.Value,
+                FechaFin = DtpFechaFin.Value,
+                Descripcion = TxtDescripcion.Text,
+                Imagen = TxtURLImagen.Text
+            };
 
+            UtilsBD.InsertarSerieBD(nuevaSerie);
+        }
 
+        private void BtnPrevisualizar_Click(object sender, EventArgs e)
+        {
+            Utils.CargarImagenDesdeURL(PicSerie, TxtURLImagen.Text);
         }
     }
 }

@@ -10,10 +10,12 @@ using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Reflection.Emit;
+using System.Security.Policy;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Reelnode
 {
@@ -42,6 +44,8 @@ namespace Reelnode
             {
                 e.Graphics.FillRectangle(brush, PanelMain.ClientRectangle);
             }
+
+     
         }
 
         private void ToolStpMenuAdmin_Click(object sender, EventArgs e)
@@ -66,6 +70,26 @@ namespace Reelnode
             UtilsBD.Conexion.AbrirBD();
             UtilsBD.CargarUsuario();
             UtilsBD.CargarPeliculas();
+            UtilsBD.CargarSeries();
+
+            ListSeries.View = View.LargeIcon;
+            ImageList imageList = new ImageList();
+            imageList.ImageSize = new Size(180, 180); // tamaño de la imagen
+            ListSeries.LargeImageList = imageList;
+
+            foreach (var s in UtilsBD.seriesCargadas)
+            {
+                Image img = Utils.DescargarImagenDesdeURL(s.Imagen);
+                string key = s.Nombre;
+
+                if (img != null)
+                    imageList.Images.Add(key, img);
+
+                ListViewItem item = new ListViewItem(s.Nombre);
+                item.ImageKey = key;
+                item.SubItems.Add(s.Director);
+                ListSeries.Items.Add(item);
+            }
 
             FormLogin login = new FormLogin();
 

@@ -59,8 +59,7 @@ namespace Reelnode
                 return;
             }
 
-            DataGridPeliculas.DataSource = null;
-            DataGridPeliculas.DataSource = peliculasEncontradas;
+            Utils.ActualizarListaGrid(DataGridPeliculas, UtilsBD.peliculasCargadas, "Id", "Tipo");
         }
 
         private void BtnActualizar_Click(object sender, EventArgs e)
@@ -131,6 +130,11 @@ namespace Reelnode
         private void BtnPrevisualizar_Click(object sender, EventArgs e)
         {
             Utils.CargarImagenDesdeURL(PicPelicula, TxtURLImagen.Text);
+        }
+
+        private void DataGridPeliculas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

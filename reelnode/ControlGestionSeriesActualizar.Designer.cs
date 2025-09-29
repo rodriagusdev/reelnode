@@ -311,7 +311,6 @@
             this.BtnActualizar.TabIndex = 54;
             this.BtnActualizar.Text = "Actualizar Serie";
             this.BtnActualizar.UseVisualStyleBackColor = false;
-            this.BtnActualizar.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel2
             // 

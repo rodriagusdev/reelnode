@@ -12,23 +12,25 @@ namespace Reelnode
         public override int Id { get; set; }
         public override string Nombre { get; set; }
         public override DateTime FechaEstreno { get; set; }
+      
         public override string Descripcion { get; set; }
         public override string Director { get; set; }
         public override string Imagen { get; set; }
 
         public override string Tipo { get; set; }
-        public string Temporadas { get; set; }
+        public int Temporadas { get; set; }
 
-
+        public DateTime FechaFin {  get; set; }
         public List<string> Network { get; set; }
 
         public Serie() { }
 
-        public Serie(int id, string nombre, DateTime fecha, string descripcion, string director, string img, string temporadas, List<string> network)
+        public Serie(int id, string nombre, DateTime fecha, DateTime fechaFin, string descripcion, string director, string img, byte temporadas, List<string> network)
         {
             this.Id = id;
             this.Nombre = nombre;
             this.FechaEstreno = fecha;
+            this.FechaFin = fechaFin;
             this.Descripcion = descripcion;
             this.Director = director;
             this.Temporadas = temporadas;

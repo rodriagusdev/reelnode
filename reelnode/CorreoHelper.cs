@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProjectoNuevo
+namespace Reelnode
 {
     public static class CorreoHelper
     {
@@ -16,7 +16,7 @@ namespace ProjectoNuevo
             try
             {
                 MailMessage mensaje = new MailMessage();
-                mensaje.From = new MailAddress("agusbarbaresi2003@gmail.com", "Soporte ProyectoNuevo");
+                mensaje.From = new MailAddress("agusbarbaresi2003@gmail.com", "Soporte Reelnode");
                 mensaje.To.Add(destinatario);
                 mensaje.Subject = asunto;
                 mensaje.Body = cuerpo;

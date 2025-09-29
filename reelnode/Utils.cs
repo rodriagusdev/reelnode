@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySqlX.XDevAPI.Relational;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -55,6 +56,37 @@ namespace Reelnode
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar la imagen: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public static Image DescargarImagenDesdeURL(string url)
+        {
+            try
+            {
+                using (var webClient = new System.Net.WebClient())
+                {
+                    byte[] bytes = webClient.DownloadData(url);
+                    using (var ms = new MemoryStream(bytes))
+                    {
+                        return Image.FromStream(ms);
+                    }
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public static void ActualizarListaGrid<T>(DataGridView grid, List<T> list, params string[] ocultarColumnas) 
+        {
+            grid.DataSource = null;
+            grid.AutoGenerateColumns = true;
+            grid.DataSource = list;
+
+            foreach(var col in ocultarColumnas) 
+            {
+                if (grid.Columns.Contains(col)) grid.Columns[col].Visible = false;
             }
         }
     }

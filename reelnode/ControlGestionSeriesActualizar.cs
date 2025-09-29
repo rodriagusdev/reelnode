@@ -43,10 +43,6 @@ namespace Reelnode
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void PanelMain1_Paint(object sender, PaintEventArgs e)
         {
@@ -58,7 +54,19 @@ namespace Reelnode
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
+            /*string textoBuscador = TxtBuscarNombrePelicula.Text;
 
+            List<Pelicula> peliculasEncontradas = UtilsBD.peliculasCargadas
+                .Where(p => p.Nombre.ToLower().Contains(textoBuscador.ToLower()))
+                .ToList();
+
+            if (peliculasEncontradas.Count == 0)
+            {
+                MessageBox.Show("No se encontraron películas con ese nombre.", "Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            Utils.ActualizarListaGrid(DataGridPeliculas, UtilsBD.peliculasCargadas, "Id", "Tipo");*/
         }
     }
 }

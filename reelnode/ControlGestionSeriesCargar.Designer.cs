@@ -35,7 +35,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.PanelUsuario = new System.Windows.Forms.Panel();
-            this.TxtNombreSerie = new System.Windows.Forms.TextBox();
+            this.TxtNombre = new System.Windows.Forms.TextBox();
             this.PanelFecha = new System.Windows.Forms.Panel();
             this.DtpFechaEstreno = new System.Windows.Forms.DateTimePicker();
             this.PanelDirector = new System.Windows.Forms.Panel();
@@ -50,15 +50,15 @@
             this.BtnCargar = new System.Windows.Forms.Button();
             this.BtnSalir = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dateFechaFinSerie = new System.Windows.Forms.DateTimePicker();
+            this.DtpFechaFin = new System.Windows.Forms.DateTimePicker();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.PanelMain = new System.Windows.Forms.Panel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.BtnPrevisualizar = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.TxtURLImagen = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.BtnPrevisualizar = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.PanelMain = new System.Windows.Forms.Panel();
             this.PanelUsuario.SuspendLayout();
             this.PanelFecha.SuspendLayout();
             this.PanelDirector.SuspendLayout();
@@ -67,8 +67,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.PicSerie)).BeginInit();
             this.PanelDescripcion.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.PanelMain.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.PanelMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // LblPanelSerie
@@ -152,24 +152,24 @@
             // PanelUsuario
             // 
             this.PanelUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
-            this.PanelUsuario.Controls.Add(this.TxtNombreSerie);
+            this.PanelUsuario.Controls.Add(this.TxtNombre);
             this.PanelUsuario.Location = new System.Drawing.Point(64, 57);
             this.PanelUsuario.Name = "PanelUsuario";
             this.PanelUsuario.Padding = new System.Windows.Forms.Padding(5);
             this.PanelUsuario.Size = new System.Drawing.Size(205, 35);
             this.PanelUsuario.TabIndex = 28;
             // 
-            // TxtNombreSerie
+            // TxtNombre
             // 
-            this.TxtNombreSerie.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
-            this.TxtNombreSerie.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TxtNombreSerie.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtNombreSerie.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtNombreSerie.ForeColor = System.Drawing.Color.White;
-            this.TxtNombreSerie.Location = new System.Drawing.Point(5, 5);
-            this.TxtNombreSerie.Name = "TxtNombreSerie";
-            this.TxtNombreSerie.Size = new System.Drawing.Size(195, 22);
-            this.TxtNombreSerie.TabIndex = 12;
+            this.TxtNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
+            this.TxtNombre.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtNombre.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtNombre.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtNombre.ForeColor = System.Drawing.Color.White;
+            this.TxtNombre.Location = new System.Drawing.Point(5, 5);
+            this.TxtNombre.Name = "TxtNombre";
+            this.TxtNombre.Size = new System.Drawing.Size(195, 22);
+            this.TxtNombre.TabIndex = 12;
             // 
             // PanelFecha
             // 
@@ -183,10 +183,10 @@
             // 
             // DtpFechaEstreno
             // 
-            this.DtpFechaEstreno.Font = new System.Drawing.Font("Palatino Linotype", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DtpFechaEstreno.Location = new System.Drawing.Point(8, 8);
+            this.DtpFechaEstreno.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DtpFechaEstreno.Location = new System.Drawing.Point(5, 7);
             this.DtpFechaEstreno.Name = "DtpFechaEstreno";
-            this.DtpFechaEstreno.Size = new System.Drawing.Size(192, 20);
+            this.DtpFechaEstreno.Size = new System.Drawing.Size(195, 25);
             this.DtpFechaEstreno.TabIndex = 0;
             // 
             // PanelDirector
@@ -250,6 +250,7 @@
             this.PicSerie.Location = new System.Drawing.Point(5, 5);
             this.PicSerie.Name = "PicSerie";
             this.PicSerie.Size = new System.Drawing.Size(195, 192);
+            this.PicSerie.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.PicSerie.TabIndex = 0;
             this.PicSerie.TabStop = false;
             // 
@@ -321,7 +322,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
-            this.panel1.Controls.Add(this.dateFechaFinSerie);
+            this.panel1.Controls.Add(this.DtpFechaFin);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Location = new System.Drawing.Point(64, 198);
             this.panel1.Name = "panel1";
@@ -329,13 +330,14 @@
             this.panel1.Size = new System.Drawing.Size(205, 35);
             this.panel1.TabIndex = 35;
             // 
-            // dateFechaFinSerie
+            // DtpFechaFin
             // 
-            this.dateFechaFinSerie.Location = new System.Drawing.Point(3, 5);
-            this.dateFechaFinSerie.Margin = new System.Windows.Forms.Padding(2);
-            this.dateFechaFinSerie.Name = "dateFechaFinSerie";
-            this.dateFechaFinSerie.Size = new System.Drawing.Size(198, 20);
-            this.dateFechaFinSerie.TabIndex = 37;
+            this.DtpFechaFin.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DtpFechaFin.Location = new System.Drawing.Point(3, 5);
+            this.DtpFechaFin.Margin = new System.Windows.Forms.Padding(2);
+            this.DtpFechaFin.Name = "DtpFechaFin";
+            this.DtpFechaFin.Size = new System.Drawing.Size(198, 25);
+            this.DtpFechaFin.TabIndex = 37;
             // 
             // textBox1
             // 
@@ -361,6 +363,67 @@
             this.label7.Size = new System.Drawing.Size(118, 17);
             this.label7.TabIndex = 36;
             this.label7.Text = "Fecha de finalizacion\r\n";
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
+            this.panel2.Controls.Add(this.TxtURLImagen);
+            this.panel2.Location = new System.Drawing.Point(365, 283);
+            this.panel2.Name = "panel2";
+            this.panel2.Padding = new System.Windows.Forms.Padding(5);
+            this.panel2.Size = new System.Drawing.Size(205, 35);
+            this.panel2.TabIndex = 38;
+            // 
+            // TxtURLImagen
+            // 
+            this.TxtURLImagen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
+            this.TxtURLImagen.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtURLImagen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TxtURLImagen.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtURLImagen.ForeColor = System.Drawing.Color.White;
+            this.TxtURLImagen.Location = new System.Drawing.Point(5, 5);
+            this.TxtURLImagen.Name = "TxtURLImagen";
+            this.TxtURLImagen.Size = new System.Drawing.Size(195, 22);
+            this.TxtURLImagen.TabIndex = 12;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
+            this.label9.Location = new System.Drawing.Point(362, 263);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(105, 17);
+            this.label9.TabIndex = 39;
+            this.label9.Text = "URL de la imagen";
+            // 
+            // BtnPrevisualizar
+            // 
+            this.BtnPrevisualizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(184)))), ((int)(((byte)(193)))));
+            this.BtnPrevisualizar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnPrevisualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnPrevisualizar.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnPrevisualizar.ForeColor = System.Drawing.Color.Black;
+            this.BtnPrevisualizar.Location = new System.Drawing.Point(365, 343);
+            this.BtnPrevisualizar.Name = "BtnPrevisualizar";
+            this.BtnPrevisualizar.Size = new System.Drawing.Size(205, 35);
+            this.BtnPrevisualizar.TabIndex = 40;
+            this.BtnPrevisualizar.Text = "Previsualizar";
+            this.BtnPrevisualizar.UseVisualStyleBackColor = false;
+            this.BtnPrevisualizar.Click += new System.EventHandler(this.BtnPrevisualizar_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
+            this.label8.Location = new System.Drawing.Point(362, 320);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(212, 17);
+            this.label8.TabIndex = 41;
+            this.label8.Text = "e.g. \"https://sitio/content//imagen.jpg\"";
             // 
             // PanelMain
             // 
@@ -393,66 +456,6 @@
             this.PanelMain.TabIndex = 3;
             this.PanelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelMain_Paint);
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label8.Location = new System.Drawing.Point(362, 320);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(212, 17);
-            this.label8.TabIndex = 41;
-            this.label8.Text = "e.g. \"https://sitio/content//imagen.jpg\"";
-            // 
-            // BtnPrevisualizar
-            // 
-            this.BtnPrevisualizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(184)))), ((int)(((byte)(193)))));
-            this.BtnPrevisualizar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnPrevisualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnPrevisualizar.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnPrevisualizar.ForeColor = System.Drawing.Color.Black;
-            this.BtnPrevisualizar.Location = new System.Drawing.Point(365, 343);
-            this.BtnPrevisualizar.Name = "BtnPrevisualizar";
-            this.BtnPrevisualizar.Size = new System.Drawing.Size(205, 35);
-            this.BtnPrevisualizar.TabIndex = 40;
-            this.BtnPrevisualizar.Text = "Previsualizar";
-            this.BtnPrevisualizar.UseVisualStyleBackColor = false;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label9.Location = new System.Drawing.Point(362, 263);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(105, 17);
-            this.label9.TabIndex = 39;
-            this.label9.Text = "URL de la imagen";
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
-            this.panel2.Controls.Add(this.TxtURLImagen);
-            this.panel2.Location = new System.Drawing.Point(365, 283);
-            this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(5);
-            this.panel2.Size = new System.Drawing.Size(205, 35);
-            this.panel2.TabIndex = 38;
-            // 
-            // TxtURLImagen
-            // 
-            this.TxtURLImagen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
-            this.TxtURLImagen.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TxtURLImagen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtURLImagen.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtURLImagen.ForeColor = System.Drawing.Color.White;
-            this.TxtURLImagen.Location = new System.Drawing.Point(5, 5);
-            this.TxtURLImagen.Name = "TxtURLImagen";
-            this.TxtURLImagen.Size = new System.Drawing.Size(195, 22);
-            this.TxtURLImagen.TabIndex = 12;
-            // 
             // ControlGestionSeriesCargar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -474,10 +477,10 @@
             this.PanelDescripcion.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.PanelMain.ResumeLayout(false);
-            this.PanelMain.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.PanelMain.ResumeLayout(false);
+            this.PanelMain.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -491,7 +494,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel PanelUsuario;
-        private System.Windows.Forms.TextBox TxtNombreSerie;
+        private System.Windows.Forms.TextBox TxtNombre;
         private System.Windows.Forms.Panel PanelFecha;
         private System.Windows.Forms.DateTimePicker DtpFechaEstreno;
         private System.Windows.Forms.Panel PanelDirector;
@@ -506,14 +509,14 @@
         private System.Windows.Forms.Button BtnCargar;
         private System.Windows.Forms.Button BtnSalir;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DateTimePicker dateFechaFinSerie;
+        private System.Windows.Forms.DateTimePicker DtpFechaFin;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Panel PanelMain;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button BtnPrevisualizar;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox TxtURLImagen;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button BtnPrevisualizar;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Panel PanelMain;
     }
 }

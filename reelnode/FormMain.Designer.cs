@@ -33,8 +33,10 @@
             this.ToolStpMenuAdmin = new System.Windows.Forms.ToolStripMenuItem();
             this.noTocarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PanelMain = new System.Windows.Forms.Panel();
+            this.ListSeries = new System.Windows.Forms.ListView();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.PanelMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -76,12 +78,23 @@
             // 
             this.PanelMain.AutoSize = true;
             this.PanelMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
+            this.PanelMain.Controls.Add(this.ListSeries);
             this.PanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelMain.Location = new System.Drawing.Point(0, 31);
             this.PanelMain.Name = "PanelMain";
             this.PanelMain.Size = new System.Drawing.Size(925, 578);
             this.PanelMain.TabIndex = 1;
             this.PanelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // ListSeries
+            // 
+            this.ListSeries.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.ListSeries.HideSelection = false;
+            this.ListSeries.Location = new System.Drawing.Point(71, 61);
+            this.ListSeries.Name = "ListSeries";
+            this.ListSeries.Size = new System.Drawing.Size(771, 157);
+            this.ListSeries.TabIndex = 0;
+            this.ListSeries.UseCompatibleStateImageBehavior = false;
             // 
             // FormMain
             // 
@@ -101,6 +114,7 @@
             this.panel1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.PanelMain.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -113,6 +127,7 @@
         private System.Windows.Forms.Panel PanelMain;
         private System.Windows.Forms.ToolStripMenuItem ToolStpMenuAdmin;
         private System.Windows.Forms.ToolStripMenuItem noTocarToolStripMenuItem;
+        private System.Windows.Forms.ListView ListSeries;
     }
 }
 

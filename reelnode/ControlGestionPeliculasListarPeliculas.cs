@@ -40,8 +40,12 @@ namespace Reelnode
 
         private void ControlGestionPeliculasListarPeliculas_Load(object sender, EventArgs e)
         {
-            DataGridPeliculas.DataSource = null;
-            DataGridPeliculas.DataSource = UtilsBD.peliculasCargadas;
+            Utils.ActualizarListaGrid(DataGridPeliculas, UtilsBD.peliculasCargadas, "Id", "Tipo");
+        }
+
+        private void DataGridPeliculas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

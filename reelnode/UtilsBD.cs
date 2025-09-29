@@ -149,7 +149,7 @@ namespace Reelnode
                             Director = reader.GetString("director"),
                             Duracion = reader.GetString("duracion"),
                             Descripcion = reader.GetString("descripcion"),
-                            Imagen = reader.GetString("imagen")
+                            Imagen = reader.IsDBNull(reader.GetOrdinal("imagen")) ? null : reader.GetString("imagen"),
                         };
 
                         peliculasCargadas.Add(nueva);
@@ -242,14 +242,14 @@ namespace Reelnode
         }
 
         public static bool ActualizarSerie(
-       int idSerie,
-       string nombre,
-       DateTime fechaEstreno,
-       string descripcion,
-       string director,
-       string imagen,
-       int cantTemporadas,
-       int? idNetwork)
+           int idSerie,
+           string nombre,
+           DateTime fechaEstreno,
+           string descripcion,
+           string director,
+           string imagen,
+           int cantTemporadas,
+           int? idNetwork)
         {
             using (MySqlConnection conn = Conexion.GetConnection())
             using (MySqlCommand cmd = new MySqlCommand("sp_actualizar_serie", conn))
@@ -278,15 +278,7 @@ namespace Reelnode
             }
         }
 
-        public static bool InsertarSerieBD(
-                        string nombre,
-                        DateTime fechaEstreno,
-                        DateTime? fechaFin,
-                        string descripcion,
-                        string director,
-                        string imagen,
-                        int cantTemporadas,
-                        int? idNetwork)
+        public static void InsertarSerieBD(Serie nuevaSerie)
         {
             try
             {
@@ -294,23 +286,29 @@ namespace Reelnode
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("p_nombre", nombre);
-                    cmd.Parameters.AddWithValue("p_fecha_estreno", fechaEstreno);
-                    cmd.Parameters.AddWithValue("p_fecha_fin", fechaFin.HasValue ? (object)fechaFin.Value : DBNull.Value);
-                    cmd.Parameters.AddWithValue("p_descripcion", string.IsNullOrEmpty(descripcion) ? (object)DBNull.Value : descripcion);
-                    cmd.Parameters.AddWithValue("p_director", string.IsNullOrEmpty(director) ? (object)DBNull.Value : director);
-                    cmd.Parameters.AddWithValue("p_imagen", string.IsNullOrEmpty(imagen) ? (object)DBNull.Value : imagen);
-                    cmd.Parameters.AddWithValue("p_cant_temporadas", cantTemporadas);
-                    cmd.Parameters.AddWithValue("p_id_network", idNetwork.HasValue ? (object)idNetwork.Value : DBNull.Value);
+                    cmd.Parameters.AddWithValue("p_nombre", nuevaSerie.Nombre);
+                    cmd.Parameters.AddWithValue("p_fecha_estreno", nuevaSerie.FechaEstreno);
+                    cmd.Parameters.AddWithValue("p_fecha_fin", nuevaSerie.FechaFin);
+                    cmd.Parameters.AddWithValue("p_descripcion", string.IsNullOrEmpty(nuevaSerie.Descripcion) ? (object)DBNull.Value : nuevaSerie.Descripcion);
+                    cmd.Parameters.AddWithValue("p_director", string.IsNullOrEmpty(nuevaSerie.Director) ? (object)DBNull.Value : nuevaSerie.Director);
+                    cmd.Parameters.AddWithValue("p_imagen", string.IsNullOrEmpty(nuevaSerie.Imagen) ? (object)DBNull.Value : nuevaSerie.Imagen);
+                    cmd.Parameters.AddWithValue("p_cant_temporadas", nuevaSerie.Temporadas);
+                    cmd.Parameters.AddWithValue("p_id_network", 1);
 
                     int filasAfectadas = cmd.ExecuteNonQuery();
-                    return filasAfectadas > 0;
+
+                    if (filasAfectadas > 0) 
+                    {
+                        MessageBox.Show("Serie cargada con éxito", "Carga Exitosa",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al insertar serie: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                return;
             }
         }
 
@@ -332,10 +330,11 @@ namespace Reelnode
                             Id = reader.GetInt32("id_serie"),
                             Nombre = reader.GetString("nombre"),
                             FechaEstreno = reader.GetDateTime("fecha_estreno"),
+                            FechaFin = reader.GetDateTime("fecha_fin"),
                             Descripcion = reader.IsDBNull(reader.GetOrdinal("descripcion")) ? null : reader.GetString("descripcion"),
                             Director = reader.IsDBNull(reader.GetOrdinal("director")) ? null : reader.GetString("director"),
                             Imagen = reader.IsDBNull(reader.GetOrdinal("imagen")) ? null : reader.GetString("imagen"),
-                            Temporadas = reader.GetByte("cant_temporadas")
+                            Temporadas = reader.GetInt32("cant_temporadas")
                             /* IdNetwork = reader.IsDBNull(reader.GetOrdinal("id_network")) ? (int?)null : reader.GetInt32("id_network")*/
                         };
 
