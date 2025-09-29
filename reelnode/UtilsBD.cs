@@ -16,6 +16,7 @@ namespace Reelnode
         public static Usuario usuarioActual = new Usuario();
         public static List<Usuario> usuariosRegistrados = new List<Usuario>();
         public static List<Pelicula> peliculasCargadas = new List<Pelicula>();
+        public static List<Serie> seriesCargadas = new List<Serie>();
 
         public static void RegistrarUsuarioBD(Usuario nuevoUsuario)
         {
@@ -313,7 +314,8 @@ namespace Reelnode
             }
         }
 
-        /*public static void CargarSeries()
+
+        public static void CargarSeries()
         {
             seriesCargadas.Clear();
 
@@ -333,14 +335,51 @@ namespace Reelnode
                             Descripcion = reader.IsDBNull(reader.GetOrdinal("descripcion")) ? null : reader.GetString("descripcion"),
                             Director = reader.IsDBNull(reader.GetOrdinal("director")) ? null : reader.GetString("director"),
                             Imagen = reader.IsDBNull(reader.GetOrdinal("imagen")) ? null : reader.GetString("imagen"),
-                            CantTemporadas = reader.GetInt32("cant_temporadas"),
-                            IdNetwork = reader.IsDBNull(reader.GetOrdinal("id_network")) ? (int?)null : reader.GetInt32("id_network")
+                            Temporadas = reader.GetByte("cant_temporadas")
+                            /* IdNetwork = reader.IsDBNull(reader.GetOrdinal("id_network")) ? (int?)null : reader.GetInt32("id_network")*/
                         };
 
                         seriesCargadas.Add(nueva);
                     }
                 }
             }
-        }*/
-    }
+        }
+        
+
+        public static void EliminarSerie(int id)
+        {
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand("sp_eliminar_serie_con_temporadas", Conexion.GetConnection()))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("p_id", id);
+
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+
+                    if (filasAfectadas > 0)
+                    {
+                        MessageBox.Show("Serie y sus temporadas eliminadas con éxito", "Eliminación Exitosa",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Information);
+
+                        seriesCargadas.Clear();
+                        CargarSeries();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo eliminar la serie!", "Error",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error: " + e.Message, "Excepción",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            }
+        }
+    } 
 }
