@@ -17,14 +17,14 @@ namespace Reelnode
         public override string Imagen { get; set; }
 
         public override string Tipo { get; set; }
-        public string Temporadas { get; set; }
+        public byte Temporadas { get; set; }
 
 
         public List<string> Network { get; set; }
 
         public Serie() { }
 
-        public Serie(int id, string nombre, DateTime fecha, string descripcion, string director, string img, string temporadas, List<string> network)
+        public Serie(int id, string nombre, DateTime fecha, string descripcion, string director, string img, byte temporadas, List<string> network)
         {
             this.Id = id;
             this.Nombre = nombre;
