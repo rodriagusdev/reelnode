@@ -345,5 +345,41 @@ namespace Reelnode
                 }
             }
         }*/
+
+       /* public static void EliminarSerie(int id)
+        {
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand("sp_eliminar_serie_con_temporadas", Conexion.GetConnection()))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("p_id", id);
+
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+
+                    if (filasAfectadas > 0)
+                    {
+                        MessageBox.Show("Serie y sus temporadas eliminadas con éxito", "Eliminación Exitosa",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Information);
+
+                        seriesCargadas.Clear();
+                        CargarSeries();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo eliminar la serie!", "Error",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error: " + e.Message, "Excepción",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            }
+        }*/
     }
 }
