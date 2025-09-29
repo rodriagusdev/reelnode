@@ -314,39 +314,39 @@ namespace Reelnode
             }
         }
 
-        
-          public static void CargarSeries()
+
+        public static void CargarSeries()
+        {
+            seriesCargadas.Clear();
+
+            using (MySqlCommand cmd = new MySqlCommand("sp_listar_series", Conexion.GetConnection()))
             {
-                seriesCargadas.Clear();
+                cmd.CommandType = CommandType.StoredProcedure;
 
-                using (MySqlCommand cmd = new MySqlCommand("sp_listar_series", Conexion.GetConnection()))
+                using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        Serie nueva = new Serie
                         {
-                            Serie nueva = new Serie
-                            {
-                                Id = reader.GetInt32("id_serie"),
-                                Nombre = reader.GetString("nombre"),
-                                FechaEstreno = reader.GetDateTime("fecha_estreno"),
-                                Descripcion = reader.IsDBNull(reader.GetOrdinal("descripcion")) ? null : reader.GetString("descripcion"),
-                                Director = reader.IsDBNull(reader.GetOrdinal("director")) ? null : reader.GetString("director"),
-                                Imagen = reader.IsDBNull(reader.GetOrdinal("imagen")) ? null : reader.GetString("imagen"),
-                                Temporadas = reader.GetByte("cant_temporadas")
-                               /* IdNetwork = reader.IsDBNull(reader.GetOrdinal("id_network")) ? (int?)null : reader.GetInt32("id_network")*/
-                            };
+                            Id = reader.GetInt32("id_serie"),
+                            Nombre = reader.GetString("nombre"),
+                            FechaEstreno = reader.GetDateTime("fecha_estreno"),
+                            Descripcion = reader.IsDBNull(reader.GetOrdinal("descripcion")) ? null : reader.GetString("descripcion"),
+                            Director = reader.IsDBNull(reader.GetOrdinal("director")) ? null : reader.GetString("director"),
+                            Imagen = reader.IsDBNull(reader.GetOrdinal("imagen")) ? null : reader.GetString("imagen"),
+                            Temporadas = reader.GetByte("cant_temporadas")
+                            /* IdNetwork = reader.IsDBNull(reader.GetOrdinal("id_network")) ? (int?)null : reader.GetInt32("id_network")*/
+                        };
 
-                            seriesCargadas.Add(nueva);
-                        }
+                        seriesCargadas.Add(nueva);
                     }
                 }
             }
         }
+        
 
-       /* public static void EliminarSerie(int id)
+        public static void EliminarSerie(int id)
         {
             try
             {
@@ -380,6 +380,6 @@ namespace Reelnode
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
             }
-        }*/
-    }
+        }
+    } 
 }
