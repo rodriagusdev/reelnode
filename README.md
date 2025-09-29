@@ -38,7 +38,7 @@ ToolStripMenu: ToolStpMenuX
 
 ✅Obtener series 🎖️ -> mandu
 
-❌Borrar series
+✅Borrar series 🎖️ -> mandu
 
 ✅Importar peliculas/series desde un JSON y Base de datos.
 
