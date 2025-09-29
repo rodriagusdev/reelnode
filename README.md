@@ -20,7 +20,7 @@ ToolStripMenu: ToolStpMenuX
 
 ✅Registrarse en el sistema
 
-❌¿Olvide mi contraseña?
+✅¿Olvide mi contraseña? (lo hizo mandu) ![Insignia ejemplo](https://img.shields.io/badge/Estado-Activo-brightgreen)
 
 # Administrador
 
