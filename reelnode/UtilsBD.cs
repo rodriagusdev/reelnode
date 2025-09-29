@@ -314,8 +314,8 @@ namespace Reelnode
             }
         }
 
-        /*
-         * public static void CargarSeries()
+        
+          public static void CargarSeries()
             {
                 seriesCargadas.Clear();
 
@@ -335,8 +335,8 @@ namespace Reelnode
                                 Descripcion = reader.IsDBNull(reader.GetOrdinal("descripcion")) ? null : reader.GetString("descripcion"),
                                 Director = reader.IsDBNull(reader.GetOrdinal("director")) ? null : reader.GetString("director"),
                                 Imagen = reader.IsDBNull(reader.GetOrdinal("imagen")) ? null : reader.GetString("imagen"),
-                                CantTemporadas = reader.GetInt32("cant_temporadas"),
-                                IdNetwork = reader.IsDBNull(reader.GetOrdinal("id_network")) ? (int?)null : reader.GetInt32("id_network")
+                                Temporadas = reader.GetByte("cant_temporadas")
+                               /* IdNetwork = reader.IsDBNull(reader.GetOrdinal("id_network")) ? (int?)null : reader.GetInt32("id_network")*/
                             };
 
                             seriesCargadas.Add(nueva);
@@ -344,7 +344,7 @@ namespace Reelnode
                     }
                 }
             }
-        }*/
+        }
 
        /* public static void EliminarSerie(int id)
         {
