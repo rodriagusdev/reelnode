@@ -108,7 +108,7 @@ namespace Reelnode
         {
             FormRegistrar registro = new FormRegistrar();
 
-            registro.Show();
+            registro.ShowDialog();
         }
         private void BtnSalir_Click_1(object sender, EventArgs e)
         {
@@ -118,7 +118,7 @@ namespace Reelnode
         private void LblOlvidarPassword_Click(object sender, EventArgs e)
         {
             FormPassword password = new FormPassword();
-            password.Show();
+            password.ShowDialog();
         }
     }
 }

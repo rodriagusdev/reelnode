@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,9 @@ namespace ProjectoNuevo
         public FormPassword()
         {
             InitializeComponent();
+
+            BtnCambiar.FlatAppearance.BorderColor = Color.FromArgb(0, 29, 35);
+            BtnSalir.FlatAppearance.BorderColor = Color.FromArgb(0, 29, 35);
         }
 
         private void BtnCambiar_Click(object sender, EventArgs e)
@@ -65,6 +69,84 @@ namespace ProjectoNuevo
             else
             {
                 MessageBox.Show("El usuario y el correo no coinciden.");
+            }
+        }
+
+        private void TxtUsuario_TextChanged(object sender, EventArgs e)
+        {
+            if (TxtUsuario.Text != "")
+            {
+                PanelUsuarioLinea.Visible = false;
+                LblPanelUsuario.Visible = false;
+            }
+            else
+            {
+                PanelUsuarioLinea.Visible = true;
+                LblPanelUsuario.Visible = true;
+            }
+        }
+
+        private void TxtEmail_TextChanged(object sender, EventArgs e)
+        {
+            if (TxtEmail.Text != "")
+            {
+                PanelEmailLinea.Visible = false;
+                LblPanelEmail.Visible = false;
+            }
+            else
+            {
+                PanelEmailLinea.Visible = true;
+                LblPanelEmail.Visible = true;
+            }
+        }
+
+        private void TxtCambiarPassword_TextChanged(object sender, EventArgs e)
+        {
+            if (TxtCambiarPassword.Text != "")
+            {
+                PanelPasswordLinea.Visible = false;
+                LblPanelPassword.Visible = false;
+            }
+            else
+            {
+                PanelPasswordLinea.Visible = true;
+                LblPanelPassword.Visible = true;
+            }
+        }
+
+        private void TxtConfirmarPassword_TextChanged(object sender, EventArgs e)
+        {
+            if (TxtConfirmarPassword.Text != "")
+            {
+                PanelConfirmarLinea.Visible = false;
+                LblConfirmarPassword.Visible = false;
+            }
+            else
+            {
+                PanelConfirmarLinea.Visible = true;
+                LblConfirmarPassword.Visible = true;
+            }
+        }
+
+        private void BtnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void PanelMain_Paint(object sender, PaintEventArgs e)
+        {
+            Rectangle rect = PanelMain.ClientRectangle;
+            using (LinearGradientBrush brush = new LinearGradientBrush(
+                rect,
+                Color.FromArgb(53, 106, 124),
+                Color.FromArgb(24, 76, 90),
+                LinearGradientMode.Vertical))
+            {
+                Blend blend = new Blend();
+                blend.Positions = new float[] { 0f, 0.4f, 0.6f, 1f };
+                blend.Factors = new float[] { 0f, 0.5f, 0.7f, 1f };
+                brush.Blend = blend;
+                e.Graphics.FillRectangle(brush, rect);
             }
         }
     }

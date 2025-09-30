@@ -28,8 +28,28 @@ namespace Reelnode
             BtnPrevisualizar.FlatAppearance.BorderColor = Color.FromArgb(25, 47, 71);
 
             foreach (Panel pnl in PanelPeliculaCreacion.Controls.OfType<Panel>()) { 
-                Utils.RedondearBordes(pnl, 20);
+                pnl.BackColor = Color.FromArgb(42, 47, 79);
+
+                foreach (TextBox txt in pnl.Controls.OfType<TextBox>())
+                {
+                    txt.BackColor = Color.FromArgb(42, 47, 79);
+                    txt.ForeColor = Color.FromArgb(0, 255, 255);
+                }
             }
+
+            foreach (Label lbl in PanelPeliculaCreacion.Controls.OfType<Label>())
+            {
+                lbl.ForeColor = Color.FromArgb(255, 0, 127);
+            }
+
+            foreach (Button btn in PanelPeliculaCreacion.Controls.OfType<Button>())
+            {
+                btn.BackColor = Color.FromArgb(123, 44, 191);
+                btn.ForeColor = Color.FromArgb(0, 255, 255);
+                btn.FlatAppearance.BorderColor = Color.FromArgb(0, 183, 235);
+            }
+
+            PicPelicula.BackColor = Color.FromArgb(42, 47, 79);
         }
         private void PanelPeliculaCreacion_Paint(object sender, PaintEventArgs e)
         {

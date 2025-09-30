@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.PanelMain = new System.Windows.Forms.Panel();
+            this.BtnSalir = new System.Windows.Forms.Button();
             this.PanelEmail = new System.Windows.Forms.Panel();
             this.LblPanelEmail = new System.Windows.Forms.Label();
             this.PanelEmailLinea = new System.Windows.Forms.Panel();
@@ -45,7 +46,7 @@
             this.BtnIngresar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.panel1.SuspendLayout();
+            this.PanelMain.SuspendLayout();
             this.PanelEmail.SuspendLayout();
             this.PanelPassword.SuspendLayout();
             this.PanelUsuario.SuspendLayout();
@@ -53,18 +54,35 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // PanelMain
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(104)))), ((int)(((byte)(124)))));
-            this.panel1.Controls.Add(this.PanelEmail);
-            this.panel1.Controls.Add(this.PanelPassword);
-            this.panel1.Controls.Add(this.PanelUsuario);
-            this.panel1.Controls.Add(this.BtnIngresar);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(5, 2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(424, 447);
-            this.panel1.TabIndex = 11;
+            this.PanelMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(104)))), ((int)(((byte)(124)))));
+            this.PanelMain.Controls.Add(this.BtnSalir);
+            this.PanelMain.Controls.Add(this.PanelEmail);
+            this.PanelMain.Controls.Add(this.PanelPassword);
+            this.PanelMain.Controls.Add(this.PanelUsuario);
+            this.PanelMain.Controls.Add(this.BtnIngresar);
+            this.PanelMain.Controls.Add(this.pictureBox1);
+            this.PanelMain.Location = new System.Drawing.Point(5, 2);
+            this.PanelMain.Name = "PanelMain";
+            this.PanelMain.Size = new System.Drawing.Size(424, 447);
+            this.PanelMain.TabIndex = 11;
+            this.PanelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelMain_Paint);
+            // 
+            // BtnSalir
+            // 
+            this.BtnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(29)))), ((int)(((byte)(35)))));
+            this.BtnSalir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSalir.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnSalir.ForeColor = System.Drawing.Color.White;
+            this.BtnSalir.Location = new System.Drawing.Point(55, 378);
+            this.BtnSalir.Name = "BtnSalir";
+            this.BtnSalir.Size = new System.Drawing.Size(307, 36);
+            this.BtnSalir.TabIndex = 24;
+            this.BtnSalir.Text = "S   A   L   I   R";
+            this.BtnSalir.UseVisualStyleBackColor = false;
+            this.BtnSalir.Click += new System.EventHandler(this.BtnSalir_Click);
             // 
             // PanelEmail
             // 
@@ -213,7 +231,7 @@
             this.BtnIngresar.ForeColor = System.Drawing.Color.White;
             this.BtnIngresar.Location = new System.Drawing.Point(55, 322);
             this.BtnIngresar.Name = "BtnIngresar";
-            this.BtnIngresar.Size = new System.Drawing.Size(307, 52);
+            this.BtnIngresar.Size = new System.Drawing.Size(307, 36);
             this.BtnIngresar.TabIndex = 13;
             this.BtnIngresar.Text = "R   E   G   I   S   T   R   A  R";
             this.BtnIngresar.UseVisualStyleBackColor = false;
@@ -239,13 +257,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(184)))), ((int)(((byte)(182)))));
             this.ClientSize = new System.Drawing.Size(434, 450);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.PanelMain);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormRegistrar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormRegistrar";
             this.Load += new System.EventHandler(this.FormRegistrar_Load);
-            this.panel1.ResumeLayout(false);
+            this.PanelMain.ResumeLayout(false);
             this.PanelEmail.ResumeLayout(false);
             this.PanelEmail.PerformLayout();
             this.PanelPassword.ResumeLayout(false);
@@ -260,7 +282,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel PanelMain;
         private System.Windows.Forms.Panel PanelPassword;
         private System.Windows.Forms.Label LblPanelPassword;
         private System.Windows.Forms.Panel PanelPasswordLinea;
@@ -276,5 +298,6 @@
         private System.Windows.Forms.Panel PanelEmailLinea;
         private System.Windows.Forms.TextBox TxtEmail;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.Button BtnSalir;
     }
 }

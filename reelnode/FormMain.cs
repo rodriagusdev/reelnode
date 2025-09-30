@@ -22,7 +22,7 @@ namespace Reelnode
     public partial class FormMain : Form
     {
         private ControlAdmin controlAdmin;
-
+        private FlowLayoutPanel flowPanel;
         public FormMain()
         {
             InitializeComponent();
@@ -32,15 +32,30 @@ namespace Reelnode
             PanelMain.Controls.Add(controlAdmin);
 
             controlAdmin.Visible = false;
+
+            flowPanel = new FlowLayoutPanel
+            {
+                FlowDirection = FlowDirection.LeftToRight,
+                WrapContents = false,
+                AutoScroll = true,
+                AutoSize = false,
+                BackColor = Color.Transparent,
+                Padding = new Padding(10),
+                Location = new Point(10, 50),
+                Size = new Size(this.ClientSize.Width - 20, 270),
+                VerticalScroll = { Visible = false }
+            };
+
+            PanelMain.Controls.Add(flowPanel);
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
             using (LinearGradientBrush brush = new LinearGradientBrush(
                 PanelMain.ClientRectangle,
-                Color.FromArgb(43, 88, 118),
-                Color.FromArgb(78, 67, 118),
-                LinearGradientMode.Vertical))
+                Color.FromArgb(27, 38, 59),
+                Color.FromArgb(13, 17, 23),
+                LinearGradientMode.BackwardDiagonal))
             {
                 e.Graphics.FillRectangle(brush, PanelMain.ClientRectangle);
             }
@@ -61,8 +76,8 @@ namespace Reelnode
                 if (ctrl is ITemaPersonalizable controlTematico)
                 {
                     controlTematico.EstablecerGradiente(
-                        Color.FromArgb(43, 88, 118),
-                        Color.FromArgb(78, 67, 118),
+                        Color.FromArgb(27, 38, 59),
+                        Color.FromArgb(13, 17, 23),
                         LinearGradientMode.Vertical);
                 }
             }
@@ -72,24 +87,7 @@ namespace Reelnode
             UtilsBD.CargarPeliculas();
             UtilsBD.CargarSeries();
 
-            ListSeries.View = View.LargeIcon;
-            ImageList imageList = new ImageList();
-            imageList.ImageSize = new Size(180, 180); // tamaño de la imagen
-            ListSeries.LargeImageList = imageList;
-
-            foreach (var s in UtilsBD.seriesCargadas)
-            {
-                Image img = Utils.DescargarImagenDesdeURL(s.Imagen);
-                string key = s.Nombre;
-
-                if (img != null)
-                    imageList.Images.Add(key, img);
-
-                ListViewItem item = new ListViewItem(s.Nombre);
-                item.ImageKey = key;
-                item.SubItems.Add(s.Director);
-                ListSeries.Items.Add(item);
-            }
+            //MostrarPeliculas();
 
             FormLogin login = new FormLogin();
 
@@ -105,6 +103,39 @@ namespace Reelnode
             UtilsBD.usuariosRegistrados = JsonSerializer.Deserialize<List<Usuario>>(json);
         }
         */
+
+        private void MostrarPeliculas()
+        {
+            flowPanel.Controls.Clear();
+
+            foreach (var pelicula in UtilsBD.peliculasCargadas)
+            {
+                Panel panelTemporal = new Panel
+                {
+                    Size = new Size(220, 220),
+                    Margin = new Padding(10),
+                    BackColor = Color.Transparent,
+                };
+
+                PictureBox poster = new PictureBox
+                {
+                    Size = new Size(210, 210),
+                    Location = new Point(10, 10),
+                    Image = Utils.DescargarImagenDesdeURL(pelicula.Imagen),
+                    SizeMode = PictureBoxSizeMode.StretchImage,
+                    Cursor = Cursors.Hand
+                };
+
+                poster.Click += (s, e) => AbrirPestanaPelicula(pelicula.Id);
+                panelTemporal.Controls.Add(poster);
+                flowPanel.Controls.Add(panelTemporal);
+            }
+        }
+
+        private static void AbrirPestanaPelicula(int id)
+        {
+            MessageBox.Show($"Abrir pestaña de la película: {id}");
+        }
         private void noTocarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             GeneradorPeliculas.Insertar20PeliculasAleatorias();
@@ -120,5 +151,14 @@ namespace Reelnode
                     yield return child;
             }
         }
+
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
+/*/*
+
+
+ */

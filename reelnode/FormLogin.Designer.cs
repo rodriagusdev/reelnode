@@ -35,6 +35,7 @@
             this.PanelUsuarioLinea = new System.Windows.Forms.Panel();
             this.TxtUsuario = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.LblOlvidarPassword = new System.Windows.Forms.Label();
             this.BtnSalir = new System.Windows.Forms.Button();
             this.LblRegistrar = new System.Windows.Forms.Label();
             this.PanelPassword = new System.Windows.Forms.Panel();
@@ -43,7 +44,6 @@
             this.TxtPassword = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.LblOlvidarPassword = new System.Windows.Forms.Label();
             this.PanelUsuario.SuspendLayout();
             this.panel1.SuspendLayout();
             this.PanelPassword.SuspendLayout();
@@ -60,7 +60,7 @@
             this.BtnIngresar.ForeColor = System.Drawing.Color.White;
             this.BtnIngresar.Location = new System.Drawing.Point(55, 322);
             this.BtnIngresar.Name = "BtnIngresar";
-            this.BtnIngresar.Size = new System.Drawing.Size(307, 52);
+            this.BtnIngresar.Size = new System.Drawing.Size(307, 36);
             this.BtnIngresar.TabIndex = 13;
             this.BtnIngresar.Text = "I  N  G  R  E  S  A  R";
             this.BtnIngresar.UseVisualStyleBackColor = false;
@@ -128,6 +128,20 @@
             this.panel1.TabIndex = 10;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // LblOlvidarPassword
+            // 
+            this.LblOlvidarPassword.AutoSize = true;
+            this.LblOlvidarPassword.BackColor = System.Drawing.Color.Transparent;
+            this.LblOlvidarPassword.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LblOlvidarPassword.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblOlvidarPassword.ForeColor = System.Drawing.Color.Turquoise;
+            this.LblOlvidarPassword.Location = new System.Drawing.Point(84, 295);
+            this.LblOlvidarPassword.Name = "LblOlvidarPassword";
+            this.LblOlvidarPassword.Size = new System.Drawing.Size(236, 18);
+            this.LblOlvidarPassword.TabIndex = 26;
+            this.LblOlvidarPassword.Text = "¿Olvido la contraseña? Recuperar aquí";
+            this.LblOlvidarPassword.Click += new System.EventHandler(this.LblOlvidarPassword_Click);
+            // 
             // BtnSalir
             // 
             this.BtnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(29)))), ((int)(((byte)(35)))));
@@ -135,9 +149,9 @@
             this.BtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSalir.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnSalir.ForeColor = System.Drawing.Color.White;
-            this.BtnSalir.Location = new System.Drawing.Point(126, 380);
+            this.BtnSalir.Location = new System.Drawing.Point(55, 376);
             this.BtnSalir.Name = "BtnSalir";
-            this.BtnSalir.Size = new System.Drawing.Size(154, 38);
+            this.BtnSalir.Size = new System.Drawing.Size(307, 36);
             this.BtnSalir.TabIndex = 25;
             this.BtnSalir.Text = "S   A   L   I   R";
             this.BtnSalir.UseVisualStyleBackColor = false;
@@ -150,7 +164,7 @@
             this.LblRegistrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.LblRegistrar.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblRegistrar.ForeColor = System.Drawing.Color.Turquoise;
-            this.LblRegistrar.Location = new System.Drawing.Point(97, 274);
+            this.LblRegistrar.Location = new System.Drawing.Point(97, 268);
             this.LblRegistrar.Name = "LblRegistrar";
             this.LblRegistrar.Size = new System.Drawing.Size(206, 18);
             this.LblRegistrar.TabIndex = 24;
@@ -219,20 +233,6 @@
             // errorProvider
             // 
             this.errorProvider.ContainerControl = this;
-            // 
-            // LblOlvidarPassword
-            // 
-            this.LblOlvidarPassword.AutoSize = true;
-            this.LblOlvidarPassword.BackColor = System.Drawing.Color.Transparent;
-            this.LblOlvidarPassword.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LblOlvidarPassword.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblOlvidarPassword.ForeColor = System.Drawing.Color.Turquoise;
-            this.LblOlvidarPassword.Location = new System.Drawing.Point(84, 301);
-            this.LblOlvidarPassword.Name = "LblOlvidarPassword";
-            this.LblOlvidarPassword.Size = new System.Drawing.Size(236, 18);
-            this.LblOlvidarPassword.TabIndex = 26;
-            this.LblOlvidarPassword.Text = "¿Olvido la contraseña? Recuperar aquí";
-            this.LblOlvidarPassword.Click += new System.EventHandler(this.LblOlvidarPassword_Click);
             // 
             // FormLogin
             // 

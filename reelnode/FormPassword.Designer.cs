@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.PanelMain = new System.Windows.Forms.Panel();
+            this.BtnSalir = new System.Windows.Forms.Button();
+            this.PanelConfirmarPassword = new System.Windows.Forms.Panel();
+            this.LblConfirmarPassword = new System.Windows.Forms.Label();
+            this.PanelConfirmarLinea = new System.Windows.Forms.Panel();
             this.TxtConfirmarPassword = new System.Windows.Forms.TextBox();
             this.PanelEmail = new System.Windows.Forms.Panel();
             this.LblPanelEmail = new System.Windows.Forms.Label();
@@ -47,60 +48,77 @@
             this.TxtUsuario = new System.Windows.Forms.TextBox();
             this.BtnCambiar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.PanelMain.SuspendLayout();
+            this.PanelConfirmarPassword.SuspendLayout();
             this.PanelEmail.SuspendLayout();
             this.PanelPassword.SuspendLayout();
             this.PanelUsuario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // PanelMain
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(104)))), ((int)(((byte)(124)))));
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.PanelEmail);
-            this.panel1.Controls.Add(this.PanelPassword);
-            this.panel1.Controls.Add(this.PanelUsuario);
-            this.panel1.Controls.Add(this.BtnCambiar);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(5, 2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(424, 447);
-            this.panel1.TabIndex = 12;
+            this.PanelMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(104)))), ((int)(((byte)(124)))));
+            this.PanelMain.Controls.Add(this.BtnSalir);
+            this.PanelMain.Controls.Add(this.PanelConfirmarPassword);
+            this.PanelMain.Controls.Add(this.PanelEmail);
+            this.PanelMain.Controls.Add(this.PanelPassword);
+            this.PanelMain.Controls.Add(this.PanelUsuario);
+            this.PanelMain.Controls.Add(this.BtnCambiar);
+            this.PanelMain.Controls.Add(this.pictureBox1);
+            this.PanelMain.Location = new System.Drawing.Point(5, 2);
+            this.PanelMain.Name = "PanelMain";
+            this.PanelMain.Size = new System.Drawing.Size(424, 447);
+            this.PanelMain.TabIndex = 12;
+            this.PanelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelMain_Paint);
             // 
-            // panel2
+            // BtnSalir
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(29)))), ((int)(((byte)(35)))));
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.panel3);
-            this.panel2.Controls.Add(this.TxtConfirmarPassword);
-            this.panel2.Location = new System.Drawing.Point(55, 308);
-            this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(5);
-            this.panel2.Size = new System.Drawing.Size(306, 35);
-            this.panel2.TabIndex = 24;
+            this.BtnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(29)))), ((int)(((byte)(35)))));
+            this.BtnSalir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSalir.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnSalir.ForeColor = System.Drawing.Color.White;
+            this.BtnSalir.Location = new System.Drawing.Point(55, 380);
+            this.BtnSalir.Name = "BtnSalir";
+            this.BtnSalir.Size = new System.Drawing.Size(307, 36);
+            this.BtnSalir.TabIndex = 25;
+            this.BtnSalir.Text = "S   A   L   I   R";
+            this.BtnSalir.UseVisualStyleBackColor = false;
+            this.BtnSalir.Click += new System.EventHandler(this.BtnSalir_Click);
             // 
-            // label1
+            // PanelConfirmarPassword
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Enabled = false;
-            this.label1.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(8, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(130, 17);
-            this.label1.TabIndex = 21;
-            this.label1.Text = "Confirmar Contraseña";
+            this.PanelConfirmarPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(29)))), ((int)(((byte)(35)))));
+            this.PanelConfirmarPassword.Controls.Add(this.LblConfirmarPassword);
+            this.PanelConfirmarPassword.Controls.Add(this.PanelConfirmarLinea);
+            this.PanelConfirmarPassword.Controls.Add(this.TxtConfirmarPassword);
+            this.PanelConfirmarPassword.Location = new System.Drawing.Point(55, 272);
+            this.PanelConfirmarPassword.Name = "PanelConfirmarPassword";
+            this.PanelConfirmarPassword.Padding = new System.Windows.Forms.Padding(5);
+            this.PanelConfirmarPassword.Size = new System.Drawing.Size(306, 35);
+            this.PanelConfirmarPassword.TabIndex = 24;
             // 
-            // panel3
+            // LblConfirmarPassword
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(184)))), ((int)(((byte)(182)))));
-            this.panel3.Location = new System.Drawing.Point(8, 25);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(291, 2);
-            this.panel3.TabIndex = 20;
+            this.LblConfirmarPassword.AutoSize = true;
+            this.LblConfirmarPassword.BackColor = System.Drawing.Color.Transparent;
+            this.LblConfirmarPassword.Enabled = false;
+            this.LblConfirmarPassword.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblConfirmarPassword.ForeColor = System.Drawing.Color.White;
+            this.LblConfirmarPassword.Location = new System.Drawing.Point(8, 5);
+            this.LblConfirmarPassword.Name = "LblConfirmarPassword";
+            this.LblConfirmarPassword.Size = new System.Drawing.Size(130, 17);
+            this.LblConfirmarPassword.TabIndex = 21;
+            this.LblConfirmarPassword.Text = "Confirmar Contraseña";
+            // 
+            // PanelConfirmarLinea
+            // 
+            this.PanelConfirmarLinea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(184)))), ((int)(((byte)(182)))));
+            this.PanelConfirmarLinea.Location = new System.Drawing.Point(8, 25);
+            this.PanelConfirmarLinea.Name = "PanelConfirmarLinea";
+            this.PanelConfirmarLinea.Size = new System.Drawing.Size(291, 2);
+            this.PanelConfirmarLinea.TabIndex = 20;
             // 
             // TxtConfirmarPassword
             // 
@@ -113,6 +131,7 @@
             this.TxtConfirmarPassword.Name = "TxtConfirmarPassword";
             this.TxtConfirmarPassword.Size = new System.Drawing.Size(296, 22);
             this.TxtConfirmarPassword.TabIndex = 12;
+            this.TxtConfirmarPassword.TextChanged += new System.EventHandler(this.TxtConfirmarPassword_TextChanged);
             // 
             // PanelEmail
             // 
@@ -120,7 +139,7 @@
             this.PanelEmail.Controls.Add(this.LblPanelEmail);
             this.PanelEmail.Controls.Add(this.PanelEmailLinea);
             this.PanelEmail.Controls.Add(this.TxtEmail);
-            this.PanelEmail.Location = new System.Drawing.Point(56, 206);
+            this.PanelEmail.Location = new System.Drawing.Point(56, 170);
             this.PanelEmail.Name = "PanelEmail";
             this.PanelEmail.Padding = new System.Windows.Forms.Padding(5);
             this.PanelEmail.Size = new System.Drawing.Size(306, 35);
@@ -158,6 +177,7 @@
             this.TxtEmail.Name = "TxtEmail";
             this.TxtEmail.Size = new System.Drawing.Size(296, 22);
             this.TxtEmail.TabIndex = 12;
+            this.TxtEmail.TextChanged += new System.EventHandler(this.TxtEmail_TextChanged);
             // 
             // PanelPassword
             // 
@@ -165,7 +185,7 @@
             this.PanelPassword.Controls.Add(this.LblPanelPassword);
             this.PanelPassword.Controls.Add(this.PanelPasswordLinea);
             this.PanelPassword.Controls.Add(this.TxtCambiarPassword);
-            this.PanelPassword.Location = new System.Drawing.Point(56, 258);
+            this.PanelPassword.Location = new System.Drawing.Point(56, 222);
             this.PanelPassword.Name = "PanelPassword";
             this.PanelPassword.Padding = new System.Windows.Forms.Padding(5);
             this.PanelPassword.Size = new System.Drawing.Size(306, 35);
@@ -203,6 +223,7 @@
             this.TxtCambiarPassword.Name = "TxtCambiarPassword";
             this.TxtCambiarPassword.Size = new System.Drawing.Size(296, 22);
             this.TxtCambiarPassword.TabIndex = 12;
+            this.TxtCambiarPassword.TextChanged += new System.EventHandler(this.TxtCambiarPassword_TextChanged);
             // 
             // PanelUsuario
             // 
@@ -210,7 +231,7 @@
             this.PanelUsuario.Controls.Add(this.LblPanelUsuario);
             this.PanelUsuario.Controls.Add(this.PanelUsuarioLinea);
             this.PanelUsuario.Controls.Add(this.TxtUsuario);
-            this.PanelUsuario.Location = new System.Drawing.Point(56, 156);
+            this.PanelUsuario.Location = new System.Drawing.Point(56, 120);
             this.PanelUsuario.Name = "PanelUsuario";
             this.PanelUsuario.Padding = new System.Windows.Forms.Padding(5);
             this.PanelUsuario.Size = new System.Drawing.Size(306, 35);
@@ -248,6 +269,7 @@
             this.TxtUsuario.Name = "TxtUsuario";
             this.TxtUsuario.Size = new System.Drawing.Size(296, 22);
             this.TxtUsuario.TabIndex = 12;
+            this.TxtUsuario.TextChanged += new System.EventHandler(this.TxtUsuario_TextChanged);
             // 
             // BtnCambiar
             // 
@@ -256,9 +278,9 @@
             this.BtnCambiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCambiar.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnCambiar.ForeColor = System.Drawing.Color.White;
-            this.BtnCambiar.Location = new System.Drawing.Point(56, 364);
+            this.BtnCambiar.Location = new System.Drawing.Point(56, 328);
             this.BtnCambiar.Name = "BtnCambiar";
-            this.BtnCambiar.Size = new System.Drawing.Size(307, 52);
+            this.BtnCambiar.Size = new System.Drawing.Size(307, 36);
             this.BtnCambiar.TabIndex = 13;
             this.BtnCambiar.Text = "C   A   M   B  I   A   R ";
             this.BtnCambiar.UseVisualStyleBackColor = false;
@@ -269,7 +291,7 @@
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(15, 10);
+            this.pictureBox1.Location = new System.Drawing.Point(15, -26);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(377, 149);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -280,13 +302,18 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(184)))), ((int)(((byte)(182)))));
             this.ClientSize = new System.Drawing.Size(434, 450);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.PanelMain);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormPassword";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormPassword";
-            this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.PanelMain.ResumeLayout(false);
+            this.PanelConfirmarPassword.ResumeLayout(false);
+            this.PanelConfirmarPassword.PerformLayout();
             this.PanelEmail.ResumeLayout(false);
             this.PanelEmail.PerformLayout();
             this.PanelPassword.ResumeLayout(false);
@@ -300,7 +327,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel PanelMain;
         private System.Windows.Forms.Panel PanelEmail;
         private System.Windows.Forms.Label LblPanelEmail;
         private System.Windows.Forms.Panel PanelEmailLinea;
@@ -315,9 +342,10 @@
         private System.Windows.Forms.TextBox TxtUsuario;
         private System.Windows.Forms.Button BtnCambiar;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel PanelConfirmarPassword;
+        private System.Windows.Forms.Label LblConfirmarPassword;
+        private System.Windows.Forms.Panel PanelConfirmarLinea;
         private System.Windows.Forms.TextBox TxtConfirmarPassword;
+        private System.Windows.Forms.Button BtnSalir;
     }
 }

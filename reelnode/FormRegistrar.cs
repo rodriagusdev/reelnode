@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,9 @@ namespace Reelnode
         public FormRegistrar()
         {
             InitializeComponent();
+
+            BtnIngresar.FlatAppearance.BorderColor = Color.FromArgb(0, 29, 35);
+            BtnSalir.FlatAppearance.BorderColor = Color.FromArgb(0, 29, 35);
         }
 
         private void BtnIngresar_Click(object sender, EventArgs e)
@@ -118,6 +122,28 @@ namespace Reelnode
             {
                 PanelPasswordLinea.Visible = true;
                 LblPanelPassword.Visible = true;
+            }
+        }
+
+        private void BtnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void PanelMain_Paint(object sender, PaintEventArgs e)
+        {
+            Rectangle rect = PanelMain.ClientRectangle;
+            using (LinearGradientBrush brush = new LinearGradientBrush(
+                rect,
+                Color.FromArgb(53, 106, 124),
+                Color.FromArgb(24, 76, 90),
+                LinearGradientMode.Vertical))
+            {
+                Blend blend = new Blend();
+                blend.Positions = new float[] { 0f, 0.4f, 0.6f, 1f };
+                blend.Factors = new float[] { 0f, 0.5f, 0.7f, 1f };
+                brush.Blend = blend;
+                e.Graphics.FillRectangle(brush, rect);
             }
         }
     }

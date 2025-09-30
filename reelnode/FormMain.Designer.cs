@@ -32,6 +32,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ToolStpMenuAdmin = new System.Windows.Forms.ToolStripMenuItem();
             this.noTocarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PanelMain = new System.Windows.Forms.Panel();
             this.ListSeries = new System.Windows.Forms.ListView();
             this.panel1.SuspendLayout();
@@ -45,17 +46,18 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(925, 31);
+            this.panel1.Size = new System.Drawing.Size(1280, 31);
             this.panel1.TabIndex = 0;
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStpMenuAdmin,
-            this.noTocarToolStripMenuItem});
+            this.noTocarToolStripMenuItem,
+            this.salirToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(925, 26);
+            this.menuStrip1.Size = new System.Drawing.Size(1280, 26);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -63,16 +65,26 @@
             // 
             this.ToolStpMenuAdmin.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ToolStpMenuAdmin.Name = "ToolStpMenuAdmin";
-            this.ToolStpMenuAdmin.Size = new System.Drawing.Size(161, 22);
-            this.ToolStpMenuAdmin.Text = "Administrar Contenido";
+            this.ToolStpMenuAdmin.Size = new System.Drawing.Size(96, 22);
+            this.ToolStpMenuAdmin.Text = "Administrar";
             this.ToolStpMenuAdmin.Click += new System.EventHandler(this.ToolStpMenuAdmin_Click);
             // 
             // noTocarToolStripMenuItem
             // 
+            this.noTocarToolStripMenuItem.Enabled = false;
+            this.noTocarToolStripMenuItem.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.noTocarToolStripMenuItem.Name = "noTocarToolStripMenuItem";
-            this.noTocarToolStripMenuItem.Size = new System.Drawing.Size(63, 22);
-            this.noTocarToolStripMenuItem.Text = "no tocar";
+            this.noTocarToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.noTocarToolStripMenuItem.Text = "Agregar Contenido";
             this.noTocarToolStripMenuItem.Click += new System.EventHandler(this.noTocarToolStripMenuItem_Click);
+            // 
+            // salirToolStripMenuItem
+            // 
+            this.salirToolStripMenuItem.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(48, 22);
+            this.salirToolStripMenuItem.Text = "Salir";
+            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
             // PanelMain
             // 
@@ -82,7 +94,7 @@
             this.PanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelMain.Location = new System.Drawing.Point(0, 31);
             this.PanelMain.Name = "PanelMain";
-            this.PanelMain.Size = new System.Drawing.Size(925, 578);
+            this.PanelMain.Size = new System.Drawing.Size(1280, 689);
             this.PanelMain.TabIndex = 1;
             this.PanelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
@@ -90,20 +102,22 @@
             // 
             this.ListSeries.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ListSeries.HideSelection = false;
-            this.ListSeries.Location = new System.Drawing.Point(71, 61);
+            this.ListSeries.Location = new System.Drawing.Point(245, 338);
             this.ListSeries.Name = "ListSeries";
             this.ListSeries.Size = new System.Drawing.Size(771, 157);
             this.ListSeries.TabIndex = 0;
             this.ListSeries.UseCompatibleStateImageBehavior = false;
+            this.ListSeries.Visible = false;
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(925, 609);
+            this.ClientSize = new System.Drawing.Size(1280, 720);
             this.Controls.Add(this.PanelMain);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "FormMain";
@@ -128,6 +142,7 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStpMenuAdmin;
         private System.Windows.Forms.ToolStripMenuItem noTocarToolStripMenuItem;
         private System.Windows.Forms.ListView ListSeries;
+        private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
     }
 }
 
