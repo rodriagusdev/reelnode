@@ -110,6 +110,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControlExpandirPelicula.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlExpandirPelicula.Designer.cs">
+      <DependentUpon>ControlExpandirPelicula.cs</DependentUpon>
+    </Compile>
     <Compile Include="ControlGestionPeliculasActualizar.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -159,6 +165,12 @@
     <Compile Include="ControlGestionUsuarios.Designer.cs">
       <DependentUpon>ControlGestionUsuarios.cs</DependentUpon>
     </Compile>
+    <Compile Include="ControlVisualizacionPeliculas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlVisualizacionPeliculas.Designer.cs">
+      <DependentUpon>ControlVisualizacionPeliculas.cs</DependentUpon>
+    </Compile>
     <Compile Include="CorreoHelper.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -195,6 +207,9 @@
     <Compile Include="Usuario.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="UtilsBD.cs" />
+    <EmbeddedResource Include="ControlExpandirPelicula.resx">
+      <DependentUpon>ControlExpandirPelicula.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ControlGestionPeliculasActualizar.resx">
       <DependentUpon>ControlGestionPeliculasActualizar.cs</DependentUpon>
     </EmbeddedResource>
@@ -218,6 +233,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ControlGestionUsuarios.resx">
       <DependentUpon>ControlGestionUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlVisualizacionPeliculas.resx">
+      <DependentUpon>ControlVisualizacionPeliculas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

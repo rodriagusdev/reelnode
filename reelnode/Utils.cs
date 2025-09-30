@@ -14,6 +14,7 @@ namespace Reelnode
 {
     public static class Utils
     {
+        public static Pelicula peliculaSeleccionada = new Pelicula();
         public static void RedondearBordes(Panel panel, int radio)
         {
             GraphicsPath path = new GraphicsPath();
@@ -88,6 +89,35 @@ namespace Reelnode
             {
                 if (grid.Columns.Contains(col)) grid.Columns[col].Visible = false;
             }
+        }
+
+        public static void TemaControles(Panel PanelMain, PictureBox pic = null) 
+        {
+            foreach (Panel pnl in PanelMain.Controls.OfType<Panel>())
+            {
+                pnl.BackColor = Color.FromArgb(42, 47, 79);
+
+                foreach (TextBox txt in pnl.Controls.OfType<TextBox>())
+                {
+                    txt.BackColor = Color.FromArgb(42, 47, 79);
+                    txt.ForeColor = Color.FromArgb(0, 255, 255);
+                }
+            }
+
+            foreach (Label lbl in PanelMain.Controls.OfType<Label>())
+            {
+                lbl.ForeColor = Color.FromArgb(255, 0, 127);
+            }
+
+            foreach (Button btn in PanelMain.Controls.OfType<Button>())
+            {
+                btn.BackColor = Color.FromArgb(123, 44, 191);
+                btn.ForeColor = Color.FromArgb(0, 255, 255);
+                btn.FlatAppearance.BorderColor = Color.FromArgb(0, 183, 235);
+            }
+
+            if(pic != null) pic.BackColor = Color.FromArgb(42, 47, 79);
+
         }
     }
 }

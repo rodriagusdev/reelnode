@@ -100,7 +100,6 @@ namespace Reelnode
 
         public static void InsertarPeliculaBD(Pelicula nuevaPelicula)
         {
-            MessageBox.Show("2");
             try
             {
                 using (MySqlCommand cmd = new MySqlCommand("sp_insertar_pelicula", Conexion.GetConnection()))

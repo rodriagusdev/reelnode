@@ -22,16 +22,21 @@ namespace Reelnode
     public partial class FormMain : Form
     {
         private ControlAdmin controlAdmin;
+        private ControlVisualizacionPeliculas controlVisualizacionPeliculas;
+        
         private FlowLayoutPanel flowPanel;
         public FormMain()
         {
             InitializeComponent();
 
             controlAdmin = new ControlAdmin();
+            controlVisualizacionPeliculas = new ControlVisualizacionPeliculas();
 
             PanelMain.Controls.Add(controlAdmin);
+            PanelMain.Controls.Add(controlVisualizacionPeliculas);
 
             controlAdmin.Visible = false;
+            controlVisualizacionPeliculas.Visible = false;
 
             flowPanel = new FlowLayoutPanel
             {
@@ -43,12 +48,12 @@ namespace Reelnode
                 Padding = new Padding(10),
                 Location = new Point(10, 50),
                 Size = new Size(this.ClientSize.Width - 20, 270),
-                VerticalScroll = { Visible = false }
+                VerticalScroll = { Visible = false },
+                Tag = "Default"
             };
 
             PanelMain.Controls.Add(flowPanel);
         }
-
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
             using (LinearGradientBrush brush = new LinearGradientBrush(
@@ -59,17 +64,32 @@ namespace Reelnode
             {
                 e.Graphics.FillRectangle(brush, PanelMain.ClientRectangle);
             }
-
      
-        }
-
-        private void ToolStpMenuAdmin_Click(object sender, EventArgs e)
-        {
-            Utils.ShowControl(controlAdmin, PanelMain);
         }
 
 
         private void FormMain_Load(object sender, EventArgs e)
+        {
+            UtilsBD.Conexion.AbrirBD();
+            UtilsBD.CargarUsuario();
+            UtilsBD.CargarPeliculas();
+            UtilsBD.CargarSeries();
+
+            // Esta funcion permite cambiar todo el tema del proyecto
+            AplicarTema(this);
+            // ------------------------------------------------------
+
+            MostrarPeliculas();
+
+            FormLogin login = new FormLogin();
+
+            login.ShowDialog();
+
+            ToolStpMenuAdmin.Visible = UtilsBD.usuarioActual.RolUsuario == "Admin" ? true : false;
+
+        }
+
+        private void AplicarTema(Control parent)
         {
             foreach (Control ctrl in GetAllControls(this))
             {
@@ -80,20 +100,42 @@ namespace Reelnode
                         Color.FromArgb(13, 17, 23),
                         LinearGradientMode.Vertical);
                 }
+
             }
 
-            UtilsBD.Conexion.AbrirBD();
-            UtilsBD.CargarUsuario();
-            UtilsBD.CargarPeliculas();
-            UtilsBD.CargarSeries();
+            foreach (Control ctrl in parent.Controls)
+            {
+                if(ctrl is System.Windows.Forms.Panel pnl) 
+                {
+                    if(pnl.Tag != "Default") pnl.BackColor = Color.FromArgb(42, 47, 79);
 
-            //MostrarPeliculas();
+                }
+                else if(ctrl is System.Windows.Forms.TextBox txt)
+                {
 
-            FormLogin login = new FormLogin();
+                    txt.BackColor = Color.FromArgb(42, 47, 79);
+                    txt.ForeColor = Color.FromArgb(0, 255, 255);
+                }
+                else if (ctrl is System.Windows.Forms.Label lbl)
+                {
+                    lbl.ForeColor = Color.FromArgb(255,255,255);
+                }
 
-            login.ShowDialog();
+                else if (ctrl is System.Windows.Forms.Button btn)
+                {
+                    btn.BackColor = Color.FromArgb(123, 44, 191);
+                    btn.ForeColor = Color.FromArgb(0, 255, 255);
+                    btn.FlatAppearance.BorderColor = Color.FromArgb(0, 183, 235);
+                }
 
-            ToolStpMenuAdmin.Visible = UtilsBD.usuarioActual.RolUsuario == "Admin" ? true : false;
+                else if (ctrl is PictureBox pic)
+                {
+                    pic.BackColor = Color.FromArgb(42, 47, 79);
+                }
+
+                if (ctrl.HasChildren)
+                    AplicarTema(ctrl);
+            }
         }
 
         /*private void CargarUsuariosJSON()
@@ -104,6 +146,10 @@ namespace Reelnode
         }
         */
 
+        private void ToolStpMenuAdmin_Click(object sender, EventArgs e)
+        {
+            Utils.ShowControl(controlAdmin, PanelMain);
+        }
         private void MostrarPeliculas()
         {
             flowPanel.Controls.Clear();
@@ -127,14 +173,16 @@ namespace Reelnode
                 };
 
                 poster.Click += (s, e) => AbrirPestanaPelicula(pelicula.Id);
+
                 panelTemporal.Controls.Add(poster);
                 flowPanel.Controls.Add(panelTemporal);
             }
         }
 
-        private static void AbrirPestanaPelicula(int id)
+        private void AbrirPestanaPelicula(int id)
         {
-            MessageBox.Show($"Abrir pestaña de la película: {id}");
+            Utils.peliculaSeleccionada = UtilsBD.peliculasCargadas[id-1];
+            Utils.ShowControl(controlVisualizacionPeliculas, PanelMain);
         }
         private void noTocarToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -158,7 +206,3 @@ namespace Reelnode
         }
     }
 }
-/*/*
-
-
- */

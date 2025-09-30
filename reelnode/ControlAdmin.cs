@@ -91,9 +91,9 @@ namespace Reelnode
             Utils.ShowControl(controlSeriesActualizar, PanelAdmin);
         }
 
-        private void ToolStpMenuArchivo_Click(object sender, EventArgs e)
+        private void ToolStpMenuHome_Click(object sender, EventArgs e)
         {
-
+            this.Visible = false;
         }
     }
 }

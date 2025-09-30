@@ -28,6 +28,8 @@ namespace Reelnode
             BtnPrevisualizar.FlatAppearance.BorderColor = Color.FromArgb(74, 184, 192);
             BtnActualizar.FlatAppearance.BorderColor = Color.FromArgb(74, 184, 192);
             BtnBuscarPelicula.FlatAppearance.BorderColor = Color.FromArgb(74, 184, 192);
+
+            Utils.TemaControles(PanelMain, PicPelicula);
         }
         private void PanelMain_Paint(object sender, PaintEventArgs e)
         {

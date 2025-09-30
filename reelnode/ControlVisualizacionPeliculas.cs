@@ -3,41 +3,67 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using iTextSharp.xmp.impl;
 
-namespace ProjectoNuevo
+namespace Reelnode
 {
-    public partial class ControlVisualizacionPeliculas : UserControl
+    public partial class ControlVisualizacionPeliculas : UserControl, ITemaPersonalizable
     {
+        private Color _c1 = Color.FromArgb(20, 30, 48);
+        private Color _c2 = Color.FromArgb(36, 59, 85);
+        private LinearGradientMode _modo = LinearGradientMode.Vertical;
         public ControlVisualizacionPeliculas()
         {
             InitializeComponent();
         }
 
+        public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
+        {
+            _c1 = color1;
+            _c2 = color2;
+            _modo = modo;
+            PanelVisualizarPeli.Invalidate();
+        }
+
         private void BtnBuscarPelicula_Click(object sender, EventArgs e)
         {
-            string busqueda = TxtNombrePelicula.Text;
+            string busqueda = "TxtNombrePelicula.Text";
 
             if (!string.IsNullOrEmpty(busqueda)) 
             { 
-                //Query para buscar en YouTube
                 string query = busqueda.Replace("", "+") + "+trailer";
 
-                //Url de resultados de YouTube
                 string url = "https://www.youtube.com/results?search_query=" + query;
 
-                //Esto es para que el trailer aparezca en el formulario
                 WebBrowserPelicula.Navigate(url);
+            }         
+        }
+
+        private void PanelVisualizarPeli_Paint(object sender, PaintEventArgs e)
+        {
+            using (var brush = new LinearGradientBrush(PanelVisualizarPeli.ClientRectangle, _c1, _c2, _modo))
+            {
+                e.Graphics.FillRectangle(brush, PanelVisualizarPeli.ClientRectangle);
             }
+        }
 
-            //Cargar Imagen de la Peli
-           
-
+        private void ControlVisualizacionPeliculas_VisibleChanged(object sender, EventArgs e)
+        {
+            if (this.Visible) {
+                PicPeli.Image = Utils.DescargarImagenDesdeURL(Utils.peliculaSeleccionada.Imagen);
+                LblDescripcionPeli.Text = Utils.peliculaSeleccionada.Descripcion;
+                LblDirector.Text = Utils.peliculaSeleccionada.Director;
+                LblDuracion.Text = Utils.peliculaSeleccionada.Duracion + "m";
+                LblTitulo.Text = Utils.peliculaSeleccionada.Nombre;
+                PanelVisualizarPeli.Invalidate();
+            }
         }
     }
 }

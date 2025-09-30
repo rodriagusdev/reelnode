@@ -24,6 +24,8 @@ namespace Reelnode
         public ControlGestionUsuarios()
         {
             InitializeComponent();
+
+            Utils.TemaControles(PanelGestionUsuarios, null);
         }
 
         private void PanelGestionUsuarios_Paint(object sender, PaintEventArgs e)

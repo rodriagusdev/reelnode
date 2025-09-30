@@ -524,11 +524,12 @@ CREATE PROCEDURE sp_insertar_pelicula(
     IN p_fecha DATE,
     IN p_descripcion VARCHAR(255),
     IN p_director VARCHAR(255),
-    IN p_duracion VARCHAR(50)
+    IN p_duracion VARCHAR(50),
+    in p_imagen varchar(255)
 )
 BEGIN
-    INSERT INTO peliculas(nombre, fecha_estreno, descripcion, director, duracion)
-    VALUES(p_nombre, p_fecha, p_descripcion, p_director, p_duracion);
+    INSERT INTO peliculas(nombre, fecha_estreno, descripcion, director, duracion, imagen)
+    VALUES(p_nombre, p_fecha, p_descripcion, p_director, p_duracion, p_imagen);
 
     INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, detalle)
     VALUES ('peliculas', 'INSERT', LAST_INSERT_ID(), NOW(), p_nombre);

@@ -20,6 +20,8 @@ namespace Reelnode
         public ControlGestionPeliculasListarPeliculas()
         {
             InitializeComponent();
+
+            Utils.TemaControles(PanelListar, null);
         }
 
         private void PanelListar_Paint(object sender, PaintEventArgs e)

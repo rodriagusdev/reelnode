@@ -34,7 +34,7 @@
             this.LblPanelUsuario = new System.Windows.Forms.Label();
             this.PanelUsuarioLinea = new System.Windows.Forms.Panel();
             this.TxtUsuario = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.PanelMain = new System.Windows.Forms.Panel();
             this.LblOlvidarPassword = new System.Windows.Forms.Label();
             this.BtnSalir = new System.Windows.Forms.Button();
             this.LblRegistrar = new System.Windows.Forms.Label();
@@ -45,7 +45,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.PanelUsuario.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.PanelMain.SuspendLayout();
             this.PanelPassword.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
@@ -112,21 +112,21 @@
             this.TxtUsuario.TabIndex = 12;
             this.TxtUsuario.TextChanged += new System.EventHandler(this.TxtUsuario_TextChanged);
             // 
-            // panel1
+            // PanelMain
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(104)))), ((int)(((byte)(124)))));
-            this.panel1.Controls.Add(this.LblOlvidarPassword);
-            this.panel1.Controls.Add(this.BtnSalir);
-            this.panel1.Controls.Add(this.LblRegistrar);
-            this.panel1.Controls.Add(this.PanelPassword);
-            this.panel1.Controls.Add(this.PanelUsuario);
-            this.panel1.Controls.Add(this.BtnIngresar);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(424, 447);
-            this.panel1.TabIndex = 10;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            this.PanelMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(104)))), ((int)(((byte)(124)))));
+            this.PanelMain.Controls.Add(this.LblOlvidarPassword);
+            this.PanelMain.Controls.Add(this.BtnSalir);
+            this.PanelMain.Controls.Add(this.LblRegistrar);
+            this.PanelMain.Controls.Add(this.PanelPassword);
+            this.PanelMain.Controls.Add(this.PanelUsuario);
+            this.PanelMain.Controls.Add(this.BtnIngresar);
+            this.PanelMain.Controls.Add(this.pictureBox1);
+            this.PanelMain.Location = new System.Drawing.Point(12, 12);
+            this.PanelMain.Name = "PanelMain";
+            this.PanelMain.Size = new System.Drawing.Size(424, 447);
+            this.PanelMain.TabIndex = 10;
+            this.PanelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // LblOlvidarPassword
             // 
@@ -238,9 +238,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(184)))), ((int)(((byte)(182)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(80)))));
             this.ClientSize = new System.Drawing.Size(448, 487);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.PanelMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -249,8 +249,8 @@
             this.Load += new System.EventHandler(this.FormLogin_Load);
             this.PanelUsuario.ResumeLayout(false);
             this.PanelUsuario.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.PanelMain.ResumeLayout(false);
+            this.PanelMain.PerformLayout();
             this.PanelPassword.ResumeLayout(false);
             this.PanelPassword.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -264,7 +264,7 @@
         private System.Windows.Forms.Button BtnIngresar;
         private System.Windows.Forms.Panel PanelUsuario;
         private System.Windows.Forms.TextBox TxtUsuario;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel PanelMain;
         private System.Windows.Forms.Panel PanelUsuarioLinea;
         private System.Windows.Forms.Label LblPanelUsuario;
         private System.Windows.Forms.Panel PanelPassword;

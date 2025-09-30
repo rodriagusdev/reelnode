@@ -24,6 +24,8 @@ namespace Reelnode
             BtnCargar.FlatAppearance.BorderColor = Color.FromArgb(25, 47, 71);
             BtnSalir.FlatAppearance.BorderColor = Color.FromArgb(25, 47, 71);
             // BtnPrevisualizar.FlatAppearance.BorderColor = Color.FromArgb(25, 47, 71);
+
+            Utils.TemaControles(PanelMain, PicSerie);
         }
 
 
