@@ -292,3 +292,14 @@ C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\Reelnode.ControlGestionSe
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.FormPassword.resources
 D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\ProjectoNuevo.ControlExpandirPelicula.resources
 D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlVisualizacionPeliculas.resources
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.ControlExpandirPelicula.resources
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\Reelnode.ControlVisualizacionPeliculas.resources
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\runtimes\win-x86\native\WebView2Loader.dll
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\runtimes\win-x64\native\WebView2Loader.dll
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\runtimes\win-arm64\native\WebView2Loader.dll
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\Microsoft.Web.WebView2.Core.dll
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\Microsoft.Web.WebView2.WinForms.dll
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\Microsoft.Web.WebView2.Wpf.dll
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\Microsoft.Web.WebView2.Core.xml
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\Microsoft.Web.WebView2.WinForms.xml
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\Microsoft.Web.WebView2.Wpf.xml

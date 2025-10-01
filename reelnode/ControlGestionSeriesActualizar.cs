@@ -16,6 +16,7 @@ namespace Reelnode
         private Color _c1 = Color.FromArgb(20, 30, 48);
         private Color _c2 = Color.FromArgb(36, 59, 85);
         private LinearGradientMode _modo = LinearGradientMode.Vertical;
+        private DataGridViewRow filaSeleccionada;
         public ControlGestionSeriesActualizar()
         {
             InitializeComponent();
@@ -26,10 +27,10 @@ namespace Reelnode
 
             Utils.TemaControles(PanelMain1, PicSerie);
         }
-
-
-
-        private DataGridViewRow filaSeleccionada;
+        private void ControlGestionSeriesActualizar_Load(object sender, EventArgs e)
+        {
+            CboNetwork.DataSource = UtilsBD.networksCargadas;
+        }
 
         public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
         {
@@ -37,12 +38,6 @@ namespace Reelnode
             _c2 = color2;
             _modo = modo;
             PanelMain1.Invalidate();
-        }
-
-
-        private void ControlGestionSeriesActualizar_Load(object sender, EventArgs e)
-        {
-
         }
 
 
@@ -56,19 +51,19 @@ namespace Reelnode
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            /*string textoBuscador = TxtBuscarNombrePelicula.Text;
+            string textoBuscador = TxtBuscarSerie.Text;
 
-            List<Pelicula> peliculasEncontradas = UtilsBD.peliculasCargadas
-                .Where(p => p.Nombre.ToLower().Contains(textoBuscador.ToLower()))
+            List<Serie> seriesEncontradas = UtilsBD.seriesCargadas
+                .Where(s => s.Nombre.ToLower().Contains(textoBuscador.ToLower()))
                 .ToList();
 
-            if (peliculasEncontradas.Count == 0)
+            if (seriesEncontradas.Count == 0)
             {
-                MessageBox.Show("No se encontraron películas con ese nombre.", "Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("No se encontraron series con ese nombre.", "Búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            Utils.ActualizarListaGrid(DataGridPeliculas, UtilsBD.peliculasCargadas, "Id", "Tipo");*/
+            Utils.ActualizarListaGrid(DataGridActualizarSerie, seriesEncontradas, "Id", "Tipo");
         }
     }
 }

@@ -17,6 +17,7 @@ namespace Reelnode
         public static List<Usuario> usuariosRegistrados = new List<Usuario>();
         public static List<Pelicula> peliculasCargadas = new List<Pelicula>();
         public static List<Serie> seriesCargadas = new List<Serie>();
+        public static List<String> networksCargadas = new List<string>();
 
         public static void RegistrarUsuarioBD(Usuario nuevoUsuario)
         {
@@ -342,8 +343,6 @@ namespace Reelnode
                 }
             }
         }
-        
-
         public static void EliminarSerie(int id)
         {
             try
@@ -377,6 +376,23 @@ namespace Reelnode
                 MessageBox.Show("Error: " + e.Message, "Excepción",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
+            }
+        }
+
+        public static void CargarNetwork() 
+        {
+            string query = "SELECT nombre FROM network";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, Conexion.GetConnection()))
+            {
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string nombreNetwork = reader.GetString("nombre");
+                        networksCargadas.Add(nombreNetwork);
+                    }
+                }
             }
         }
     } 

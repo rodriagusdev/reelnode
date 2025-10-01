@@ -41,7 +41,7 @@
             this.PanelListar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelListar.Location = new System.Drawing.Point(0, 0);
             this.PanelListar.Name = "PanelListar";
-            this.PanelListar.Size = new System.Drawing.Size(995, 677);
+            this.PanelListar.Size = new System.Drawing.Size(1280, 720);
             this.PanelListar.TabIndex = 1;
             this.PanelListar.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelListar_Paint);
             // 
@@ -49,9 +49,10 @@
             // 
             this.DataGridSeries.AllowUserToAddRows = false;
             this.DataGridSeries.AllowUserToDeleteRows = false;
+            this.DataGridSeries.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DataGridSeries.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(27)))), ((int)(((byte)(43)))));
             this.DataGridSeries.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridSeries.Location = new System.Drawing.Point(105, 20);
+            this.DataGridSeries.Location = new System.Drawing.Point(284, 200);
             this.DataGridSeries.Name = "DataGridSeries";
             this.DataGridSeries.ReadOnly = true;
             this.DataGridSeries.RowHeadersVisible = false;
@@ -65,9 +66,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.PanelListar);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ControlGestionSeriesListarSeries";
-            this.Size = new System.Drawing.Size(995, 677);
+            this.Size = new System.Drawing.Size(1280, 720);
             this.PanelListar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridSeries)).EndInit();
             this.ResumeLayout(false);

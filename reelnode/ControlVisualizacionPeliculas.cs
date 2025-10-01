@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using iTextSharp.xmp.impl;
+using Microsoft.Web.WebView2.WinForms;
 
 namespace Reelnode
 {
@@ -32,19 +33,6 @@ namespace Reelnode
             PanelVisualizarPeli.Invalidate();
         }
 
-        private void BtnBuscarPelicula_Click(object sender, EventArgs e)
-        {
-            string busqueda = "TxtNombrePelicula.Text";
-
-            if (!string.IsNullOrEmpty(busqueda)) 
-            { 
-                string query = busqueda.Replace("", "+") + "+trailer";
-
-                string url = "https://www.youtube.com/results?search_query=" + query;
-
-                WebBrowserPelicula.Navigate(url);
-            }         
-        }
 
         private void PanelVisualizarPeli_Paint(object sender, PaintEventArgs e)
         {
@@ -62,8 +50,25 @@ namespace Reelnode
                 LblDirector.Text = Utils.peliculaSeleccionada.Director;
                 LblDuracion.Text = Utils.peliculaSeleccionada.Duracion + "m";
                 LblTitulo.Text = Utils.peliculaSeleccionada.Nombre;
+
+                WebView2 trailer = new WebView2
+                {
+                    Dock = DockStyle.Fill
+                };
+                PanelTrailerPeli.Controls.Add(trailer);
+                trailer.Source = new Uri("https://www.youtube.com/watch?v=EXeTwQWrcwY"); 
                 PanelVisualizarPeli.Invalidate();
             }
+        }
+
+        private void LblDescripcionPeli_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

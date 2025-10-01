@@ -64,15 +64,16 @@
             // 
             this.PanelGrid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(47)))), ((int)(((byte)(71)))));
             this.PanelGrid.Controls.Add(this.DataGridUsuarios);
-            this.PanelGrid.Location = new System.Drawing.Point(76, 22);
+            this.PanelGrid.Location = new System.Drawing.Point(222, 79);
             this.PanelGrid.Name = "PanelGrid";
-            this.PanelGrid.Size = new System.Drawing.Size(707, 156);
+            this.PanelGrid.Size = new System.Drawing.Size(777, 195);
             this.PanelGrid.TabIndex = 8;
             // 
             // DataGridUsuarios
             // 
             this.DataGridUsuarios.AllowUserToAddRows = false;
             this.DataGridUsuarios.AllowUserToDeleteRows = false;
+            this.DataGridUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DataGridUsuarios.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(27)))), ((int)(((byte)(43)))));
             this.DataGridUsuarios.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DataGridUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -81,7 +82,7 @@
             this.DataGridUsuarios.Name = "DataGridUsuarios";
             this.DataGridUsuarios.ReadOnly = true;
             this.DataGridUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridUsuarios.Size = new System.Drawing.Size(683, 136);
+            this.DataGridUsuarios.Size = new System.Drawing.Size(742, 174);
             this.DataGridUsuarios.TabIndex = 2;
             this.DataGridUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridUsuarios_CellContentClick);
             this.DataGridUsuarios.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DataGridUsuarios_CellFormatting);
@@ -92,7 +93,7 @@
             this.PanelCambiarRol.Controls.Add(this.RbtAdmin);
             this.PanelCambiarRol.Controls.Add(this.RbtUsuario);
             this.PanelCambiarRol.Controls.Add(this.BtnConfirmar);
-            this.PanelCambiarRol.Location = new System.Drawing.Point(497, 212);
+            this.PanelCambiarRol.Location = new System.Drawing.Point(713, 325);
             this.PanelCambiarRol.Name = "PanelCambiarRol";
             this.PanelCambiarRol.Size = new System.Drawing.Size(286, 100);
             this.PanelCambiarRol.TabIndex = 9;
@@ -140,7 +141,7 @@
             // BtnExportar
             // 
             this.BtnExportar.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnExportar.Location = new System.Drawing.Point(76, 274);
+            this.BtnExportar.Location = new System.Drawing.Point(222, 387);
             this.BtnExportar.Name = "BtnExportar";
             this.BtnExportar.Size = new System.Drawing.Size(120, 38);
             this.BtnExportar.TabIndex = 10;
@@ -157,7 +158,7 @@
             this.PanelGestionUsuarios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelGestionUsuarios.Location = new System.Drawing.Point(0, 0);
             this.PanelGestionUsuarios.Name = "PanelGestionUsuarios";
-            this.PanelGestionUsuarios.Size = new System.Drawing.Size(882, 562);
+            this.PanelGestionUsuarios.Size = new System.Drawing.Size(1280, 720);
             this.PanelGestionUsuarios.TabIndex = 0;
             this.PanelGestionUsuarios.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelGestionUsuarios_Paint);
             // 
@@ -167,7 +168,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.PanelGestionUsuarios);
             this.Name = "ControlGestionUsuarios";
-            this.Size = new System.Drawing.Size(882, 562);
+            this.Size = new System.Drawing.Size(1280, 720);
             this.Load += new System.EventHandler(this.ControlGestionUsuarios_Load);
             this.CtxMain.ResumeLayout(false);
             this.PanelGrid.ResumeLayout(false);

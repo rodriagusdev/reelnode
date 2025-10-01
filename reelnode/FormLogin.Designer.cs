@@ -124,7 +124,7 @@
             this.PanelMain.Controls.Add(this.pictureBox1);
             this.PanelMain.Location = new System.Drawing.Point(12, 12);
             this.PanelMain.Name = "PanelMain";
-            this.PanelMain.Size = new System.Drawing.Size(424, 447);
+            this.PanelMain.Size = new System.Drawing.Size(424, 463);
             this.PanelMain.TabIndex = 10;
             this.PanelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -238,7 +238,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(100)))), ((int)(((byte)(80)))));
+            this.BackColor = System.Drawing.Color.Turquoise;
             this.ClientSize = new System.Drawing.Size(448, 487);
             this.Controls.Add(this.PanelMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

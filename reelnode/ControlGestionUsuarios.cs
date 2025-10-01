@@ -127,7 +127,6 @@ namespace Reelnode
             {
                 e.CellStyle.ForeColor = Color.Purple;
             }
-            else e.CellStyle.ForeColor = Color.Black;
         }
 
         private void CtxMenuModificarRol_Click(object sender, EventArgs e)
@@ -144,7 +143,6 @@ namespace Reelnode
 
         private void DataGridUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
         }
     }
 }

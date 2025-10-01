@@ -15,10 +15,11 @@ CREATE TABLE peliculas (
 
 CREATE TABLE network (
     id_network INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(255) NOT NULL
+    nombre VARCHAR(255) NOT NULL unique
 );
 
-insert into network(nombre) values("Dreamworks"), ("Pixar"), ("Disney"), ("Warner Bros"), ("Universal");
+INSERT INTO network (nombre) VALUES ('Netflix'), ('HBO'), ('Disney+'), ('Amazon Prime Video'), ('Hulu'), ('Apple TV+'), ('Paramount+'), ('Peacock'), ('Starz'), ('Showtime'), ('CBS All Access'), ('Warner Bros.'), ('Universal Pictures'), ('20th Century Studios'), ('Sony Pictures'), ('Lionsgate'), ('MGM'), ('A24'), ('BBC'), ('AMC'), ('FX'), ('CW'), ('NBC'), ('ABC'), ('Fox'), ('Sky'), ('ITV'), ('Channel 4'), ('Blumhouse Productions'), ('Legendary Entertainment'), ('New Line Cinema'), ('DreamWorks Animation'), ('Pixar Animation Studios'), ('Marvel Studios'), ('Lucasfilm'), ('DC Films'), ('Focus Features'), ('Annapurna Pictures'), ('STX Entertainment'), ('Neon'), ('Orion Pictures'), ('Miramax'), ('The Weinstein Company'), 
+('Lionsgate Films'), ('TriStar Pictures'), ('Searchlight Pictures'), ('Sony Pictures Animation'), ('Blue Sky Studios'), ('Illumination Entertainment'), ('Skydance Media');
 
 CREATE TABLE serie (
     id_serie INT PRIMARY KEY AUTO_INCREMENT,
@@ -799,6 +800,9 @@ BEGIN
     FROM serie;
 END //
 DELIMITER ;
+
 SET SQL_SAFE_UPDATES = 0;
-select * from usuario
-delete from peliculas
+select * from peliculas;
+select * from usuario;
+select * from network;
+delete from peliculas;

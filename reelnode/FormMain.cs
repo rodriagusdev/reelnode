@@ -74,6 +74,7 @@ namespace Reelnode
             UtilsBD.CargarUsuario();
             UtilsBD.CargarPeliculas();
             UtilsBD.CargarSeries();
+            UtilsBD.CargarNetwork();
 
             // Esta funcion permite cambiar todo el tema del proyecto
             AplicarTema(this);
@@ -118,7 +119,9 @@ namespace Reelnode
                 }
                 else if (ctrl is System.Windows.Forms.Label lbl)
                 {
-                    lbl.ForeColor = Color.FromArgb(255,255,255);
+                    if(lbl.Tag == "Titulo") lbl.ForeColor = Color.FromArgb(0, 230, 118); 
+                    if (lbl.Tag == "Default") lbl.ForeColor = Color.FromArgb(255, 255, 255);
+                    if(lbl.Tag == null)  lbl.ForeColor = Color.FromArgb(255, 0, 127);
                 }
 
                 else if (ctrl is System.Windows.Forms.Button btn)
@@ -131,6 +134,48 @@ namespace Reelnode
                 else if (ctrl is PictureBox pic)
                 {
                     pic.BackColor = Color.FromArgb(42, 47, 79);
+                }
+
+                else if (ctrl is DataGridView grid)
+                {
+                    grid.BackgroundColor = Color.FromArgb(38, 0, 77);
+                    grid.ForeColor = Color.FromArgb(255, 255, 255);
+                    grid.GridColor = Color.FromArgb(0, 183, 235);
+                    grid.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(27, 38, 59);
+                    grid.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(0, 255, 255);
+                    grid.EnableHeadersVisualStyles = false;
+                    grid.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(27, 38, 59);
+                    grid.RowHeadersDefaultCellStyle.ForeColor = Color.FromArgb(0, 255, 255);
+                    grid.RowsDefaultCellStyle.BackColor = Color.FromArgb(42, 47, 79);
+                    grid.RowsDefaultCellStyle.ForeColor = Color.FromArgb(255, 255, 255);
+                    grid.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(36, 41, 69);
+                    grid.AlternatingRowsDefaultCellStyle.ForeColor = Color.FromArgb(255, 255, 255);
+                    grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                    grid.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 183, 235);
+                    grid.DefaultCellStyle.SelectionForeColor = Color.FromArgb(0, 0, 0);
+                    grid.DefaultCellStyle.ForeColor = Color.White;
+                }
+                else if (ctrl is FlowLayoutPanel flow)
+                {
+                    flow.BackColor = Color.Transparent;
+                }
+                else if (ctrl is System.Windows.Forms.ComboBox cmb)
+                {
+                    cmb.BackColor = Color.FromArgb(42, 47, 79);
+                    cmb.ForeColor = Color.FromArgb(0, 255, 255);
+                }
+                else if (ctrl is CheckBox chk)
+                {
+                    chk.ForeColor = Color.FromArgb(255, 0, 127);
+                }
+                else if (ctrl is RadioButton rbt)
+                {
+                    rbt.ForeColor = Color.FromArgb(255, 0, 127);
+                }
+                else if (ctrl is MenuStrip menu)
+                {
+                    menu.BackColor = Color.FromArgb(27, 38, 59);
+                    menu.ForeColor = Color.FromArgb(255, 255, 255);
                 }
 
                 if (ctrl.HasChildren)

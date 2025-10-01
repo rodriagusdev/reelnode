@@ -118,20 +118,21 @@
             // cargarSerieToolStripMenuItem1
             // 
             this.cargarSerieToolStripMenuItem1.Name = "cargarSerieToolStripMenuItem1";
-            this.cargarSerieToolStripMenuItem1.Size = new System.Drawing.Size(172, 22);
+            this.cargarSerieToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.cargarSerieToolStripMenuItem1.Text = "Cargar Serie";
             this.cargarSerieToolStripMenuItem1.Click += new System.EventHandler(this.cargarSerieToolStripMenuItem1_Click);
             // 
             // listarSeriesToolStripMenuItem
             // 
             this.listarSeriesToolStripMenuItem.Name = "listarSeriesToolStripMenuItem";
-            this.listarSeriesToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.listarSeriesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.listarSeriesToolStripMenuItem.Text = "Listar Series";
+            this.listarSeriesToolStripMenuItem.Click += new System.EventHandler(this.listarSeriesToolStripMenuItem_Click);
             // 
             // actualizarSerieToolStripMenuItem
             // 
             this.actualizarSerieToolStripMenuItem.Name = "actualizarSerieToolStripMenuItem";
-            this.actualizarSerieToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.actualizarSerieToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.actualizarSerieToolStripMenuItem.Text = "Actualizar Serie";
             this.actualizarSerieToolStripMenuItem.Click += new System.EventHandler(this.actualizarSerieToolStripMenuItem_Click);
             // 
