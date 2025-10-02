@@ -25,6 +25,8 @@ namespace Reelnode
         private ControlGestionSeriesCargar controlSeriesCargar;
         private ControlGestionSeriesActualizar controlSeriesActualizar;
         private ControlGestionSeriesListarSeries controlGestionSeriesListarSeries;
+
+        public event EventHandler HomeClicked;
         public ControlAdmin()
         {
             InitializeComponent();
@@ -96,7 +98,7 @@ namespace Reelnode
 
         private void ToolStpMenuHome_Click(object sender, EventArgs e)
         {
-            this.Visible = false;
+            HomeClicked?.Invoke(this, EventArgs.Empty);
         }
 
         private void listarSeriesToolStripMenuItem_Click(object sender, EventArgs e)

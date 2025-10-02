@@ -31,7 +31,7 @@ namespace Reelnode
             panel.Region = new Region(path);
         }
 
-        public static void ShowControl(UserControl controlToShow, Panel panel)
+        public static void ShowControl(Control controlToShow, Panel panel)
         {
             foreach (Control control in panel.Controls)
             {

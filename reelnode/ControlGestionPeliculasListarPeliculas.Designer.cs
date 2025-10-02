@@ -30,6 +30,8 @@
         {
             this.PanelListar = new System.Windows.Forms.Panel();
             this.DataGridPeliculas = new System.Windows.Forms.DataGridView();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.PanelListar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridPeliculas)).BeginInit();
             this.SuspendLayout();
@@ -37,6 +39,8 @@
             // PanelListar
             // 
             this.PanelListar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
+            this.PanelListar.Controls.Add(this.panel1);
+            this.PanelListar.Controls.Add(this.panel3);
             this.PanelListar.Controls.Add(this.DataGridPeliculas);
             this.PanelListar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelListar.Location = new System.Drawing.Point(0, 0);
@@ -62,6 +66,24 @@
             this.DataGridPeliculas.TabIndex = 2;
             this.DataGridPeliculas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridPeliculas_CellContentClick);
             // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.panel3.Location = new System.Drawing.Point(117, 69);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1081, 2);
+            this.panel3.TabIndex = 51;
+            this.panel3.Tag = "";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.panel1.Location = new System.Drawing.Point(117, 551);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1081, 2);
+            this.panel1.TabIndex = 52;
+            this.panel1.Tag = "";
+            // 
             // ControlGestionPeliculasListarPeliculas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -80,5 +102,7 @@
 
         private System.Windows.Forms.Panel PanelListar;
         private System.Windows.Forms.DataGridView DataGridPeliculas;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel1;
     }
 }

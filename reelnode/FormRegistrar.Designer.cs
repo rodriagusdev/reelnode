@@ -63,9 +63,9 @@
             this.PanelMain.Controls.Add(this.PanelUsuario);
             this.PanelMain.Controls.Add(this.BtnIngresar);
             this.PanelMain.Controls.Add(this.pictureBox1);
-            this.PanelMain.Location = new System.Drawing.Point(5, 2);
+            this.PanelMain.Location = new System.Drawing.Point(12, 12);
             this.PanelMain.Name = "PanelMain";
-            this.PanelMain.Size = new System.Drawing.Size(424, 447);
+            this.PanelMain.Size = new System.Drawing.Size(424, 463);
             this.PanelMain.TabIndex = 11;
             this.PanelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelMain_Paint);
             // 
@@ -80,7 +80,7 @@
             this.BtnSalir.Name = "BtnSalir";
             this.BtnSalir.Size = new System.Drawing.Size(307, 36);
             this.BtnSalir.TabIndex = 24;
-            this.BtnSalir.Text = "S   A   L   I   R";
+            this.BtnSalir.Text = "V   O   L   V   E   R";
             this.BtnSalir.UseVisualStyleBackColor = false;
             this.BtnSalir.Click += new System.EventHandler(this.BtnSalir_Click);
             // 
@@ -123,7 +123,7 @@
             this.TxtEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtEmail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtEmail.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtEmail.ForeColor = System.Drawing.Color.White;
+            this.TxtEmail.ForeColor = System.Drawing.Color.Cyan;
             this.TxtEmail.Location = new System.Drawing.Point(5, 5);
             this.TxtEmail.Name = "TxtEmail";
             this.TxtEmail.Size = new System.Drawing.Size(296, 22);
@@ -169,9 +169,10 @@
             this.TxtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtPassword.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtPassword.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtPassword.ForeColor = System.Drawing.Color.White;
+            this.TxtPassword.ForeColor = System.Drawing.Color.Cyan;
             this.TxtPassword.Location = new System.Drawing.Point(5, 5);
             this.TxtPassword.Name = "TxtPassword";
+            this.TxtPassword.PasswordChar = '*';
             this.TxtPassword.Size = new System.Drawing.Size(296, 22);
             this.TxtPassword.TabIndex = 12;
             this.TxtPassword.TextChanged += new System.EventHandler(this.TxtPassword_TextChanged);
@@ -215,7 +216,7 @@
             this.TxtUsuario.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtUsuario.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtUsuario.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtUsuario.ForeColor = System.Drawing.Color.White;
+            this.TxtUsuario.ForeColor = System.Drawing.Color.Cyan;
             this.TxtUsuario.Location = new System.Drawing.Point(5, 5);
             this.TxtUsuario.Name = "TxtUsuario";
             this.TxtUsuario.Size = new System.Drawing.Size(296, 22);
@@ -257,8 +258,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(184)))), ((int)(((byte)(182)))));
-            this.ClientSize = new System.Drawing.Size(434, 450);
+            this.BackColor = System.Drawing.Color.Turquoise;
+            this.ClientSize = new System.Drawing.Size(448, 487);
             this.Controls.Add(this.PanelMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;

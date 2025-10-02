@@ -105,7 +105,7 @@
             this.TxtUsuario.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtUsuario.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtUsuario.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtUsuario.ForeColor = System.Drawing.Color.White;
+            this.TxtUsuario.ForeColor = System.Drawing.Color.Cyan;
             this.TxtUsuario.Location = new System.Drawing.Point(5, 5);
             this.TxtUsuario.Name = "TxtUsuario";
             this.TxtUsuario.Size = new System.Drawing.Size(296, 22);
@@ -210,7 +210,7 @@
             this.TxtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtPassword.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtPassword.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtPassword.ForeColor = System.Drawing.Color.White;
+            this.TxtPassword.ForeColor = System.Drawing.Color.Cyan;
             this.TxtPassword.Location = new System.Drawing.Point(5, 5);
             this.TxtPassword.Name = "TxtPassword";
             this.TxtPassword.PasswordChar = '*';

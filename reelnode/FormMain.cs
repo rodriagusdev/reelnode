@@ -38,6 +38,10 @@ namespace Reelnode
             controlAdmin.Visible = false;
             controlVisualizacionPeliculas.Visible = false;
 
+            controlAdmin.HomeClicked += (s, e) => {
+                Utils.ShowControl(flowPanel, PanelMain);
+            };
+
             flowPanel = new FlowLayoutPanel
             {
                 FlowDirection = FlowDirection.LeftToRight,
@@ -54,19 +58,6 @@ namespace Reelnode
 
             PanelMain.Controls.Add(flowPanel);
         }
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-            using (LinearGradientBrush brush = new LinearGradientBrush(
-                PanelMain.ClientRectangle,
-                Color.FromArgb(27, 38, 59),
-                Color.FromArgb(13, 17, 23),
-                LinearGradientMode.BackwardDiagonal))
-            {
-                e.Graphics.FillRectangle(brush, PanelMain.ClientRectangle);
-            }
-     
-        }
-
 
         private void FormMain_Load(object sender, EventArgs e)
         {
@@ -87,7 +78,16 @@ namespace Reelnode
             login.ShowDialog();
 
             ToolStpMenuAdmin.Visible = UtilsBD.usuarioActual.RolUsuario == "Admin" ? true : false;
+        }
 
+        private void ToolStpMenuAdmin_Click_1(object sender, EventArgs e)
+        {
+            Utils.ShowControl(controlAdmin, PanelMain);
+        }
+
+        private void salirToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
 
         private void AplicarTema(Control parent)
@@ -109,7 +109,6 @@ namespace Reelnode
                 if(ctrl is System.Windows.Forms.Panel pnl) 
                 {
                     if(pnl.Tag != "Default") pnl.BackColor = Color.FromArgb(42, 47, 79);
-
                 }
                 else if(ctrl is System.Windows.Forms.TextBox txt)
                 {
@@ -120,7 +119,7 @@ namespace Reelnode
                 else if (ctrl is System.Windows.Forms.Label lbl)
                 {
                     if(lbl.Tag == "Titulo") lbl.ForeColor = Color.FromArgb(0, 230, 118); 
-                    if (lbl.Tag == "Default") lbl.ForeColor = Color.FromArgb(255, 255, 255);
+                    if(lbl.Tag == "Default") lbl.ForeColor = Color.FromArgb(255, 255, 255);
                     if(lbl.Tag == null)  lbl.ForeColor = Color.FromArgb(255, 0, 127);
                 }
 
@@ -191,10 +190,6 @@ namespace Reelnode
         }
         */
 
-        private void ToolStpMenuAdmin_Click(object sender, EventArgs e)
-        {
-            Utils.ShowControl(controlAdmin, PanelMain);
-        }
         private void MostrarPeliculas()
         {
             flowPanel.Controls.Clear();
@@ -245,9 +240,21 @@ namespace Reelnode
             }
         }
 
-        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        private void PanelMain_Paint(object sender, PaintEventArgs e)
         {
-            Application.Exit();
+            using (LinearGradientBrush brush = new LinearGradientBrush(
+                PanelMain.ClientRectangle,
+                Color.FromArgb(27, 38, 59),
+                Color.FromArgb(13, 17, 23),
+                LinearGradientMode.BackwardDiagonal))
+            {
+                e.Graphics.FillRectangle(brush, PanelMain.ClientRectangle);
+            }
+        }
+
+        public Panel MainPanel
+        {
+            get { return PanelMain; }
         }
     }
 }

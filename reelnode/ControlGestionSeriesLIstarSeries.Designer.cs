@@ -30,6 +30,8 @@
         {
             this.PanelListar = new System.Windows.Forms.Panel();
             this.DataGridSeries = new System.Windows.Forms.DataGridView();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.PanelListar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridSeries)).BeginInit();
             this.SuspendLayout();
@@ -37,6 +39,8 @@
             // PanelListar
             // 
             this.PanelListar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
+            this.PanelListar.Controls.Add(this.panel1);
+            this.PanelListar.Controls.Add(this.panel3);
             this.PanelListar.Controls.Add(this.DataGridSeries);
             this.PanelListar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelListar.Location = new System.Drawing.Point(0, 0);
@@ -52,14 +56,32 @@
             this.DataGridSeries.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DataGridSeries.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(27)))), ((int)(((byte)(43)))));
             this.DataGridSeries.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridSeries.Location = new System.Drawing.Point(284, 200);
+            this.DataGridSeries.Location = new System.Drawing.Point(231, 150);
             this.DataGridSeries.Name = "DataGridSeries";
             this.DataGridSeries.ReadOnly = true;
             this.DataGridSeries.RowHeadersVisible = false;
             this.DataGridSeries.RowHeadersWidth = 51;
             this.DataGridSeries.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridSeries.Size = new System.Drawing.Size(683, 230);
+            this.DataGridSeries.Size = new System.Drawing.Size(791, 316);
             this.DataGridSeries.TabIndex = 2;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.panel3.Location = new System.Drawing.Point(117, 69);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1081, 2);
+            this.panel3.TabIndex = 50;
+            this.panel3.Tag = "";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.panel1.Location = new System.Drawing.Point(117, 551);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1081, 2);
+            this.panel1.TabIndex = 50;
+            this.panel1.Tag = "";
             // 
             // ControlGestionSeriesListarSeries
             // 
@@ -79,5 +101,7 @@
 
         private System.Windows.Forms.Panel PanelListar;
         private System.Windows.Forms.DataGridView DataGridSeries;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel3;
     }
 }

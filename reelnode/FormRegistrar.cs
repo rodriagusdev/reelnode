@@ -15,14 +15,25 @@ using System.Windows.Forms;
 
 namespace Reelnode
 {
-    public partial class FormRegistrar: Form
+    public partial class FormRegistrar: Form, ITemaPersonalizable
     {
+        private Color _c1 = Color.FromArgb(20, 30, 48);
+        private Color _c2 = Color.FromArgb(36, 59, 85);
+        private LinearGradientMode _modo = LinearGradientMode.Vertical;
         public FormRegistrar()
         {
             InitializeComponent();
 
             BtnIngresar.FlatAppearance.BorderColor = Color.FromArgb(0, 29, 35);
             BtnSalir.FlatAppearance.BorderColor = Color.FromArgb(0, 29, 35);
+        }
+
+        public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
+        {
+            _c1 = color1;
+            _c2 = color2;
+            _modo = modo;
+            PanelMain.Invalidate();
         }
 
         private void BtnIngresar_Click(object sender, EventArgs e)
@@ -132,18 +143,9 @@ namespace Reelnode
 
         private void PanelMain_Paint(object sender, PaintEventArgs e)
         {
-            Rectangle rect = PanelMain.ClientRectangle;
-            using (LinearGradientBrush brush = new LinearGradientBrush(
-                rect,
-                Color.FromArgb(53, 106, 124),
-                Color.FromArgb(24, 76, 90),
-                LinearGradientMode.Vertical))
+            using (var brush = new LinearGradientBrush(PanelMain.ClientRectangle, _c1, _c2, _modo))
             {
-                Blend blend = new Blend();
-                blend.Positions = new float[] { 0f, 0.4f, 0.6f, 1f };
-                blend.Factors = new float[] { 0f, 0.5f, 0.7f, 1f };
-                brush.Blend = blend;
-                e.Graphics.FillRectangle(brush, rect);
+                e.Graphics.FillRectangle(brush, PanelMain.ClientRectangle);
             }
         }
     }

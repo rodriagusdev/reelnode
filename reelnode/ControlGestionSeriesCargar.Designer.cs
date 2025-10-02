@@ -28,12 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.LblPanelSerie = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.PanelUsuario = new System.Windows.Forms.Panel();
             this.TxtNombre = new System.Windows.Forms.TextBox();
             this.PanelFecha = new System.Windows.Forms.Panel();
@@ -44,7 +39,6 @@
             this.TxtDuracion = new System.Windows.Forms.TextBox();
             this.PanelImagen = new System.Windows.Forms.Panel();
             this.PicSerie = new System.Windows.Forms.PictureBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.PanelDescripcion = new System.Windows.Forms.Panel();
             this.TxtDescripcion = new System.Windows.Forms.TextBox();
             this.BtnCargar = new System.Windows.Forms.Button();
@@ -52,13 +46,21 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.DtpFechaFin = new System.Windows.Forms.DateTimePicker();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.TxtURLImagen = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.BtnPrevisualizar = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.PanelMain = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.PanelUsuario.SuspendLayout();
             this.PanelFecha.SuspendLayout();
             this.PanelDirector.SuspendLayout();
@@ -71,32 +73,6 @@
             this.PanelMain.SuspendLayout();
             this.SuspendLayout();
             // 
-            // LblPanelSerie
-            // 
-            this.LblPanelSerie.AutoSize = true;
-            this.LblPanelSerie.BackColor = System.Drawing.Color.Transparent;
-            this.LblPanelSerie.Enabled = false;
-            this.LblPanelSerie.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblPanelSerie.ForeColor = System.Drawing.Color.White;
-            this.LblPanelSerie.Location = new System.Drawing.Point(211, 159);
-            this.LblPanelSerie.Name = "LblPanelSerie";
-            this.LblPanelSerie.Size = new System.Drawing.Size(112, 17);
-            this.LblPanelSerie.TabIndex = 22;
-            this.LblPanelSerie.Text = "Nombre de la Serie\r\n";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Enabled = false;
-            this.label1.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(211, 231);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 17);
-            this.label1.TabIndex = 23;
-            this.label1.Text = "Fecha de estreno";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -104,56 +80,17 @@
             this.label2.Enabled = false;
             this.label2.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(211, 269);
+            this.label2.Location = new System.Drawing.Point(230, 283);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 17);
             this.label2.TabIndex = 24;
             this.label2.Text = "Descripción";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Enabled = false;
-            this.label3.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(211, 371);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 17);
-            this.label3.TabIndex = 25;
-            this.label3.Text = "Director";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Enabled = false;
-            this.label4.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(211, 445);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(76, 17);
-            this.label4.TabIndex = 26;
-            this.label4.Text = "Temporadas";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Enabled = false;
-            this.label5.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(512, 159);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(50, 17);
-            this.label5.TabIndex = 27;
-            this.label5.Text = "Imagen";
-            // 
             // PanelUsuario
             // 
             this.PanelUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.PanelUsuario.Controls.Add(this.TxtNombre);
-            this.PanelUsuario.Location = new System.Drawing.Point(214, 179);
+            this.PanelUsuario.Location = new System.Drawing.Point(233, 193);
             this.PanelUsuario.Name = "PanelUsuario";
             this.PanelUsuario.Padding = new System.Windows.Forms.Padding(5);
             this.PanelUsuario.Size = new System.Drawing.Size(205, 35);
@@ -175,7 +112,7 @@
             // 
             this.PanelFecha.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.PanelFecha.Controls.Add(this.DtpFechaEstreno);
-            this.PanelFecha.Location = new System.Drawing.Point(214, 251);
+            this.PanelFecha.Location = new System.Drawing.Point(233, 265);
             this.PanelFecha.Name = "PanelFecha";
             this.PanelFecha.Padding = new System.Windows.Forms.Padding(5);
             this.PanelFecha.Size = new System.Drawing.Size(205, 35);
@@ -193,7 +130,7 @@
             // 
             this.PanelDirector.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.PanelDirector.Controls.Add(this.TxtDirector);
-            this.PanelDirector.Location = new System.Drawing.Point(214, 391);
+            this.PanelDirector.Location = new System.Drawing.Point(233, 405);
             this.PanelDirector.Name = "PanelDirector";
             this.PanelDirector.Padding = new System.Windows.Forms.Padding(5);
             this.PanelDirector.Size = new System.Drawing.Size(205, 35);
@@ -215,7 +152,7 @@
             // 
             this.PanelDuracion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.PanelDuracion.Controls.Add(this.TxtDuracion);
-            this.PanelDuracion.Location = new System.Drawing.Point(214, 466);
+            this.PanelDuracion.Location = new System.Drawing.Point(233, 480);
             this.PanelDuracion.Name = "PanelDuracion";
             this.PanelDuracion.Padding = new System.Windows.Forms.Padding(5);
             this.PanelDuracion.Size = new System.Drawing.Size(205, 35);
@@ -237,7 +174,7 @@
             // 
             this.PanelImagen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.PanelImagen.Controls.Add(this.PicSerie);
-            this.PanelImagen.Location = new System.Drawing.Point(515, 179);
+            this.PanelImagen.Location = new System.Drawing.Point(534, 193);
             this.PanelImagen.Name = "PanelImagen";
             this.PanelImagen.Padding = new System.Windows.Forms.Padding(5);
             this.PanelImagen.Size = new System.Drawing.Size(205, 202);
@@ -254,24 +191,11 @@
             this.PicSerie.TabIndex = 0;
             this.PicSerie.TabStop = false;
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Enabled = false;
-            this.label6.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(806, 159);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(71, 17);
-            this.label6.TabIndex = 32;
-            this.label6.Text = "Descripcion";
-            // 
             // PanelDescripcion
             // 
             this.PanelDescripcion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.PanelDescripcion.Controls.Add(this.TxtDescripcion);
-            this.PanelDescripcion.Location = new System.Drawing.Point(809, 179);
+            this.PanelDescripcion.Location = new System.Drawing.Point(828, 193);
             this.PanelDescripcion.Name = "PanelDescripcion";
             this.PanelDescripcion.Padding = new System.Windows.Forms.Padding(5);
             this.PanelDescripcion.Size = new System.Drawing.Size(205, 202);
@@ -297,7 +221,7 @@
             this.BtnCargar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCargar.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnCargar.ForeColor = System.Drawing.Color.Black;
-            this.BtnCargar.Location = new System.Drawing.Point(809, 404);
+            this.BtnCargar.Location = new System.Drawing.Point(828, 418);
             this.BtnCargar.Name = "BtnCargar";
             this.BtnCargar.Size = new System.Drawing.Size(205, 35);
             this.BtnCargar.TabIndex = 33;
@@ -312,7 +236,7 @@
             this.BtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSalir.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnSalir.ForeColor = System.Drawing.Color.Black;
-            this.BtnSalir.Location = new System.Drawing.Point(809, 465);
+            this.BtnSalir.Location = new System.Drawing.Point(828, 479);
             this.BtnSalir.Name = "BtnSalir";
             this.BtnSalir.Size = new System.Drawing.Size(205, 35);
             this.BtnSalir.TabIndex = 34;
@@ -324,7 +248,7 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.panel1.Controls.Add(this.DtpFechaFin);
             this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Location = new System.Drawing.Point(214, 320);
+            this.panel1.Location = new System.Drawing.Point(233, 334);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(5);
             this.panel1.Size = new System.Drawing.Size(205, 35);
@@ -351,24 +275,11 @@
             this.textBox1.Size = new System.Drawing.Size(195, 22);
             this.textBox1.TabIndex = 12;
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Enabled = false;
-            this.label7.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(211, 300);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(118, 17);
-            this.label7.TabIndex = 36;
-            this.label7.Text = "Fecha de finalizacion\r\n";
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.panel2.Controls.Add(this.TxtURLImagen);
-            this.panel2.Location = new System.Drawing.Point(515, 405);
+            this.panel2.Location = new System.Drawing.Point(534, 419);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(5);
             this.panel2.Size = new System.Drawing.Size(205, 35);
@@ -392,7 +303,7 @@
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label9.Location = new System.Drawing.Point(512, 385);
+            this.label9.Location = new System.Drawing.Point(531, 399);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(105, 17);
             this.label9.TabIndex = 39;
@@ -405,7 +316,7 @@
             this.BtnPrevisualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnPrevisualizar.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnPrevisualizar.ForeColor = System.Drawing.Color.Black;
-            this.BtnPrevisualizar.Location = new System.Drawing.Point(515, 465);
+            this.BtnPrevisualizar.Location = new System.Drawing.Point(534, 479);
             this.BtnPrevisualizar.Name = "BtnPrevisualizar";
             this.BtnPrevisualizar.Size = new System.Drawing.Size(205, 35);
             this.BtnPrevisualizar.TabIndex = 40;
@@ -419,7 +330,7 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label8.Location = new System.Drawing.Point(512, 442);
+            this.label8.Location = new System.Drawing.Point(531, 456);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(212, 17);
             this.label8.TabIndex = 41;
@@ -428,33 +339,137 @@
             // PanelMain
             // 
             this.PanelMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
+            this.PanelMain.Controls.Add(this.panel4);
+            this.PanelMain.Controls.Add(this.panel3);
+            this.PanelMain.Controls.Add(this.label6);
+            this.PanelMain.Controls.Add(this.label4);
+            this.PanelMain.Controls.Add(this.label3);
+            this.PanelMain.Controls.Add(this.label7);
+            this.PanelMain.Controls.Add(this.label1);
+            this.PanelMain.Controls.Add(this.label11);
+            this.PanelMain.Controls.Add(this.label10);
             this.PanelMain.Controls.Add(this.label8);
             this.PanelMain.Controls.Add(this.BtnPrevisualizar);
             this.PanelMain.Controls.Add(this.label9);
             this.PanelMain.Controls.Add(this.panel2);
-            this.PanelMain.Controls.Add(this.label7);
             this.PanelMain.Controls.Add(this.panel1);
             this.PanelMain.Controls.Add(this.BtnSalir);
             this.PanelMain.Controls.Add(this.BtnCargar);
             this.PanelMain.Controls.Add(this.PanelDescripcion);
-            this.PanelMain.Controls.Add(this.label6);
             this.PanelMain.Controls.Add(this.PanelImagen);
             this.PanelMain.Controls.Add(this.PanelDuracion);
             this.PanelMain.Controls.Add(this.PanelDirector);
             this.PanelMain.Controls.Add(this.PanelFecha);
             this.PanelMain.Controls.Add(this.PanelUsuario);
-            this.PanelMain.Controls.Add(this.label5);
-            this.PanelMain.Controls.Add(this.label4);
-            this.PanelMain.Controls.Add(this.label3);
             this.PanelMain.Controls.Add(this.label2);
-            this.PanelMain.Controls.Add(this.label1);
-            this.PanelMain.Controls.Add(this.LblPanelSerie);
             this.PanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelMain.Location = new System.Drawing.Point(0, 0);
             this.PanelMain.Name = "PanelMain";
             this.PanelMain.Size = new System.Drawing.Size(1280, 720);
             this.PanelMain.TabIndex = 3;
             this.PanelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelMain_Paint);
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.panel4.Location = new System.Drawing.Point(101, 639);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1081, 2);
+            this.panel4.TabIndex = 46;
+            this.panel4.Tag = "";
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.panel3.Location = new System.Drawing.Point(101, 47);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1081, 2);
+            this.panel3.TabIndex = 49;
+            this.panel3.Tag = "";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
+            this.label6.Location = new System.Drawing.Point(531, 173);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(50, 17);
+            this.label6.TabIndex = 48;
+            this.label6.Text = "Imagen";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
+            this.label4.Location = new System.Drawing.Point(825, 173);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(71, 17);
+            this.label4.TabIndex = 47;
+            this.label4.Text = "Descripción";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
+            this.label3.Location = new System.Drawing.Point(230, 460);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(140, 17);
+            this.label3.TabIndex = 46;
+            this.label3.Text = "Cantidad de temporadas";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
+            this.label7.Location = new System.Drawing.Point(230, 385);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(53, 17);
+            this.label7.TabIndex = 45;
+            this.label7.Text = "Director";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
+            this.label1.Location = new System.Drawing.Point(230, 314);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(118, 17);
+            this.label1.TabIndex = 44;
+            this.label1.Text = "Fecha de finalización";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
+            this.label11.Location = new System.Drawing.Point(230, 245);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(82, 17);
+            this.label11.TabIndex = 43;
+            this.label11.Text = "Fecha estreno";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
+            this.label10.Location = new System.Drawing.Point(230, 173);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(97, 17);
+            this.label10.TabIndex = 42;
+            this.label10.Text = "Título de la serie";
             // 
             // ControlGestionSeriesCargar
             // 
@@ -486,13 +501,7 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label LblPanelSerie;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel PanelUsuario;
         private System.Windows.Forms.TextBox TxtNombre;
         private System.Windows.Forms.Panel PanelFecha;
@@ -503,7 +512,6 @@
         private System.Windows.Forms.TextBox TxtDuracion;
         private System.Windows.Forms.Panel PanelImagen;
         private System.Windows.Forms.PictureBox PicSerie;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel PanelDescripcion;
         private System.Windows.Forms.TextBox TxtDescripcion;
         private System.Windows.Forms.Button BtnCargar;
@@ -511,12 +519,20 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DateTimePicker DtpFechaFin;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox TxtURLImagen;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button BtnPrevisualizar;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel PanelMain;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel3;
     }
 }

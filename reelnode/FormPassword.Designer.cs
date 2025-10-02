@@ -66,9 +66,9 @@
             this.PanelMain.Controls.Add(this.PanelUsuario);
             this.PanelMain.Controls.Add(this.BtnCambiar);
             this.PanelMain.Controls.Add(this.pictureBox1);
-            this.PanelMain.Location = new System.Drawing.Point(5, 2);
+            this.PanelMain.Location = new System.Drawing.Point(12, 12);
             this.PanelMain.Name = "PanelMain";
-            this.PanelMain.Size = new System.Drawing.Size(424, 447);
+            this.PanelMain.Size = new System.Drawing.Size(424, 463);
             this.PanelMain.TabIndex = 12;
             this.PanelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelMain_Paint);
             // 
@@ -83,7 +83,7 @@
             this.BtnSalir.Name = "BtnSalir";
             this.BtnSalir.Size = new System.Drawing.Size(307, 36);
             this.BtnSalir.TabIndex = 25;
-            this.BtnSalir.Text = "S   A   L   I   R";
+            this.BtnSalir.Text = "V   O   L   V   E   R";
             this.BtnSalir.UseVisualStyleBackColor = false;
             this.BtnSalir.Click += new System.EventHandler(this.BtnSalir_Click);
             // 
@@ -126,9 +126,10 @@
             this.TxtConfirmarPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtConfirmarPassword.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtConfirmarPassword.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtConfirmarPassword.ForeColor = System.Drawing.Color.White;
+            this.TxtConfirmarPassword.ForeColor = System.Drawing.Color.Cyan;
             this.TxtConfirmarPassword.Location = new System.Drawing.Point(5, 5);
             this.TxtConfirmarPassword.Name = "TxtConfirmarPassword";
+            this.TxtConfirmarPassword.PasswordChar = '*';
             this.TxtConfirmarPassword.Size = new System.Drawing.Size(296, 22);
             this.TxtConfirmarPassword.TabIndex = 12;
             this.TxtConfirmarPassword.TextChanged += new System.EventHandler(this.TxtConfirmarPassword_TextChanged);
@@ -172,7 +173,7 @@
             this.TxtEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtEmail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtEmail.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtEmail.ForeColor = System.Drawing.Color.White;
+            this.TxtEmail.ForeColor = System.Drawing.Color.Cyan;
             this.TxtEmail.Location = new System.Drawing.Point(5, 5);
             this.TxtEmail.Name = "TxtEmail";
             this.TxtEmail.Size = new System.Drawing.Size(296, 22);
@@ -218,9 +219,10 @@
             this.TxtCambiarPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtCambiarPassword.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtCambiarPassword.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCambiarPassword.ForeColor = System.Drawing.Color.White;
+            this.TxtCambiarPassword.ForeColor = System.Drawing.Color.Cyan;
             this.TxtCambiarPassword.Location = new System.Drawing.Point(5, 5);
             this.TxtCambiarPassword.Name = "TxtCambiarPassword";
+            this.TxtCambiarPassword.PasswordChar = '*';
             this.TxtCambiarPassword.Size = new System.Drawing.Size(296, 22);
             this.TxtCambiarPassword.TabIndex = 12;
             this.TxtCambiarPassword.TextChanged += new System.EventHandler(this.TxtCambiarPassword_TextChanged);
@@ -264,7 +266,7 @@
             this.TxtUsuario.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtUsuario.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtUsuario.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtUsuario.ForeColor = System.Drawing.Color.White;
+            this.TxtUsuario.ForeColor = System.Drawing.Color.Cyan;
             this.TxtUsuario.Location = new System.Drawing.Point(5, 5);
             this.TxtUsuario.Name = "TxtUsuario";
             this.TxtUsuario.Size = new System.Drawing.Size(296, 22);
@@ -302,8 +304,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(184)))), ((int)(((byte)(182)))));
-            this.ClientSize = new System.Drawing.Size(434, 450);
+            this.BackColor = System.Drawing.Color.Turquoise;
+            this.ClientSize = new System.Drawing.Size(448, 487);
             this.Controls.Add(this.PanelMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
