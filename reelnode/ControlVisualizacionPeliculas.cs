@@ -61,14 +61,11 @@ namespace Reelnode
             }
         }
 
-        private void LblDescripcionPeli_Click(object sender, EventArgs e)
+        private void BtnCalificar_Click(object sender, EventArgs e)
         {
+            FormCalificar calificar = new FormCalificar();
 
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
+            calificar.ShowDialog();
         }
     }
 }

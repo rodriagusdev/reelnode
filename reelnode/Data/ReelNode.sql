@@ -10,7 +10,10 @@ CREATE TABLE peliculas (
     descripcion VARCHAR(255),
     director VARCHAR(255),
     imagen VARCHAR(255),
-    duracion VARCHAR(50)
+    duracion VARCHAR(50),
+    trailerURL varchar(255),
+    id_network int,
+    foreign key(id_network) references network(id_network)
 );
 
 CREATE TABLE network (
@@ -30,6 +33,7 @@ CREATE TABLE serie (
     director VARCHAR(255),
     imagen VARCHAR(255),
     cant_temporadas INT,
+    trailerURL varchar(255),
     id_network INT,
     FOREIGN KEY (id_network) REFERENCES network(id_network)
 );
@@ -199,22 +203,9 @@ create table auditoria_comentarios_usuario (
     id_registro int,
     id_usuario int,
     fecha_hora datetime,
-    detalle varchar(255)
+    detalle varchar(255),
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
 );
-ALTER TABLE auditoria_comentarios_usuario
-ADD CONSTRAINT fk_auditoriac_usuario
-FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario);
-
--- para comentarios de peli:
-ALTER TABLE auditoria_comentarios_usuario
-ADD CONSTRAINT fk_auditoriac_comentario_peli
-FOREIGN KEY (id_registro) REFERENCES comentarios_peli(id_comentario);
-
--- para comentarios de serie (si id_registro corresponde a comentarios_serie):
-ALTER TABLE auditoria_comentarios_usuario
-ADD CONSTRAINT fk_auditoriac_comentario_serie
-FOREIGN KEY (id_registro) REFERENCES comentarios_serie(id_comentario);
-
 
 -- Indices --------------------------------------------------
 
@@ -251,7 +242,6 @@ BEGIN
     VALUES(p_nombre, p_password, p_email, CURDATE(), p_id_rol);
 END //
 DELIMITER ;
-
 
 -- Handler para el login
 DELIMITER //
@@ -509,10 +499,10 @@ AFTER INSERT ON peliculas
 FOR EACH ROW
 BEGIN
     INSERT INTO auditoria_peliculas_serie(
-        tabla_afectada, accion, id_registro, fecha_hora, detalle
+        tabla_afectada, accion, id_registro, fecha_hora, detalle, trailerURL 
     )
     VALUES (
-        'peliculas', 'INSERT', NEW.id_pelicula, NOW(), NEW.nombre
+        'peliculas', 'INSERT', NEW.id_pelicula, NOW(), NEW.nombre,trailerURL 
     );
 END //
 DELIMITER ;
@@ -521,67 +511,57 @@ DELIMITER ;
 -- Alta de película
 DELIMITER //
 CREATE PROCEDURE sp_insertar_pelicula(
+    IN p_id_usuario INT,
     IN p_nombre VARCHAR(255),
     IN p_fecha DATE,
     IN p_descripcion VARCHAR(255),
     IN p_director VARCHAR(255),
     IN p_duracion VARCHAR(50),
-    in p_imagen varchar(255)
+    IN p_trailerURL VARCHAR(255)
 )
 BEGIN
-    INSERT INTO peliculas(nombre, fecha_estreno, descripcion, director, duracion, imagen)
-    VALUES(p_nombre, p_fecha, p_descripcion, p_director, p_duracion, p_imagen);
+    START TRANSACTION;
 
-    INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, detalle)
-    VALUES ('peliculas', 'INSERT', LAST_INSERT_ID(), NOW(), p_nombre);
+    INSERT INTO peliculas(nombre, fecha_estreno, descripcion, director, duracion, trailerURL)
+    VALUES(p_nombre, p_fecha, p_descripcion, p_director, p_duracion, p_trailerURL);
+
+    INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, detalle, trailerURL, id_usuario)
+    VALUES ('peliculas', 'INSERT', LAST_INSERT_ID(), NOW(), p_nombre, p_trailerURL, p_id_usuario);
+
+    COMMIT;
 END //
 DELIMITER ;
 
 -- Actualizar película
-/*DELIMITER //
-create procedure sp_actualizar_pelicula(
-    in p_id int,
-    in p_nombre varchar(255),
-    in p_descripcion varchar(255),
-    in p_director varchar(255),
-    in p_duracion varchar(50),
 
-)
-begin
-    update peliculas
-    set nombre = p_nombre,
-        descripcion = p_descripcion,
-        director = p_director,
-        duracion = p_duracion
-    where id_pelicula = p_id;
-
-    insert into auditoria_peliculas_series(tabla_afectada, accion, id_registro, id_usuario_admin, fecha_hora, detalle)
-    values ('peliculas', 'UPDATE', p_id, NOW(), p_nombre);
-end //
-DELIMITER ; */
 DELIMITER //
 CREATE PROCEDURE sp_actualizar_pelicula(
+    IN p_id_usuario INT,
     IN p_id INT,
     IN p_nombre VARCHAR(255),
     IN p_fecha_estreno DATE,
     IN p_descripcion VARCHAR(255),
     IN p_director VARCHAR(255),
     IN p_imagen VARCHAR(255),
-    IN p_duracion VARCHAR(50)
+    IN p_duracion VARCHAR(50),
+    IN p_trailerURL VARCHAR(255)
 )
 BEGIN
     START TRANSACTION;
-    
-    -- Actualizar película
+
     UPDATE peliculas
     SET nombre = p_nombre,
         fecha_estreno = p_fecha_estreno,
         descripcion = p_descripcion,
         director = p_director,
         imagen = p_imagen,
-        duracion = p_duracion
+        duracion = p_duracion,
+        trailerURL = p_trailerURL
     WHERE id_pelicula = p_id;
-    
+
+    INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, detalle, trailerURL, id_usuario)
+    VALUES ('peliculas', 'UPDATE', p_id, NOW(), p_nombre, p_trailerURL, p_id_usuario);
+
     COMMIT;
 END //
 DELIMITER ;
@@ -704,7 +684,8 @@ BEGIN
         director,
         descripcion,
         imagen,
-        duracion
+        duracion,
+        trailerURL 
     FROM peliculas;
 END //
 DELIMITER ;
@@ -734,6 +715,7 @@ DELIMITER ;
 
 DELIMITER //
 CREATE PROCEDURE sp_insertar_serie(
+    IN p_id_usuario INT,
     IN p_nombre VARCHAR(255),
     IN p_fecha_estreno DATE,
     IN p_fecha_fin DATE,
@@ -741,15 +723,17 @@ CREATE PROCEDURE sp_insertar_serie(
     IN p_director VARCHAR(255),
     IN p_imagen VARCHAR(255),
     IN p_cant_temporadas INT,
-    IN p_id_network INT
+    IN p_id_network INT,
+    IN p_trailerURL VARCHAR(255)
 )
 BEGIN
     START TRANSACTION;
-    INSERT INTO serie (nombre, fecha_estreno, fecha_fin, descripcion, director, imagen, cant_temporadas, id_network)
-    VALUES (p_nombre, p_fecha_estreno, p_fecha_fin, p_descripcion, p_director, p_imagen, p_cant_temporadas, p_id_network);
 
-    INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, detalle)
-    VALUES ('serie', 'INSERT', LAST_INSERT_ID(), NOW(), p_nombre);
+    INSERT INTO serie(nombre, fecha_estreno, fecha_fin, descripcion, director, imagen, cant_temporadas, id_network, trailerURL)
+    VALUES(p_nombre, p_fecha_estreno, p_fecha_fin, p_descripcion, p_director, p_imagen, p_cant_temporadas, p_id_network, p_trailerURL);
+
+    INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, detalle, trailerURL, id_usuario)
+    VALUES ('serie', 'INSERT', LAST_INSERT_ID(), NOW(), p_nombre, p_trailerURL, p_id_usuario);
 
     COMMIT;
 END //
@@ -758,35 +742,50 @@ DELIMITER ;
 
 DELIMITER //
 CREATE PROCEDURE sp_actualizar_serie(
+    IN p_id_usuario INT,
     IN p_id_serie INT,
     IN p_nombre VARCHAR(255),
     IN p_fecha_estreno DATE,
+    IN p_fecha_fin DATE,
     IN p_descripcion VARCHAR(255),
     IN p_director VARCHAR(255),
     IN p_imagen VARCHAR(255),
     IN p_cant_temporadas INT,
-    IN p_id_network INT
+    IN p_id_network INT,
+    IN p_trailerURL VARCHAR(255)
 )
 BEGIN
     START TRANSACTION;
 
     UPDATE serie
     SET nombre = COALESCE(p_nombre, nombre),
-        fecha_estreno = p_fecha_estreno,
+        fecha_estreno = COALESCE(p_fecha_estreno, fecha_estreno),
+        fecha_fin = COALESCE(p_fecha_fin, fecha_fin),
         descripcion = COALESCE(p_descripcion, descripcion),
         director = COALESCE(p_director, director),
         imagen = COALESCE(p_imagen, imagen),
         cant_temporadas = COALESCE(p_cant_temporadas, cant_temporadas),
-        id_network = COALESCE(p_id_network, id_network)
+        id_network = COALESCE(p_id_network, id_network),
+        trailerURL = COALESCE(p_trailerURL, trailerURL)
     WHERE id_serie = p_id_serie;
+
+    INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, detalle, trailerURL, id_usuario)
+    VALUES ('serie', 'UPDATE', p_id_serie, NOW(), COALESCE(p_nombre, 'Sin nombre'), COALESCE(p_trailerURL, ''), p_id_usuario);
 
     COMMIT;
 END //
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE sp_listar_series()
+CREATE PROCEDURE sp_listar_series(
+    IN p_id_usuario INT
+)
 BEGIN
+    -- Registrar auditoría de consulta (opcional)
+    INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, detalle, id_usuario)
+    VALUES ('serie', 'CONSULTA', NULL, NOW(), 'Listado de series consultado', p_id_usuario);
+
+    -- Listar series
     SELECT 
         id_serie,
         nombre,
@@ -796,8 +795,37 @@ BEGIN
         director,
         imagen,
         cant_temporadas,
-        id_network
+        id_network,
+        trailerURL 
     FROM serie;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_eliminar_serie(
+    IN p_id_usuario INT,
+    IN p_id_serie INT
+)
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        SELECT 'Error al eliminar la serie' AS mensaje;
+    END;
+
+    START TRANSACTION;
+
+    DELETE FROM comentarios_serie WHERE id_serie = p_id_serie;
+    DELETE FROM visualizaciones_serie WHERE id_serie = p_id_serie;
+    DELETE FROM calificaciones_serie WHERE id_serie = p_id_serie;
+    DELETE FROM genero_x_serie WHERE id_serie = p_id_serie;
+    DELETE FROM serie WHERE id_serie = p_id_serie;
+
+    INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, detalle, id_usuario)
+    VALUES ('serie', 'DELETE', p_id_serie, NOW(), 'Eliminada en cascada', p_id_usuario);
+
+    COMMIT;
+    SELECT 'Serie eliminada correctamente' AS mensaje;
 END //
 DELIMITER ;
 

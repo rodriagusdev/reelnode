@@ -303,3 +303,13 @@ C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\Microsoft.Web.WebView2.Wp
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\Microsoft.Web.WebView2.Core.xml
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\Microsoft.Web.WebView2.WinForms.xml
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\Microsoft.Web.WebView2.Wpf.xml
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\runtimes\win-x86\native\WebView2Loader.dll
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\runtimes\win-x64\native\WebView2Loader.dll
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\runtimes\win-arm64\native\WebView2Loader.dll
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\Microsoft.Web.WebView2.Core.dll
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\Microsoft.Web.WebView2.WinForms.dll
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\Microsoft.Web.WebView2.Wpf.dll
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\Microsoft.Web.WebView2.Core.xml
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\Microsoft.Web.WebView2.WinForms.xml
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\Microsoft.Web.WebView2.Wpf.xml
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.FormCalificar.resources

@@ -395,5 +395,15 @@ namespace Reelnode
                 }
             }
         }
+
+        // ACCIONES
+
+        public static void Calificar(int idMedia, string tipo)
+        {
+            if(tipo == "Serie") 
+            {
+                string query = "insert into calificaciones_serie(calificacion, id_serie)";
+            }
+        }
     } 
 }

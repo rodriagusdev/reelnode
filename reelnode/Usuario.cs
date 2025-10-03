@@ -8,6 +8,7 @@ namespace Reelnode
 {
     public class Usuario
     {
+        public int Id { get; set; }
         public string NombreUsuario { get; set; }
         public string Password { get; set; }
 
@@ -19,8 +20,9 @@ namespace Reelnode
 
 
         public Usuario() { }
-        public Usuario(string nombreUsuario, string password, string email, byte[] avatar, string rolUsuario)
+        public Usuario(int id, string nombreUsuario, string password, string email, byte[] avatar, string rolUsuario)
         {
+            Id = id;
             NombreUsuario = nombreUsuario;
             Password = password;
             RolUsuario = rolUsuario;

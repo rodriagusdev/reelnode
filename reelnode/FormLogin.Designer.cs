@@ -56,7 +56,7 @@
             this.BtnIngresar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(29)))), ((int)(((byte)(35)))));
             this.BtnIngresar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnIngresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnIngresar.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnIngresar.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnIngresar.ForeColor = System.Drawing.Color.White;
             this.BtnIngresar.Location = new System.Drawing.Point(55, 322);
             this.BtnIngresar.Name = "BtnIngresar";
@@ -72,6 +72,7 @@
             this.PanelUsuario.Controls.Add(this.LblPanelUsuario);
             this.PanelUsuario.Controls.Add(this.PanelUsuarioLinea);
             this.PanelUsuario.Controls.Add(this.TxtUsuario);
+            this.PanelUsuario.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
             this.PanelUsuario.Location = new System.Drawing.Point(55, 165);
             this.PanelUsuario.Name = "PanelUsuario";
             this.PanelUsuario.Padding = new System.Windows.Forms.Padding(5);
@@ -83,11 +84,11 @@
             this.LblPanelUsuario.AutoSize = true;
             this.LblPanelUsuario.BackColor = System.Drawing.Color.Transparent;
             this.LblPanelUsuario.Enabled = false;
-            this.LblPanelUsuario.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblPanelUsuario.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblPanelUsuario.ForeColor = System.Drawing.Color.White;
             this.LblPanelUsuario.Location = new System.Drawing.Point(8, 5);
             this.LblPanelUsuario.Name = "LblPanelUsuario";
-            this.LblPanelUsuario.Size = new System.Drawing.Size(50, 17);
+            this.LblPanelUsuario.Size = new System.Drawing.Size(56, 14);
             this.LblPanelUsuario.TabIndex = 21;
             this.LblPanelUsuario.Text = "Usuario";
             // 
@@ -104,11 +105,11 @@
             this.TxtUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(29)))), ((int)(((byte)(35)))));
             this.TxtUsuario.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtUsuario.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtUsuario.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtUsuario.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
             this.TxtUsuario.ForeColor = System.Drawing.Color.Cyan;
             this.TxtUsuario.Location = new System.Drawing.Point(5, 5);
             this.TxtUsuario.Name = "TxtUsuario";
-            this.TxtUsuario.Size = new System.Drawing.Size(296, 22);
+            this.TxtUsuario.Size = new System.Drawing.Size(296, 15);
             this.TxtUsuario.TabIndex = 12;
             this.TxtUsuario.TextChanged += new System.EventHandler(this.TxtUsuario_TextChanged);
             // 
@@ -133,11 +134,11 @@
             this.LblOlvidarPassword.AutoSize = true;
             this.LblOlvidarPassword.BackColor = System.Drawing.Color.Transparent;
             this.LblOlvidarPassword.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LblOlvidarPassword.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblOlvidarPassword.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
             this.LblOlvidarPassword.ForeColor = System.Drawing.Color.Turquoise;
             this.LblOlvidarPassword.Location = new System.Drawing.Point(84, 295);
             this.LblOlvidarPassword.Name = "LblOlvidarPassword";
-            this.LblOlvidarPassword.Size = new System.Drawing.Size(236, 18);
+            this.LblOlvidarPassword.Size = new System.Drawing.Size(266, 14);
             this.LblOlvidarPassword.TabIndex = 26;
             this.LblOlvidarPassword.Text = "¿Olvido la contraseña? Recuperar aquí";
             this.LblOlvidarPassword.Click += new System.EventHandler(this.LblOlvidarPassword_Click);
@@ -147,7 +148,7 @@
             this.BtnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(29)))), ((int)(((byte)(35)))));
             this.BtnSalir.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnSalir.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnSalir.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnSalir.ForeColor = System.Drawing.Color.White;
             this.BtnSalir.Location = new System.Drawing.Point(55, 376);
             this.BtnSalir.Name = "BtnSalir";
@@ -162,11 +163,11 @@
             this.LblRegistrar.AutoSize = true;
             this.LblRegistrar.BackColor = System.Drawing.Color.Transparent;
             this.LblRegistrar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LblRegistrar.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblRegistrar.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
             this.LblRegistrar.ForeColor = System.Drawing.Color.Turquoise;
             this.LblRegistrar.Location = new System.Drawing.Point(97, 268);
             this.LblRegistrar.Name = "LblRegistrar";
-            this.LblRegistrar.Size = new System.Drawing.Size(206, 18);
+            this.LblRegistrar.Size = new System.Drawing.Size(231, 14);
             this.LblRegistrar.TabIndex = 24;
             this.LblRegistrar.Text = "¿Usuario nuevo? Registrarse aquí";
             this.LblRegistrar.Click += new System.EventHandler(this.LblRegistrar_Click);
@@ -188,11 +189,11 @@
             this.LblPanelPassword.AutoSize = true;
             this.LblPanelPassword.BackColor = System.Drawing.Color.Transparent;
             this.LblPanelPassword.Enabled = false;
-            this.LblPanelPassword.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblPanelPassword.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
             this.LblPanelPassword.ForeColor = System.Drawing.Color.White;
             this.LblPanelPassword.Location = new System.Drawing.Point(8, 5);
             this.LblPanelPassword.Name = "LblPanelPassword";
-            this.LblPanelPassword.Size = new System.Drawing.Size(70, 17);
+            this.LblPanelPassword.Size = new System.Drawing.Size(77, 14);
             this.LblPanelPassword.TabIndex = 21;
             this.LblPanelPassword.Text = "Contraseña";
             // 
@@ -209,12 +210,12 @@
             this.TxtPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(29)))), ((int)(((byte)(35)))));
             this.TxtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtPassword.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TxtPassword.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtPassword.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
             this.TxtPassword.ForeColor = System.Drawing.Color.Cyan;
             this.TxtPassword.Location = new System.Drawing.Point(5, 5);
             this.TxtPassword.Name = "TxtPassword";
             this.TxtPassword.PasswordChar = '*';
-            this.TxtPassword.Size = new System.Drawing.Size(296, 22);
+            this.TxtPassword.Size = new System.Drawing.Size(296, 15);
             this.TxtPassword.TabIndex = 12;
             this.TxtPassword.TextChanged += new System.EventHandler(this.TxtPassword_TextChanged);
             // 
