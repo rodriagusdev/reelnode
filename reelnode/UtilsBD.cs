@@ -379,12 +379,14 @@ namespace Reelnode
             }
         }
 
-        public static void CargarNetwork() 
+        public static void CargarNetwork()
         {
-            string query = "SELECT nombre FROM network";
+            string procedure = "sp_listar_network";
 
-            using (MySqlCommand cmd = new MySqlCommand(query, Conexion.GetConnection()))
+            using (MySqlCommand cmd = new MySqlCommand(procedure, Conexion.GetConnection()))
             {
+                cmd.CommandType = CommandType.StoredProcedure;
+
                 using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
