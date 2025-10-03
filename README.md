@@ -12,9 +12,9 @@ CheckBoxList: ChkList
 
 ToolStripMenu: ToolStpMenuX
 
-## Todo List
+# Todo List
 
-# Login
+## Login
 
 ✅Logear al sistema
 
@@ -22,7 +22,7 @@ ToolStripMenu: ToolStpMenuX
 
 ✅¿Olvide mi contraseña? (lo hizo mandu) 
 
-# Administrador
+## Administrador
 
 ✅Crear peliculas
 
@@ -54,7 +54,7 @@ ToolStripMenu: ToolStpMenuX
 
 ✅Carga de imagenes
 
-# Usuario
+## Usuario
 ❌Registrar Calificaciones
 
 ❌Consultar series y peliculas con filtros
