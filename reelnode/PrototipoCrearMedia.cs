@@ -58,7 +58,7 @@ namespace Reelnode
                         FechaEstreno = RandomFecha(),
                         Descripcion = descripciones[rnd.Next(descripciones.Length)],
                         Director = directores[rnd.Next(directores.Length)],
-                        Duracion = duraciones[rnd.Next(duraciones.Length)],
+                        Duracion = int.Parse(duraciones[rnd.Next(duraciones.Length)]),
                         ImagenURL = null // Puedes asignar una imagen por defecto si quieres
                     };
 

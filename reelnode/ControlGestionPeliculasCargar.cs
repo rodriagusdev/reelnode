@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Web.WebView2.WinForms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,15 +20,13 @@ namespace Reelnode
         private Color _c1 = Color.FromArgb(20, 30, 48);
         private Color _c2 = Color.FromArgb(36, 59, 85);
         private LinearGradientMode _modo = LinearGradientMode.Vertical;
+        private string trailerFinalURL = null;
         public ControlGestionPeliculasCargar()
         {
             InitializeComponent();
 
             BtnCargar.FlatAppearance.BorderColor = Color.FromArgb(25, 47, 71);
-            BtnSalir.FlatAppearance.BorderColor = Color.FromArgb(25, 47, 71);
-            BtnPrevisualizar.FlatAppearance.BorderColor = Color.FromArgb(25, 47, 71);
-
-            
+            BtnPrevisualizar.FlatAppearance.BorderColor = Color.FromArgb(25, 47, 71);          
         }
         private void PanelPeliculaCreacion_Paint(object sender, PaintEventArgs e)
         {
@@ -44,10 +43,6 @@ namespace Reelnode
             PanelPeliculaCreacion.Invalidate();
         }
 
-        private void BtnSalir_Click(object sender, EventArgs e)
-        {
-            //this.Close();
-        }
 
         private void BtnPrevisualizar_Click(object sender, EventArgs e)
         {
@@ -56,26 +51,61 @@ namespace Reelnode
 
         private void BtnCargar_Click(object sender, EventArgs e)
         {
-            if(PicPelicula.Image != null)
+            if (PicPelicula.Image == null)
             {
-                Pelicula nuevaPelicula = new Pelicula
-                     {
-                          Nombre = TxtNombre.Text,
-                          Director = TxtDirector.Text,
-                          Duracion = TxtDuracion.Text,
-                          FechaEstreno = DtpFechaEstreno.Value,
-                          Descripcion = TxtDescripcion.Text,
-                          ImagenURL = TxtURLImagen.Text,     
-                          TrailerURL = TxtURLTrailer.Text
-                     };
-
-                UtilsBD.InsertarPeliculaBD(nuevaPelicula);
+                MessageBox.Show("Imagen invalida.", "Error al cargar serie", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
+
+            if (trailerFinalURL == null)
             {
-                MessageBox.Show("Imagen invalida", "Error al cargar pelicula", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }    
+                MessageBox.Show("Trailer invalido.", "Error al cargar serie", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (TxtNombre.Text == "" || TxtNombre.Text == null)
+            {
+                MessageBox.Show("La pelicula no tiene titulo.", "Error al cargar serie", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int duracion;
+            if (!int.TryParse(TxtDuracion.Text, out duracion))
+            {
+                MessageBox.Show("La duracion no es un numero entero.", "Error al cargar serie", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Pelicula nuevaPelicula = new Pelicula
+            {
+                Nombre = TxtNombre.Text,
+                Director = TxtDirector.Text,
+                Duracion = duracion,
+                FechaEstreno = DtpFechaEstreno.Value,
+                Descripcion = TxtDescripcion.Text,
+                ImagenURL = TxtURLImagen.Text,
+                TrailerURL = TxtURLTrailer.Text,
+                Network = Utils.ObtenerNetwork(CboNetwork.Text),
+            };
+
+            UtilsBD.InsertarPeliculaBD(nuevaPelicula);
+        }
+      
+        // Uso una funcion asincrona (async) porque la URL del trailer necesita hacer una peticion a la internet que toma un tiempo
+        // y no quiero que la interfaz de usuario se congele mientras espera la respuesta. Ademas, no quiero que la funcion avance
+        // hasta que la peticion se complete, por eso uso 'await'.
+        private async void BtnPrevisualizarTrailer_Click(object sender, EventArgs e)
+        {
+            trailerFinalURL = null;
+            trailerFinalURL = await Utils.VerificarTrailer(PanelTrailerSerie, TxtURLTrailer.Text);
         }
 
+        private void ControlGestionPeliculasCargar_Load(object sender, EventArgs e)
+        {
+            foreach (Network net in UtilsBD.networksCargadas) { 
+                CboNetwork.Items.Add(net.Nombre);
+            }
+            CboNetwork.SelectedIndex = 0;
+        }
     }
 }

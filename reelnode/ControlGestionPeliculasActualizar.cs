@@ -74,9 +74,10 @@ namespace Reelnode
                     actualizarPelicula.Nombre = TxtNombre.Text;
                     actualizarPelicula.FechaEstreno = DtpFechaEstreno.Value;
                     actualizarPelicula.Director = TxtDirector.Text;
-                    actualizarPelicula.Duracion = TxtDuracion.Text;
+                    actualizarPelicula.Duracion = int.Parse(TxtDuracion.Text);
                     actualizarPelicula.Descripcion = TxtDescripcion.Text;
                     actualizarPelicula.ImagenURL = TxtURLImagen.Text;
+                    actualizarPelicula.Network = Utils.ObtenerNetwork(CboNetwork.Text);
                 }
 
                 UtilsBD.ActualizarPelicula(actualizarPelicula);

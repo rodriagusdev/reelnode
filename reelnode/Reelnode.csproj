@@ -221,6 +221,7 @@
     </Compile>
     <Compile Include="ITemaPersonalizable.cs" />
     <Compile Include="Media.cs" />
+    <Compile Include="Network.cs" />
     <Compile Include="Pelicula.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -50,6 +50,9 @@
             this.BtnPrevisualizar = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.PanelMain = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.BtnPrevisualizarTrailer = new System.Windows.Forms.Button();
+            this.PanelTrailerSerie = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.TxtURLTrailer = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -62,8 +65,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.PanelTrailerSerie = new System.Windows.Forms.Panel();
-            this.BtnPrevisualizarTrailer = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.CboNetwork = new System.Windows.Forms.ComboBox();
             this.PanelUsuario.SuspendLayout();
             this.PanelFecha.SuspendLayout();
             this.PanelDirector.SuspendLayout();
@@ -75,6 +79,7 @@
             this.panel2.SuspendLayout();
             this.PanelMain.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.panel10.SuspendLayout();
             this.SuspendLayout();
             // 
             // PanelUsuario
@@ -103,7 +108,7 @@
             // 
             this.PanelFecha.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.PanelFecha.Controls.Add(this.DtpFechaEstreno);
-            this.PanelFecha.Location = new System.Drawing.Point(144, 191);
+            this.PanelFecha.Location = new System.Drawing.Point(144, 240);
             this.PanelFecha.Name = "PanelFecha";
             this.PanelFecha.Padding = new System.Windows.Forms.Padding(5);
             this.PanelFecha.Size = new System.Drawing.Size(205, 35);
@@ -225,7 +230,7 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.panel1.Controls.Add(this.DtpFechaFin);
             this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Location = new System.Drawing.Point(144, 288);
+            this.panel1.Location = new System.Drawing.Point(144, 337);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(5);
             this.panel1.Size = new System.Drawing.Size(205, 35);
@@ -316,6 +321,9 @@
             // PanelMain
             // 
             this.PanelMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
+            this.PanelMain.Controls.Add(this.label13);
+            this.PanelMain.Controls.Add(this.panel10);
+            this.PanelMain.Controls.Add(this.label2);
             this.PanelMain.Controls.Add(this.BtnPrevisualizarTrailer);
             this.PanelMain.Controls.Add(this.PanelTrailerSerie);
             this.PanelMain.Controls.Add(this.panel5);
@@ -347,6 +355,42 @@
             this.PanelMain.Size = new System.Drawing.Size(1280, 720);
             this.PanelMain.TabIndex = 3;
             this.PanelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelMain_Paint);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
+            this.label2.Location = new System.Drawing.Point(732, 58);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 17);
+            this.label2.TabIndex = 53;
+            this.label2.Text = "Trailer";
+            // 
+            // BtnPrevisualizarTrailer
+            // 
+            this.BtnPrevisualizarTrailer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(184)))), ((int)(((byte)(193)))));
+            this.BtnPrevisualizarTrailer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnPrevisualizarTrailer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnPrevisualizarTrailer.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnPrevisualizarTrailer.ForeColor = System.Drawing.Color.Black;
+            this.BtnPrevisualizarTrailer.Location = new System.Drawing.Point(735, 484);
+            this.BtnPrevisualizarTrailer.Name = "BtnPrevisualizarTrailer";
+            this.BtnPrevisualizarTrailer.Size = new System.Drawing.Size(447, 35);
+            this.BtnPrevisualizarTrailer.TabIndex = 52;
+            this.BtnPrevisualizarTrailer.Text = "Previsualizar trailer";
+            this.BtnPrevisualizarTrailer.UseVisualStyleBackColor = false;
+            this.BtnPrevisualizarTrailer.Click += new System.EventHandler(this.BtnPrevisualizarTrailer_Click);
+            // 
+            // PanelTrailerSerie
+            // 
+            this.PanelTrailerSerie.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
+            this.PanelTrailerSerie.Location = new System.Drawing.Point(735, 78);
+            this.PanelTrailerSerie.Margin = new System.Windows.Forms.Padding(2);
+            this.PanelTrailerSerie.Name = "PanelTrailerSerie";
+            this.PanelTrailerSerie.Size = new System.Drawing.Size(447, 325);
+            this.PanelTrailerSerie.TabIndex = 51;
             // 
             // panel5
             // 
@@ -454,7 +498,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label1.Location = new System.Drawing.Point(141, 268);
+            this.label1.Location = new System.Drawing.Point(141, 317);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(118, 17);
             this.label1.TabIndex = 44;
@@ -466,7 +510,7 @@
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label11.Location = new System.Drawing.Point(141, 171);
+            this.label11.Location = new System.Drawing.Point(141, 220);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(82, 17);
             this.label11.TabIndex = 43;
@@ -484,29 +528,38 @@
             this.label10.TabIndex = 42;
             this.label10.Text = "Título de la serie";
             // 
-            // PanelTrailerSerie
+            // label13
             // 
-            this.PanelTrailerSerie.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
-            this.PanelTrailerSerie.Location = new System.Drawing.Point(735, 78);
-            this.PanelTrailerSerie.Margin = new System.Windows.Forms.Padding(2);
-            this.PanelTrailerSerie.Name = "PanelTrailerSerie";
-            this.PanelTrailerSerie.Size = new System.Drawing.Size(447, 325);
-            this.PanelTrailerSerie.TabIndex = 51;
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.Transparent;
+            this.label13.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
+            this.label13.Location = new System.Drawing.Point(141, 147);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(56, 17);
+            this.label13.TabIndex = 79;
+            this.label13.Text = "Network";
             // 
-            // BtnPrevisualizarTrailer
+            // panel10
             // 
-            this.BtnPrevisualizarTrailer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(184)))), ((int)(((byte)(193)))));
-            this.BtnPrevisualizarTrailer.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnPrevisualizarTrailer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnPrevisualizarTrailer.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnPrevisualizarTrailer.ForeColor = System.Drawing.Color.Black;
-            this.BtnPrevisualizarTrailer.Location = new System.Drawing.Point(735, 484);
-            this.BtnPrevisualizarTrailer.Name = "BtnPrevisualizarTrailer";
-            this.BtnPrevisualizarTrailer.Size = new System.Drawing.Size(447, 35);
-            this.BtnPrevisualizarTrailer.TabIndex = 52;
-            this.BtnPrevisualizarTrailer.Text = "Previsualizar trailer";
-            this.BtnPrevisualizarTrailer.UseVisualStyleBackColor = false;
-            this.BtnPrevisualizarTrailer.Click += new System.EventHandler(this.BtnPrevisualizarTrailer_Click);
+            this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
+            this.panel10.Controls.Add(this.CboNetwork);
+            this.panel10.Location = new System.Drawing.Point(144, 167);
+            this.panel10.Name = "panel10";
+            this.panel10.Padding = new System.Windows.Forms.Padding(5);
+            this.panel10.Size = new System.Drawing.Size(205, 35);
+            this.panel10.TabIndex = 78;
+            // 
+            // CboNetwork
+            // 
+            this.CboNetwork.BackColor = System.Drawing.SystemColors.Window;
+            this.CboNetwork.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CboNetwork.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboNetwork.FormattingEnabled = true;
+            this.CboNetwork.Location = new System.Drawing.Point(5, 5);
+            this.CboNetwork.Name = "CboNetwork";
+            this.CboNetwork.Size = new System.Drawing.Size(195, 21);
+            this.CboNetwork.TabIndex = 0;
             // 
             // ControlGestionSeriesCargar
             // 
@@ -516,6 +569,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ControlGestionSeriesCargar";
             this.Size = new System.Drawing.Size(1280, 720);
+            this.Load += new System.EventHandler(this.ControlGestionSeriesCargar_Load);
             this.PanelUsuario.ResumeLayout(false);
             this.PanelUsuario.PerformLayout();
             this.PanelFecha.ResumeLayout(false);
@@ -535,6 +589,7 @@
             this.PanelMain.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.panel10.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -576,5 +631,9 @@
         private System.Windows.Forms.TextBox TxtURLTrailer;
         private System.Windows.Forms.Panel PanelTrailerSerie;
         private System.Windows.Forms.Button BtnPrevisualizarTrailer;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.ComboBox CboNetwork;
     }
 }

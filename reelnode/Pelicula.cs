@@ -16,12 +16,13 @@ namespace Reelnode
         public override string Director {  get; set; }
         public override string ImagenURL { get; set; }
 
+        public override int Network { get; set; }
         public override string Tipo { get; set; }
         public override string TrailerURL { get; set; }
-        public string Duracion { get; set; }
+        public int Duracion { get; set; }
 
         public Pelicula() { }
-        public Pelicula(string nombre, DateTime fechaEstreno, string descripcion, string director, string img, string duracion, string trailerURL) 
+        public Pelicula(string nombre, DateTime fechaEstreno, string descripcion, string director, string img, int duracion, string trailerURL, int network)
         {
             this.Nombre = nombre;
             this.FechaEstreno = fechaEstreno;
@@ -31,7 +32,8 @@ namespace Reelnode
             this.Duracion = duracion;
             this.TrailerURL = trailerURL;
             this.Tipo = "Pelicula";
+            this.Network = network;
         }
-        
+
     }
 }

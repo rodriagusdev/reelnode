@@ -33,7 +33,7 @@ CREATE TABLE peliculas (
     descripcion VARCHAR(255),
     director VARCHAR(255),
     imagenURL VARCHAR(255),
-    duracion VARCHAR(50),
+    duracion int,
     trailerURL varchar(255),
     id_network int,
     foreign key(id_network) references network(id_network)
@@ -537,15 +537,16 @@ CREATE PROCEDURE sp_insertar_pelicula(
     IN p_fecha DATE,
     IN p_descripcion VARCHAR(255),
     IN p_director VARCHAR(255),
-    IN p_duracion VARCHAR(50),
+    IN p_duracion int,
     IN p_imagenURL VARCHAR(255),
-    IN p_trailerURL VARCHAR(255)
+    IN p_trailerURL VARCHAR(255),
+    in p_id_network int
 )
 BEGIN
     START TRANSACTION;
 
-    INSERT INTO peliculas(nombre, fecha_estreno, descripcion, director, duracion, imagenURL, trailerURL)
-    VALUES(p_nombre, p_fecha, p_descripcion, p_director, p_duracion, p_imagenURL, p_trailerURL);
+    INSERT INTO peliculas(nombre, fecha_estreno, descripcion, director, duracion, imagenURL, trailerURL, id_network)
+    VALUES(p_nombre, p_fecha, p_descripcion, p_director, p_duracion, p_imagenURL, p_trailerURL, p_id_network);
     -- EJEMPLO DE INSERCION EN AUDITORIA QUE TAMBIEN OCURRE EN trg_insert_pelicula, el trigger arriba de este procedimiento. 
     -- Genera doble insercion. Deben borrarse todas las auditorias que se encuentren en procedimientos. Para inserciones en auditorias SOLO usar triggers.alter
     
@@ -569,7 +570,7 @@ CREATE PROCEDURE sp_actualizar_pelicula(
     IN p_descripcion VARCHAR(255),
     IN p_director VARCHAR(255),
     IN p_imagenURL VARCHAR(255),
-    IN p_duracion VARCHAR(50),
+    IN p_duracion int,
     IN p_trailerURL VARCHAR(255)
 )
 BEGIN
@@ -734,7 +735,6 @@ DELIMITER ;
 
 DELIMITER //
 CREATE PROCEDURE sp_insertar_serie(
-    IN p_id_usuario INT,
     IN p_nombre VARCHAR(255),
     IN p_fecha_estreno DATE,
     IN p_fecha_fin DATE,
@@ -894,6 +894,6 @@ SET SQL_SAFE_UPDATES = 0;
 select * from calificaciones_peliculas;
 select * from comentarios_peli;
 select * from peliculas;
+select * from serie;
 select * from usuario;
 select * from network;
-delete from peliculas;

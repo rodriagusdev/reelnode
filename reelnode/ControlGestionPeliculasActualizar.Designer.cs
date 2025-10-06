@@ -61,6 +61,11 @@
             this.BtnBuscarPelicula = new System.Windows.Forms.Button();
             this.PanelBuscarPeliculaNombre = new System.Windows.Forms.Panel();
             this.TxtBuscarNombrePelicula = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.CboNetwork = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.PanelTrailerSerie = new System.Windows.Forms.Panel();
             this.PanelMain.SuspendLayout();
             this.panel1.SuspendLayout();
             this.PanelDescripcion.SuspendLayout();
@@ -73,10 +78,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.DataGridPeliculas)).BeginInit();
             this.CtxMenu.SuspendLayout();
             this.PanelBuscarPeliculaNombre.SuspendLayout();
+            this.panel10.SuspendLayout();
             this.SuspendLayout();
             // 
             // PanelMain
             // 
+            this.PanelMain.Controls.Add(this.label12);
+            this.PanelMain.Controls.Add(this.PanelTrailerSerie);
+            this.PanelMain.Controls.Add(this.label13);
+            this.PanelMain.Controls.Add(this.panel10);
             this.PanelMain.Controls.Add(this.BtnPrevisualizar);
             this.PanelMain.Controls.Add(this.label6);
             this.PanelMain.Controls.Add(this.label8);
@@ -171,7 +181,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label5.Location = new System.Drawing.Point(691, 267);
+            this.label5.Location = new System.Drawing.Point(190, 628);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 17);
             this.label5.TabIndex = 58;
@@ -232,7 +242,7 @@
             this.BtnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnActualizar.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnActualizar.ForeColor = System.Drawing.Color.Black;
-            this.BtnActualizar.Location = new System.Drawing.Point(694, 504);
+            this.BtnActualizar.Location = new System.Drawing.Point(747, 668);
             this.BtnActualizar.Name = "BtnActualizar";
             this.BtnActualizar.Size = new System.Drawing.Size(362, 35);
             this.BtnActualizar.TabIndex = 54;
@@ -244,10 +254,10 @@
             // 
             this.PanelDescripcion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.PanelDescripcion.Controls.Add(this.TxtDescripcion);
-            this.PanelDescripcion.Location = new System.Drawing.Point(694, 287);
+            this.PanelDescripcion.Location = new System.Drawing.Point(193, 648);
             this.PanelDescripcion.Name = "PanelDescripcion";
             this.PanelDescripcion.Padding = new System.Windows.Forms.Padding(5);
-            this.PanelDescripcion.Size = new System.Drawing.Size(362, 181);
+            this.PanelDescripcion.Size = new System.Drawing.Size(330, 69);
             this.PanelDescripcion.TabIndex = 49;
             // 
             // TxtDescripcion
@@ -260,7 +270,7 @@
             this.TxtDescripcion.Location = new System.Drawing.Point(5, 5);
             this.TxtDescripcion.Multiline = true;
             this.TxtDescripcion.Name = "TxtDescripcion";
-            this.TxtDescripcion.Size = new System.Drawing.Size(352, 171);
+            this.TxtDescripcion.Size = new System.Drawing.Size(320, 59);
             this.TxtDescripcion.TabIndex = 12;
             // 
             // PanelImagen
@@ -456,6 +466,60 @@
             this.TxtBuscarNombrePelicula.Size = new System.Drawing.Size(195, 22);
             this.TxtBuscarNombrePelicula.TabIndex = 12;
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.Transparent;
+            this.label13.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
+            this.label13.Location = new System.Drawing.Point(186, 556);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(56, 17);
+            this.label13.TabIndex = 79;
+            this.label13.Text = "Network";
+            // 
+            // panel10
+            // 
+            this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
+            this.panel10.Controls.Add(this.CboNetwork);
+            this.panel10.Location = new System.Drawing.Point(189, 576);
+            this.panel10.Name = "panel10";
+            this.panel10.Padding = new System.Windows.Forms.Padding(5);
+            this.panel10.Size = new System.Drawing.Size(205, 35);
+            this.panel10.TabIndex = 78;
+            // 
+            // CboNetwork
+            // 
+            this.CboNetwork.BackColor = System.Drawing.SystemColors.Window;
+            this.CboNetwork.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CboNetwork.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboNetwork.FormattingEnabled = true;
+            this.CboNetwork.Location = new System.Drawing.Point(5, 5);
+            this.CboNetwork.Name = "CboNetwork";
+            this.CboNetwork.Size = new System.Drawing.Size(195, 21);
+            this.CboNetwork.TabIndex = 0;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
+            this.label12.Location = new System.Drawing.Point(675, 261);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(45, 17);
+            this.label12.TabIndex = 81;
+            this.label12.Text = "Trailer";
+            // 
+            // PanelTrailerSerie
+            // 
+            this.PanelTrailerSerie.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
+            this.PanelTrailerSerie.Location = new System.Drawing.Point(678, 281);
+            this.PanelTrailerSerie.Margin = new System.Windows.Forms.Padding(2);
+            this.PanelTrailerSerie.Name = "PanelTrailerSerie";
+            this.PanelTrailerSerie.Size = new System.Drawing.Size(447, 325);
+            this.PanelTrailerSerie.TabIndex = 80;
+            // 
             // ControlGestionPeliculasActualizar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -483,6 +547,7 @@
             this.CtxMenu.ResumeLayout(false);
             this.PanelBuscarPeliculaNombre.ResumeLayout(false);
             this.PanelBuscarPeliculaNombre.PerformLayout();
+            this.panel10.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -521,5 +586,10 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button BtnPrevisualizar;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.ComboBox CboNetwork;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Panel PanelTrailerSerie;
     }
 }

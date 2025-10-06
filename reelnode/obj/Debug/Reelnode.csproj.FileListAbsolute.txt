@@ -315,3 +315,4 @@ D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\Microsoft.Web.WebView2.Wpf.xm
 D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.FormCalificar.resources
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\Reelnode.FormCalificar.resources
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.ControlComentarios.resources
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\ProjectoNuevo.ControlComentarios.resources

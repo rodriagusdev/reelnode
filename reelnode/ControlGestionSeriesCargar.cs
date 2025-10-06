@@ -19,7 +19,7 @@ namespace Reelnode
         private Color _c1 = Color.FromArgb(20, 30, 48);
         private Color _c2 = Color.FromArgb(36, 59, 85);
         private LinearGradientMode _modo = LinearGradientMode.Vertical;
-        private bool trailerCargadoExitosamente = false;
+        private string trailerFinalURL = null;
         public ControlGestionSeriesCargar()
         {
             InitializeComponent();
@@ -29,8 +29,6 @@ namespace Reelnode
 
             Utils.TemaControles(PanelMain, PicSerie);
         }
-
-
 
         private void PanelMain_Paint(object sender, PaintEventArgs e)
         {
@@ -50,24 +48,45 @@ namespace Reelnode
 
         private void BtnCargar_Click(object sender, EventArgs e)
         {
-            if (PicSerie.Image != null && trailerCargadoExitosamente == true) { 
-                Serie nuevaSerie = new Serie
-                {
-                    Nombre = TxtNombre.Text,
-                    Director = TxtDirector.Text,
-                    FechaEstreno = DtpFechaEstreno.Value,
-                    FechaFin = DtpFechaFin.Value,
-                    Descripcion = TxtDescripcion.Text,
-                    ImagenURL = TxtURLImagen.Text,
-                    TrailerURL = TxtURLTrailer.Text
-                };
-
-                UtilsBD.InsertarSerieBD(nuevaSerie);
-            }
-            else
+            if(PicSerie.Image == null)
             {
-                MessageBox.Show("Imagen o trailer invalida.", "Error al cargar serie", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Imagen invalida.", "Error al cargar serie", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
+
+            if(trailerFinalURL == null)
+            {
+                MessageBox.Show("Trailer invalido.", "Error al cargar serie", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if(TxtNombre.Text == "" || TxtNombre.Text == null)
+            {
+                MessageBox.Show("La serie no tiene titulo.", "Error al cargar serie", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int cantTemporadas;
+            if (!int.TryParse(TxtDuracion.Text, out cantTemporadas))
+            {
+                MessageBox.Show("Cantidad de temporadas no es un numero entero.", "Error al cargar serie", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Serie nuevaSerie = new Serie
+            {
+                Nombre = TxtNombre.Text,
+                Director = TxtDirector.Text,
+                FechaEstreno = DtpFechaEstreno.Value,
+                FechaFin = DtpFechaFin.Value,
+                Descripcion = TxtDescripcion.Text,
+                ImagenURL = TxtURLImagen.Text,
+                TrailerURL = TxtURLTrailer.Text,
+                Temporadas = cantTemporadas,
+                Network = Utils.ObtenerNetwork(CboNetwork.Text),
+            };
+
+            UtilsBD.InsertarSerieBD(nuevaSerie);
         }
 
         private void BtnPrevisualizar_Click(object sender, EventArgs e)
@@ -75,59 +94,19 @@ namespace Reelnode
             Utils.CargarImagenDesdeURL(PicSerie, TxtURLImagen.Text);
         }
 
-        // Uso una funcion asincrona (async) porque la URL del trailer necesita hacer una peticion a la internet que toma un tiempo
-        // y no quiero que la interfaz de usuario se congele mientras espera la respuesta. Ademas, no quiero que la funcion avance
-        // hasta que la peticion se complete, por eso uso 'await'.
         private async void BtnPrevisualizarTrailer_Click(object sender, EventArgs e)
         {
-            PanelTrailerSerie.Controls.Clear();
-            trailerCargadoExitosamente = false;
-
-            WebView2 trailer = new WebView2
-            {
-                Dock = DockStyle.Fill
-            };
-            PanelTrailerSerie.Controls.Add(trailer);
-
-            // Aca espero que el WebView2 este listo para cargar contenido web. Await = esperando
-            await trailer.EnsureCoreWebView2Async(null);
-
-            trailer.NavigationCompleted += (trailerSender, trailerArgs) =>
-            {
-                WebView2 webView = trailerSender as WebView2;
-                // Es una propiedad del WebView2 que indica si la navegacion fue exitosa o no
-                // Si fue exitosa, la variable trailerCargadoExitosamente se pone en true y el usuario podra cargar la serie
-                trailerCargadoExitosamente = trailerArgs.IsSuccess;
-
-                if (!trailerArgs.IsSuccess)
-                {
-                    MessageBox.Show($"Error al cargar el trailer: {trailerArgs.WebErrorStatus}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    if (webView != null)
-                        webView.Source = null;
-                }
-            };
-
-
-
-            string videoId = Utils.ExtraerVideoId(TxtURLTrailer.Text);
-
-            if (string.IsNullOrEmpty(videoId))
-            {
-                MessageBox.Show("No se pudo extraer el ID del video.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            //?rel=0&controls=1&autoplay=1 ->
-            //rel=0 evita videos relacionados al finalizar, controls=1 muestra controles, autoplay=1 reproduce automaticamente
-            //Separar con "?"
-
-            string embedUrl = $"https://www.youtube.com/embed/{videoId}?rel=0&controls=1&autoplay=1";
-            trailer.Source = new Uri(embedUrl);
-
-            PanelTrailerSerie.Invalidate();
+            trailerFinalURL = null;
+            trailerFinalURL = await Utils.VerificarTrailer(PanelTrailerSerie, TxtURLTrailer.Text);
         }
 
-       
-
+        private void ControlGestionSeriesCargar_Load(object sender, EventArgs e)
+        {
+            foreach (Network net in UtilsBD.networksCargadas)
+            {
+                CboNetwork.Items.Add(net.Nombre);
+            }
+            CboNetwork.SelectedIndex = 0;
+        }
     }
 }

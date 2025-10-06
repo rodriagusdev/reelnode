@@ -19,14 +19,15 @@ namespace Reelnode
 
         public override string Tipo { get; set; }
         public override string TrailerURL { get; set; }
+
+        public override int Network { get; set; }
         public int Temporadas { get; set; }
         public DateTime FechaFin {  get; set; }
-        public List<string> Network { get; set; }
 
         public Serie() { }
 
         public Serie(int id, string nombre, DateTime fecha, DateTime fechaFin, string descripcion, 
-            string director, string img, byte temporadas, List<string> network, string trailerURL)
+            string director, string img, byte temporadas, int network, string trailerURL)
         {
             this.Id = id;
             this.Nombre = nombre;

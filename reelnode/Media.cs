@@ -17,5 +17,6 @@ namespace Reelnode
         public abstract string ImagenURL { get; set; }
         public abstract string Tipo { get; set; }
         public abstract string TrailerURL { get; set; }
+        public abstract int Network { get; set; }
     }
 }
