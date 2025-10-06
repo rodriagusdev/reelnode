@@ -27,6 +27,7 @@ namespace Reelnode
             }
             controlToShow.Visible = true;
             controlToShow.Dock = DockStyle.Fill;
+            panel.Invalidate();
         }
 
         public static void CargarImagenDesdeURL(PictureBox pictureBox, string url)
@@ -113,6 +114,7 @@ namespace Reelnode
             }
         }
 
+        // Metodo para actualizar las grillas de peliculas y series
         public static void ActualizarListaGrid<T>(DataGridView grid, List<T> list, params string[] ocultarColumnas) 
         {
             grid.DataSource = null;
@@ -201,7 +203,7 @@ namespace Reelnode
             return embedUrl;
         }
 
-        public static int ObtenerNetwork(string nombreNet) 
+        public static int ObtenerNetworkId(string nombreNet) 
         {
             foreach (Network net in UtilsBD.networksCargadas)
             {
@@ -209,6 +211,44 @@ namespace Reelnode
             }
 
             return 1;
+        }
+
+        public static void CargarNetwork(ComboBox cbo)
+        {
+            foreach (Network net in UtilsBD.networksCargadas)
+            {
+                cbo.Items.Add(net.Nombre);
+            }
+            cbo.SelectedIndex = 0;
+        }
+
+        public static void CrearFlowPanel<T>(FlowLayoutPanel flowPnl, List<T> list, Action<int> abrirPestana) where T : Media
+        {
+            flowPnl.Controls.Clear();
+
+            foreach (var media in list)
+            {
+                Panel panelTemporal = new Panel
+                {
+                    Size = new Size(220, 220),
+                    Margin = new Padding(10),
+                    BackColor = Color.Transparent,
+                };
+
+                PictureBox poster = new PictureBox
+                {
+                    Size = new Size(210, 210),
+                    Location = new Point(10, 10),
+                    Image = Utils.DescargarImagenDesdeURL(media.ImagenURL),
+                    SizeMode = PictureBoxSizeMode.StretchImage,
+                    Cursor = Cursors.Hand
+                };
+
+                poster.Click += (s, e) => abrirPestana(media.Id);
+
+                panelTemporal.Controls.Add(poster);
+                flowPnl.Controls.Add(panelTemporal);
+            }
         }
     }
 }

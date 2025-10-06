@@ -45,6 +45,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStpMenuHome,
             this.ToolStpMenuUsuarios,
@@ -52,23 +53,23 @@
             this.ToolStpMenuSeries});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(863, 26);
+            this.menuStrip1.Size = new System.Drawing.Size(863, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // ToolStpMenuHome
             // 
-            this.ToolStpMenuHome.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ToolStpMenuHome.Font = new System.Drawing.Font("Courier New", 9F);
             this.ToolStpMenuHome.Name = "ToolStpMenuHome";
-            this.ToolStpMenuHome.Size = new System.Drawing.Size(55, 22);
+            this.ToolStpMenuHome.Size = new System.Drawing.Size(47, 20);
             this.ToolStpMenuHome.Text = "Home";
             this.ToolStpMenuHome.Click += new System.EventHandler(this.ToolStpMenuHome_Click);
             // 
             // ToolStpMenuUsuarios
             // 
-            this.ToolStpMenuUsuarios.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ToolStpMenuUsuarios.Font = new System.Drawing.Font("Courier New", 9F);
             this.ToolStpMenuUsuarios.Name = "ToolStpMenuUsuarios";
-            this.ToolStpMenuUsuarios.Size = new System.Drawing.Size(136, 22);
+            this.ToolStpMenuUsuarios.Size = new System.Drawing.Size(145, 20);
             this.ToolStpMenuUsuarios.Text = "Gestionar Usuarios";
             this.ToolStpMenuUsuarios.Click += new System.EventHandler(this.ToolStpMenuUsuarios_Click);
             // 
@@ -78,29 +79,29 @@
             this.ToolStpSubMenuCargarPeliculas,
             this.ToolStpSubMenuListarPeliculas,
             this.ToolStpMenuActualizarPelicula});
-            this.ToolStpMenuPeliculas.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ToolStpMenuPeliculas.Font = new System.Drawing.Font("Courier New", 9F);
             this.ToolStpMenuPeliculas.Name = "ToolStpMenuPeliculas";
-            this.ToolStpMenuPeliculas.Size = new System.Drawing.Size(135, 22);
+            this.ToolStpMenuPeliculas.Size = new System.Drawing.Size(152, 20);
             this.ToolStpMenuPeliculas.Text = "Gestionar Peliculas";
             // 
             // ToolStpSubMenuCargarPeliculas
             // 
             this.ToolStpSubMenuCargarPeliculas.Name = "ToolStpSubMenuCargarPeliculas";
-            this.ToolStpSubMenuCargarPeliculas.Size = new System.Drawing.Size(190, 22);
+            this.ToolStpSubMenuCargarPeliculas.Size = new System.Drawing.Size(207, 22);
             this.ToolStpSubMenuCargarPeliculas.Text = "Cargar Pelicula";
             this.ToolStpSubMenuCargarPeliculas.Click += new System.EventHandler(this.ToolStpSubMenuCargarPeliculas_Click);
             // 
             // ToolStpSubMenuListarPeliculas
             // 
             this.ToolStpSubMenuListarPeliculas.Name = "ToolStpSubMenuListarPeliculas";
-            this.ToolStpSubMenuListarPeliculas.Size = new System.Drawing.Size(190, 22);
+            this.ToolStpSubMenuListarPeliculas.Size = new System.Drawing.Size(207, 22);
             this.ToolStpSubMenuListarPeliculas.Text = "Listar Peliculas";
             this.ToolStpSubMenuListarPeliculas.Click += new System.EventHandler(this.ToolStpSubMenuListarPeliculas_Click);
             // 
             // ToolStpMenuActualizarPelicula
             // 
             this.ToolStpMenuActualizarPelicula.Name = "ToolStpMenuActualizarPelicula";
-            this.ToolStpMenuActualizarPelicula.Size = new System.Drawing.Size(190, 22);
+            this.ToolStpMenuActualizarPelicula.Size = new System.Drawing.Size(207, 22);
             this.ToolStpMenuActualizarPelicula.Text = "Actualizar Pelicula";
             this.ToolStpMenuActualizarPelicula.Click += new System.EventHandler(this.ToolStpMenuActualizarPelicula_Click);
             // 
@@ -110,29 +111,29 @@
             this.cargarSerieToolStripMenuItem1,
             this.listarSeriesToolStripMenuItem,
             this.actualizarSerieToolStripMenuItem});
-            this.ToolStpMenuSeries.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ToolStpMenuSeries.Font = new System.Drawing.Font("Courier New", 9F);
             this.ToolStpMenuSeries.Name = "ToolStpMenuSeries";
-            this.ToolStpMenuSeries.Size = new System.Drawing.Size(117, 22);
+            this.ToolStpMenuSeries.Size = new System.Drawing.Size(131, 20);
             this.ToolStpMenuSeries.Text = "Gestionar Series";
             // 
             // cargarSerieToolStripMenuItem1
             // 
             this.cargarSerieToolStripMenuItem1.Name = "cargarSerieToolStripMenuItem1";
-            this.cargarSerieToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.cargarSerieToolStripMenuItem1.Size = new System.Drawing.Size(186, 22);
             this.cargarSerieToolStripMenuItem1.Text = "Cargar Serie";
             this.cargarSerieToolStripMenuItem1.Click += new System.EventHandler(this.cargarSerieToolStripMenuItem1_Click);
             // 
             // listarSeriesToolStripMenuItem
             // 
             this.listarSeriesToolStripMenuItem.Name = "listarSeriesToolStripMenuItem";
-            this.listarSeriesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.listarSeriesToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.listarSeriesToolStripMenuItem.Text = "Listar Series";
             this.listarSeriesToolStripMenuItem.Click += new System.EventHandler(this.listarSeriesToolStripMenuItem_Click);
             // 
             // actualizarSerieToolStripMenuItem
             // 
             this.actualizarSerieToolStripMenuItem.Name = "actualizarSerieToolStripMenuItem";
-            this.actualizarSerieToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.actualizarSerieToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.actualizarSerieToolStripMenuItem.Text = "Actualizar Serie";
             this.actualizarSerieToolStripMenuItem.Click += new System.EventHandler(this.actualizarSerieToolStripMenuItem_Click);
             // 
@@ -141,9 +142,9 @@
             this.PanelAdmin.AutoSize = true;
             this.PanelAdmin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
             this.PanelAdmin.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelAdmin.Location = new System.Drawing.Point(0, 26);
+            this.PanelAdmin.Location = new System.Drawing.Point(0, 24);
             this.PanelAdmin.Name = "PanelAdmin";
-            this.PanelAdmin.Size = new System.Drawing.Size(863, 535);
+            this.PanelAdmin.Size = new System.Drawing.Size(863, 537);
             this.PanelAdmin.TabIndex = 3;
             this.PanelAdmin.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelAdmin_Paint);
             // 

@@ -85,7 +85,7 @@ namespace Reelnode
                 Descripcion = TxtDescripcion.Text,
                 ImagenURL = TxtURLImagen.Text,
                 TrailerURL = TxtURLTrailer.Text,
-                Network = Utils.ObtenerNetwork(CboNetwork.Text),
+                Network = Utils.ObtenerNetworkId(CboNetwork.Text),
             };
 
             UtilsBD.InsertarPeliculaBD(nuevaPelicula);

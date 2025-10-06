@@ -24,10 +24,19 @@ namespace Reelnode
         private ControlAdmin controlAdmin;
         private ControlVisualizacionPeliculas controlVisualizacionPeliculas;
         
-        private FlowLayoutPanel flowPanel;
+        private FlowLayoutPanel flowPanelPeliculas;
+        private FlowLayoutPanel flowPanelSeries;
+        private Panel panelContenedor;
         public FormMain()
         {
             InitializeComponent();
+
+            panelContenedor = new Panel
+            {
+                Dock = DockStyle.Fill,
+                BackColor = Color.Transparent
+            };
+            PanelMain.Controls.Add(panelContenedor);
 
             controlAdmin = new ControlAdmin();
             controlVisualizacionPeliculas = new ControlVisualizacionPeliculas();
@@ -39,10 +48,10 @@ namespace Reelnode
             controlVisualizacionPeliculas.Visible = false;
 
             controlAdmin.HomeClicked += (s, e) => {
-                Utils.ShowControl(flowPanel, PanelMain);
+                Utils.ShowControl(panelContenedor, PanelMain);
             };
 
-            flowPanel = new FlowLayoutPanel
+            flowPanelPeliculas = new FlowLayoutPanel
             {
                 FlowDirection = FlowDirection.LeftToRight,
                 WrapContents = false,
@@ -56,7 +65,22 @@ namespace Reelnode
                 Tag = "Default"
             };
 
-            PanelMain.Controls.Add(flowPanel);
+
+            flowPanelSeries = new FlowLayoutPanel
+            {
+                FlowDirection = FlowDirection.LeftToRight,
+                WrapContents = false,
+                AutoScroll = true,
+                AutoSize = false,
+                BackColor = Color.Transparent,
+                Padding = new Padding(10),
+                Location = new Point(10, 350),
+                Size = new Size(this.ClientSize.Width - 20, 270),
+                VerticalScroll = { Visible = false },
+                Tag = "Default"
+            };
+            panelContenedor.Controls.Add(flowPanelPeliculas);
+            panelContenedor.Controls.Add(flowPanelSeries);
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -72,6 +96,7 @@ namespace Reelnode
             // ------------------------------------------------------
 
             MostrarPeliculas();
+            MostrarSeries();
 
             FormLogin login = new FormLogin();
 
@@ -192,37 +217,25 @@ namespace Reelnode
 
         private void MostrarPeliculas()
         {
-            flowPanel.Controls.Clear();
+            Utils.CrearFlowPanel(flowPanelPeliculas, UtilsBD.peliculasCargadas, AbrirPestanaPelicula);
+        }
 
-            foreach (var pelicula in UtilsBD.peliculasCargadas)
-            {
-                Panel panelTemporal = new Panel
-                {
-                    Size = new Size(220, 220),
-                    Margin = new Padding(10),
-                    BackColor = Color.Transparent,
-                };
+        private void MostrarSeries()
+        {
+            Utils.CrearFlowPanel(flowPanelSeries, UtilsBD.seriesCargadas, AbrirPestanaSerie);
+        }
 
-                PictureBox poster = new PictureBox
-                {
-                    Size = new Size(210, 210),
-                    Location = new Point(10, 10),
-                    Image = Utils.DescargarImagenDesdeURL(pelicula.ImagenURL),
-                    SizeMode = PictureBoxSizeMode.StretchImage,
-                    Cursor = Cursors.Hand
-                };
-
-                poster.Click += (s, e) => AbrirPestanaPelicula(pelicula.Id);
-
-                panelTemporal.Controls.Add(poster);
-                flowPanel.Controls.Add(panelTemporal);
-            }
+        private void AbrirPestanaSerie(int id)
+        {
+            Utils.peliculaSeleccionada = null;
+            Utils.serieSeleccionada = UtilsBD.seriesCargadas[id - 1];
+            Utils.ShowControl(controlVisualizacionPeliculas, PanelMain);
         }
 
         private void AbrirPestanaPelicula(int id)
         {
             Utils.serieSeleccionada = null;
-            Utils.peliculaSeleccionada = UtilsBD.peliculasCargadas[id-1];
+            Utils.peliculaSeleccionada = UtilsBD.peliculasCargadas[id - 1];
             Utils.ShowControl(controlVisualizacionPeliculas, PanelMain);
         }
         private void noTocarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -231,6 +244,8 @@ namespace Reelnode
             UtilsBD.CargarPeliculas();
         }
 
+        // Esta funcion me permite recuperar todos los controles hijos de un control padre.
+        // La utilizo para obtener todos los controles hijos de FormMain y asi aplicar el tema a todos los controles.
         private IEnumerable<Control> GetAllControls(Control parent)
         {
             foreach (Control c in parent.Controls)
@@ -241,21 +256,21 @@ namespace Reelnode
             }
         }
 
-        private void PanelMain_Paint(object sender, PaintEventArgs e)
-        {
-            using (LinearGradientBrush brush = new LinearGradientBrush(
-                PanelMain.ClientRectangle,
-                Color.FromArgb(27, 38, 59),
-                Color.FromArgb(13, 17, 23),
-                LinearGradientMode.BackwardDiagonal))
-            {
-                e.Graphics.FillRectangle(brush, PanelMain.ClientRectangle);
-            }
-        }
-
         public Panel MainPanel
         {
             get { return PanelMain; }
+        }
+
+        private void PanelMain_Paint_1(object sender, PaintEventArgs e)
+        {
+            using (LinearGradientBrush brush = new LinearGradientBrush(
+               PanelMain.ClientRectangle,
+               Color.FromArgb(27, 38, 59),
+               Color.FromArgb(13, 17, 23),
+               LinearGradientMode.BackwardDiagonal))
+            {
+                e.Graphics.FillRectangle(brush, PanelMain.ClientRectangle);
+            }
         }
     }
 }

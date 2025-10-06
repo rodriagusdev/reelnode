@@ -50,6 +50,9 @@
             this.BtnPrevisualizar = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.PanelMain = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.CboNetwork = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.BtnPrevisualizarTrailer = new System.Windows.Forms.Button();
             this.PanelTrailerSerie = new System.Windows.Forms.Panel();
@@ -65,9 +68,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.CboNetwork = new System.Windows.Forms.ComboBox();
             this.PanelUsuario.SuspendLayout();
             this.PanelFecha.SuspendLayout();
             this.PanelDirector.SuspendLayout();
@@ -78,8 +78,8 @@
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.PanelMain.SuspendLayout();
-            this.panel5.SuspendLayout();
             this.panel10.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // PanelUsuario
@@ -183,7 +183,7 @@
             this.PicSerie.Location = new System.Drawing.Point(5, 5);
             this.PicSerie.Name = "PicSerie";
             this.PicSerie.Size = new System.Drawing.Size(303, 315);
-            this.PicSerie.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PicSerie.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PicSerie.TabIndex = 0;
             this.PicSerie.TabStop = false;
             // 
@@ -356,6 +356,39 @@
             this.PanelMain.TabIndex = 3;
             this.PanelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelMain_Paint);
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.Transparent;
+            this.label13.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
+            this.label13.Location = new System.Drawing.Point(141, 147);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(56, 17);
+            this.label13.TabIndex = 79;
+            this.label13.Text = "Network";
+            // 
+            // panel10
+            // 
+            this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
+            this.panel10.Controls.Add(this.CboNetwork);
+            this.panel10.Location = new System.Drawing.Point(144, 167);
+            this.panel10.Name = "panel10";
+            this.panel10.Padding = new System.Windows.Forms.Padding(5);
+            this.panel10.Size = new System.Drawing.Size(205, 35);
+            this.panel10.TabIndex = 78;
+            // 
+            // CboNetwork
+            // 
+            this.CboNetwork.BackColor = System.Drawing.SystemColors.Window;
+            this.CboNetwork.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CboNetwork.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboNetwork.FormattingEnabled = true;
+            this.CboNetwork.Location = new System.Drawing.Point(5, 5);
+            this.CboNetwork.Name = "CboNetwork";
+            this.CboNetwork.Size = new System.Drawing.Size(195, 21);
+            this.CboNetwork.TabIndex = 0;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -420,7 +453,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label5.Location = new System.Drawing.Point(732, 406);
+            this.label5.Location = new System.Drawing.Point(732, 407);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(88, 17);
             this.label5.TabIndex = 50;
@@ -528,39 +561,6 @@
             this.label10.TabIndex = 42;
             this.label10.Text = "Título de la serie";
             // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label13.Location = new System.Drawing.Point(141, 147);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(56, 17);
-            this.label13.TabIndex = 79;
-            this.label13.Text = "Network";
-            // 
-            // panel10
-            // 
-            this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
-            this.panel10.Controls.Add(this.CboNetwork);
-            this.panel10.Location = new System.Drawing.Point(144, 167);
-            this.panel10.Name = "panel10";
-            this.panel10.Padding = new System.Windows.Forms.Padding(5);
-            this.panel10.Size = new System.Drawing.Size(205, 35);
-            this.panel10.TabIndex = 78;
-            // 
-            // CboNetwork
-            // 
-            this.CboNetwork.BackColor = System.Drawing.SystemColors.Window;
-            this.CboNetwork.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CboNetwork.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboNetwork.FormattingEnabled = true;
-            this.CboNetwork.Location = new System.Drawing.Point(5, 5);
-            this.CboNetwork.Name = "CboNetwork";
-            this.CboNetwork.Size = new System.Drawing.Size(195, 21);
-            this.CboNetwork.TabIndex = 0;
-            // 
             // ControlGestionSeriesCargar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -587,9 +587,9 @@
             this.panel2.PerformLayout();
             this.PanelMain.ResumeLayout(false);
             this.PanelMain.PerformLayout();
+            this.panel10.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            this.panel10.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -19,6 +19,7 @@ namespace Reelnode
         private Color _c1 = Color.FromArgb(20, 30, 48);
         private Color _c2 = Color.FromArgb(36, 59, 85);
         private LinearGradientMode _modo = LinearGradientMode.Vertical;
+        private string trailerFinalURL = null;
 
         private DataGridViewRow filaSeleccionada;
         public ControlGestionPeliculasActualizar()
@@ -29,7 +30,7 @@ namespace Reelnode
             BtnActualizar.FlatAppearance.BorderColor = Color.FromArgb(74, 184, 192);
             BtnBuscarPelicula.FlatAppearance.BorderColor = Color.FromArgb(74, 184, 192);
 
-            Utils.TemaControles(PanelMain, PicPelicula);
+            //Utils.TemaControles(PanelMain, PicPelicula);
         }
         private void PanelMain_Paint(object sender, PaintEventArgs e)
         {
@@ -68,6 +69,31 @@ namespace Reelnode
         {
             if (filaSeleccionada != null) 
             {
+                if (PicPelicula.Image == null)
+                {
+                    MessageBox.Show("Imagen invalida.", "Error al cargar serie", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (trailerFinalURL == null)
+                {
+                    MessageBox.Show("Trailer invalido.", "Error al cargar serie", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (TxtNombre.Text == "" || TxtNombre.Text == null)
+                {
+                    MessageBox.Show("La pelicula no tiene titulo.", "Error al cargar serie", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int duracion;
+                if (!int.TryParse(TxtDuracion.Text, out duracion))
+                {
+                    MessageBox.Show("La duracion no es un numero entero.", "Error al cargar serie", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 Pelicula actualizarPelicula = new Pelicula();
                 {
                     actualizarPelicula.Id = int.Parse(filaSeleccionada.Cells["Id"].Value.ToString());
@@ -77,7 +103,8 @@ namespace Reelnode
                     actualizarPelicula.Duracion = int.Parse(TxtDuracion.Text);
                     actualizarPelicula.Descripcion = TxtDescripcion.Text;
                     actualizarPelicula.ImagenURL = TxtURLImagen.Text;
-                    actualizarPelicula.Network = Utils.ObtenerNetwork(CboNetwork.Text);
+                    actualizarPelicula.Network = Utils.ObtenerNetworkId(CboNetwork.Text);
+                    actualizarPelicula.TrailerURL = TxtURLTrailer.Text;
                 }
 
                 UtilsBD.ActualizarPelicula(actualizarPelicula);
@@ -89,7 +116,7 @@ namespace Reelnode
             }
         }
 
-        private void CtxMenuSubModificar_Click(object sender, EventArgs e)
+        private async void CtxMenuSubModificar_Click(object sender, EventArgs e)
         {
             if (filaSeleccionada != null)
             {
@@ -98,7 +125,11 @@ namespace Reelnode
                 TxtDuracion.Text = filaSeleccionada.Cells["Duracion"].Value.ToString();
                 TxtDescripcion.Text = filaSeleccionada.Cells["Descripcion"].Value.ToString();
                 DtpFechaEstreno.Value = Convert.ToDateTime(filaSeleccionada.Cells["FechaEstreno"].Value);
+                TxtURLImagen.Text = filaSeleccionada.Cells["ImagenURL"].Value.ToString();
                 Utils.CargarImagenDesdeURL(PicPelicula, TxtURLImagen.Text);
+                TxtURLTrailer.Text = filaSeleccionada.Cells["TrailerURL"].Value.ToString();
+                trailerFinalURL = null;
+                trailerFinalURL = await Utils.VerificarTrailer(PanelTrailer, TxtURLTrailer.Text);
             }
             else
             {
@@ -135,9 +166,15 @@ namespace Reelnode
             Utils.CargarImagenDesdeURL(PicPelicula, TxtURLImagen.Text);
         }
 
-        private void DataGridPeliculas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void ControlGestionPeliculasActualizar_Load(object sender, EventArgs e)
         {
+            Utils.CargarNetwork(CboNetwork);
+        }
 
+        private async void BtnPrevisualizarTrailer_Click(object sender, EventArgs e)
+        {
+            trailerFinalURL = null;
+            trailerFinalURL = await Utils.VerificarTrailer(PanelTrailer, TxtURLTrailer.Text);
         }
     }
 }

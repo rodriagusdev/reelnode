@@ -83,7 +83,7 @@ namespace Reelnode
                 ImagenURL = TxtURLImagen.Text,
                 TrailerURL = TxtURLTrailer.Text,
                 Temporadas = cantTemporadas,
-                Network = Utils.ObtenerNetwork(CboNetwork.Text),
+                Network = Utils.ObtenerNetworkId(CboNetwork.Text),
             };
 
             UtilsBD.InsertarSerieBD(nuevaSerie);
@@ -102,11 +102,7 @@ namespace Reelnode
 
         private void ControlGestionSeriesCargar_Load(object sender, EventArgs e)
         {
-            foreach (Network net in UtilsBD.networksCargadas)
-            {
-                CboNetwork.Items.Add(net.Nombre);
-            }
-            CboNetwork.SelectedIndex = 0;
+            Utils.CargarNetwork(CboNetwork);
         }
     }
 }

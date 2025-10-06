@@ -19,6 +19,7 @@ namespace Reelnode
         public static List<Pelicula> peliculasCargadas = new List<Pelicula>();
         public static List<Serie> seriesCargadas = new List<Serie>();
         public static List<Network> networksCargadas = new List<Network>();
+        public static List<Genero> generosCargados = new List<Genero>();
 
         // USUARIOS: Registro, login, modificación.
         public static void RegistrarUsuarioBD(Usuario nuevoUsuario)
@@ -102,6 +103,44 @@ namespace Reelnode
                 }
             }
         }
+
+        public static void CargarNetwork()
+        {
+            string procedure = "sp_listar_network";
+
+            using (MySqlCommand cmd = new MySqlCommand(procedure, Conexion.GetConnection()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Network net = new Network(reader.GetInt32("id_network"), reader.GetString("nombre"));
+                        networksCargadas.Add(net);
+                    }
+                }
+            }
+        }
+
+        public static void CargarGeneros()
+        {
+            string procedure = "sp_listar_generos";
+
+            using (MySqlCommand cmd = new MySqlCommand(procedure, Conexion.GetConnection()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Genero gen = new Genero(reader.GetInt32("id_genero"), reader.GetString("nombre"));
+                        generosCargados.Add(gen);
+                    }
+                }
+            }
+        }
         public static void CargarPeliculas()
         {
             peliculasCargadas.Clear();
@@ -123,7 +162,8 @@ namespace Reelnode
                             Duracion = reader.GetInt32("duracion"),
                             Descripcion = reader.GetString("descripcion"),
                             ImagenURL = reader.IsDBNull(reader.GetOrdinal("imagenURL")) ? null : reader.GetString("imagenURL"),
-                            TrailerURL = reader.IsDBNull(reader.GetOrdinal("trailerURL")) ? null : reader.GetString("trailerURL")
+                            TrailerURL = reader.IsDBNull(reader.GetOrdinal("trailerURL")) ? null : reader.GetString("trailerURL"),
+                            Network = reader.GetInt32("id_network"),
                         };
 
                         peliculasCargadas.Add(nueva);
@@ -154,6 +194,7 @@ namespace Reelnode
                             ImagenURL = reader.IsDBNull(reader.GetOrdinal("imagenURL")) ? null : reader.GetString("imagenURL"),
                             Temporadas = reader.GetInt32("cant_temporadas"),
                             Network = reader.GetInt32("id_network"),
+                            TrailerURL = reader.IsDBNull(reader.GetOrdinal("trailerURL")) ? null : reader.GetString("trailerURL"),
                         };
 
                         seriesCargadas.Add(nueva);
@@ -249,6 +290,7 @@ namespace Reelnode
                     cmd.Parameters.AddWithValue("p_imagenURL", actualizarPelicula.ImagenURL);
                     cmd.Parameters.AddWithValue("p_duracion", actualizarPelicula.Duracion);
                     cmd.Parameters.AddWithValue("p_id_network", actualizarPelicula.Network);
+                    cmd.Parameters.AddWithValue("p_trailerURL", actualizarPelicula.TrailerURL);
 
                     cmd.ExecuteNonQuery();
 
@@ -379,25 +421,6 @@ namespace Reelnode
                 MessageBox.Show("Error: " + e.Message, "Excepción",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
-            }
-        }
-
-        public static void CargarNetwork()
-        {
-            string procedure = "sp_listar_network";
-
-            using (MySqlCommand cmd = new MySqlCommand(procedure, Conexion.GetConnection()))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                using (MySqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        Network net = new Network(reader.GetInt32("id_network"), reader.GetString("nombre"));
-                        networksCargadas.Add(net);
-                    }
-                }
             }
         }
 

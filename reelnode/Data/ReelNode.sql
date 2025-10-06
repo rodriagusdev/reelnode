@@ -563,7 +563,6 @@ DELIMITER ;
 
 DELIMITER //
 CREATE PROCEDURE sp_actualizar_pelicula(
-    IN p_id_usuario INT,
     IN p_id INT,
     IN p_nombre VARCHAR(255),
     IN p_fecha_estreno DATE,
@@ -705,7 +704,8 @@ BEGIN
         descripcion,
         imagenURL,
         duracion,
-        trailerURL 
+        trailerURL,
+        id_network
     FROM peliculas;
 END //
 DELIMITER ;

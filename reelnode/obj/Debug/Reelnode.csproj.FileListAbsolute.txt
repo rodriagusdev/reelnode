@@ -316,3 +316,5 @@ D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.FormCalificar.resour
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\Reelnode.FormCalificar.resources
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.ControlComentarios.resources
 D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\ProjectoNuevo.ControlComentarios.resources
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\Assets\logo.png
+C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\Assets\home.png
