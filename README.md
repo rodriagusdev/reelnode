@@ -55,17 +55,19 @@ ToolStripMenu: ToolStpMenuX
 ✅Carga de imagenes
 
 ## Usuario
-❌Registrar Calificaciones
+✅Registrar Calificaciones
 
 ❌Consultar series y peliculas con filtros
 
-❌Visualizar imagenes y comentarios
+✅Visualizar imagenes y comentarios
 
 ❌Ver historial
 
 ❌Exportar historial
 
-❌Dejar comentarios y calificaciones
+✅Dejar comentarios
+
+✅Dejar calificaciones
 
 ✅Registrar Visualizaciones
 
