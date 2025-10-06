@@ -207,7 +207,7 @@ namespace Reelnode
                 {
                     Size = new Size(210, 210),
                     Location = new Point(10, 10),
-                    Image = Utils.DescargarImagenDesdeURL(pelicula.Imagen),
+                    Image = Utils.DescargarImagenDesdeURL(pelicula.ImagenURL),
                     SizeMode = PictureBoxSizeMode.StretchImage,
                     Cursor = Cursors.Hand
                 };
@@ -221,6 +221,7 @@ namespace Reelnode
 
         private void AbrirPestanaPelicula(int id)
         {
+            Utils.serieSeleccionada = null;
             Utils.peliculaSeleccionada = UtilsBD.peliculasCargadas[id-1];
             Utils.ShowControl(controlVisualizacionPeliculas, PanelMain);
         }

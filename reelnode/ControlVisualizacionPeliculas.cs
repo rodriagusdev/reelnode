@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using iTextSharp.xmp.impl;
 using Microsoft.Web.WebView2.WinForms;
+using ProjectoNuevo;
 
 namespace Reelnode
 {
@@ -20,9 +21,12 @@ namespace Reelnode
         private Color _c1 = Color.FromArgb(20, 30, 48);
         private Color _c2 = Color.FromArgb(36, 59, 85);
         private LinearGradientMode _modo = LinearGradientMode.Vertical;
+        private ControlComentarios controlComentarios;
         public ControlVisualizacionPeliculas()
         {
             InitializeComponent();
+            PanelVisualizarPeli.Controls.Add(controlComentarios = new ControlComentarios());
+            controlComentarios.Visible = false;
         }
 
         public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
@@ -45,19 +49,37 @@ namespace Reelnode
         private void ControlVisualizacionPeliculas_VisibleChanged(object sender, EventArgs e)
         {
             if (this.Visible) {
-                PicPeli.Image = Utils.DescargarImagenDesdeURL(Utils.peliculaSeleccionada.Imagen);
+                PicPeli.Image = Utils.DescargarImagenDesdeURL(Utils.peliculaSeleccionada.ImagenURL);
                 LblDescripcionPeli.Text = Utils.peliculaSeleccionada.Descripcion;
                 LblDirector.Text = Utils.peliculaSeleccionada.Director;
                 LblDuracion.Text = Utils.peliculaSeleccionada.Duracion + "m";
                 LblTitulo.Text = Utils.peliculaSeleccionada.Nombre;
 
-                WebView2 trailer = new WebView2
+                if(Utils.peliculaSeleccionada.TrailerURL != null)
                 {
-                    Dock = DockStyle.Fill
-                };
-                PanelTrailerPeli.Controls.Add(trailer);
-                trailer.Source = new Uri("https://www.youtube.com/watch?v=EXeTwQWrcwY"); 
-                PanelVisualizarPeli.Invalidate();
+                    WebView2 trailer = new WebView2
+                    {
+                        Dock = DockStyle.Fill
+                    };
+
+                    PanelTrailerPeli.Controls.Add(trailer);
+
+                    // Este proceso es necesario porque queremos que el trailer se reproduzca automáticamente al cargar el control y ademas
+                    // que no muestre videos relacionados al finalizar la reproducción ni comentarios.
+
+                    string videoId = Utils.ExtraerVideoId(Utils.peliculaSeleccionada.TrailerURL);
+                    string embedUrl = $"https://www.youtube.com/embed/{videoId}?rel=0&controls=1&autoplay=1";
+
+                    trailer.Source = new Uri(embedUrl);
+
+                    PanelVisualizarPeli.Invalidate();
+                }
+                else 
+                {
+                    PanelTrailerPeli.Controls.Clear();
+                    PanelTrailerPeli.Visible = false;
+                }
+                    
             }
         }
 
@@ -66,6 +88,11 @@ namespace Reelnode
             FormCalificar calificar = new FormCalificar();
 
             calificar.ShowDialog();
+        }
+
+        private void BtnComentar_Click(object sender, EventArgs e)
+        {
+            Utils.ShowControl(controlComentarios, PanelVisualizarPeli);
         }
     }
 }

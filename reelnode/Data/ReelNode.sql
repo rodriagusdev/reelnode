@@ -1,21 +1,23 @@
+/*
+Cosas que agregue: 
+1) Tabla de calificaciones_peliculas y calificaciones_series modificadas para que un usuario solo pueda calificar una vez una pelicula. Chequear
+si se desea hacer auditoria sobre esto, pero hacerlo a traves de un trigger, no en el procedimiento.
+2) Implementacion de calificaciones a peliculas y series.
+3) Renombrada imagen a IMAGENURL.
+
+Cosas que necesitan verse:
+1) Algunas operaciones tienen campos desactualizados o invalidos.
+2) En varios casos, un procedimiento de creacion (por ej de una pelicula), inserta datos en una tabla de auditorias
+y, a su vez, existe un trigger que detecta inserciones. Es decir, se hacen dos registros a auditorias. 
+Eliminar las inserciones a auditorias desde los procedimientos y usar triggers para eso. (Por ahora, lineas de insercion en procedimientos estan comentadas)
+Linea 524 hay comentarios de ejemplo de lo que se menciona
+
+*/
+
 create database ReelNode;
 use ReelNode;
 
 -- Tablas -----------------------------------------------
-
-CREATE TABLE peliculas (
-    id_pelicula INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(255) NOT NULL,
-    fecha_estreno DATE NOT NULL,
-    descripcion VARCHAR(255),
-    director VARCHAR(255),
-    imagen VARCHAR(255),
-    duracion VARCHAR(50),
-    trailerURL varchar(255),
-    id_network int,
-    foreign key(id_network) references network(id_network)
-);
-
 CREATE TABLE network (
     id_network INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(255) NOT NULL unique
@@ -24,6 +26,19 @@ CREATE TABLE network (
 INSERT INTO network (nombre) VALUES ('Netflix'), ('HBO'), ('Disney+'), ('Amazon Prime Video'), ('Hulu'), ('Apple TV+'), ('Paramount+'), ('Peacock'), ('Starz'), ('Showtime'), ('CBS All Access'), ('Warner Bros.'), ('Universal Pictures'), ('20th Century Studios'), ('Sony Pictures'), ('Lionsgate'), ('MGM'), ('A24'), ('BBC'), ('AMC'), ('FX'), ('CW'), ('NBC'), ('ABC'), ('Fox'), ('Sky'), ('ITV'), ('Channel 4'), ('Blumhouse Productions'), ('Legendary Entertainment'), ('New Line Cinema'), ('DreamWorks Animation'), ('Pixar Animation Studios'), ('Marvel Studios'), ('Lucasfilm'), ('DC Films'), ('Focus Features'), ('Annapurna Pictures'), ('STX Entertainment'), ('Neon'), ('Orion Pictures'), ('Miramax'), ('The Weinstein Company'), 
 ('Lionsgate Films'), ('TriStar Pictures'), ('Searchlight Pictures'), ('Sony Pictures Animation'), ('Blue Sky Studios'), ('Illumination Entertainment'), ('Skydance Media');
 
+CREATE TABLE peliculas (
+    id_pelicula INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(255) NOT NULL,
+    fecha_estreno DATE NOT NULL,
+    descripcion VARCHAR(255),
+    director VARCHAR(255),
+    imagenURL VARCHAR(255),
+    duracion VARCHAR(50),
+    trailerURL varchar(255),
+    id_network int,
+    foreign key(id_network) references network(id_network)
+);
+
 CREATE TABLE serie (
     id_serie INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(255) NOT NULL,
@@ -31,7 +46,7 @@ CREATE TABLE serie (
     fecha_fin DATE NOT NULL,
     descripcion VARCHAR(255),
     director VARCHAR(255),
-    imagen VARCHAR(255),
+    imagenURL VARCHAR(255),
     cant_temporadas INT,
     trailerURL varchar(255),
     id_network INT,
@@ -123,13 +138,29 @@ create table calificaciones_serie(
 	id_calificaciones int primary key auto_increment,
     calificacion int,
     id_serie int,
+    id_usuario INT NOT NULL,
+    
+    -- Evita duplicados: un usuario no puede calificar la misma serie más de una vez
+    UNIQUE KEY uq_usuario_serie (id_usuario, id_serie),
+
     FOREIGN KEY (id_serie) REFERENCES serie(id_serie)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
+        ON DELETE CASCADE ON UPDATE CASCADE
 );
-create table calificaciones_peliculas(
-	id_calificaciones int primary key auto_increment,
-    calificacion int,
-     id_pelicula int,
+CREATE TABLE calificaciones_peliculas (
+    id_calificacion INT AUTO_INCREMENT PRIMARY KEY,
+    calificacion TINYINT NOT NULL,
+    id_pelicula INT NOT NULL,
+    id_usuario INT NOT NULL,
+    
+    -- Evita duplicados: un usuario no puede calificar la misma película más de una vez
+    UNIQUE KEY uq_usuario_pelicula (id_usuario, id_pelicula),
+
     FOREIGN KEY (id_pelicula) REFERENCES peliculas(id_pelicula)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
+        ON DELETE CASCADE ON UPDATE CASCADE
 );
 create table permisos(
 	id_permiso int primary key auto_increment,
@@ -163,7 +194,6 @@ create table auditoria_login(
     foreign key (id_usuario) references usuario(id_usuario)
 );
 
--- para cambiar los roles mas seguro
 CREATE TABLE auditoria_roles (
     id_auditoria int primary key auto_increment,
     id_usuario int,
@@ -181,7 +211,7 @@ CREATE TABLE auditoria_visualizaciones (
     fecha datetime not null,
     foreign key (id_usuario) references usuario(id_usuario),
     foreign key (id_serie) references serie(id_serie),
-   foreign key (id_pelicula) references peliculas(id_pelicula)
+    foreign key (id_pelicula) references peliculas(id_pelicula)
 );
 
 -- 2. Películas y Series (Admin): ABM, carga de imágenes, importación/exportación JSON.
@@ -190,11 +220,8 @@ create table auditoria_peliculas_serie(
     tabla_afectada varchar(255),
     accion varchar(255),
     id_registro int,
-    fecha_hora datetime,
-    detalle varchar(255)
+    fecha_hora datetime
 );
-
--- 5. Comentarios (Usuario común): ingresar comentarios de texto, verlos, Admin puede eliminarlos.
 
 create table auditoria_comentarios_usuario (
     id_auditoria int auto_increment primary key,
@@ -203,7 +230,6 @@ create table auditoria_comentarios_usuario (
     id_registro int,
     id_usuario int,
     fecha_hora datetime,
-    detalle varchar(255),
     FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
 );
 
@@ -282,22 +308,6 @@ begin
     from usuario u
     join rol r on u.id_rol = r.id_rol
     where u.email_usuario = p_email and u.password_usuario =md5(p_password); -- compara con hash
-end //
-DELIMITER ;
-
--- Procedimientos almacenados con crud
-DELIMITER //
-create procedure sp_insertar_usuario_crud(
-	in p_nombre varchar(255),
-    in p_email varchar(255),
-    in p_password varchar(255),
-    in p_id_rol int
-)
-begin
-	start transaction;
-    insert into usuario(nombre_usuario, email_usuario,password_usuario, fecha_registro, id_rol) 
-    values(p_nombre, p_email, md5(p_password), now(),p_id_rol); -- (md5) Es un algoritmo de hash. Convierte cualquier texto en un código único de 32 caracteres hexadecimales. Ese código es irreversible, es decir, no se puede “desencriptar” para volver al texto original. Utiliza en contraseñas
-    commit;
 end //
 DELIMITER ;
 
@@ -393,8 +403,10 @@ begin
 		values (p_id_usuario, p_id_pelicula);
    end if; 
     
-    insert into auditoria_visualizaciones(id_usuario, id_serie, id_pelicula, fecha)
+    /*insert into auditoria_visualizaciones(id_usuario, id_serie, id_pelicula, fecha)
     values (p_id_usuario, p_id_serie, p_id_pelicula, NOW());
+    MEJOR SI ESTO SE USA EN UN TRIGGER DE INSERCION EN LA TABLA DE VISUALIZACIONES
+    */
     
     commit;
     select "Visualización registrada correctamente" as mensaje;
@@ -402,6 +414,10 @@ end //
 DELIMITER ;
 
 -- Procedimiento almacenado para consultar historial
+/*
+!!! Mejor esperar a que este bien terminado lo anterior antes de lidiar con el historial,
+puede producir problemas hasta que no este implementado.
+
 DELIMITER //
 create procedure sp_consultar_historial(
 	in p_id_usuario int
@@ -424,7 +440,9 @@ begin
     order by fecha desc;
 end;
 DELIMITER ;
+*/
 
+/*
 -- Función para contar visualizaciones de un usuario
 DELIMITER //
 create function fn_total_visualizaciones(p_id_usuario int) 
@@ -447,10 +465,12 @@ begin
     return total;
 end //
 DELIMITER ;
+
+*/
 -- 6. Reportes: Admin → estadísticas generales, 
 -- Usuario común → historial personal. Exportables a PDF.
 
-DELIMITER //
+/*DELIMITER //
 create procedure sp_reporte_admin()
 begin
 	select count(*) as total_usuarios from usuario;
@@ -492,6 +512,7 @@ begin
     select fn_total_visualizaciones(p_id_usuario) as total_visualizaciones;
 end //
 DELIMITER ;
+*/
 
 DELIMITER //
 CREATE TRIGGER trg_insert_pelicula
@@ -499,10 +520,10 @@ AFTER INSERT ON peliculas
 FOR EACH ROW
 BEGIN
     INSERT INTO auditoria_peliculas_serie(
-        tabla_afectada, accion, id_registro, fecha_hora, detalle, trailerURL 
+        tabla_afectada, accion, id_registro, fecha_hora 
     )
     VALUES (
-        'peliculas', 'INSERT', NEW.id_pelicula, NOW(), NEW.nombre,trailerURL 
+        'peliculas', 'INSERT', NEW.id_pelicula, NOW()
     );
 END //
 DELIMITER ;
@@ -517,17 +538,22 @@ CREATE PROCEDURE sp_insertar_pelicula(
     IN p_descripcion VARCHAR(255),
     IN p_director VARCHAR(255),
     IN p_duracion VARCHAR(50),
+    IN p_imagenURL VARCHAR(255),
     IN p_trailerURL VARCHAR(255)
 )
 BEGIN
     START TRANSACTION;
 
-    INSERT INTO peliculas(nombre, fecha_estreno, descripcion, director, duracion, trailerURL)
-    VALUES(p_nombre, p_fecha, p_descripcion, p_director, p_duracion, p_trailerURL);
-
-    INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, detalle, trailerURL, id_usuario)
-    VALUES ('peliculas', 'INSERT', LAST_INSERT_ID(), NOW(), p_nombre, p_trailerURL, p_id_usuario);
-
+    INSERT INTO peliculas(nombre, fecha_estreno, descripcion, director, duracion, imagenURL, trailerURL)
+    VALUES(p_nombre, p_fecha, p_descripcion, p_director, p_duracion, p_imagenURL, p_trailerURL);
+    -- EJEMPLO DE INSERCION EN AUDITORIA QUE TAMBIEN OCURRE EN trg_insert_pelicula, el trigger arriba de este procedimiento. 
+    -- Genera doble insercion. Deben borrarse todas las auditorias que se encuentren en procedimientos. Para inserciones en auditorias SOLO usar triggers.alter
+    
+    /*
+    INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, detalle, id_usuario)
+    VALUES ('peliculas', 'INSERT', LAST_INSERT_ID(), NOW(), p_nombre, p_id_usuario);
+	*/
+    
     COMMIT;
 END //
 DELIMITER ;
@@ -542,7 +568,7 @@ CREATE PROCEDURE sp_actualizar_pelicula(
     IN p_fecha_estreno DATE,
     IN p_descripcion VARCHAR(255),
     IN p_director VARCHAR(255),
-    IN p_imagen VARCHAR(255),
+    IN p_imagenURL VARCHAR(255),
     IN p_duracion VARCHAR(50),
     IN p_trailerURL VARCHAR(255)
 )
@@ -554,13 +580,15 @@ BEGIN
         fecha_estreno = p_fecha_estreno,
         descripcion = p_descripcion,
         director = p_director,
-        imagen = p_imagen,
+        imagenURL = p_imagenURL,
         duracion = p_duracion,
         trailerURL = p_trailerURL
     WHERE id_pelicula = p_id;
 
-    INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, detalle, trailerURL, id_usuario)
-    VALUES ('peliculas', 'UPDATE', p_id, NOW(), p_nombre, p_trailerURL, p_id_usuario);
+	/*
+    INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, detalle, id_usuario)
+    VALUES ('peliculas', 'UPDATE', p_id, NOW(), p_nombre, p_id_usuario);
+	*/
 
     COMMIT;
 END //
@@ -587,30 +615,14 @@ BEGIN
 
     -- Eliminar película
     DELETE FROM peliculas WHERE id_pelicula = p_id;
-
+ 
+	/*
     INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, detalle)
     VALUES ('peliculas', 'DELETE', p_id, NOW(), 'Eliminada en cascada');
-
+    */
+    
     COMMIT;
     SELECT 'Película eliminada correctamente' AS mensaje;
-end //
-DELIMITER ;
-
--- exportación a JSON
-DELIMITER //
-create procedure sp_exportar_peliculas_json()
-begin
-    select JSON_ARRAYAGG(
-               JSON_OBJECT(
-                   'id_pelicula', id_pelicula,
-                   'nombre', nombre,
-                   'fecha_estreno', fecha_estreno,
-                   'descripcion', descripcion,
-                   'director', director,
-                   'duracion', duracion
-               )
-           ) as peliculas_json
-    from peliculas;
 end //
 DELIMITER ;
 
@@ -627,8 +639,11 @@ begin
     insert into comentarios_peli(id_usuario, id_pelicula, fecha_comentario, texto)
     values(p_id_usuario, p_id_pelicula, NOW(), p_texto);
 
+	/*
     insert into auditoria_comentarios_usuario(tabla_afectada, accion, id_registro, id_usuario, fecha_hora, detalle)
     values('comentarios_peli', 'INSERT', last_insert_id(), p_id_usuario, now(), p_texto);
+    */
+    
 end //
 DELIMITER ;
 
@@ -642,8 +657,10 @@ begin
     insert into comentarios_serie(id_usuario, id_serie, fecha_comentario, texto)
     values(p_id_usuario, p_id_serie, now(), p_texto);
 
+	/*
     insert into auditoria_comentarios_usuario(tabla_afectada, accion, id_registro, id_usuario, fecha_hora, detalle)
     values('comentarios_serie', 'INSERT', last_insert_id(), p_id_usuario, now(), p_texto);
+    */
 end //
 DELIMITER ;
 
@@ -665,9 +682,11 @@ DELIMITER //
 CREATE PROCEDURE sp_listar_usuarios() -- procedimiento para traer todos los usuarios con su rol
 BEGIN
     SELECT 
+		u.id_usuario,
         u.nombre_usuario, 
         u.password_usuario, 
         u.email_usuario,
+        u.fecha_registro,
         r.tipo_rol AS nombre_rol
     FROM usuario u
     INNER JOIN rol r ON r.id_rol = u.id_rol;
@@ -683,7 +702,7 @@ BEGIN
         fecha_estreno,
         director,
         descripcion,
-        imagen,
+        imagenURL,
         duracion,
         trailerURL 
     FROM peliculas;
@@ -721,7 +740,7 @@ CREATE PROCEDURE sp_insertar_serie(
     IN p_fecha_fin DATE,
     IN p_descripcion TEXT,
     IN p_director VARCHAR(255),
-    IN p_imagen VARCHAR(255),
+    IN p_imagenURL VARCHAR(255),
     IN p_cant_temporadas INT,
     IN p_id_network INT,
     IN p_trailerURL VARCHAR(255)
@@ -729,16 +748,17 @@ CREATE PROCEDURE sp_insertar_serie(
 BEGIN
     START TRANSACTION;
 
-    INSERT INTO serie(nombre, fecha_estreno, fecha_fin, descripcion, director, imagen, cant_temporadas, id_network, trailerURL)
-    VALUES(p_nombre, p_fecha_estreno, p_fecha_fin, p_descripcion, p_director, p_imagen, p_cant_temporadas, p_id_network, p_trailerURL);
+    INSERT INTO serie(nombre, fecha_estreno, fecha_fin, descripcion, director, imagenURL, cant_temporadas, id_network, trailerURL)
+    VALUES(p_nombre, p_fecha_estreno, p_fecha_fin, p_descripcion, p_director, p_imagenURL, p_cant_temporadas, p_id_network, p_trailerURL);
 
-    INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, detalle, trailerURL, id_usuario)
-    VALUES ('serie', 'INSERT', LAST_INSERT_ID(), NOW(), p_nombre, p_trailerURL, p_id_usuario);
-
+	/*
+    INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, detalle, id_usuario)
+    VALUES ('serie', 'INSERT', LAST_INSERT_ID(), NOW(), p_nombre, p_id_usuario);
+	*/
+    
     COMMIT;
 END //
 DELIMITER ;
-
 
 DELIMITER //
 CREATE PROCEDURE sp_actualizar_serie(
@@ -749,7 +769,7 @@ CREATE PROCEDURE sp_actualizar_serie(
     IN p_fecha_fin DATE,
     IN p_descripcion VARCHAR(255),
     IN p_director VARCHAR(255),
-    IN p_imagen VARCHAR(255),
+    IN p_imagenURL VARCHAR(255),
     IN p_cant_temporadas INT,
     IN p_id_network INT,
     IN p_trailerURL VARCHAR(255)
@@ -763,29 +783,24 @@ BEGIN
         fecha_fin = COALESCE(p_fecha_fin, fecha_fin),
         descripcion = COALESCE(p_descripcion, descripcion),
         director = COALESCE(p_director, director),
-        imagen = COALESCE(p_imagen, imagen),
+        imagenURL = COALESCE(p_imagenURL, imagenURL),
         cant_temporadas = COALESCE(p_cant_temporadas, cant_temporadas),
         id_network = COALESCE(p_id_network, id_network),
         trailerURL = COALESCE(p_trailerURL, trailerURL)
     WHERE id_serie = p_id_serie;
 
-    INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, detalle, trailerURL, id_usuario)
-    VALUES ('serie', 'UPDATE', p_id_serie, NOW(), COALESCE(p_nombre, 'Sin nombre'), COALESCE(p_trailerURL, ''), p_id_usuario);
-
+	/*
+    INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, detalle, id_usuario)
+    VALUES ('serie', 'UPDATE', p_id_serie, NOW(), COALESCE(p_nombre, 'Sin nombre'), p_id_usuario);
+	*/
+    
     COMMIT;
 END //
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE sp_listar_series(
-    IN p_id_usuario INT
-)
+CREATE PROCEDURE sp_listar_series()
 BEGIN
-    -- Registrar auditoría de consulta (opcional)
-    INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, detalle, id_usuario)
-    VALUES ('serie', 'CONSULTA', NULL, NOW(), 'Listado de series consultado', p_id_usuario);
-
-    -- Listar series
     SELECT 
         id_serie,
         nombre,
@@ -793,7 +808,7 @@ BEGIN
         fecha_fin,
         descripcion,
         director,
-        imagen,
+        imagenURL,
         cant_temporadas,
         id_network,
         trailerURL 
@@ -820,16 +835,64 @@ BEGIN
     DELETE FROM calificaciones_serie WHERE id_serie = p_id_serie;
     DELETE FROM genero_x_serie WHERE id_serie = p_id_serie;
     DELETE FROM serie WHERE id_serie = p_id_serie;
-
+	
+    /*
     INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, detalle, id_usuario)
     VALUES ('serie', 'DELETE', p_id_serie, NOW(), 'Eliminada en cascada', p_id_usuario);
-
+	*/
+    
     COMMIT;
     SELECT 'Serie eliminada correctamente' AS mensaje;
 END //
 DELIMITER ;
 
+DELIMITER //
+CREATE PROCEDURE sp_listar_network()
+BEGIN
+    SELECT 
+        *
+    FROM network;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_calificar_pelicula(p_id_pelicula int, p_calificacion tinyint, p_id_usuario int)
+BEGIN
+	-- De esta forma, el usuario solo puede calificar una vez la pelicula. Si ya la califico, con ON DUPLICATE KEY UPDATE actualiza su calificacion.
+	insert into calificaciones_peliculas(id_pelicula, calificacion, id_usuario)
+	values(p_id_pelicula, p_calificacion, p_id_usuario)
+    ON DUPLICATE KEY UPDATE calificacion = p_calificacion;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_calificar_serie(p_id_serie int, p_calificacion tinyint, p_id_usuario int)
+BEGIN
+	insert into calificaciones_serie(p_id_serie, calificacion, id_usuario)
+	values(p_id_serie, p_calificacion, p_id_usuario)
+    ON DUPLICATE KEY UPDATE calificacion = p_calificacion;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_comentar_pelicula(p_id_usuario int, p_id_pelicula int, p_texto varchar(255))
+begin
+	insert into comentarios_peli(id_usuario, id_pelicula, fecha_comentario, texto)
+    values(p_id_usuario, p_id_pelicula, CURDATE(), p_texto);
+end //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_comentar_serie(p_id_usuario int, p_id_serie int, p_texto varchar(255))
+begin
+	insert into comentarios_serie(id_usuario, id_serie, fecha_comentario, texto)
+    values(p_id_usuario, p_id_serie, CURDATE(), p_texto);
+end //
+DELIMITER ;
+
 SET SQL_SAFE_UPDATES = 0;
+select * from calificaciones_peliculas;
+select * from comentarios_peli;
 select * from peliculas;
 select * from usuario;
 select * from network;

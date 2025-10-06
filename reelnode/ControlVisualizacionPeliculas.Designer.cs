@@ -34,7 +34,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BtnComentar = new System.Windows.Forms.Button();
             this.LblDuracion = new System.Windows.Forms.Label();
             this.LblDirector = new System.Windows.Forms.Label();
             this.PanelDescripcion = new System.Windows.Forms.Panel();
@@ -57,7 +57,7 @@
             this.PanelVisualizarPeli.Controls.Add(this.panel1);
             this.PanelVisualizarPeli.Controls.Add(this.label2);
             this.PanelVisualizarPeli.Controls.Add(this.label1);
-            this.PanelVisualizarPeli.Controls.Add(this.button1);
+            this.PanelVisualizarPeli.Controls.Add(this.BtnComentar);
             this.PanelVisualizarPeli.Controls.Add(this.LblDuracion);
             this.PanelVisualizarPeli.Controls.Add(this.LblDirector);
             this.PanelVisualizarPeli.Controls.Add(this.PanelDescripcion);
@@ -133,20 +133,21 @@
             this.label1.Tag = "Titulo";
             this.label1.Text = "Director";
             // 
-            // button1
+            // BtnComentar
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(184)))), ((int)(((byte)(193)))));
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Location = new System.Drawing.Point(970, 579);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(205, 35);
-            this.button1.TabIndex = 42;
-            this.button1.Text = "Agregar comentario";
-            this.button1.UseVisualStyleBackColor = false;
+            this.BtnComentar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(184)))), ((int)(((byte)(193)))));
+            this.BtnComentar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnComentar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnComentar.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnComentar.ForeColor = System.Drawing.Color.Black;
+            this.BtnComentar.Location = new System.Drawing.Point(970, 579);
+            this.BtnComentar.Margin = new System.Windows.Forms.Padding(2);
+            this.BtnComentar.Name = "BtnComentar";
+            this.BtnComentar.Size = new System.Drawing.Size(205, 35);
+            this.BtnComentar.TabIndex = 42;
+            this.BtnComentar.Text = "Comentar";
+            this.BtnComentar.UseVisualStyleBackColor = false;
+            this.BtnComentar.Click += new System.EventHandler(this.BtnComentar_Click);
             // 
             // LblDuracion
             // 
@@ -271,7 +272,7 @@
         private System.Windows.Forms.Panel PanelTrailerPeli;
         private System.Windows.Forms.Label LblDuracion;
         private System.Windows.Forms.Label LblDirector;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BtnComentar;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;

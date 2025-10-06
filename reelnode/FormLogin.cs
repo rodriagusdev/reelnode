@@ -61,6 +61,7 @@ namespace Reelnode
             {
                 if (TxtUsuario.Text == u.NombreUsuario && TxtPassword.Text == u.Password)
                 {
+                    UtilsBD.usuarioActual.Id = u.Id;
                     UtilsBD.usuarioActual.NombreUsuario = u.NombreUsuario;
                     UtilsBD.usuarioActual.Password = u.Password;
                     UtilsBD.usuarioActual.RolUsuario = u.RolUsuario;

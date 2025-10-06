@@ -121,6 +121,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControlComentarios.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlComentarios.Designer.cs">
+      <DependentUpon>ControlComentarios.cs</DependentUpon>
+    </Compile>
     <Compile Include="ControlExpandirPelicula.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -224,6 +230,9 @@
     <Compile Include="Usuario.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="UtilsBD.cs" />
+    <EmbeddedResource Include="ControlComentarios.resx">
+      <DependentUpon>ControlComentarios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ControlExpandirPelicula.resx">
       <DependentUpon>ControlExpandirPelicula.cs</DependentUpon>
     </EmbeddedResource>

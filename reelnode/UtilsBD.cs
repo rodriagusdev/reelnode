@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,6 +20,7 @@ namespace Reelnode
         public static List<Serie> seriesCargadas = new List<Serie>();
         public static List<String> networksCargadas = new List<string>();
 
+        // USUARIOS: Registro, login, modificación.
         public static void RegistrarUsuarioBD(Usuario nuevoUsuario)
         {
             using (MySqlCommand cmd = new MySqlCommand("sp_insertar_usuario", Conexion.GetConnection()))
@@ -59,6 +61,20 @@ namespace Reelnode
                 cmd.ExecuteNonQuery();
             }
         }
+        private static string ObtenerRolUsuario(string rol)
+        {
+            switch (rol)
+            {
+                case "Admin":
+                    return "1";
+                case "Usuario":
+                    return "2";
+                default:
+                    return "2";
+            }
+        }
+
+        // CARGA DE DATOS
         public static void CargarUsuario()
         {
             usuariosRegistrados.Clear();
@@ -73,10 +89,12 @@ namespace Reelnode
                     {
                         Usuario u = new Usuario()
                         {
+                            Id = reader.GetInt32("id_usuario"),
                             NombreUsuario = reader.GetString("nombre_usuario"),
                             Password = reader.GetString("password_usuario"),
                             Email = reader.GetString("email_usuario"),
-                            RolUsuario = reader.GetString("nombre_rol")
+                            RolUsuario = reader.GetString("nombre_rol"),
+                            FechaRegistro = reader.GetDateTime("fecha_registro"),
                         };
 
                         usuariosRegistrados.Add(u);
@@ -84,51 +102,6 @@ namespace Reelnode
                 }
             }
         }
-
-
-        private static string ObtenerRolUsuario(string rol)
-        {
-            switch (rol)
-            {
-                case "Admin":
-                    return "1";
-                case "Usuario":
-                    return "2";
-                default:
-                    return "2";
-            }
-        }
-
-        public static void InsertarPeliculaBD(Pelicula nuevaPelicula)
-        {
-            try
-            {
-                using (MySqlCommand cmd = new MySqlCommand("sp_insertar_pelicula", Conexion.GetConnection()))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    cmd.Parameters.AddWithValue("p_nombre", nuevaPelicula.Nombre);
-                    cmd.Parameters.AddWithValue("p_fecha", nuevaPelicula.FechaEstreno);
-                    cmd.Parameters.AddWithValue("p_descripcion", nuevaPelicula.Descripcion);
-                    cmd.Parameters.AddWithValue("p_director", nuevaPelicula.Director);
-                    cmd.Parameters.AddWithValue("p_imagen", nuevaPelicula.Imagen);
-                    cmd.Parameters.AddWithValue("p_duracion", nuevaPelicula.Duracion);
-
-                    cmd.ExecuteNonQuery();
-
-                    peliculasCargadas.Add(nuevaPelicula);
-
-                    MessageBox.Show("Película cargada con éxito", "Carga Exitosa",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
         public static void CargarPeliculas()
         {
             peliculasCargadas.Clear();
@@ -149,7 +122,8 @@ namespace Reelnode
                             Director = reader.GetString("director"),
                             Duracion = reader.GetString("duracion"),
                             Descripcion = reader.GetString("descripcion"),
-                            Imagen = reader.IsDBNull(reader.GetOrdinal("imagen")) ? null : reader.GetString("imagen"),
+                            ImagenURL = reader.IsDBNull(reader.GetOrdinal("imagenURL")) ? null : reader.GetString("imagenURL"),
+                            TrailerURL = reader.IsDBNull(reader.GetOrdinal("trailerURL")) ? null : reader.GetString("trailerURL")
                         };
 
                         peliculasCargadas.Add(nueva);
@@ -157,46 +131,108 @@ namespace Reelnode
                 }
             }
         }
+        public static void CargarSeries()
+        {
+            seriesCargadas.Clear();
 
-        public static void EliminarPelicula(int id)
+            using (MySqlCommand cmd = new MySqlCommand("sp_listar_series", Conexion.GetConnection()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Serie nueva = new Serie
+                        {
+                            Id = reader.GetInt32("id_serie"),
+                            Nombre = reader.GetString("nombre"),
+                            FechaEstreno = reader.GetDateTime("fecha_estreno"),
+                            FechaFin = reader.GetDateTime("fecha_fin"),
+                            Descripcion = reader.IsDBNull(reader.GetOrdinal("descripcion")) ? null : reader.GetString("descripcion"),
+                            Director = reader.IsDBNull(reader.GetOrdinal("director")) ? null : reader.GetString("director"),
+                            ImagenURL = reader.IsDBNull(reader.GetOrdinal("imagenURL")) ? null : reader.GetString("imagenURL"),
+                            Temporadas = reader.GetInt32("cant_temporadas")
+                            /* IdNetwork = reader.IsDBNull(reader.GetOrdinal("id_network")) ? (int?)null : reader.GetInt32("id_network")*/
+                        };
+
+                        seriesCargadas.Add(nueva);
+                    }
+                }
+            }
+        }
+
+        // INSERTS
+        public static void InsertarSerieBD(Serie nuevaSerie)
         {
             try
             {
-                using (MySqlCommand cmd = new MySqlCommand("sp_eliminar_pelicula_sin_trasaccion", Conexion.GetConnection()))
+                using (MySqlCommand cmd = new MySqlCommand("sp_insertar_serie", Conexion.GetConnection()))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("p_id", id);
+
+                    cmd.Parameters.AddWithValue("p_nombre", nuevaSerie.Nombre);
+                    cmd.Parameters.AddWithValue("p_fecha_estreno", nuevaSerie.FechaEstreno);
+                    cmd.Parameters.AddWithValue("p_fecha_fin", nuevaSerie.FechaFin);
+                    cmd.Parameters.AddWithValue("p_descripcion", string.IsNullOrEmpty(nuevaSerie.Descripcion) ? (object)DBNull.Value : nuevaSerie.Descripcion);
+                    cmd.Parameters.AddWithValue("p_director", string.IsNullOrEmpty(nuevaSerie.Director) ? (object)DBNull.Value : nuevaSerie.Director);
+                    cmd.Parameters.AddWithValue("p_imagenURL", string.IsNullOrEmpty(nuevaSerie.ImagenURL) ? (object)DBNull.Value : nuevaSerie.ImagenURL);
+                    cmd.Parameters.AddWithValue("p_cant_temporadas", nuevaSerie.Temporadas);
+                    cmd.Parameters.AddWithValue("p_id_network", 1);
 
                     int filasAfectadas = cmd.ExecuteNonQuery();
 
                     if (filasAfectadas > 0)
                     {
-                        MessageBox.Show("Película eliminada con éxito", "Eliminación Exitosa",
-                                        MessageBoxButtons.OK,
-                                        MessageBoxIcon.Information);
-
-                        peliculasCargadas.Clear();
-                        CargarPeliculas();
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se pudo eliminar!", "Error",
-                                        MessageBoxButtons.OK,
-                                        MessageBoxIcon.Warning);
+                        MessageBox.Show("Serie cargada con éxito", "Carga Exitosa",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show("Error: " + e.Message, "Excepción",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
+                MessageBox.Show("Error al insertar serie: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
 
+        public static void InsertarPeliculaBD(Pelicula nuevaPelicula)
+        {
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand("sp_insertar_pelicula", Conexion.GetConnection()))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("p_id_usuario", UtilsBD.usuarioActual.Id);
+                    cmd.Parameters.AddWithValue("p_nombre", nuevaPelicula.Nombre);
+                    cmd.Parameters.AddWithValue("p_fecha", nuevaPelicula.FechaEstreno);
+                    cmd.Parameters.AddWithValue("p_descripcion", nuevaPelicula.Descripcion);
+                    cmd.Parameters.AddWithValue("p_director", nuevaPelicula.Director);
+                    cmd.Parameters.AddWithValue("p_imagenURL", nuevaPelicula.ImagenURL);
+                    cmd.Parameters.AddWithValue("p_duracion", nuevaPelicula.Duracion);
+                    cmd.Parameters.AddWithValue("p_trailerURL", nuevaPelicula.TrailerURL);
+
+                    cmd.ExecuteNonQuery();
+
+                    peliculasCargadas.Add(nuevaPelicula);
+
+                    MessageBox.Show("Película cargada con éxito", "Carga Exitosa",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        // UPDATES
+
         public static void ActualizarPelicula(Pelicula actualizarPelicula)
         {
-            MessageBox.Show(actualizarPelicula.Id.ToString());
             try
             {
                 using (MySqlCommand cmd = new MySqlCommand("sp_actualizar_pelicula", Conexion.GetConnection()))
@@ -208,7 +244,7 @@ namespace Reelnode
                     cmd.Parameters.AddWithValue("p_fecha_estreno", actualizarPelicula.FechaEstreno);
                     cmd.Parameters.AddWithValue("p_descripcion", actualizarPelicula.Descripcion);
                     cmd.Parameters.AddWithValue("p_director", actualizarPelicula.Director);
-                    cmd.Parameters.AddWithValue("p_imagen", actualizarPelicula.Imagen);
+                    cmd.Parameters.AddWithValue("p_imagenURL", actualizarPelicula.ImagenURL);
                     cmd.Parameters.AddWithValue("p_duracion", actualizarPelicula.Duracion);
 
                     cmd.ExecuteNonQuery();
@@ -261,7 +297,7 @@ namespace Reelnode
                 cmd.Parameters.AddWithValue("p_fecha_estreno", fechaEstreno);
                 cmd.Parameters.AddWithValue("p_descripcion", string.IsNullOrEmpty(descripcion) ? (object)DBNull.Value : descripcion);
                 cmd.Parameters.AddWithValue("p_director", string.IsNullOrEmpty(director) ? (object)DBNull.Value : director);
-                cmd.Parameters.AddWithValue("p_imagen", string.IsNullOrEmpty(imagen) ? (object)DBNull.Value : imagen);
+                cmd.Parameters.AddWithValue("p_imagenURL", string.IsNullOrEmpty(imagen) ? (object)DBNull.Value : imagen);
                 cmd.Parameters.AddWithValue("p_cant_temporadas", cantTemporadas);
                 cmd.Parameters.AddWithValue("p_id_network", idNetwork.HasValue ? (object)idNetwork.Value : DBNull.Value);
                 try
@@ -278,69 +314,40 @@ namespace Reelnode
             }
         }
 
-        public static void InsertarSerieBD(Serie nuevaSerie)
+        // DELETES
+        public static void EliminarPelicula(int id)
         {
             try
             {
-                using (MySqlCommand cmd = new MySqlCommand("sp_insertar_serie", Conexion.GetConnection()))
+                using (MySqlCommand cmd = new MySqlCommand("sp_eliminar_pelicula_sin_trasaccion", Conexion.GetConnection()))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-
-                    cmd.Parameters.AddWithValue("p_nombre", nuevaSerie.Nombre);
-                    cmd.Parameters.AddWithValue("p_fecha_estreno", nuevaSerie.FechaEstreno);
-                    cmd.Parameters.AddWithValue("p_fecha_fin", nuevaSerie.FechaFin);
-                    cmd.Parameters.AddWithValue("p_descripcion", string.IsNullOrEmpty(nuevaSerie.Descripcion) ? (object)DBNull.Value : nuevaSerie.Descripcion);
-                    cmd.Parameters.AddWithValue("p_director", string.IsNullOrEmpty(nuevaSerie.Director) ? (object)DBNull.Value : nuevaSerie.Director);
-                    cmd.Parameters.AddWithValue("p_imagen", string.IsNullOrEmpty(nuevaSerie.Imagen) ? (object)DBNull.Value : nuevaSerie.Imagen);
-                    cmd.Parameters.AddWithValue("p_cant_temporadas", nuevaSerie.Temporadas);
-                    cmd.Parameters.AddWithValue("p_id_network", 1);
+                    cmd.Parameters.AddWithValue("p_id", id);
 
                     int filasAfectadas = cmd.ExecuteNonQuery();
 
-                    if (filasAfectadas > 0) 
+                    if (filasAfectadas > 0)
                     {
-                        MessageBox.Show("Serie cargada con éxito", "Carga Exitosa",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
+                        MessageBox.Show("Película eliminada con éxito", "Eliminación Exitosa",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Information);
+
+                        peliculasCargadas.Clear();
+                        CargarPeliculas();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo eliminar!", "Error",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Warning);
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                MessageBox.Show("Error al insertar serie: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-        }
-
-
-        public static void CargarSeries()
-        {
-            seriesCargadas.Clear();
-
-            using (MySqlCommand cmd = new MySqlCommand("sp_listar_series", Conexion.GetConnection()))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                using (MySqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        Serie nueva = new Serie
-                        {
-                            Id = reader.GetInt32("id_serie"),
-                            Nombre = reader.GetString("nombre"),
-                            FechaEstreno = reader.GetDateTime("fecha_estreno"),
-                            FechaFin = reader.GetDateTime("fecha_fin"),
-                            Descripcion = reader.IsDBNull(reader.GetOrdinal("descripcion")) ? null : reader.GetString("descripcion"),
-                            Director = reader.IsDBNull(reader.GetOrdinal("director")) ? null : reader.GetString("director"),
-                            Imagen = reader.IsDBNull(reader.GetOrdinal("imagen")) ? null : reader.GetString("imagen"),
-                            Temporadas = reader.GetInt32("cant_temporadas")
-                            /* IdNetwork = reader.IsDBNull(reader.GetOrdinal("id_network")) ? (int?)null : reader.GetInt32("id_network")*/
-                        };
-
-                        seriesCargadas.Add(nueva);
-                    }
-                }
+                MessageBox.Show("Error: " + e.Message, "Excepción",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
             }
         }
         public static void EliminarSerie(int id)
@@ -400,11 +407,57 @@ namespace Reelnode
 
         // ACCIONES
 
-        public static void Calificar(int idMedia, string tipo)
+        public static void Calificar(int idMedia, int puntuacion, string tipo)
         {
-            if(tipo == "Serie") 
+            string procedure = tipo == "Pelicula" ? "sp_calificar_pelicula" : "sp_calificar_serie";
+
+            try
             {
-                string query = "insert into calificaciones_serie(calificacion, id_serie)";
+                using (MySqlCommand cmd = new MySqlCommand(procedure, Conexion.GetConnection()))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("p_id_pelicula", idMedia);
+                    cmd.Parameters.AddWithValue("p_calificacion", puntuacion);
+                    cmd.Parameters.AddWithValue("p_id_usuario", usuarioActual.Id);
+
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Calificacion enviada", "Actualización Exitosa",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al calificar la " + tipo == "Pelicula" ? "pelicula": "serie" + ex.Message);
+            }
+        }
+
+        public static void Comentar(int idMedia, string comentario, string tipo)
+        {
+            string procedure = tipo == "Pelicula" ? "sp_comentar_pelicula" : "sp_comentar_serie";
+
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand(procedure, Conexion.GetConnection()))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("p_id_usuario", usuarioActual.Id);
+                    cmd.Parameters.AddWithValue("p_id_pelicula", idMedia);
+                    cmd.Parameters.AddWithValue("p_texto", comentario);
+
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Comentario enviado", "Actualización Exitosa",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al calificar la " + tipo == "Pelicula" ? "pelicula" : "serie" + ex.Message);
             }
         }
     } 

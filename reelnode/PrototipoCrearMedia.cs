@@ -59,7 +59,7 @@ namespace Reelnode
                         Descripcion = descripciones[rnd.Next(descripciones.Length)],
                         Director = directores[rnd.Next(directores.Length)],
                         Duracion = duraciones[rnd.Next(duraciones.Length)],
-                        Imagen = null // Puedes asignar una imagen por defecto si quieres
+                        ImagenURL = null // Puedes asignar una imagen por defecto si quieres
                     };
 
                     // Llamamos a tu método original

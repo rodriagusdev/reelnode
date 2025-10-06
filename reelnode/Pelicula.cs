@@ -14,20 +14,22 @@ namespace Reelnode
         public override DateTime FechaEstreno {  get; set; }
         public override string Descripcion { get; set; }
         public override string Director {  get; set; }
-        public override string Imagen { get; set; }
+        public override string ImagenURL { get; set; }
 
         public override string Tipo { get; set; }
+        public override string TrailerURL { get; set; }
         public string Duracion { get; set; }
 
         public Pelicula() { }
-        public Pelicula(string nombre, DateTime fechaEstreno, string descripcion, string director, string img, string duracion ) 
+        public Pelicula(string nombre, DateTime fechaEstreno, string descripcion, string director, string img, string duracion, string trailerURL) 
         {
             this.Nombre = nombre;
             this.FechaEstreno = fechaEstreno;
             this.Descripcion = descripcion;
             this.Director = director;
-            this.Imagen = img;
+            this.ImagenURL = img;
             this.Duracion = duracion;
+            this.TrailerURL = trailerURL;
             this.Tipo = "Pelicula";
         }
         

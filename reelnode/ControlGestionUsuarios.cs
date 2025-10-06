@@ -112,7 +112,7 @@ namespace Reelnode
             {
                 if (e.Value is DateTime fecha)
                 {
-                    e.Value = fecha.ToString("dd/MM/yyyy");
+                    e.Value = fecha.ToString("yyyy/MM/dd");
                     e.FormattingApplied = true;
                 }
             }
@@ -139,6 +139,7 @@ namespace Reelnode
         {
             DataGridUsuarios.DataSource = null;
             DataGridUsuarios.DataSource = UtilsBD.usuariosRegistrados;
+            DataGridUsuarios.Columns["Avatar"].Visible = false;
         }
 
         private void DataGridUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)

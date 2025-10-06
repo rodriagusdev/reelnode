@@ -44,16 +44,9 @@ namespace Reelnode
             PanelPeliculaCreacion.Invalidate();
         }
 
-
-
         private void BtnSalir_Click(object sender, EventArgs e)
         {
             //this.Close();
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void BtnPrevisualizar_Click(object sender, EventArgs e)
@@ -63,18 +56,25 @@ namespace Reelnode
 
         private void BtnCargar_Click(object sender, EventArgs e)
         {
-            Pelicula nuevaPelicula = new Pelicula
+            if(PicPelicula.Image != null)
             {
-                Nombre = TxtNombre.Text,
-                Director = TxtDirector.Text,
-                Duracion = TxtDuracion.Text,
-                FechaEstreno = DtpFechaEstreno.Value,
-                Descripcion = TxtDescripcion.Text,
-                Imagen = TxtURLImagen.Text
-            };
+                Pelicula nuevaPelicula = new Pelicula
+                     {
+                          Nombre = TxtNombre.Text,
+                          Director = TxtDirector.Text,
+                          Duracion = TxtDuracion.Text,
+                          FechaEstreno = DtpFechaEstreno.Value,
+                          Descripcion = TxtDescripcion.Text,
+                          ImagenURL = TxtURLImagen.Text,     
+                          TrailerURL = TxtURLTrailer.Text
+                     };
 
-            UtilsBD.InsertarPeliculaBD(nuevaPelicula);
-        
+                UtilsBD.InsertarPeliculaBD(nuevaPelicula);
+            }
+            else
+            {
+                MessageBox.Show("Imagen invalida", "Error al cargar pelicula", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }    
         }
 
     }

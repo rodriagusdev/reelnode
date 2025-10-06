@@ -15,22 +15,9 @@ namespace Reelnode
     public static class Utils
     {
         public static Pelicula peliculaSeleccionada = new Pelicula();
-        public static void RedondearBordes(Panel panel, int radio)
-        {
-            GraphicsPath path = new GraphicsPath();
-            path.StartFigure();
-            path.AddArc(new Rectangle(0, 0, radio, radio), 180, 90);
-            path.AddLine(radio, 0, panel.Width - radio, 0);
-            path.AddArc(new Rectangle(panel.Width - radio, 0, radio, radio), -90, 90);
-            path.AddLine(panel.Width, radio, panel.Width, panel.Height - radio);
-            path.AddArc(new Rectangle(panel.Width - radio, panel.Height - radio, radio, radio), 0, 90);
-            path.AddLine(panel.Width - radio, panel.Height, radio, panel.Height);
-            path.AddArc(new Rectangle(0, panel.Height - radio, radio, radio), 90, 90);
-            path.CloseFigure();
+        public static Serie serieSeleccionada = new Serie();
 
-            panel.Region = new Region(path);
-        }
-
+        // Esta es la funcion default para decidir que control mostrar en un panel
         public static void ShowControl(Control controlToShow, Panel panel)
         {
             foreach (Control control in panel.Controls)
@@ -76,6 +63,52 @@ namespace Reelnode
             catch
             {
                 return null;
+            }
+        }
+
+        public static int ObtenerIdMedia() 
+        {
+            if(peliculaSeleccionada != null) return peliculaSeleccionada.Id;
+
+            return serieSeleccionada.Id;
+        }
+
+        // Utilidad para extraer el ID del video de una URL de YouTube
+        public static string ExtraerVideoId(string url)
+        {
+            try
+            {
+                Uri uri = new Uri(url);
+                string videoId = string.Empty;
+
+                // Maneja URLs de YouTube en diferentes formatos
+                if (uri.Host.Contains("youtube.com") || uri.Host.Contains("youtu.be"))
+                {
+                    if (uri.Host.Contains("youtube.com"))
+                    {
+                        if (uri.Query.Contains("v="))
+                        {
+                            var query = uri.Query.TrimStart('?').Split('&');
+                            foreach (var param in query)
+                            {
+                                if (param.StartsWith("v="))
+                                {
+                                    videoId = param.Substring(2); // Extrae el valor después de "v="
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    else if (uri.Host.Contains("youtu.be"))
+                    {
+                        videoId = uri.Segments.Last(); // El ID está en el último segmento
+                    }
+                }
+                return videoId;
+            }
+            catch
+            {
+                return string.Empty; // Maneja URLs no válidas
             }
         }
 
