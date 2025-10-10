@@ -59,7 +59,7 @@
             // 
             // ToolStpMenuHome
             // 
-            this.ToolStpMenuHome.Font = new System.Drawing.Font("Courier New", 9F);
+            this.ToolStpMenuHome.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ToolStpMenuHome.Name = "ToolStpMenuHome";
             this.ToolStpMenuHome.Size = new System.Drawing.Size(47, 20);
             this.ToolStpMenuHome.Text = "Home";
@@ -67,7 +67,7 @@
             // 
             // ToolStpMenuUsuarios
             // 
-            this.ToolStpMenuUsuarios.Font = new System.Drawing.Font("Courier New", 9F);
+            this.ToolStpMenuUsuarios.Font = new System.Drawing.Font("Consolas", 9F);
             this.ToolStpMenuUsuarios.Name = "ToolStpMenuUsuarios";
             this.ToolStpMenuUsuarios.Size = new System.Drawing.Size(145, 20);
             this.ToolStpMenuUsuarios.Text = "Gestionar Usuarios";
@@ -79,7 +79,7 @@
             this.ToolStpSubMenuCargarPeliculas,
             this.ToolStpSubMenuListarPeliculas,
             this.ToolStpMenuActualizarPelicula});
-            this.ToolStpMenuPeliculas.Font = new System.Drawing.Font("Courier New", 9F);
+            this.ToolStpMenuPeliculas.Font = new System.Drawing.Font("Consolas", 9F);
             this.ToolStpMenuPeliculas.Name = "ToolStpMenuPeliculas";
             this.ToolStpMenuPeliculas.Size = new System.Drawing.Size(152, 20);
             this.ToolStpMenuPeliculas.Text = "Gestionar Peliculas";
@@ -111,7 +111,7 @@
             this.cargarSerieToolStripMenuItem1,
             this.listarSeriesToolStripMenuItem,
             this.actualizarSerieToolStripMenuItem});
-            this.ToolStpMenuSeries.Font = new System.Drawing.Font("Courier New", 9F);
+            this.ToolStpMenuSeries.Font = new System.Drawing.Font("Consolas", 9F);
             this.ToolStpMenuSeries.Name = "ToolStpMenuSeries";
             this.ToolStpMenuSeries.Size = new System.Drawing.Size(131, 20);
             this.ToolStpMenuSeries.Text = "Gestionar Series";

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.PanelVisualizarPeli = new System.Windows.Forms.Panel();
+            this.LblGeneros = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.LblTitulo = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -52,6 +53,7 @@
             // PanelVisualizarPeli
             // 
             this.PanelVisualizarPeli.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
+            this.PanelVisualizarPeli.Controls.Add(this.LblGeneros);
             this.PanelVisualizarPeli.Controls.Add(this.panel2);
             this.PanelVisualizarPeli.Controls.Add(this.LblTitulo);
             this.PanelVisualizarPeli.Controls.Add(this.panel1);
@@ -71,6 +73,21 @@
             this.PanelVisualizarPeli.Size = new System.Drawing.Size(1280, 720);
             this.PanelVisualizarPeli.TabIndex = 0;
             this.PanelVisualizarPeli.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelVisualizarPeli_Paint);
+            // 
+            // LblGeneros
+            // 
+            this.LblGeneros.AutoSize = true;
+            this.LblGeneros.BackColor = System.Drawing.Color.Transparent;
+            this.LblGeneros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LblGeneros.Font = new System.Drawing.Font("Courier New", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblGeneros.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
+            this.LblGeneros.Location = new System.Drawing.Point(520, 443);
+            this.LblGeneros.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblGeneros.Name = "LblGeneros";
+            this.LblGeneros.Size = new System.Drawing.Size(79, 19);
+            this.LblGeneros.TabIndex = 47;
+            this.LblGeneros.Tag = "Titulo";
+            this.LblGeneros.Text = "Generos";
             // 
             // panel2
             // 
@@ -111,7 +128,7 @@
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label2.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label2.Location = new System.Drawing.Point(520, 453);
+            this.label2.Location = new System.Drawing.Point(520, 489);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(99, 28);
@@ -125,7 +142,7 @@
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label1.Location = new System.Drawing.Point(90, 563);
+            this.label1.Location = new System.Drawing.Point(90, 598);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 28);
@@ -140,7 +157,7 @@
             this.BtnComentar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnComentar.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnComentar.ForeColor = System.Drawing.Color.Black;
-            this.BtnComentar.Location = new System.Drawing.Point(970, 579);
+            this.BtnComentar.Location = new System.Drawing.Point(970, 613);
             this.BtnComentar.Margin = new System.Windows.Forms.Padding(2);
             this.BtnComentar.Name = "BtnComentar";
             this.BtnComentar.Size = new System.Drawing.Size(205, 35);
@@ -168,7 +185,7 @@
             this.LblDirector.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LblDirector.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblDirector.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.LblDirector.Location = new System.Drawing.Point(91, 591);
+            this.LblDirector.Location = new System.Drawing.Point(91, 626);
             this.LblDirector.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LblDirector.Name = "LblDirector";
             this.LblDirector.Size = new System.Drawing.Size(108, 24);
@@ -179,7 +196,7 @@
             // 
             this.PanelDescripcion.BackColor = System.Drawing.Color.Transparent;
             this.PanelDescripcion.Controls.Add(this.LblDescripcionPeli);
-            this.PanelDescripcion.Location = new System.Drawing.Point(524, 481);
+            this.PanelDescripcion.Location = new System.Drawing.Point(524, 517);
             this.PanelDescripcion.Margin = new System.Windows.Forms.Padding(0);
             this.PanelDescripcion.Name = "PanelDescripcion";
             this.PanelDescripcion.Size = new System.Drawing.Size(651, 80);
@@ -214,7 +231,7 @@
             this.BtnCalificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCalificar.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnCalificar.ForeColor = System.Drawing.Color.Black;
-            this.BtnCalificar.Location = new System.Drawing.Point(524, 579);
+            this.BtnCalificar.Location = new System.Drawing.Point(524, 613);
             this.BtnCalificar.Margin = new System.Windows.Forms.Padding(2);
             this.BtnCalificar.Name = "BtnCalificar";
             this.BtnCalificar.Size = new System.Drawing.Size(205, 35);
@@ -253,7 +270,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ControlVisualizacionPeliculas";
             this.Size = new System.Drawing.Size(1280, 720);
-            this.VisibleChanged += new System.EventHandler(this.ControlVisualizacionPeliculas_VisibleChanged);
+            this.Enter += new System.EventHandler(this.ControlVisualizacionPeliculas_Enter);
             this.PanelVisualizarPeli.ResumeLayout(false);
             this.PanelVisualizarPeli.PerformLayout();
             this.PanelDescripcion.ResumeLayout(false);
@@ -280,5 +297,6 @@
         private System.Windows.Forms.Label LblTitulo;
         private System.Windows.Forms.Panel PanelDescripcion;
         private System.Windows.Forms.Label LblDescripcionPeli;
+        private System.Windows.Forms.Label LblGeneros;
     }
 }

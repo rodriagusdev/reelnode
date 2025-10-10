@@ -153,20 +153,25 @@ namespace Reelnode
                 {
                     while (reader.Read())
                     {
-                        Pelicula nueva = new Pelicula
+                        var pelicula = new Pelicula
                         {
                             Id = reader.GetInt32("id_pelicula"),
                             Nombre = reader.GetString("nombre"),
                             FechaEstreno = reader.GetDateTime("fecha_estreno"),
                             Director = reader.GetString("director"),
-                            Duracion = reader.GetInt32("duracion"),
                             Descripcion = reader.GetString("descripcion"),
-                            ImagenURL = reader.IsDBNull(reader.GetOrdinal("imagenURL")) ? null : reader.GetString("imagenURL"),
-                            TrailerURL = reader.IsDBNull(reader.GetOrdinal("trailerURL")) ? null : reader.GetString("trailerURL"),
+                            ImagenURL = reader.GetString("imagenURL"),
+                            Duracion = reader.GetInt32("duracion"),
+                            TrailerURL = reader.GetString("trailerURL"),
                             Network = reader.GetInt32("id_network"),
+                            Generos = reader.IsDBNull(reader.GetOrdinal("generos"))
+                            ? new List<int>() // si no tiene géneros. La coma es el separador por defecto de la columna "generos" del SP
+                            : reader.GetString("generos").Split(',')
+                                .Select(s => int.Parse(s))
+                                .ToList()
                         };
 
-                        peliculasCargadas.Add(nueva);
+                        UtilsBD.peliculasCargadas.Add(pelicula);
                     }
                 }
             }
@@ -257,7 +262,27 @@ namespace Reelnode
                     cmd.Parameters.AddWithValue("p_trailerURL", nuevaPelicula.TrailerURL);
                     cmd.Parameters.AddWithValue("p_id_network", nuevaPelicula.Network);
 
+                    // Parámetro OUT de sp_insertar_pelicula para obtener el ID utilizando LastInsertId()
+
+                    var obtenerUltimoIdPelicula = new MySqlParameter("p_id_pelicula", MySqlDbType.Int32);
+                    obtenerUltimoIdPelicula.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(obtenerUltimoIdPelicula);
+
                     cmd.ExecuteNonQuery();
+
+                    int idPelicula = Convert.ToInt32(obtenerUltimoIdPelicula.Value);
+
+                    foreach (int idGenero in nuevaPelicula.Generos)
+                    {
+                        using (MySqlCommand cmdGenero = new MySqlCommand("sp_insertar_genero_por_peli", Conexion.GetConnection()))
+                        {
+                            cmdGenero.CommandType = CommandType.StoredProcedure;
+
+                            cmdGenero.Parameters.AddWithValue("p_id_pelicula", idPelicula);
+                            cmdGenero.Parameters.AddWithValue("p_id_genero", idGenero);
+                            cmdGenero.ExecuteNonQuery();
+                        }
+                    }
 
                     peliculasCargadas.Add(nuevaPelicula);
 

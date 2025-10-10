@@ -30,6 +30,7 @@ namespace Reelnode
             panel.Invalidate();
         }
 
+        // Utilidad para cargar una imagen desde una URL recuperada desde una base de datos en un PictureBox
         public static void CargarImagenDesdeURL(PictureBox pictureBox, string url)
         {
             try
@@ -49,6 +50,7 @@ namespace Reelnode
             }
         }
 
+        // Utilidad para descargar una imagen de la WEB y devolverla como Image
         public static Image DescargarImagenDesdeURL(string url)
         {
             try
@@ -222,32 +224,91 @@ namespace Reelnode
             cbo.SelectedIndex = 0;
         }
 
-        public static void CrearFlowPanel<T>(FlowLayoutPanel flowPnl, List<T> list, Action<int> abrirPestana) where T : Media
+        public static void CargarGeneros(CheckedListBox chk)
+        {
+            foreach (Genero gen in UtilsBD.generosCargados)
+            {
+                chk.Items.Add(gen.Nombre);
+            }
+        }
+
+        public static string ObtenerNombresGeneros(List<int> generosId)
+        {
+            string nombresGeneros = "";
+            
+            foreach (var id in generosId)
+            {
+                var genero = UtilsBD.generosCargados.FirstOrDefault(g => g.Id == id);
+
+                if (genero != null)
+                {
+                    if (nombresGeneros != "")
+                        nombresGeneros += ", ";
+
+                    nombresGeneros += genero.Nombre;
+                }
+            }
+
+            return nombresGeneros;
+        }
+
+        public static List<int> ObtenerIdGeneros(CheckedListBox generos) 
+        {
+            List<int> generosSeleccionados = new List<int>();
+
+            foreach (var gen in generos.CheckedItems)
+            { 
+                int obtenerId = UtilsBD.generosCargados.First(g => g.Nombre == gen.ToString()).Id;
+
+                generosSeleccionados.Add(obtenerId);
+            }
+
+            return generosSeleccionados;
+        }
+        public static void RellenarFlowPanel<T>(FlowLayoutPanel flowPnl, List<T> list, Action<int> abrirPestana) where T : Media
         {
             flowPnl.Controls.Clear();
 
             foreach (var media in list)
             {
-                Panel panelTemporal = new Panel
+                // Por cada media (pelicula o serie) creo una tarjeta (Panel) con su poster y titulo
+                Panel TarjetaMedia = new Panel
                 {
-                    Size = new Size(220, 220),
+                    Size = new Size(210, 240),
                     Margin = new Padding(10),
-                    BackColor = Color.Transparent,
+                    BackColor = Color.FromArgb(30, 30, 30),
+                    Padding = new Padding(5)
                 };
 
                 PictureBox poster = new PictureBox
                 {
-                    Size = new Size(210, 210),
-                    Location = new Point(10, 10),
+                    Size = new Size(200, 200),
+                    Location = new Point(5, 5),
                     Image = Utils.DescargarImagenDesdeURL(media.ImagenURL),
                     SizeMode = PictureBoxSizeMode.StretchImage,
                     Cursor = Cursors.Hand
                 };
 
+                // Evento click para abrir la pestana de detalles
                 poster.Click += (s, e) => abrirPestana(media.Id);
 
-                panelTemporal.Controls.Add(poster);
-                flowPnl.Controls.Add(panelTemporal);
+                Label titleLabel = new Label
+                {
+                    Text = media.Nombre,
+                    Font = new Font("Courier New", 10, FontStyle.Bold),
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    ForeColor = Color.White,
+                    Location = new Point((TarjetaMedia.Width - 200) / 2, 210),
+                    Size = new Size(200, 20),
+                    BackColor = Color.Transparent
+                };
+
+
+                // Los agrego al panel, el cual agrego al FlowLayoutPanel de la interfaz
+                TarjetaMedia.Controls.Add(poster);
+                TarjetaMedia.Controls.Add(titleLabel);
+
+                flowPnl.Controls.Add(TarjetaMedia);
             }
         }
     }

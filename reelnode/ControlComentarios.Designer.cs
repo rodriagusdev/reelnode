@@ -29,9 +29,12 @@
         private void InitializeComponent()
         {
             this.Panel = new System.Windows.Forms.Panel();
+            this.BtnEnviarComentario = new System.Windows.Forms.Button();
             this.PanelComentar = new System.Windows.Forms.Panel();
             this.TxtComentario = new System.Windows.Forms.TextBox();
-            this.BtnEnviarComentario = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.BtnVerComentarios = new System.Windows.Forms.Button();
             this.Panel.SuspendLayout();
             this.PanelComentar.SuspendLayout();
             this.SuspendLayout();
@@ -39,6 +42,9 @@
             // Panel
             // 
             this.Panel.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.Panel.Controls.Add(this.BtnVerComentarios);
+            this.Panel.Controls.Add(this.panel1);
+            this.Panel.Controls.Add(this.panel3);
             this.Panel.Controls.Add(this.BtnEnviarComentario);
             this.Panel.Controls.Add(this.PanelComentar);
             this.Panel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -48,6 +54,22 @@
             this.Panel.Size = new System.Drawing.Size(1280, 720);
             this.Panel.TabIndex = 0;
             this.Panel.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel_Paint);
+            // 
+            // BtnEnviarComentario
+            // 
+            this.BtnEnviarComentario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(184)))), ((int)(((byte)(193)))));
+            this.BtnEnviarComentario.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnEnviarComentario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnEnviarComentario.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnEnviarComentario.ForeColor = System.Drawing.Color.Black;
+            this.BtnEnviarComentario.Location = new System.Drawing.Point(885, 209);
+            this.BtnEnviarComentario.Margin = new System.Windows.Forms.Padding(2);
+            this.BtnEnviarComentario.Name = "BtnEnviarComentario";
+            this.BtnEnviarComentario.Size = new System.Drawing.Size(205, 35);
+            this.BtnEnviarComentario.TabIndex = 53;
+            this.BtnEnviarComentario.Text = "Enviar comentario";
+            this.BtnEnviarComentario.UseVisualStyleBackColor = false;
+            this.BtnEnviarComentario.Click += new System.EventHandler(this.BtnEnviarComentario_Click);
             // 
             // PanelComentar
             // 
@@ -72,21 +94,38 @@
             this.TxtComentario.Size = new System.Drawing.Size(879, 111);
             this.TxtComentario.TabIndex = 12;
             // 
-            // BtnEnviarComentario
+            // panel3
             // 
-            this.BtnEnviarComentario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(184)))), ((int)(((byte)(193)))));
-            this.BtnEnviarComentario.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnEnviarComentario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnEnviarComentario.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnEnviarComentario.ForeColor = System.Drawing.Color.Black;
-            this.BtnEnviarComentario.Location = new System.Drawing.Point(885, 209);
-            this.BtnEnviarComentario.Margin = new System.Windows.Forms.Padding(2);
-            this.BtnEnviarComentario.Name = "BtnEnviarComentario";
-            this.BtnEnviarComentario.Size = new System.Drawing.Size(205, 35);
-            this.BtnEnviarComentario.TabIndex = 53;
-            this.BtnEnviarComentario.Text = "Enviar comentario";
-            this.BtnEnviarComentario.UseVisualStyleBackColor = false;
-            this.BtnEnviarComentario.Click += new System.EventHandler(this.BtnEnviarComentario_Click);
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.panel3.Location = new System.Drawing.Point(100, 292);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1081, 2);
+            this.panel3.TabIndex = 54;
+            this.panel3.Tag = "";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.panel1.Location = new System.Drawing.Point(100, 32);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1081, 2);
+            this.panel1.TabIndex = 55;
+            this.panel1.Tag = "";
+            // 
+            // BtnVerComentarios
+            // 
+            this.BtnVerComentarios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(184)))), ((int)(((byte)(193)))));
+            this.BtnVerComentarios.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnVerComentarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnVerComentarios.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnVerComentarios.ForeColor = System.Drawing.Color.Black;
+            this.BtnVerComentarios.Location = new System.Drawing.Point(201, 209);
+            this.BtnVerComentarios.Margin = new System.Windows.Forms.Padding(2);
+            this.BtnVerComentarios.Name = "BtnVerComentarios";
+            this.BtnVerComentarios.Size = new System.Drawing.Size(205, 35);
+            this.BtnVerComentarios.TabIndex = 56;
+            this.BtnVerComentarios.Text = "Ver comentarios";
+            this.BtnVerComentarios.UseVisualStyleBackColor = false;
             // 
             // ControlComentarios
             // 
@@ -108,5 +147,8 @@
         private System.Windows.Forms.Panel PanelComentar;
         private System.Windows.Forms.TextBox TxtComentario;
         private System.Windows.Forms.Button BtnEnviarComentario;
+        private System.Windows.Forms.Button BtnVerComentarios;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel3;
     }
 }

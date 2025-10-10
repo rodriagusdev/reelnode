@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.PanelPeliculaCreacion = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.ChkListGeneros = new System.Windows.Forms.CheckedListBox();
             this.label13 = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
             this.CboNetwork = new System.Windows.Forms.ComboBox();
@@ -82,6 +84,8 @@
             // PanelPeliculaCreacion
             // 
             this.PanelPeliculaCreacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
+            this.PanelPeliculaCreacion.Controls.Add(this.label14);
+            this.PanelPeliculaCreacion.Controls.Add(this.ChkListGeneros);
             this.PanelPeliculaCreacion.Controls.Add(this.label13);
             this.PanelPeliculaCreacion.Controls.Add(this.panel10);
             this.PanelPeliculaCreacion.Controls.Add(this.label12);
@@ -116,6 +120,26 @@
             this.PanelPeliculaCreacion.Size = new System.Drawing.Size(1280, 720);
             this.PanelPeliculaCreacion.TabIndex = 2;
             this.PanelPeliculaCreacion.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelPeliculaCreacion_Paint);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.Transparent;
+            this.label14.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
+            this.label14.Location = new System.Drawing.Point(137, 289);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(93, 17);
+            this.label14.TabIndex = 83;
+            this.label14.Text = "Marcar generos";
+            // 
+            // ChkListGeneros
+            // 
+            this.ChkListGeneros.FormattingEnabled = true;
+            this.ChkListGeneros.Location = new System.Drawing.Point(140, 309);
+            this.ChkListGeneros.Name = "ChkListGeneros";
+            this.ChkListGeneros.Size = new System.Drawing.Size(205, 79);
+            this.ChkListGeneros.TabIndex = 82;
             // 
             // label13
             // 
@@ -450,10 +474,10 @@
             // 
             // DtpFechaEstreno
             // 
-            this.DtpFechaEstreno.Font = new System.Drawing.Font("Palatino Linotype", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DtpFechaEstreno.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.DtpFechaEstreno.Location = new System.Drawing.Point(8, 8);
             this.DtpFechaEstreno.Name = "DtpFechaEstreno";
-            this.DtpFechaEstreno.Size = new System.Drawing.Size(192, 20);
+            this.DtpFechaEstreno.Size = new System.Drawing.Size(192, 22);
             this.DtpFechaEstreno.TabIndex = 0;
             // 
             // PanelUsuario
@@ -609,5 +633,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.ComboBox CboNetwork;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.CheckedListBox ChkListGeneros;
     }
 }

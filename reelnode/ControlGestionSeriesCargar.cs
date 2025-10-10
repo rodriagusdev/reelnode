@@ -27,7 +27,7 @@ namespace Reelnode
             BtnCargar.FlatAppearance.BorderColor = Color.FromArgb(25, 47, 71);
             BtnPrevisualizar.FlatAppearance.BorderColor = Color.FromArgb(25, 47, 71);
 
-            Utils.TemaControles(PanelMain, PicSerie);
+            // Utils.TemaControles(PanelMain, PicSerie);
         }
 
         private void PanelMain_Paint(object sender, PaintEventArgs e)
@@ -103,6 +103,7 @@ namespace Reelnode
         private void ControlGestionSeriesCargar_Load(object sender, EventArgs e)
         {
             Utils.CargarNetwork(CboNetwork);
+            Utils.CargarGeneros(ChkListGeneros);
         }
     }
 }

@@ -43,12 +43,6 @@ namespace Reelnode
             PanelPeliculaCreacion.Invalidate();
         }
 
-
-        private void BtnPrevisualizar_Click(object sender, EventArgs e)
-        {
-            Utils.CargarImagenDesdeURL(PicPelicula, TxtURLImagen.Text);
-        }
-
         private void BtnCargar_Click(object sender, EventArgs e)
         {
             if (PicPelicula.Image == null)
@@ -86,9 +80,11 @@ namespace Reelnode
                 ImagenURL = TxtURLImagen.Text,
                 TrailerURL = TxtURLTrailer.Text,
                 Network = Utils.ObtenerNetworkId(CboNetwork.Text),
+                Generos = Utils.ObtenerIdGeneros(ChkListGeneros) 
             };
 
             UtilsBD.InsertarPeliculaBD(nuevaPelicula);
+            LimpiarCampos();
         }
       
         // Uso una funcion asincrona (async) porque la URL del trailer necesita hacer una peticion a la internet que toma un tiempo
@@ -100,12 +96,34 @@ namespace Reelnode
             trailerFinalURL = await Utils.VerificarTrailer(PanelTrailerSerie, TxtURLTrailer.Text);
         }
 
+        private void BtnPrevisualizar_Click(object sender, EventArgs e)
+        {
+            Utils.CargarImagenDesdeURL(PicPelicula, TxtURLImagen.Text);
+        }
+
+        private void LimpiarCampos()
+        {
+            PicPelicula.Image = null;
+            TxtURLImagen.Text = "";
+            TxtNombre.Text = "";
+            TxtDirector.Text = "";
+            TxtDuracion.Text = "";
+            DtpFechaEstreno.Value = DateTime.Now;
+            TxtDescripcion.Text = "";
+            TxtURLTrailer.Text = "";
+            PanelTrailerSerie.Controls.Clear();
+            CboNetwork.SelectedIndex = -1;
+            for (int i = 0; i < ChkListGeneros.Items.Count; i++)
+            {
+                ChkListGeneros.SetItemChecked(i, false);
+            }
+            trailerFinalURL = null;
+        }
         private void ControlGestionPeliculasCargar_Load(object sender, EventArgs e)
         {
-            foreach (Network net in UtilsBD.networksCargadas) { 
-                CboNetwork.Items.Add(net.Nombre);
-            }
-            CboNetwork.SelectedIndex = 0;
+           Utils.CargarNetwork(CboNetwork);
+
+           Utils.CargarGeneros(ChkListGeneros);
         }
     }
 }

@@ -1,4 +1,8 @@
-﻿using System;
+﻿using iTextSharp.xmp.impl;
+using Microsoft.Web.WebView2.WinForms;
+using Org.BouncyCastle.Utilities.Encoders;
+using ProjectoNuevo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,9 +14,6 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using iTextSharp.xmp.impl;
-using Microsoft.Web.WebView2.WinForms;
-using ProjectoNuevo;
 
 namespace Reelnode
 {
@@ -46,43 +47,6 @@ namespace Reelnode
             }
         }
 
-        private void ControlVisualizacionPeliculas_VisibleChanged(object sender, EventArgs e)
-        {
-            if (this.Visible) {
-                PicPeli.Image = Utils.DescargarImagenDesdeURL(Utils.peliculaSeleccionada.ImagenURL);
-                LblDescripcionPeli.Text = Utils.peliculaSeleccionada.Descripcion;
-                LblDirector.Text = Utils.peliculaSeleccionada.Director;
-                LblDuracion.Text = Utils.peliculaSeleccionada.Duracion + "m";
-                LblTitulo.Text = Utils.peliculaSeleccionada.Nombre;
-
-                if(Utils.peliculaSeleccionada.TrailerURL != null)
-                {
-                    WebView2 trailer = new WebView2
-                    {
-                        Dock = DockStyle.Fill
-                    };
-
-                    PanelTrailerPeli.Controls.Add(trailer);
-
-                    // Este proceso es necesario porque queremos que el trailer se reproduzca automáticamente al cargar el control y ademas
-                    // que no muestre videos relacionados al finalizar la reproducción ni comentarios.
-
-                    string videoId = Utils.ExtraerVideoId(Utils.peliculaSeleccionada.TrailerURL);
-                    string embedUrl = $"https://www.youtube.com/embed/{videoId}?rel=0&controls=1&autoplay=1";
-
-                    trailer.Source = new Uri(embedUrl);
-
-                    PanelVisualizarPeli.Invalidate();
-                }
-                else 
-                {
-                    PanelTrailerPeli.Controls.Clear();
-                    PanelTrailerPeli.Visible = false;
-                }
-                    
-            }
-        }
-
         private void BtnCalificar_Click(object sender, EventArgs e)
         {
             FormCalificar calificar = new FormCalificar();
@@ -94,5 +58,83 @@ namespace Reelnode
         {
             Utils.ShowControl(controlComentarios, PanelVisualizarPeli);
         }
+
+        public void CargarPelicula(Pelicula pelicula)
+        {
+            if (pelicula == null)
+                return;
+
+            PanelTrailerPeli.Controls.Clear();
+
+            PicPeli.Image = Utils.DescargarImagenDesdeURL(pelicula.ImagenURL);
+            LblDescripcionPeli.Text = pelicula.Descripcion;
+            LblDirector.Text = pelicula.Director;
+            LblDuracion.Text = pelicula.Duracion + "m";
+            LblTitulo.Text = pelicula.Nombre;
+            LblGeneros.Text = Utils.ObtenerNombresGeneros(pelicula.Generos);
+
+            if (!string.IsNullOrEmpty(pelicula.TrailerURL))
+            {
+                string trailerURL = pelicula.TrailerURL;
+                if (trailerURL.Contains("watch?v="))
+                    trailerURL = trailerURL.Replace("watch?v=", "embed/");
+
+                string URLDefault = $"{trailerURL}?rel=0&controls=1&autoplay=1";
+
+                WebView2 trailer = new WebView2 { Dock = DockStyle.Fill };
+                PanelTrailerPeli.Controls.Add(trailer);
+                trailer.Source = new Uri(URLDefault);
+            }
+            else
+            {
+                PanelTrailerPeli.Visible = false;
+            }
+        }
+
+
+        private void ControlVisualizacionPeliculas_Enter(object sender, EventArgs e)
+        {
+
+            PicPeli.Image = Utils.DescargarImagenDesdeURL(Utils.peliculaSeleccionada.ImagenURL);
+            LblDescripcionPeli.Text = Utils.peliculaSeleccionada.Descripcion;
+            LblDirector.Text = Utils.peliculaSeleccionada.Director;
+            LblDuracion.Text = Utils.peliculaSeleccionada.Duracion + "m";
+            LblTitulo.Text = Utils.peliculaSeleccionada.Nombre;
+            string trailerURL = Utils.peliculaSeleccionada.TrailerURL;
+
+            if (Utils.peliculaSeleccionada.TrailerURL != null)
+            {
+                WebView2 trailer = new WebView2
+                {
+                    Dock = DockStyle.Fill
+                };
+
+                PanelTrailerPeli.Controls.Add(trailer);
+
+                // Quiero mostrar controles y no comentarios de youtube, asi que le asigno el siguiente formato.
+
+                // Convertir formato "watch?v=" a "embed/" -> embed es necesario para embeber el video y aplicar los parametros
+                // ?rel=0&controls=1&autoplay=1";
+
+                if (trailerURL.Contains("watch?v="))
+                {
+                    trailerURL = trailerURL.Replace("watch?v=", "embed/");
+                }
+
+                string URLDefault = $"{trailerURL}?rel=0&controls=1&autoplay=1";
+
+                trailer.Source = new Uri(URLDefault);
+
+                PanelVisualizarPeli.Invalidate();
+            }
+            else
+            {
+                PanelTrailerPeli.Controls.Clear();
+                PanelTrailerPeli.Visible = false;
+            }
+
+            
+
+    }
     }
 }

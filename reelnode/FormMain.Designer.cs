@@ -40,7 +40,6 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(0);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStpMenuAdmin,
             this.noTocarToolStripMenuItem,
@@ -48,14 +47,13 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Margin = new System.Windows.Forms.Padding(3);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(0);
             this.menuStrip1.Size = new System.Drawing.Size(1280, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // ToolStpMenuAdmin
             // 
-            this.ToolStpMenuAdmin.Font = new System.Drawing.Font("Courier New", 9F);
+            this.ToolStpMenuAdmin.Font = new System.Drawing.Font("Consolas", 9F);
             this.ToolStpMenuAdmin.Name = "ToolStpMenuAdmin";
             this.ToolStpMenuAdmin.Size = new System.Drawing.Size(96, 24);
             this.ToolStpMenuAdmin.Text = "Administrar";
@@ -64,14 +62,14 @@
             // noTocarToolStripMenuItem
             // 
             this.noTocarToolStripMenuItem.Enabled = false;
-            this.noTocarToolStripMenuItem.Font = new System.Drawing.Font("Courier New", 9F);
+            this.noTocarToolStripMenuItem.Font = new System.Drawing.Font("Consolas", 9F);
             this.noTocarToolStripMenuItem.Name = "noTocarToolStripMenuItem";
             this.noTocarToolStripMenuItem.Size = new System.Drawing.Size(138, 24);
             this.noTocarToolStripMenuItem.Text = "Agregar Contenido";
             // 
             // salirToolStripMenuItem
             // 
-            this.salirToolStripMenuItem.Font = new System.Drawing.Font("Courier New", 9F);
+            this.salirToolStripMenuItem.Font = new System.Drawing.Font("Consolas", 9F);
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
             this.salirToolStripMenuItem.Size = new System.Drawing.Size(54, 24);
             this.salirToolStripMenuItem.Text = "Salir";

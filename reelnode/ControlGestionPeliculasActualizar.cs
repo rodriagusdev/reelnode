@@ -169,6 +169,7 @@ namespace Reelnode
         private void ControlGestionPeliculasActualizar_Load(object sender, EventArgs e)
         {
             Utils.CargarNetwork(CboNetwork);
+            Utils.CargarGeneros(ChkListGeneros);
         }
 
         private async void BtnPrevisualizarTrailer_Click(object sender, EventArgs e)

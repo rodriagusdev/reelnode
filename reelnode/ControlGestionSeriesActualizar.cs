@@ -26,11 +26,12 @@ namespace Reelnode
             BtnBuscar.FlatAppearance.BorderColor = Color.FromArgb(74, 184, 192);
             BtnPrevisualizar.FlatAppearance.BorderColor = Color.FromArgb(74, 184, 192);
 
-            Utils.TemaControles(PanelMain1, PicSerie);
+            // Utils.TemaControles(PanelMain1, PicSerie);
         }
         private void ControlGestionSeriesActualizar_Load(object sender, EventArgs e)
         {
             Utils.CargarNetwork(CboNetwork);
+            Utils.CargarGeneros(ChkListGeneros);
         }
 
         public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)

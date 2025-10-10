@@ -38,6 +38,37 @@ CREATE TABLE peliculas (
     id_network int,
     foreign key(id_network) references network(id_network)
 );
+select * from peliculas;
+INSERT INTO peliculas (nombre, fecha_estreno, descripcion, director, duracion, imagenURL, trailerURL, id_network) VALUES
+('Robot Salvaje', '2024-09-20', 'Una aventura animada sobre un robot que aprende a convivir con la naturaleza y proteger a los animales.', 'Chris Sanders', 102, 
+"https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT7Nq-MCAEoQRCE-1kfgtWcMPiiy4-YIz3bYzCq8lfMZvUiylT62cX56yU3fohZL3Ot00ywMg", "https://www.youtube.com/watch?v=UPgUIORqja4", 33),
+
+('Duna: Parte Dos', '2024-03-01', 'La continuación épica de la historia de Paul Atreides mientras busca venganza contra los conspiradores que destruyeron su familia.', 'Denis Villeneuve', 166, 
+"https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcR1HYYqIoovqLVr7DQU9tevo_bMrzQqJ7LQiVnjyK1x5BUHqrjFB_JDtftcR1Sxo1cPE0fPmg", "https://www.youtube.com/watch?v=ni55SHApxhA", 12),
+
+('Oppenheimer', '2023-07-21', 'La historia del físico J. Robert Oppenheimer y su papel en el desarrollo de la bomba atómica.', 'Christopher Nolan', 180, 
+"https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ8FFJNBaIXvhEwqXXw40rYYDci8jPlYxWfy9082flliYoZ-SqqZjy0az-G5rIWuSJp2pn7xQ", "https://www.youtube.com/watch?v=uYPbbksJxIg", 15),
+
+('Barbie', '2023-07-21', 'Barbie comienza a cuestionarse su mundo perfecto y emprende un viaje al mundo real.', 'Greta Gerwig', 114, 
+"https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcROuK_Bl8jrLUP7fo3hsDC4XC2AC1WR1CAXS3G1SVqDPZE0pgFTQKnr8P2_cKmRuXg03nPE", "https://www.youtube.com/watch?v=pBk4NYhWNMM", 33),
+
+('Spider-Man: Across the Spider-Verse', '2023-06-02', 'Miles Morales viaja por el multiverso y se enfrenta a nuevas versiones de Spider-Man.', 'Joaquim Dos Santos', 140, 
+"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDDvJ0zhGxVySz3RjLa35ukjpctxW41KzD3VQ56VzSEX2lB5WHZ0le10IjuI8ZJ9cd5CeZpA", "https://www.youtube.com/watch?v=cqGjhVJWtEg", 46),
+
+('Napoleón', '2023-11-22', 'La historia del ascenso y caída del legendario líder militar francés Napoleón Bonaparte.', 'Ridley Scott', 158, 
+"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyxzp1By7PTDvs2TlNoM9lzGdxuIm12VnG0EFLKQ8uNt4eYugH-Ctw5Zj_1wCewUcDNhd-", "https://www.youtube.com/watch?v=OAZWXUkrjPc", 15),
+
+('Misión Imposible: Sentencia Mortal - Parte Uno', '2023-07-12', 'Ethan Hunt y su equipo enfrentan su misión más peligrosa para salvar el mundo.', 'Christopher McQuarrie', 163, 
+"https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcR34_otMSvSpe1Nn8Iip4kpkcaAHrUGaIITwQYC9iRIL4q34rHhTY2cTYrbRe303iD5fdsm", "https://www.youtube.com/watch?v=XoDmKCZBeeI", 14),
+
+('Wonka', '2023-12-15', 'La historia del joven Willy Wonka y cómo conoció a los Oompa-Loompas.', 'Paul King', 116, 
+"https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRrtRJVKVEsmsaq7eHik9Euw6hBfwEAwg_MmlBnp9013_31mmP6Ehp5rDyQ8-Ycr6ePyHVR", "https://www.youtube.com/watch?v=otNh9bTjXWg", 11),
+
+('Los Asesinos de la Luna', '2023-10-20', 'Basada en hechos reales, narra los asesinatos de miembros de la Nación Osage en la década de 1920.', 'Martin Scorsese', 206, 
+"https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcR34_otMSvSpe1Nn8Iip4kpkcaAHrUGaIITwQYC9iRIL4q34rHhTY2cTYrbRe303iD5fdsm", "https://www.youtube.com/watch?v=57yrWZt5z2g", 15),
+
+('Elemental', '2023-06-16', 'En una ciudad donde los elementos conviven, una joven de fuego y un chico de agua descubren cuánto tienen en común.', 'Peter Sohn', 102, 
+"https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQfij08n5L5v7WYqFwRfe9aC71gZkl7EBjmkmwGOc1rFc0BCv3S6K-zvhG8BJiWBBlWwEod", "https://www.youtube.com/watch?v=hXzcyx9V0xw", 32);
 
 CREATE TABLE serie (
     id_serie INT PRIMARY KEY AUTO_INCREMENT,
@@ -57,6 +88,33 @@ CREATE TABLE genero (
     id_genero INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(255) NOT NULL
 );
+select * from genero;
+INSERT INTO genero (nombre) VALUES
+('Action'),
+('Adventure'),
+('Comedy'),
+('Drama'),
+('Horror'),
+('Science Fiction'),
+('Fantasy'),
+('Thriller'),
+('Romance'),
+('Mystery'),
+('Crime'),
+('Animation'),
+('Documentary'),
+('Family'),
+('Musical'),
+('Western'),
+('War'),
+('Biography'),
+('History'),
+('Sport'),
+('Superhero'),
+('Fantasy Comedy'),
+('Romantic Comedy'),
+('Sci-Fi Horror'),
+('Psychological Thriller');
 
 CREATE TABLE genero_x_serie (
     id_gxs INT PRIMARY KEY AUTO_INCREMENT,
@@ -540,7 +598,8 @@ CREATE PROCEDURE sp_insertar_pelicula(
     IN p_duracion int,
     IN p_imagenURL VARCHAR(255),
     IN p_trailerURL VARCHAR(255),
-    in p_id_network int
+    in p_id_network int,
+    OUT p_id_pelicula INT
 )
 BEGIN
     START TRANSACTION;
@@ -554,6 +613,9 @@ BEGIN
     INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, detalle, id_usuario)
     VALUES ('peliculas', 'INSERT', LAST_INSERT_ID(), NOW(), p_nombre, p_id_usuario);
 	*/
+    
+    -- Necesito obtener el ultimo ID para referirme a la pelicula y poder ingresar multiples generos
+    SET p_id_pelicula = LAST_INSERT_ID();
     
     COMMIT;
 END //
@@ -697,18 +759,22 @@ DELIMITER //
 CREATE PROCEDURE sp_listar_peliculas()
 BEGIN
     SELECT 
-        id_pelicula,
-        nombre,
-        fecha_estreno,
-        director,
-        descripcion,
-        imagenURL,
-        duracion,
-        trailerURL,
-        id_network
-    FROM peliculas;
+        p.id_pelicula,
+        p.nombre,
+        p.fecha_estreno,
+        p.director,
+        p.descripcion,
+        p.imagenURL,
+        p.duracion,
+        p.trailerURL,
+        p.id_network,
+        GROUP_CONCAT(gxp.id_genero) AS generos
+    FROM peliculas p
+    LEFT JOIN genero_x_pelicula gxp ON gxp.id_pelicula = p.id_pelicula
+    GROUP BY p.id_pelicula;
 END //
 DELIMITER ;
+
 select * from peliculas
 
 DELIMITER //
@@ -856,6 +922,15 @@ END //
 DELIMITER ;
 
 DELIMITER //
+CREATE PROCEDURE sp_listar_generos()
+BEGIN
+    SELECT 
+        *
+    FROM genero;
+END //
+DELIMITER ;
+
+DELIMITER //
 CREATE PROCEDURE sp_calificar_pelicula(p_id_pelicula int, p_calificacion tinyint, p_id_usuario int)
 BEGIN
 	-- De esta forma, el usuario solo puede calificar una vez la pelicula. Si ya la califico, con ON DUPLICATE KEY UPDATE actualiza su calificacion.
@@ -875,7 +950,7 @@ END //
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE sp_comentar_pelicula(p_id_usuario int, p_id_pelicula int, p_texto varchar(255))
+CREATE PROCEDURE sp_comentar_pelicula(in p_id_usuario int, in p_id_pelicula int, in p_texto varchar(255))
 begin
 	insert into comentarios_peli(id_usuario, id_pelicula, fecha_comentario, texto)
     values(p_id_usuario, p_id_pelicula, CURDATE(), p_texto);
@@ -883,14 +958,23 @@ end //
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE sp_comentar_serie(p_id_usuario int, p_id_serie int, p_texto varchar(255))
+CREATE PROCEDURE sp_comentar_serie(in p_id_usuario int, in p_id_serie int, in p_texto varchar(255))
 begin
 	insert into comentarios_serie(id_usuario, id_serie, fecha_comentario, texto)
     values(p_id_usuario, p_id_serie, CURDATE(), p_texto);
 end //
 DELIMITER ;
 
+DELIMITER //
+CREATE PROCEDURE sp_insertar_genero_por_peli(in p_id_pelicula int, in p_id_genero int)
+begin
+	INSERT INTO genero_x_pelicula (id_pelicula, id_genero) 
+    VALUES (p_id_pelicula, p_id_genero);
+end //
+DELIMITER ;
+
 SET SQL_SAFE_UPDATES = 0;
+select * from genero_x_pelicula;
 select * from calificaciones_peliculas;
 select * from comentarios_peli;
 select * from peliculas;
