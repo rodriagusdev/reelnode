@@ -20,8 +20,6 @@ namespace Reelnode
         public ControlGestionPeliculasListarPeliculas()
         {
             InitializeComponent();
-
-            Utils.TemaControles(PanelListar, null);
         }
 
         private void PanelListar_Paint(object sender, PaintEventArgs e)
@@ -43,11 +41,6 @@ namespace Reelnode
         private void ControlGestionPeliculasListarPeliculas_Load(object sender, EventArgs e)
         {
             Utils.ActualizarListaGrid(DataGridPeliculas, UtilsBD.peliculasCargadas, "Id", "Tipo");
-        }
-
-        private void DataGridPeliculas_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

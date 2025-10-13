@@ -64,7 +64,6 @@
             this.DataGridPeliculas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataGridPeliculas.Size = new System.Drawing.Size(791, 316);
             this.DataGridPeliculas.TabIndex = 2;
-            this.DataGridPeliculas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridPeliculas_CellContentClick);
             // 
             // panel3
             // 

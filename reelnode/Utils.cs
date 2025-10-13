@@ -289,7 +289,7 @@ namespace Reelnode
                     Cursor = Cursors.Hand
                 };
 
-                // Evento click para abrir la pestana de detalles
+                // Creo un evento click para abrir la pestana de detalles al hacer click en el poster
                 poster.Click += (s, e) => abrirPestana(media.Id);
 
                 Label titleLabel = new Label
@@ -304,7 +304,7 @@ namespace Reelnode
                 };
 
 
-                // Los agrego al panel, el cual agrego al FlowLayoutPanel de la interfaz
+                // Los agrego al panel, el cual agrego al FlowLayoutPanel de la interfaz del formulario principal
                 TarjetaMedia.Controls.Add(poster);
                 TarjetaMedia.Controls.Add(titleLabel);
 

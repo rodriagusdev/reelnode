@@ -171,7 +171,7 @@ namespace Reelnode
                                 .ToList()
                         };
 
-                        UtilsBD.peliculasCargadas.Add(pelicula);
+                        peliculasCargadas.Add(pelicula);
                     }
                 }
             }
@@ -200,6 +200,11 @@ namespace Reelnode
                             Temporadas = reader.GetInt32("cant_temporadas"),
                             Network = reader.GetInt32("id_network"),
                             TrailerURL = reader.IsDBNull(reader.GetOrdinal("trailerURL")) ? null : reader.GetString("trailerURL"),
+                            Generos = reader.IsDBNull(reader.GetOrdinal("generos"))
+                            ? new List<int>() // si no tiene géneros. La coma es el separador por defecto de la columna "generos" del SP
+                            : reader.GetString("generos").Split(',')
+                                .Select(s => int.Parse(s))
+                                .ToList()
                         };
 
                         seriesCargadas.Add(nueva);
@@ -227,14 +232,34 @@ namespace Reelnode
                     cmd.Parameters.AddWithValue("p_cant_temporadas", nuevaSerie.Temporadas);
                     cmd.Parameters.AddWithValue("p_id_network", nuevaSerie.Network);
 
-                    int filasAfectadas = cmd.ExecuteNonQuery();
+                    // Parámetro OUT de sp_insertar_serie para obtener el ID utilizando LastInsertId()
+                    // NECESARIO PARA PODER INSERTAR LOS GENEROS EN LA TABLA PIVOTE
 
-                    if (filasAfectadas > 0)
+                    var obtenerUltimoIdSerie = new MySqlParameter("p_id_serie", MySqlDbType.Int32);
+                    obtenerUltimoIdSerie.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(obtenerUltimoIdSerie);
+
+                    cmd.ExecuteNonQuery();
+
+                    int idPelicula = Convert.ToInt32(obtenerUltimoIdSerie.Value);
+
+                    foreach (int idGenero in nuevaSerie.Generos)
                     {
-                        MessageBox.Show("Serie cargada con éxito", "Carga Exitosa",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
+                        using (MySqlCommand cmdGenero = new MySqlCommand("sp_insertar_genero_por_serie", Conexion.GetConnection()))
+                        {
+                            cmdGenero.CommandType = CommandType.StoredProcedure;
+
+                            cmdGenero.Parameters.AddWithValue("p_id_serie", idPelicula);
+                            cmdGenero.Parameters.AddWithValue("p_id_genero", idGenero);
+                            cmdGenero.ExecuteNonQuery();
+                        }
                     }
+
+                    
+                    MessageBox.Show("Serie cargada con éxito", "Carga Exitosa",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                    
                 }
             }
             catch (Exception ex)
@@ -252,7 +277,7 @@ namespace Reelnode
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("p_id_usuario", UtilsBD.usuarioActual.Id);
+                    cmd.Parameters.AddWithValue("p_id_usuario", usuarioActual.Id);
                     cmd.Parameters.AddWithValue("p_nombre", nuevaPelicula.Nombre);
                     cmd.Parameters.AddWithValue("p_fecha", nuevaPelicula.FechaEstreno);
                     cmd.Parameters.AddWithValue("p_descripcion", nuevaPelicula.Descripcion);
@@ -319,8 +344,20 @@ namespace Reelnode
 
                     cmd.ExecuteNonQuery();
 
+                    foreach (int idGenero in actualizarPelicula.Generos)
+                    {
+                        using (MySqlCommand cmdGenero = new MySqlCommand("sp_insertar_genero_por_peli", Conexion.GetConnection()))
+                        {
+                            cmdGenero.CommandType = CommandType.StoredProcedure;
+
+                            cmdGenero.Parameters.AddWithValue("p_id_pelicula", actualizarPelicula.Id);
+                            cmdGenero.Parameters.AddWithValue("p_id_genero", idGenero);
+                            cmdGenero.ExecuteNonQuery();
+                        }
+                    }
+
                     peliculasCargadas.Clear();
-                    UtilsBD.CargarPeliculas();
+                    CargarPeliculas();
 
                     MessageBox.Show("Película actualizada con éxito", "Actualización Exitosa",
                         MessageBoxButtons.OK,
@@ -347,7 +384,7 @@ namespace Reelnode
             }
         }
 
-        public static bool ActualizarSerie(Serie actualizarSerie)
+        public static void ActualizarSerie(Serie actualizarSerie)
         {
             try
             {
@@ -367,13 +404,26 @@ namespace Reelnode
                     cmd.Parameters.AddWithValue("p_trailerURL", string.IsNullOrEmpty(actualizarSerie.TrailerURL) ? (object)DBNull.Value : actualizarSerie.TrailerURL);
                
                     cmd.ExecuteNonQuery();
-                    return true;
+
+                    foreach (int idGenero in actualizarSerie.Generos)
+                    {
+                        using (MySqlCommand cmdGenero = new MySqlCommand("sp_insertar_genero_por_serie", Conexion.GetConnection()))
+                        {
+                            cmdGenero.CommandType = CommandType.StoredProcedure;
+
+                            cmdGenero.Parameters.AddWithValue("p_id_serie", actualizarSerie.Id);
+                            cmdGenero.Parameters.AddWithValue("p_id_genero", idGenero);
+                            cmdGenero.ExecuteNonQuery();
+                        }
+                    }
+
+                    seriesCargadas.Clear();
+                    CargarSeries();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al actualizar serie: " + ex.Message);
-                return false;
             }          
         }
 

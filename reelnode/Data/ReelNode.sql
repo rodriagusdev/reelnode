@@ -120,16 +120,16 @@ CREATE TABLE genero_x_serie (
     id_gxs INT PRIMARY KEY AUTO_INCREMENT,
     id_genero INT,
     id_serie INT,
-    FOREIGN KEY (id_genero) REFERENCES genero(id_genero),
-    FOREIGN KEY (id_serie) REFERENCES serie(id_serie)
+    FOREIGN KEY (id_genero) REFERENCES genero(id_genero) ON DELETE CASCADE, -- Asi no tengo que añadir logica adicional al borrar una serie
+    FOREIGN KEY (id_serie) REFERENCES serie(id_serie) ON DELETE CASCADE
 );
 
 CREATE TABLE genero_x_pelicula (
     id_gxp INT PRIMARY KEY AUTO_INCREMENT,
     id_genero INT,
     id_pelicula INT,
-    FOREIGN KEY (id_genero) REFERENCES genero(id_genero),
-    FOREIGN KEY (id_pelicula) REFERENCES peliculas(id_pelicula)
+    FOREIGN KEY (id_genero) REFERENCES genero(id_genero) ON DELETE CASCADE, -- Asi no tengo que añadir logica adicional al borrar una serie
+    FOREIGN KEY (id_pelicula) REFERENCES peliculas(id_pelicula) ON DELETE CASCADE
 );
 
 CREATE TABLE rol (
@@ -162,33 +162,33 @@ CREATE TABLE visualizaciones_serie (
     id_visualizacion INT PRIMARY KEY AUTO_INCREMENT,
     id_usuario INT,
     id_serie INT,
-    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
-    FOREIGN KEY (id_serie) REFERENCES serie(id_serie)
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) on delete cascade,
+    FOREIGN KEY (id_serie) REFERENCES serie(id_serie) on delete cascade
 );
 
 CREATE TABLE visualizaciones_pelicula (
     id_visualizacion INT PRIMARY KEY AUTO_INCREMENT,
     id_usuario INT,
     id_pelicula INT,
-    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
-    FOREIGN KEY (id_pelicula) REFERENCES peliculas(id_pelicula)
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) on delete cascade,
+    FOREIGN KEY (id_pelicula) REFERENCES peliculas(id_pelicula) on delete cascade
 );
 
 create table comentarios_serie (
 	id_comentario int primary key auto_increment,
 	id_usuario INT,
-    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) on delete cascade,
     id_serie int,
-    FOREIGN KEY (id_serie) REFERENCES serie(id_serie),
+    FOREIGN KEY (id_serie) REFERENCES serie(id_serie) on delete cascade,
     fecha_comentario DATE NOT NULL,
     texto varchar(255)
 );
 create table comentarios_peli (
 	id_comentario int primary key auto_increment,
 	id_usuario INT,
-    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) on delete cascade,
     id_pelicula int,
-    FOREIGN KEY (id_pelicula) REFERENCES peliculas(id_pelicula),
+    FOREIGN KEY (id_pelicula) REFERENCES peliculas(id_pelicula) on delete cascade,
     fecha_comentario DATE NOT NULL,
     texto varchar(255)
 );
@@ -651,6 +651,7 @@ BEGIN
     INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, detalle, id_usuario)
     VALUES ('peliculas', 'UPDATE', p_id, NOW(), p_nombre, p_id_usuario);
 	*/
+    delete from genero_x_pelicula where id_pelicula = p_id;
 
     COMMIT;
 END //
@@ -809,7 +810,8 @@ CREATE PROCEDURE sp_insertar_serie(
     IN p_imagenURL VARCHAR(255),
     IN p_cant_temporadas INT,
     IN p_id_network INT,
-    IN p_trailerURL VARCHAR(255)
+    IN p_trailerURL VARCHAR(255),
+    OUT p_id_serie int
 )
 BEGIN
     START TRANSACTION;
@@ -822,13 +824,15 @@ BEGIN
     VALUES ('serie', 'INSERT', LAST_INSERT_ID(), NOW(), p_nombre, p_id_usuario);
 	*/
     
+    -- Necesito obtener el ultimo ID para referirme a la serie y poder ingresar multiples generos a la table pivote
+    SET p_id_serie = LAST_INSERT_ID();
+    
     COMMIT;
 END //
 DELIMITER ;
 
 DELIMITER //
 CREATE PROCEDURE sp_actualizar_serie(
-    IN p_id_usuario INT,
     IN p_id_serie INT,
     IN p_nombre VARCHAR(255),
     IN p_fecha_estreno DATE,
@@ -860,6 +864,8 @@ BEGIN
     VALUES ('serie', 'UPDATE', p_id_serie, NOW(), COALESCE(p_nombre, 'Sin nombre'), p_id_usuario);
 	*/
     
+    delete from genero_x_serie where id_serie = p_id_serie;
+    
     COMMIT;
 END //
 DELIMITER ;
@@ -868,17 +874,20 @@ DELIMITER //
 CREATE PROCEDURE sp_listar_series()
 BEGIN
     SELECT 
-        id_serie,
-        nombre,
-        fecha_estreno,
-        fecha_fin,
-        descripcion,
-        director,
-        imagenURL,
-        cant_temporadas,
-        id_network,
-        trailerURL 
-    FROM serie;
+        s.id_serie,
+        s.nombre,
+        s.fecha_estreno,
+        s.fecha_fin,
+        s.descripcion,
+        s.director,
+        s.imagenURL,
+        s.cant_temporadas,
+        s.id_network,
+        s.trailerURL ,
+        GROUP_CONCAT(gxs.id_genero) AS generos
+    FROM serie s
+    LEFT JOIN genero_x_serie gxs on gxs.id_serie = s.id_serie
+    group by s.id_serie;
 END //
 DELIMITER ;
 
@@ -973,6 +982,26 @@ begin
 end //
 DELIMITER ;
 
+DELIMITER //
+CREATE PROCEDURE sp_insertar_genero_por_serie(in p_id_serie int, in p_id_genero int)
+begin
+	INSERT INTO genero_x_serie (id_serie, id_genero) 
+    VALUES (p_id_serie, p_id_genero);
+end //
+DELIMITER ;
+
+select
+g.nombre
+from genero g
+inner join genero_x_pelicula gxp on gxp.id_genero = g.id_genero;
+
+select * from genero_x_serie;
+
+select
+g.nombre
+from genero g
+inner join genero_x_serie gxp on gxp.id_genero = g.id_genero;
+
 SET SQL_SAFE_UPDATES = 0;
 select * from genero_x_pelicula;
 select * from calificaciones_peliculas;
@@ -981,3 +1010,6 @@ select * from peliculas;
 select * from serie;
 select * from usuario;
 select * from network;
+
+delete from serie;
+delete from pelicula;

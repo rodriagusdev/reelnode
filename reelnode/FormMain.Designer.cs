@@ -30,7 +30,6 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ToolStpMenuAdmin = new System.Windows.Forms.ToolStripMenuItem();
-            this.noTocarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PanelBack = new System.Windows.Forms.Panel();
             this.PanelMain = new System.Windows.Forms.Panel();
@@ -42,7 +41,6 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStpMenuAdmin,
-            this.noTocarToolStripMenuItem,
             this.salirToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Margin = new System.Windows.Forms.Padding(3);
@@ -55,23 +53,15 @@
             // 
             this.ToolStpMenuAdmin.Font = new System.Drawing.Font("Consolas", 9F);
             this.ToolStpMenuAdmin.Name = "ToolStpMenuAdmin";
-            this.ToolStpMenuAdmin.Size = new System.Drawing.Size(96, 24);
+            this.ToolStpMenuAdmin.Size = new System.Drawing.Size(96, 20);
             this.ToolStpMenuAdmin.Text = "Administrar";
             this.ToolStpMenuAdmin.Click += new System.EventHandler(this.ToolStpMenuAdmin_Click_1);
-            // 
-            // noTocarToolStripMenuItem
-            // 
-            this.noTocarToolStripMenuItem.Enabled = false;
-            this.noTocarToolStripMenuItem.Font = new System.Drawing.Font("Consolas", 9F);
-            this.noTocarToolStripMenuItem.Name = "noTocarToolStripMenuItem";
-            this.noTocarToolStripMenuItem.Size = new System.Drawing.Size(138, 24);
-            this.noTocarToolStripMenuItem.Text = "Agregar Contenido";
             // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Font = new System.Drawing.Font("Consolas", 9F);
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(54, 24);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click_1);
             // 
@@ -124,7 +114,6 @@
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem ToolStpMenuAdmin;
-        private System.Windows.Forms.ToolStripMenuItem noTocarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
         private System.Windows.Forms.Panel PanelBack;
         private System.Windows.Forms.Panel PanelMain;

@@ -102,16 +102,20 @@ namespace Reelnode
                     actualizarSerie.Id = int.Parse(filaSeleccionada.Cells["Id"].Value.ToString());
                     actualizarSerie.Nombre = TxtNombre.Text;
                     actualizarSerie.FechaEstreno = DtpFechaEstreno.Value;
+                    actualizarSerie.FechaFin = DtpFechaFin.Value;
                     actualizarSerie.Director = TxtDirector.Text;
                     actualizarSerie.Temporadas = int.Parse(TxtCantTemporadas.Text);
                     actualizarSerie.Descripcion = TxtDescripcion.Text;
                     actualizarSerie.ImagenURL = TxtURLImagen.Text;
                     actualizarSerie.Network = Utils.ObtenerNetworkId(CboNetwork.Text);
                     actualizarSerie.TrailerURL = TxtURLTrailer.Text;
+                    actualizarSerie.Generos = Utils.ObtenerIdGeneros(ChkListGeneros);
                 }
 
                 UtilsBD.ActualizarSerie(actualizarSerie);
                 DataGridActualizarSerie.DataSource = null;
+                filaSeleccionada = null;
+                LimpiarCampos();
             }
             else
             {
@@ -134,6 +138,7 @@ namespace Reelnode
                 TxtURLTrailer.Text = filaSeleccionada.Cells["trailerURL"].Value.ToString();
                 trailerFinalURL = null;
                 trailerFinalURL = await Utils.VerificarTrailer(PanelTrailer, TxtURLTrailer.Text);
+               
             }
             else
             {
@@ -151,6 +156,22 @@ namespace Reelnode
 
             }
             else MessageBox.Show("No se ha seleccionado ninguna fila.");
+        }
+
+        private void LimpiarCampos()
+        {
+            TxtNombre.Text = "";
+            TxtDirector.Text = "";
+            TxtCantTemporadas.Text = "";
+            TxtDescripcion.Text = "";
+            DtpFechaEstreno.Value = DateTime.Now;
+            DtpFechaFin.Value = DateTime.Now;
+            TxtURLImagen.Text = "";
+            PicSerie.Image = null;
+            TxtURLTrailer.Text = "";
+            trailerFinalURL = null;
+            ChkListGeneros.ClearSelected();
+            CboNetwork.SelectedIndex = -1;
         }
 
         private void DataGridActualizarSerie_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)

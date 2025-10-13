@@ -84,6 +84,7 @@ namespace Reelnode
                 TrailerURL = TxtURLTrailer.Text,
                 Temporadas = cantTemporadas,
                 Network = Utils.ObtenerNetworkId(CboNetwork.Text),
+                Generos = Utils.ObtenerIdGeneros(ChkListGeneros)
             };
 
             UtilsBD.InsertarSerieBD(nuevaSerie);
@@ -94,6 +95,9 @@ namespace Reelnode
             Utils.CargarImagenDesdeURL(PicSerie, TxtURLImagen.Text);
         }
 
+        // Uso una funcion asincrona (async) porque la URL del trailer necesita hacer una peticion a la internet que toma un tiempo
+        // y no quiero que la interfaz de usuario se congele mientras espera la respuesta. Ademas, no quiero que la funcion avance
+        // hasta que la peticion se complete, por eso uso 'await'.
         private async void BtnPrevisualizarTrailer_Click(object sender, EventArgs e)
         {
             trailerFinalURL = null;

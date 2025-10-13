@@ -111,15 +111,15 @@ namespace Reelnode
 
                 PanelTrailerPeli.Controls.Add(trailer);
 
-                // Quiero mostrar controles y no comentarios de youtube, asi que le asigno el siguiente formato.
-
                 // Convertir formato "watch?v=" a "embed/" -> embed es necesario para embeber el video y aplicar los parametros
-                // ?rel=0&controls=1&autoplay=1";
 
                 if (trailerURL.Contains("watch?v="))
                 {
                     trailerURL = trailerURL.Replace("watch?v=", "embed/");
                 }
+
+                // Quiero mostrar controles y ocultar comentarios de youtube, asi que le asigno el siguiente formato.
+                // ?rel=0&controls=1&autoplay=1";
 
                 string URLDefault = $"{trailerURL}?rel=0&controls=1&autoplay=1";
 

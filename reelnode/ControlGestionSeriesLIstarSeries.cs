@@ -37,5 +37,10 @@ namespace Reelnode
                 e.Graphics.FillRectangle(brush, PanelListar.ClientRectangle);
             }
         }
+
+        private void ControlGestionSeriesListarSeries_Load(object sender, EventArgs e)
+        {
+            Utils.ActualizarListaGrid(DataGridSeries, UtilsBD.seriesCargadas, "Id", "Tipo");
+        }
     }
 }

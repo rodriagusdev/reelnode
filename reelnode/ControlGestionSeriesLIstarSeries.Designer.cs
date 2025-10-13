@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.PanelListar = new System.Windows.Forms.Panel();
-            this.DataGridSeries = new System.Windows.Forms.DataGridView();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.DataGridSeries = new System.Windows.Forms.DataGridView();
             this.PanelListar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridSeries)).BeginInit();
             this.SuspendLayout();
@@ -49,6 +49,24 @@
             this.PanelListar.TabIndex = 1;
             this.PanelListar.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelListar_Paint);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.panel1.Location = new System.Drawing.Point(117, 551);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1081, 2);
+            this.panel1.TabIndex = 50;
+            this.panel1.Tag = "";
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.panel3.Location = new System.Drawing.Point(117, 69);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1081, 2);
+            this.panel3.TabIndex = 50;
+            this.panel3.Tag = "";
+            // 
             // DataGridSeries
             // 
             this.DataGridSeries.AllowUserToAddRows = false;
@@ -65,24 +83,6 @@
             this.DataGridSeries.Size = new System.Drawing.Size(791, 316);
             this.DataGridSeries.TabIndex = 2;
             // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.panel3.Location = new System.Drawing.Point(117, 69);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1081, 2);
-            this.panel3.TabIndex = 50;
-            this.panel3.Tag = "";
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.panel1.Location = new System.Drawing.Point(117, 551);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1081, 2);
-            this.panel1.TabIndex = 50;
-            this.panel1.Tag = "";
-            // 
             // ControlGestionSeriesListarSeries
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -91,6 +91,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ControlGestionSeriesListarSeries";
             this.Size = new System.Drawing.Size(1280, 720);
+            this.Load += new System.EventHandler(this.ControlGestionSeriesListarSeries_Load);
             this.PanelListar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridSeries)).EndInit();
             this.ResumeLayout(false);

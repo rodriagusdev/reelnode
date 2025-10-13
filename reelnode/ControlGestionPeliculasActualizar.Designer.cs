@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.PanelMain = new System.Windows.Forms.Panel();
+            this.label19 = new System.Windows.Forms.Label();
+            this.ChkListGeneros = new System.Windows.Forms.CheckedListBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.BtnPrevisualizarTrailer = new System.Windows.Forms.Button();
@@ -73,8 +75,6 @@
             this.BtnBuscarPelicula = new System.Windows.Forms.Button();
             this.PanelBuscarPeliculaNombre = new System.Windows.Forms.Panel();
             this.TxtBuscarNombrePelicula = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.ChkListGeneros = new System.Windows.Forms.CheckedListBox();
             this.PanelMain.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -131,6 +131,27 @@
             this.PanelMain.Size = new System.Drawing.Size(1280, 720);
             this.PanelMain.TabIndex = 2;
             this.PanelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelMain_Paint);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.BackColor = System.Drawing.Color.Transparent;
+            this.label19.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
+            this.label19.Location = new System.Drawing.Point(316, 177);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(93, 17);
+            this.label19.TabIndex = 95;
+            this.label19.Text = "Marcar generos";
+            // 
+            // ChkListGeneros
+            // 
+            this.ChkListGeneros.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ChkListGeneros.FormattingEnabled = true;
+            this.ChkListGeneros.Location = new System.Drawing.Point(319, 194);
+            this.ChkListGeneros.Name = "ChkListGeneros";
+            this.ChkListGeneros.Size = new System.Drawing.Size(205, 105);
+            this.ChkListGeneros.TabIndex = 94;
             // 
             // panel7
             // 
@@ -617,27 +638,6 @@
             this.TxtBuscarNombrePelicula.Name = "TxtBuscarNombrePelicula";
             this.TxtBuscarNombrePelicula.Size = new System.Drawing.Size(195, 22);
             this.TxtBuscarNombrePelicula.TabIndex = 12;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.BackColor = System.Drawing.Color.Transparent;
-            this.label19.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label19.Location = new System.Drawing.Point(316, 177);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(93, 17);
-            this.label19.TabIndex = 95;
-            this.label19.Text = "Marcar generos";
-            // 
-            // ChkListGeneros
-            // 
-            this.ChkListGeneros.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ChkListGeneros.FormattingEnabled = true;
-            this.ChkListGeneros.Location = new System.Drawing.Point(319, 194);
-            this.ChkListGeneros.Name = "ChkListGeneros";
-            this.ChkListGeneros.Size = new System.Drawing.Size(205, 105);
-            this.ChkListGeneros.TabIndex = 94;
             // 
             // ControlGestionPeliculasActualizar
             // 

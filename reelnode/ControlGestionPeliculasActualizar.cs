@@ -29,8 +29,6 @@ namespace Reelnode
             BtnPrevisualizar.FlatAppearance.BorderColor = Color.FromArgb(74, 184, 192);
             BtnActualizar.FlatAppearance.BorderColor = Color.FromArgb(74, 184, 192);
             BtnBuscarPelicula.FlatAppearance.BorderColor = Color.FromArgb(74, 184, 192);
-
-            //Utils.TemaControles(PanelMain, PicPelicula);
         }
         private void PanelMain_Paint(object sender, PaintEventArgs e)
         {
@@ -105,15 +103,34 @@ namespace Reelnode
                     actualizarPelicula.ImagenURL = TxtURLImagen.Text;
                     actualizarPelicula.Network = Utils.ObtenerNetworkId(CboNetwork.Text);
                     actualizarPelicula.TrailerURL = TxtURLTrailer.Text;
+                    actualizarPelicula.Generos = Utils.ObtenerIdGeneros(ChkListGeneros);
                 }
 
+                filaSeleccionada = null;
                 UtilsBD.ActualizarPelicula(actualizarPelicula);
                 DataGridPeliculas.DataSource = null;
+                LimpiarCampos();
             }         
             else
             {
                 MessageBox.Show("No se ha seleccionado ninguna fila.");
             }
+        }
+
+        private void LimpiarCampos()
+        {
+            TxtNombre.Text = "";
+            TxtDirector.Text = "";
+            TxtDuracion.Text = "";
+            TxtDescripcion.Text = "";
+            DtpFechaEstreno.Value = DateTime.Now;
+            TxtURLImagen.Text = "";
+            PicPelicula.Image = null;
+            TxtURLTrailer.Text = "";
+            PanelTrailer.Controls.Clear();
+            trailerFinalURL = null;
+            foreach (int i in ChkListGeneros.CheckedIndices) ChkListGeneros.SetItemChecked(i, false);
+            CboNetwork.SelectedIndex = -1;
         }
 
         private async void CtxMenuSubModificar_Click(object sender, EventArgs e)
