@@ -84,6 +84,20 @@ CREATE TABLE serie (
     FOREIGN KEY (id_network) REFERENCES network(id_network)
 );
 
+INSERT INTO serie (
+    nombre, fecha_estreno, fecha_fin, descripcion, director, imagenURL, cant_temporadas, trailerURL, id_network
+) VALUES
+('Breaking Bad', '2008-01-20', '2013-09-29', 'Un profesor de química se convierte en fabricante de metanfetamina.', 'Vince Gilligan', "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOcWkpWG_NRrU2M8-WB8EbEcJk7smhdrY1eO0ttKXm0bo2ooOEWxk3zBSbsFrSgSJh2OEKOQ", 5, "https://www.youtube.com/watch?v=HhesaQXLuRY", 1),
+('Stranger Things', '2016-07-15', '2025-01-01', 'Un grupo de niños enfrenta fuerzas sobrenaturales en su pequeño pueblo.', 'The Duffer Brothers', "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSb8xupi_c_ornYk2Y4PaDKIx20Xy9PS1bshOu73qVKojzLmkpy-U2MC8R2jJZCFbU_mgTH", 5, "https://www.youtube.com/watch?v=b9EkMc79ZSU", 2),
+('Game of Thrones', '2011-04-17', '2019-05-19', 'Nobles luchan por el Trono de Hierro en un mundo medieval fantástico.', 'David Benioff y D.B. Weiss', "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUgffoihYPEcEZH4D24OA-1Hnwz-SRN4DOmcABM6nro6l2D_yLYjNNFy_pOpOC9ABjXY2_", 8, "https://www.youtube.com/watch?v=KPLWWIOCOOQ", 3),
+('The Office', '2005-03-24', '2013-05-16', 'Una mirada divertida a la vida diaria en una oficina.', 'Greg Daniels', "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQ00mxCZs-9YF6bPtPBe-dlgo6cnxI6klO2hHMtiQJpC_vHKQuNQKEB627kLUXoHXhFnwdBVw", 9, "https://www.youtube.com/watch?v=-C2z-nshFts", 4),
+('The Mandalorian', '2019-11-12', '2023-04-19', 'Un cazarrecompensas viaja por la galaxia tras la caída del Imperio.', 'Jon Favreau', "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPz4zyHFlnCZr0RuXDKfJOhPB83w0jh_RJ1utNuTGMd1-apSkHVSGEsfZ17_D31rtkhQpZ", 3, "https://www.youtube.com/watch?v=aOC8E8z_ifw", 5),
+('Dark', '2017-12-01', '2020-06-27', 'Un misterio temporal que conecta a cuatro familias en Alemania.', 'Baran bo Odar', "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS6ApenbR-AZkjJySI-VBzjMJYPWFoqUgCxfkGyvXpCru89imX7jzAdmaDSgEVOY4MIDnR_", 3, "https://www.youtube.com/watch?v=ESEUoa-mz2c", 2),
+('Sherlock', '2010-07-25', '2017-01-15', 'Versión moderna de las aventuras del detective Sherlock Holmes.', 'Steven Moffat', "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSKAffHEy-QCEkW_rqDKlHTcHELw7CBuxM3hi-vE7LFJM7yFZ4Msgeg75Kh1988BBF4Lrf21A", 4, "https://www.youtube.com/watch?v=y9ZouUyPKx8", 1),
+('The Crown', '2016-11-04', '2023-12-14', 'Relato biográfico de la vida de la reina Isabel II.', 'Peter Morgan', "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzpy-NQOVd2iA7FUG2bx8z-qF23EUOtE2xA6Q4lBb4klcBJ2y7dz0WEKyiP6QEfYosy9EV", 6, "https://www.youtube.com/watch?v=JWtnJjn6ng0", 3),
+('Peaky Blinders', '2013-09-12', '2022-04-03', 'Una familia de gánsteres en la Inglaterra de posguerra.', 'Steven Knight', "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSM1RfnNxjkJjv6su_9EVi-AqVTvMyaiWergB9Vh_utvs1n6ZYTWygADBA1Xzwx0kxDfH5S", 6, "https://www.youtube.com/watch?v=oVzVdvGIC7U", 4),
+('Loki', '2021-06-09', '2023-10-05', 'El dios del engaño altera las líneas temporales del multiverso.', 'Kate Herron', "https://pics.filmaffinity.com/Loki_Serie_de_TV-120729175-large.jpg", 2, "https://www.youtube.com/watch?v=nW948Va-l10", 5);
+
 CREATE TABLE genero (
     id_genero INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(255) NOT NULL
