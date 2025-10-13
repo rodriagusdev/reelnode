@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
             this.BtnIngresar = new System.Windows.Forms.Button();
             this.PanelUsuario = new System.Windows.Forms.Panel();
             this.LblPanelUsuario = new System.Windows.Forms.Label();
@@ -42,12 +43,12 @@
             this.LblPanelPassword = new System.Windows.Forms.Label();
             this.PanelPasswordLinea = new System.Windows.Forms.Panel();
             this.TxtPassword = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.PicReelnode = new System.Windows.Forms.PictureBox();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.PanelUsuario.SuspendLayout();
             this.PanelMain.SuspendLayout();
             this.PanelPassword.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicReelnode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -122,7 +123,7 @@
             this.PanelMain.Controls.Add(this.PanelPassword);
             this.PanelMain.Controls.Add(this.PanelUsuario);
             this.PanelMain.Controls.Add(this.BtnIngresar);
-            this.PanelMain.Controls.Add(this.pictureBox1);
+            this.PanelMain.Controls.Add(this.PicReelnode);
             this.PanelMain.Location = new System.Drawing.Point(12, 12);
             this.PanelMain.Name = "PanelMain";
             this.PanelMain.Size = new System.Drawing.Size(424, 463);
@@ -219,17 +220,18 @@
             this.TxtPassword.TabIndex = 12;
             this.TxtPassword.TextChanged += new System.EventHandler(this.TxtPassword_TextChanged);
             // 
-            // pictureBox1
+            // PicReelnode
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(15, 10);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(377, 149);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 23;
-            this.pictureBox1.TabStop = false;
+            this.PicReelnode.BackColor = System.Drawing.Color.Transparent;
+            this.PicReelnode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PicReelnode.Image = ((System.Drawing.Image)(resources.GetObject("PicReelnode.Image")));
+            this.PicReelnode.InitialImage = null;
+            this.PicReelnode.Location = new System.Drawing.Point(15, 10);
+            this.PicReelnode.Name = "PicReelnode";
+            this.PicReelnode.Size = new System.Drawing.Size(377, 149);
+            this.PicReelnode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PicReelnode.TabIndex = 23;
+            this.PicReelnode.TabStop = false;
             // 
             // errorProvider
             // 
@@ -239,7 +241,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Turquoise;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(45)))), ((int)(((byte)(85)))));
             this.ClientSize = new System.Drawing.Size(448, 487);
             this.Controls.Add(this.PanelMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -254,7 +256,7 @@
             this.PanelMain.PerformLayout();
             this.PanelPassword.ResumeLayout(false);
             this.PanelPassword.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicReelnode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
@@ -272,7 +274,7 @@
         private System.Windows.Forms.Label LblPanelPassword;
         private System.Windows.Forms.Panel PanelPasswordLinea;
         private System.Windows.Forms.TextBox TxtPassword;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox PicReelnode;
         private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.Label LblRegistrar;
         private System.Windows.Forms.Button BtnSalir;

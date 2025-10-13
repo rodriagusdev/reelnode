@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
+using System.Resources;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -66,6 +67,7 @@ namespace Reelnode
                     UtilsBD.usuarioActual.Password = u.Password;
                     UtilsBD.usuarioActual.RolUsuario = u.RolUsuario;
                     UtilsBD.usuarioActual.Email = u.Email;
+                    UtilsBD.usuarioActual.Avatar = u.Avatar;
                     usuarioEncontrado = true;
                     this.Close();
                     break;

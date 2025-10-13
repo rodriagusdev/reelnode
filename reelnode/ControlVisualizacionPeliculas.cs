@@ -94,47 +94,7 @@ namespace Reelnode
 
         private void ControlVisualizacionPeliculas_Enter(object sender, EventArgs e)
         {
-
-            PicPeli.Image = Utils.DescargarImagenDesdeURL(Utils.peliculaSeleccionada.ImagenURL);
-            LblDescripcionPeli.Text = Utils.peliculaSeleccionada.Descripcion;
-            LblDirector.Text = Utils.peliculaSeleccionada.Director;
-            LblDuracion.Text = Utils.peliculaSeleccionada.Duracion + "m";
-            LblTitulo.Text = Utils.peliculaSeleccionada.Nombre;
-            string trailerURL = Utils.peliculaSeleccionada.TrailerURL;
-
-            if (Utils.peliculaSeleccionada.TrailerURL != null)
-            {
-                WebView2 trailer = new WebView2
-                {
-                    Dock = DockStyle.Fill
-                };
-
-                PanelTrailerPeli.Controls.Add(trailer);
-
-                // Convertir formato "watch?v=" a "embed/" -> embed es necesario para embeber el video y aplicar los parametros
-
-                if (trailerURL.Contains("watch?v="))
-                {
-                    trailerURL = trailerURL.Replace("watch?v=", "embed/");
-                }
-
-                // Quiero mostrar controles y ocultar comentarios de youtube, asi que le asigno el siguiente formato.
-                // ?rel=0&controls=1&autoplay=1";
-
-                string URLDefault = $"{trailerURL}?rel=0&controls=1&autoplay=1";
-
-                trailer.Source = new Uri(URLDefault);
-
-                PanelVisualizarPeli.Invalidate();
-            }
-            else
-            {
-                PanelTrailerPeli.Controls.Clear();
-                PanelTrailerPeli.Visible = false;
-            }
-
             
-
-    }
+        }
     }
 }

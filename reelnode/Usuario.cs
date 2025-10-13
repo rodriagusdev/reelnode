@@ -15,12 +15,12 @@ namespace Reelnode
         public string RolUsuario { get; set; }
         public string Email { get; set; }
 
-        public byte[] Avatar { get; set; }
+        public string Avatar { get; set; }
         public DateTime FechaRegistro { get; set; }
 
 
         public Usuario() { }
-        public Usuario(int id, string nombreUsuario, string password, string email, byte[] avatar, string rolUsuario)
+        public Usuario(int id, string nombreUsuario, string password, string email, string avatar, string rolUsuario)
         {
             Id = id;
             NombreUsuario = nombreUsuario;

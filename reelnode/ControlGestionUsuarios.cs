@@ -139,7 +139,7 @@ namespace Reelnode
         {
             DataGridUsuarios.DataSource = null;
             DataGridUsuarios.DataSource = UtilsBD.usuariosRegistrados;
-            DataGridUsuarios.Columns["Avatar"].Visible = false;
+            // DataGridUsuarios.Columns["Avatar"].Visible = false;
         }
 
         private void DataGridUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)

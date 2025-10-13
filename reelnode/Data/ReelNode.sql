@@ -176,6 +176,7 @@ CREATE TABLE visualizaciones_serie (
     id_visualizacion INT PRIMARY KEY AUTO_INCREMENT,
     id_usuario INT,
     id_serie INT,
+    fecha_visualizacion date,
     FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) on delete cascade,
     FOREIGN KEY (id_serie) REFERENCES serie(id_serie) on delete cascade
 );
@@ -184,6 +185,7 @@ CREATE TABLE visualizaciones_pelicula (
     id_visualizacion INT PRIMARY KEY AUTO_INCREMENT,
     id_usuario INT,
     id_pelicula INT,
+    fecha_visualizacion date,
     FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) on delete cascade,
     FOREIGN KEY (id_pelicula) REFERENCES peliculas(id_pelicula) on delete cascade
 );
@@ -234,6 +236,7 @@ CREATE TABLE calificaciones_peliculas (
     FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
         ON DELETE CASCADE ON UPDATE CASCADE
 );
+
 create table permisos(
 	id_permiso int primary key auto_increment,
     tipo_permiso varchar(255),
@@ -764,6 +767,7 @@ BEGIN
         u.password_usuario, 
         u.email_usuario,
         u.fecha_registro,
+        u.avatar,
         r.tipo_rol AS nombre_rol
     FROM usuario u
     INNER JOIN rol r ON r.id_rol = u.id_rol;
@@ -1004,17 +1008,85 @@ begin
 end //
 DELIMITER ;
 
-select
-g.nombre
-from genero g
-inner join genero_x_pelicula gxp on gxp.id_genero = g.id_genero;
+DELIMITER //
+CREATE PROCEDURE sp_obtener_calificaciones_x_usuario(in p_id_usuario int)
+begin
+	select 
+		p.nombre,
+        p.imagenURL,
+        p.id_pelicula,
+		c.calificacion,
+        u.id_usuario
+	from
+		calificaciones_peliculas c
+	inner join
+		peliculas p on p.id_pelicula = c.id_pelicula
+	inner join
+		usuario u on u.id_usuario = c.id_usuario;
+end //
+DELIMITER ;
 
-select * from genero_x_serie;
+/*create or replace view vw_historial_total as -- historial de cada usuario tambien para reportes avnzados
+select 
+    u.id_usuario,
+    u.nombre_usuario,
+    historial.contenido,
+    historial.tipo,
+    COUNT(*) as veces_visto,
+    MAX(historial.fecha_visualizacion) as ultima_vez
+from (
+    select 
+        v.id_usuario,
+        p.nombre as contenido,
+        'Pelicula' as tipo,
+        v.fecha_visualizacion
+    from visualizaciones_pelicula v
+    inner join peliculas p on v.id_pelicula = p.id_pelicula
 
-select
-g.nombre
-from genero g
-inner join genero_x_serie gxp on gxp.id_genero = g.id_genero;
+   union all
+
+    select 
+        v.id_usuario,
+        s.nombre as contenido,
+        'Serie' as tipo
+    from visualizaciones_serie v
+    inner join serie s on v.id_serie = s.id_serie
+) as historial
+inner join usuario u on historial.id_usuario = u.id_usuario
+group by 
+    u.id_usuario, 
+    u.nombre_usuario, 
+    historial.contenido, 
+    historial.tipo
+order by ultima_vez desc;
+*/
+
+DELIMITER //
+CREATE PROCEDURE sp_obtener_calificaciones_x_usuario_serie(in p_id_usuario int)
+begin
+	select 
+		s.nombre,
+        s.imagenURL,
+        s.id_serie,
+		c.calificacion,
+        u.id_usuario
+	from
+		calificaciones_serie c
+	inner join
+		serie s on s.id_serie = c.id_serie
+	inner join
+		usuario u on u.id_usuario = c.id_usuario;
+end //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_actualizar_avatar_usuario(in p_id_usuario int, in p_url varchar(255))
+begin
+	update usuario
+    set avatar = p_url
+	where id_usuario = p_id_usuario;
+end //
+DELIMITER ;
 
 SET SQL_SAFE_UPDATES = 0;
 select * from genero_x_pelicula;

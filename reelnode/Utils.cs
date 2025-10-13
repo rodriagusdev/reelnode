@@ -274,15 +274,13 @@ namespace Reelnode
                 // Por cada media (pelicula o serie) creo una tarjeta (Panel) con su poster y titulo
                 Panel TarjetaMedia = new Panel
                 {
-                    Size = new Size(210, 240),
-                    Margin = new Padding(10),
+                    Size = new Size(190, 220),
                     BackColor = Color.FromArgb(30, 30, 30),
-                    Padding = new Padding(5)
                 };
 
                 PictureBox poster = new PictureBox
                 {
-                    Size = new Size(200, 200),
+                    Size = new Size(180, 180),
                     Location = new Point(5, 5),
                     Image = Utils.DescargarImagenDesdeURL(media.ImagenURL),
                     SizeMode = PictureBoxSizeMode.StretchImage,
@@ -298,7 +296,7 @@ namespace Reelnode
                     Font = new Font("Courier New", 10, FontStyle.Bold),
                     TextAlign = ContentAlignment.MiddleCenter,
                     ForeColor = Color.White,
-                    Location = new Point((TarjetaMedia.Width - 200) / 2, 210),
+                    Location = new Point((TarjetaMedia.Width - 200) / 2, 190),
                     Size = new Size(200, 20),
                     BackColor = Color.Transparent
                 };

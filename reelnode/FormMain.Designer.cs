@@ -30,6 +30,7 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ToolStpMenuAdmin = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStpMenuCuenta = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PanelBack = new System.Windows.Forms.Panel();
             this.PanelMain = new System.Windows.Forms.Panel();
@@ -41,10 +42,13 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStpMenuAdmin,
+            this.ToolStpMenuCuenta,
             this.salirToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Margin = new System.Windows.Forms.Padding(3);
             this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.menuStrip1.ShowItemToolTips = true;
             this.menuStrip1.Size = new System.Drawing.Size(1280, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
@@ -53,14 +57,24 @@
             // 
             this.ToolStpMenuAdmin.Font = new System.Drawing.Font("Consolas", 9F);
             this.ToolStpMenuAdmin.Name = "ToolStpMenuAdmin";
+            this.ToolStpMenuAdmin.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.ToolStpMenuAdmin.Size = new System.Drawing.Size(96, 20);
             this.ToolStpMenuAdmin.Text = "Administrar";
             this.ToolStpMenuAdmin.Click += new System.EventHandler(this.ToolStpMenuAdmin_Click_1);
+            // 
+            // ToolStpMenuCuenta
+            // 
+            this.ToolStpMenuCuenta.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ToolStpMenuCuenta.Name = "ToolStpMenuCuenta";
+            this.ToolStpMenuCuenta.Size = new System.Drawing.Size(61, 20);
+            this.ToolStpMenuCuenta.Text = "Cuenta";
+            this.ToolStpMenuCuenta.Click += new System.EventHandler(this.ToolStpMenuCuenta_Click);
             // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Font = new System.Drawing.Font("Consolas", 9F);
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
+            this.salirToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.salirToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click_1);
@@ -85,7 +99,6 @@
             this.PanelMain.Name = "PanelMain";
             this.PanelMain.Size = new System.Drawing.Size(1280, 696);
             this.PanelMain.TabIndex = 2;
-            this.PanelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelMain_Paint_1);
             // 
             // FormMain
             // 
@@ -117,6 +130,7 @@
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
         private System.Windows.Forms.Panel PanelBack;
         private System.Windows.Forms.Panel PanelMain;
+        private System.Windows.Forms.ToolStripMenuItem ToolStpMenuCuenta;
     }
 }
 

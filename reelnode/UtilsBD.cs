@@ -96,6 +96,7 @@ namespace Reelnode
                             Email = reader.GetString("email_usuario"),
                             RolUsuario = reader.GetString("nombre_rol"),
                             FechaRegistro = reader.GetDateTime("fecha_registro"),
+                            Avatar = reader.IsDBNull(reader.GetOrdinal("avatar")) ? null : reader.GetString("avatar"),
                         };
 
                         usuariosRegistrados.Add(u);
@@ -499,7 +500,116 @@ namespace Reelnode
             }
         }
 
+        // LISTADOS DE COMENTARIOS, CALIFICACIONES Y VISUALIZACIONES
+
+        public static void CargarComentariosPelicula(int idUsuario)
+        {
+            using (MySqlCommand cmd = new MySqlCommand("sp_listar_comentarios_pelicula", Conexion.GetConnection()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("p_id_pelicula", idUsuario);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var pelicula = new Pelicula
+                        {
+                            Id = reader.GetInt32("id_pelicula"),
+                            Nombre = reader.GetString("nombre"),
+                            FechaEstreno = reader.GetDateTime("fecha_estreno"),
+                            Director = reader.GetString("director"),
+                            Descripcion = reader.GetString("descripcion"),
+                            ImagenURL = reader.GetString("imagenURL"),
+                            Duracion = reader.GetInt32("duracion"),
+                            TrailerURL = reader.GetString("trailerURL"),
+                            Network = reader.GetInt32("id_network"),
+                            Generos = reader.IsDBNull(reader.GetOrdinal("generos"))
+                            ? new List<int>() // si no tiene géneros. La coma es el separador por defecto de la columna "generos" del SP
+                            : reader.GetString("generos").Split(',')
+                                .Select(s => int.Parse(s))
+                                .ToList()
+                        };
+
+                        peliculasCargadas.Add(pelicula);
+                    }
+                }
+            }
+        }
+
+        public static void CargarCalificaciones(int idUsuario, List<Pelicula> peliculasCalificadas)
+        {
+            using (MySqlCommand cmd = new MySqlCommand("sp_obtener_calificaciones_x_usuario", Conexion.GetConnection()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("p_id_usuario", idUsuario);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var pelicula = new Pelicula
+                        {
+                            Id = reader.GetInt32("id_pelicula"),
+                            Nombre = reader.GetString("nombre"),
+                            ImagenURL = reader.GetString("imagenURL"),
+                        };
+
+                        peliculasCalificadas.Add(pelicula);
+                    }
+                }
+            }
+        }
+
+        public static void CargarCalificacionesSerie(int idUsuario, List<Serie> seriesCalificadas)
+        {
+            using (MySqlCommand cmd = new MySqlCommand("sp_obtener_calificaciones_x_usuario_serie", Conexion.GetConnection()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("p_id_usuario", idUsuario);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var pelicula = new Serie
+                        {
+                            Id = reader.GetInt32("id_serie"),
+                            Nombre = reader.GetString("nombre"),
+                            ImagenURL = reader.GetString("imagenURL"),
+                        };
+
+                        seriesCalificadas.Add(pelicula);
+                    }
+                }
+            }
+        }
+
         // ACCIONES
+
+        public static void CambiarAvatar(int idUsuario, string URL)
+        {
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand("sp_actualizar_avatar_usuario", Conexion.GetConnection()))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("p_id_usuario", idUsuario);
+                    cmd.Parameters.AddWithValue("p_url", URL);
+
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Película actualizada con éxito", "Actualización Exitosa",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar la película: " + ex.Message);
+            }
+        }
 
         public static void Calificar(int idMedia, int puntuacion, string tipo)
         {

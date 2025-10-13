@@ -1,5 +1,6 @@
 ﻿using iTextSharp.text;
 using MySql.Data.MySqlClient;
+using ProjectoNuevo;
 using Reelnode.ProjectoNuevo;
 using System;
 using System.Collections.Generic;
@@ -29,9 +30,11 @@ namespace Reelnode
         private Color _c2 = Color.FromArgb(36, 59, 85);
         private LinearGradientMode _modo = LinearGradientMode.Vertical;
 
-        private ControlAdmin controlAdmin;
+        private ControlAdmin controlAdmin;   
+        private ControlCuentaUsuario controlCuentaUsuario;
+        private ControlVisualizacionSerie controlVisualizacionSerie;
         private ControlVisualizacionPeliculas controlVisualizacionPeliculas;
-        
+
         private FlowLayoutPanel flowPanelPeliculas;
         private FlowLayoutPanel flowPanelSeries;
         private Label lblPeliculas;
@@ -43,7 +46,7 @@ namespace Reelnode
             _c1 = color1;
             _c2 = color2;
             _modo = modo;
-            PanelMain.Invalidate();
+            panelContenedor.Invalidate();
         }
         public FormMain()
         {
@@ -56,15 +59,23 @@ namespace Reelnode
 
             panelContenedor.Paint += panelContenedor_Paint;
 
+            PanelMain.BackColor = Color.Transparent;
+            PanelBack.BackColor = Color.Transparent;
             PanelMain.Controls.Add(panelContenedor);
 
             controlAdmin = new ControlAdmin();
+            controlCuentaUsuario = new ControlCuentaUsuario();
+            controlVisualizacionSerie = new ControlVisualizacionSerie();
             controlVisualizacionPeliculas = new ControlVisualizacionPeliculas();
 
             PanelMain.Controls.Add(controlAdmin);
+            PanelMain.Controls.Add(controlCuentaUsuario);
+            PanelMain.Controls.Add(controlVisualizacionSerie);
             PanelMain.Controls.Add(controlVisualizacionPeliculas);
 
             controlAdmin.Visible = false;
+            controlCuentaUsuario.Visible = false;
+            controlVisualizacionSerie.Visible = false;
             controlVisualizacionPeliculas.Visible = false;
 
             controlAdmin.HomeClicked += (s, e) => {
@@ -72,18 +83,19 @@ namespace Reelnode
             };
 
             int margenIzquierdo = 10;
-            int margenSuperior = 30;
+            int margenSuperior = 15;
             int espacioEntrePaneles = 10;
-            int altoPanel = 310;
+            int altoPanel = 280;
 
             lblPeliculas = new Label
             {
                 Text = "🎬 Películas",
-                Font = new Font("Segoe UI", 14, FontStyle.Bold),
+                Font = new Font("Courier New", 14, FontStyle.Bold),
                 ForeColor = Color.White,
                 AutoSize = true,
                 Location = new Point(margenIzquierdo, margenSuperior),
-                BackColor = Color.Transparent
+                BackColor = Color.Transparent,
+                Tag = "Titulo"
             };
 
             flowPanelPeliculas = new FlowLayoutPanel
@@ -103,11 +115,12 @@ namespace Reelnode
             Label lblSeries = new Label
             {
                 Text = "📺 Series",
-                Font = new Font("Segoe UI", 14, FontStyle.Bold),
+                Font = new Font("Courier New", 14, FontStyle.Bold),
                 ForeColor = Color.White,
                 AutoSize = true,
                 Location = new Point(margenIzquierdo, flowPanelPeliculas.Bottom + espacioEntrePaneles),
-                BackColor = Color.Transparent
+                BackColor = Color.Transparent,
+                Tag = "Titulo"
             };
 
             flowPanelSeries = new FlowLayoutPanel
@@ -140,7 +153,7 @@ namespace Reelnode
             UtilsBD.CargarNetwork();
             UtilsBD.CargarGeneros();
 
-            // Esta funcion permite cambiar todo el tema del proyecto
+            // Esta funcion permite cambiar todo el tema del proyecto. Apretar F12 para ver la funcion.
             AplicarTema(this);
             // ------------------------------------------------------
 
@@ -152,6 +165,7 @@ namespace Reelnode
             login.ShowDialog();
 
             ToolStpMenuAdmin.Visible = UtilsBD.usuarioActual.RolUsuario == "Admin" ? true : false;
+
         }
 
         private void ToolStpMenuAdmin_Click_1(object sender, EventArgs e)
@@ -204,6 +218,7 @@ namespace Reelnode
                     if(lbl.Tag == null)  lbl.ForeColor = Color.FromArgb(255, 0, 127);
 
                     lbl.Font = new Font("Courier New", lbl.Font.Size, FontStyle.Bold);
+                    lbl.BackColor = Color.Transparent;
                 }
 
                 else if (ctrl is System.Windows.Forms.Button btn)
@@ -293,7 +308,8 @@ namespace Reelnode
         {
             Utils.peliculaSeleccionada = null;
             Utils.serieSeleccionada = UtilsBD.seriesCargadas[id - 1];
-            Utils.ShowControl(controlVisualizacionPeliculas, PanelMain);
+            controlVisualizacionSerie.CargarSerie(Utils.serieSeleccionada);
+            Utils.ShowControl(controlVisualizacionSerie, PanelMain);
         }
 
         private void AbrirPestanaPelicula(int id)
@@ -302,11 +318,6 @@ namespace Reelnode
             Utils.peliculaSeleccionada = UtilsBD.peliculasCargadas[id - 1];
             controlVisualizacionPeliculas.CargarPelicula(Utils.peliculaSeleccionada);
             Utils.ShowControl(controlVisualizacionPeliculas, PanelMain);
-        }
-        private void noTocarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            GeneradorPeliculas.Insertar20PeliculasAleatorias();
-            UtilsBD.CargarPeliculas();
         }
 
         // Esta funcion me permite recuperar todos los controles hijos de un control padre.
@@ -334,12 +345,9 @@ namespace Reelnode
             }
         }
 
-        private void PanelMain_Paint_1(object sender, PaintEventArgs e)
+        private void ToolStpMenuCuenta_Click(object sender, EventArgs e)
         {
-            using (var brush = new LinearGradientBrush(PanelMain.ClientRectangle, _c1, _c2, _modo))
-            {
-                e.Graphics.FillRectangle(brush, PanelMain.ClientRectangle);
-            }
+            Utils.ShowControl(controlCuentaUsuario, PanelMain);
         }
     }
 }

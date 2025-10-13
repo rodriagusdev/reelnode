@@ -127,6 +127,12 @@
     <Compile Include="ControlComentarios.Designer.cs">
       <DependentUpon>ControlComentarios.cs</DependentUpon>
     </Compile>
+    <Compile Include="ControlCuentaUsuario.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlCuentaUsuario.Designer.cs">
+      <DependentUpon>ControlCuentaUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="ControlExpandirPelicula.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -188,6 +194,12 @@
     <Compile Include="ControlVisualizacionPeliculas.Designer.cs">
       <DependentUpon>ControlVisualizacionPeliculas.cs</DependentUpon>
     </Compile>
+    <Compile Include="ControlVisualizacionSerie.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlVisualizacionSerie.Designer.cs">
+      <DependentUpon>ControlVisualizacionSerie.cs</DependentUpon>
+    </Compile>
     <Compile Include="CorreoHelper.cs" />
     <Compile Include="FormCalificar.cs">
       <SubType>Form</SubType>
@@ -223,6 +235,9 @@
     <Compile Include="ITemaPersonalizable.cs" />
     <Compile Include="Media.cs" />
     <Compile Include="Network.cs" />
+    <Compile Include="PanelGradiente.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Pelicula.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -239,6 +254,9 @@
     <Compile Include="UtilsBD.cs" />
     <EmbeddedResource Include="ControlComentarios.resx">
       <DependentUpon>ControlComentarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlCuentaUsuario.resx">
+      <DependentUpon>ControlCuentaUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ControlExpandirPelicula.resx">
       <DependentUpon>ControlExpandirPelicula.cs</DependentUpon>
@@ -269,6 +287,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ControlVisualizacionPeliculas.resx">
       <DependentUpon>ControlVisualizacionPeliculas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlVisualizacionSerie.resx">
+      <DependentUpon>ControlVisualizacionSerie.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCalificar.resx">
       <DependentUpon>FormCalificar.cs</DependentUpon>
