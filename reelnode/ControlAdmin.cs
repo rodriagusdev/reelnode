@@ -96,11 +96,6 @@ namespace Reelnode
             Utils.ShowControl(controlSeriesActualizar, PanelAdmin);
         }
 
-        private void ToolStpMenuHome_Click(object sender, EventArgs e)
-        {
-            HomeClicked?.Invoke(this, EventArgs.Empty);
-        }
-
         private void listarSeriesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Utils.ShowControl(controlGestionSeriesListarSeries, PanelAdmin);

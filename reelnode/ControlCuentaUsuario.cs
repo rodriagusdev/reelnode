@@ -20,7 +20,12 @@ namespace Reelnode
         private List<Pelicula> peliculasCalificadas = new List<Pelicula>();
         private List<Serie> seriesCalificadas = new List<Serie>();
         private FlowLayoutPanel flowPanelPeliculas;
+        private FlowLayoutPanel flowPanelSeries;
+        private Label lblSeries;
         private Label lblPeliculas;
+
+        public Action<int> AbrirPelicula { get; set; }
+        public Action<int> AbrirSerie { get; set; }
         public ControlCuentaUsuario()
         {
             InitializeComponent();
@@ -32,7 +37,7 @@ namespace Reelnode
 
             lblPeliculas = new Label
             {
-                Text = "🎬 Calificaciones",
+                Text = "🎬 Películas que has calificado",
                 Font = new Font("Courier New", 14, FontStyle.Bold),
                 ForeColor = Color.White,
                 AutoSize = true,
@@ -55,11 +60,39 @@ namespace Reelnode
                 Tag = "Default"
             };
 
+            lblSeries = new Label
+            {
+                Text = "📺 Series que has calificado",
+                Font = new Font("Courier New", 14, FontStyle.Bold),
+                ForeColor = Color.White,
+                AutoSize = true,
+                Location = new Point(margenIzquierdo, flowPanelPeliculas.Bottom + espacioEntrePaneles),
+                BackColor = Color.Transparent,
+                Tag = "Titulo"
+            };
+
+            flowPanelSeries = new FlowLayoutPanel
+            {
+                FlowDirection = FlowDirection.LeftToRight,
+                WrapContents = false,
+                AutoScroll = true,
+                AutoSize = false,
+                BackColor = Color.Transparent,
+                Padding = new Padding(10),
+                Location = new Point(margenIzquierdo, lblSeries.Bottom + 10),
+                Size = new Size(this.ClientSize.Width - 2 * margenIzquierdo, altoPanel),
+                VerticalScroll = { Visible = false },
+                Tag = "Default"
+            };
+
+
             gradientPanelMain = new PanelGradiente();
             gradientPanelMain.Dock = DockStyle.Fill;
             this.Controls.Add(gradientPanelMain);
             gradientPanelMain.Controls.Add(flowPanelPeliculas);
             gradientPanelMain.Controls.Add(lblPeliculas);
+            gradientPanelMain.Controls.Add(flowPanelSeries);
+            gradientPanelMain.Controls.Add(lblSeries);
         }
 
         public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
@@ -81,7 +114,9 @@ namespace Reelnode
             LblEmail.Text = UtilsBD.usuarioActual.Email;
             LblUsuario.Text = UtilsBD.usuarioActual.NombreUsuario;  
             UtilsBD.CargarCalificaciones(UtilsBD.usuarioActual.Id, peliculasCalificadas);
-            Utils.RellenarFlowPanel(flowPanelPeliculas, peliculasCalificadas, AbrirPestanaPelicula);
+            UtilsBD.CargarCalificacionesSerie(UtilsBD.usuarioActual.Id, seriesCalificadas);
+            Utils.RellenarFlowPanel(flowPanelPeliculas, peliculasCalificadas, AbrirPelicula);
+            Utils.RellenarFlowPanel(flowPanelSeries, seriesCalificadas, AbrirSerie);
         }
 
         private void AbrirPestanaPelicula(int id)

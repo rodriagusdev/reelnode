@@ -265,6 +265,7 @@ namespace Reelnode
 
             return generosSeleccionados;
         }
+
         public static void RellenarFlowPanel<T>(FlowLayoutPanel flowPnl, List<T> list, Action<int> abrirPestana) where T : Media
         {
             flowPnl.Controls.Clear();

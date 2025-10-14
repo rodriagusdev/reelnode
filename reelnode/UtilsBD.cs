@@ -614,6 +614,7 @@ namespace Reelnode
         public static void Calificar(int idMedia, int puntuacion, string tipo)
         {
             string procedure = tipo == "Pelicula" ? "sp_calificar_pelicula" : "sp_calificar_serie";
+            
 
             try
             {
@@ -621,7 +622,7 @@ namespace Reelnode
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("p_id_pelicula", idMedia);
+                    cmd.Parameters.AddWithValue(procedure = tipo == "Pelicula" ? "p_id_pelicula" : "p_id_serie", idMedia);
                     cmd.Parameters.AddWithValue("p_calificacion", puntuacion);
                     cmd.Parameters.AddWithValue("p_id_usuario", usuarioActual.Id);
 

@@ -34,6 +34,7 @@
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PanelBack = new System.Windows.Forms.Panel();
             this.PanelMain = new System.Windows.Forms.Panel();
+            this.ToolStpMenuHome = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.PanelBack.SuspendLayout();
             this.SuspendLayout();
@@ -41,6 +42,7 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStpMenuHome,
             this.ToolStpMenuAdmin,
             this.ToolStpMenuCuenta,
             this.salirToolStripMenuItem});
@@ -100,6 +102,14 @@
             this.PanelMain.Size = new System.Drawing.Size(1280, 696);
             this.PanelMain.TabIndex = 2;
             // 
+            // ToolStpMenuHome
+            // 
+            this.ToolStpMenuHome.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ToolStpMenuHome.Name = "ToolStpMenuHome";
+            this.ToolStpMenuHome.Size = new System.Drawing.Size(47, 20);
+            this.ToolStpMenuHome.Text = "Home";
+            this.ToolStpMenuHome.Click += new System.EventHandler(this.ToolStpMenuHome_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -131,6 +141,7 @@
         private System.Windows.Forms.Panel PanelBack;
         private System.Windows.Forms.Panel PanelMain;
         private System.Windows.Forms.ToolStripMenuItem ToolStpMenuCuenta;
+        private System.Windows.Forms.ToolStripMenuItem ToolStpMenuHome;
     }
 }
 

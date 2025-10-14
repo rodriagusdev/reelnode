@@ -970,7 +970,7 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE sp_calificar_serie(p_id_serie int, p_calificacion tinyint, p_id_usuario int)
 BEGIN
-	insert into calificaciones_serie(p_id_serie, calificacion, id_usuario)
+	insert into calificaciones_serie(id_serie, calificacion, p_id_usuario)
 	values(p_id_serie, p_calificacion, p_id_usuario)
     ON DUPLICATE KEY UPDATE calificacion = p_calificacion;
 END //
@@ -1091,6 +1091,7 @@ DELIMITER ;
 SET SQL_SAFE_UPDATES = 0;
 select * from genero_x_pelicula;
 select * from calificaciones_peliculas;
+select * from calificaciones_serie;
 select * from comentarios_peli;
 select * from peliculas;
 select * from serie;

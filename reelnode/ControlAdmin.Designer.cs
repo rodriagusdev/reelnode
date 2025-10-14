@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.ToolStpMenuHome = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStpMenuUsuarios = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStpMenuPeliculas = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStpSubMenuCargarPeliculas = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,7 +46,6 @@
             // 
             this.menuStrip1.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStpMenuHome,
             this.ToolStpMenuUsuarios,
             this.ToolStpMenuPeliculas,
             this.ToolStpMenuSeries});
@@ -56,14 +54,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(863, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // ToolStpMenuHome
-            // 
-            this.ToolStpMenuHome.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ToolStpMenuHome.Name = "ToolStpMenuHome";
-            this.ToolStpMenuHome.Size = new System.Drawing.Size(47, 20);
-            this.ToolStpMenuHome.Text = "Home";
-            this.ToolStpMenuHome.Click += new System.EventHandler(this.ToolStpMenuHome_Click);
             // 
             // ToolStpMenuUsuarios
             // 
@@ -166,7 +156,6 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem ToolStpMenuHome;
         private System.Windows.Forms.ToolStripMenuItem ToolStpMenuUsuarios;
         private System.Windows.Forms.ToolStripMenuItem ToolStpMenuPeliculas;
         private System.Windows.Forms.ToolStripMenuItem ToolStpSubMenuCargarPeliculas;

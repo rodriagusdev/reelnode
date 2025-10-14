@@ -324,3 +324,5 @@ D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\Assets\home.png
 D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\Assets\logo.jpeg
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\Reelnode.ControlCuentaUsuario.resources
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\Reelnode.ControlVisualizacionSerie.resources
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlCuentaUsuario.resources
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlVisualizacionSerie.resources
