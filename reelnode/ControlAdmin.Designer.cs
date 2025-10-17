@@ -51,7 +51,7 @@
             this.ToolStpMenuSeries});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(863, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1280, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -134,7 +134,7 @@
             this.PanelAdmin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelAdmin.Location = new System.Drawing.Point(0, 24);
             this.PanelAdmin.Name = "PanelAdmin";
-            this.PanelAdmin.Size = new System.Drawing.Size(863, 537);
+            this.PanelAdmin.Size = new System.Drawing.Size(1280, 696);
             this.PanelAdmin.TabIndex = 3;
             this.PanelAdmin.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelAdmin_Paint);
             // 
@@ -145,7 +145,7 @@
             this.Controls.Add(this.PanelAdmin);
             this.Controls.Add(this.menuStrip1);
             this.Name = "ControlAdmin";
-            this.Size = new System.Drawing.Size(863, 561);
+            this.Size = new System.Drawing.Size(1280, 720);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

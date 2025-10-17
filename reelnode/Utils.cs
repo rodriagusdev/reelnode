@@ -18,6 +18,10 @@ namespace Reelnode
         public static Pelicula peliculaSeleccionada = new Pelicula();
         public static Serie serieSeleccionada = new Serie();
 
+        // Esta funcion me permite recuperar todos los controles hijos de un control padre.
+        // La utilizo para obtener todos los controles hijos de FormMain y asi aplicar el tema a todos los controles.
+
+
         // Esta es la funcion default para decidir que control mostrar en un panel
         public static void ShowControl(Control controlToShow, Panel panel)
         {

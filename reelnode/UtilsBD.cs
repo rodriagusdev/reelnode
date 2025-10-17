@@ -502,44 +502,38 @@ namespace Reelnode
 
         // LISTADOS DE COMENTARIOS, CALIFICACIONES Y VISUALIZACIONES
 
-        public static void CargarComentariosPelicula(int idUsuario)
+        public static List<Comentario> CargarComentariosPelicula(int idPelicula)
         {
-            using (MySqlCommand cmd = new MySqlCommand("sp_listar_comentarios_pelicula", Conexion.GetConnection()))
+            List<Comentario> listaComentarios = new List<Comentario>();
+
+            using (MySqlCommand cmd = new MySqlCommand("sp_obtener_comentarios_pelis", Conexion.GetConnection()))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("p_id_pelicula", idUsuario);
+                cmd.Parameters.AddWithValue("p_id_pelicula", idPelicula);
 
                 using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        var pelicula = new Pelicula
+                        Comentario c = new Comentario
                         {
-                            Id = reader.GetInt32("id_pelicula"),
-                            Nombre = reader.GetString("nombre"),
-                            FechaEstreno = reader.GetDateTime("fecha_estreno"),
-                            Director = reader.GetString("director"),
-                            Descripcion = reader.GetString("descripcion"),
-                            ImagenURL = reader.GetString("imagenURL"),
-                            Duracion = reader.GetInt32("duracion"),
-                            TrailerURL = reader.GetString("trailerURL"),
-                            Network = reader.GetInt32("id_network"),
-                            Generos = reader.IsDBNull(reader.GetOrdinal("generos"))
-                            ? new List<int>() // si no tiene géneros. La coma es el separador por defecto de la columna "generos" del SP
-                            : reader.GetString("generos").Split(',')
-                                .Select(s => int.Parse(s))
-                                .ToList()
+                            Usuario = reader.GetString("nombre_usuario"),
+                            UsuarioAvatar = reader.IsDBNull(reader.GetOrdinal("avatar")) ? null : reader.GetString("avatar"),
+                            Texto = reader.GetString("texto"),
+                            Fecha = reader.GetDateTime("fecha_comentario"),                          
                         };
 
-                        peliculasCargadas.Add(pelicula);
+                        listaComentarios.Add(c);
                     }
                 }
+
+                return listaComentarios;
             }
         }
 
         public static void CargarCalificaciones(int idUsuario, List<Pelicula> peliculasCalificadas)
         {
-            using (MySqlCommand cmd = new MySqlCommand("sp_obtener_calificaciones_x_usuario", Conexion.GetConnection()))
+            using (MySqlCommand cmd = new MySqlCommand("sp_obtener_calificaciones_x_usuario_pelis", Conexion.GetConnection()))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("p_id_usuario", idUsuario);

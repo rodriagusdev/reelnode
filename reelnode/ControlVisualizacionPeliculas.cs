@@ -19,33 +19,34 @@ namespace Reelnode
 {
     public partial class ControlVisualizacionPeliculas : UserControl, ITemaPersonalizable
     {
-        private Color _c1 = Color.FromArgb(20, 30, 48);
-        private Color _c2 = Color.FromArgb(36, 59, 85);
-        private LinearGradientMode _modo = LinearGradientMode.Vertical;
         private ControlComentarios controlComentarios;
+        private PanelGradiente PanelMain;
         public ControlVisualizacionPeliculas()
         {
             InitializeComponent();
-            PanelVisualizarPeli.Controls.Add(controlComentarios = new ControlComentarios());
+
+            PanelMain = new PanelGradiente();
+            this.Controls.Add(PanelMain);
+
+            PanelMain.Controls.Add(PanelVisualizarPeli);
+            PanelMain.Dock = DockStyle.Fill;
+            PanelMain.Controls.Add(controlComentarios = new ControlComentarios());
             controlComentarios.Visible = false;
         }
 
         public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
         {
-            _c1 = color1;
-            _c2 = color2;
-            _modo = modo;
-            PanelVisualizarPeli.Invalidate();
+            PanelMain.Color1 = color1;
+            PanelMain.Color2 = color2;
+            PanelMain.GradientMode = modo;
+            PanelMain.Invalidate();
         }
 
-
-        private void PanelVisualizarPeli_Paint(object sender, PaintEventArgs e)
+        public PanelGradiente MainPanel
         {
-            using (var brush = new LinearGradientBrush(PanelVisualizarPeli.ClientRectangle, _c1, _c2, _modo))
-            {
-                e.Graphics.FillRectangle(brush, PanelVisualizarPeli.ClientRectangle);
-            }
+            get { return PanelMain; }
         }
+
 
         private void BtnCalificar_Click(object sender, EventArgs e)
         {
@@ -56,7 +57,8 @@ namespace Reelnode
 
         private void BtnComentar_Click(object sender, EventArgs e)
         {
-            Utils.ShowControl(controlComentarios, PanelVisualizarPeli);
+            controlComentarios.CargarComentarios();
+            Utils.ShowControl(controlComentarios, PanelMain);
         }
 
         public void CargarPelicula(Pelicula pelicula)
@@ -89,6 +91,8 @@ namespace Reelnode
             {
                 PanelTrailerPeli.Visible = false;
             }
+
+            Utils.ShowControl(PanelVisualizarPeli, PanelMain);
         }
 
 

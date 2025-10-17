@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Reelnode
 {
-    public class PanelGradiente : Panel
+    public class PanelGradiente : Panel, ITemaPersonalizable
     {
         public Color Color1 { get; set; } = Color.LightBlue;
         public Color Color2 { get; set; } = Color.DarkBlue;
@@ -22,6 +22,14 @@ namespace Reelnode
                 e.Graphics.FillRectangle(brush, this.ClientRectangle);
             }
             base.OnPaint(e);
+        }
+
+        public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
+        {
+            this.Color1 = color1;
+            this.Color2 = color2;
+            this.GradientMode = modo;
+            this.Invalidate(); // Fuerza el repintado con los nuevos colores
         }
     }
 }
