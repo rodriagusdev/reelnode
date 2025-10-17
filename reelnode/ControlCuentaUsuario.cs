@@ -138,7 +138,7 @@ namespace Reelnode
             BtnConfirmarAvatar.Visible = false;
             PanelURL.Visible = false;
 
-            UtilsBD.CambiarAvatar(UtilsBD.usuarioActual.Id, TxtURLImagen.Text);
+            UtilsBD.CambiarAvatar(UtilsBD.usuarioActual.Id, TxtURLImagen.Text, PicAvatar);
         }
     }
 }
