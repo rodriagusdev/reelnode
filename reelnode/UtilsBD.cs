@@ -583,7 +583,7 @@ namespace Reelnode
 
         // ACCIONES
 
-        public static void CambiarAvatar(int idUsuario, string URL)
+        public static void CambiarAvatar(int idUsuario, string URL, PictureBox pnl)
         {
             try
             {
@@ -596,14 +596,18 @@ namespace Reelnode
 
                     cmd.ExecuteNonQuery();
 
-                    MessageBox.Show("Película actualizada con éxito", "Actualización Exitosa",
+                    MessageBox.Show("Imagen actualizada con éxito", "Actualización Exitosa",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
+
+                    usuarioActual.Avatar = URL;
+                    pnl.Image = Utils.DescargarImagenDesdeURL(URL);
+                    pnl.Invalidate();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al actualizar la película: " + ex.Message);
+                MessageBox.Show("Error al actualizar la imagen: " + ex.Message);
             }
         }
 
