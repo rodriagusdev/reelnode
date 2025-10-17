@@ -118,14 +118,7 @@ namespace Reelnode
             Utils.RellenarFlowPanel(flowPanelPeliculas, peliculasCalificadas, AbrirPelicula);
             Utils.RellenarFlowPanel(flowPanelSeries, seriesCalificadas, AbrirSerie);
         }
-
-        private void AbrirPestanaPelicula(int id)
-        {
-            Utils.serieSeleccionada = null;
-            Utils.peliculaSeleccionada = UtilsBD.peliculasCargadas[id - 1];
-            /*FormMain.controlVisualizacionPeliculas.CargarPelicula(Utils.peliculaSeleccionada);
-            Utils.ShowControl(FormMain.controlVisualizacionPeliculas, FormMain.PanelMain);*/
-        }
+      
 
         private void BtnAvatar_Click(object sender, EventArgs e)
         {

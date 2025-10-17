@@ -21,6 +21,8 @@ namespace Reelnode
         public static List<Network> networksCargadas = new List<Network>();
         public static List<Genero> generosCargados = new List<Genero>();
 
+        public static List<PeliculaMiniatura> pelisMasVistas = new List<PeliculaMiniatura>();
+
         // USUARIOS: Registro, login, modificación.
         public static void RegistrarUsuarioBD(Usuario nuevoUsuario)
         {
@@ -682,5 +684,33 @@ namespace Reelnode
                 MessageBox.Show("Error al calificar la " + tipo == "Pelicula" ? "pelicula" : "serie" + ex.Message);
             }
         }
-    } 
+
+        // REPORTES AVANZADOS
+
+        public static void CargarPeliculasMasVistas(int limit = 5)
+        {
+            pelisMasVistas.Clear();
+
+            using (MySqlCommand cmd = new MySqlCommand("sp_historial_peliculas", UtilsBD.Conexion.GetConnection()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("p_max", limit);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        PeliculaMiniatura p = new PeliculaMiniatura
+                        {
+                            Id = reader.GetInt32("id_pelicula"),
+                            Nombre = reader.GetString("nombre"),
+                            ImagenURL = reader.GetString("imagenURL"),
+                            CantidadVistas = reader.GetInt32("veces_visto"),
+                        };
+                        pelisMasVistas.Add(p);
+                    }
+                }
+            }
+        }
+    }
 }

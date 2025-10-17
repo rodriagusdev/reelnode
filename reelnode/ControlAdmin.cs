@@ -1,4 +1,5 @@
-﻿using System;
+﻿using iTextSharp.xmp.impl;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +19,7 @@ namespace Reelnode
         private Color _c2 = Color.FromArgb(36, 59, 85);
         private LinearGradientMode _modo = LinearGradientMode.Vertical;
 
+        // Creacion de controles
         private ControlGestionPeliculasCargar controlCargarPelicula;
         private ControlGestionPeliculasListarPeliculas controlListarPeliculas;
         private ControlGestionPeliculasActualizar controlActualizarPeliculas;
@@ -25,8 +27,11 @@ namespace Reelnode
         private ControlGestionSeriesCargar controlSeriesCargar;
         private ControlGestionSeriesActualizar controlSeriesActualizar;
         private ControlGestionSeriesListarSeries controlGestionSeriesListarSeries;
+        private ControlGestionDashboard controlGestionDashboard;
 
         public event EventHandler HomeClicked;
+        public Action<int> AbrirPelicula { get; set; }
+        public Action<int> AbrirSerie { get; set; }
         public ControlAdmin()
         {
             InitializeComponent();
@@ -38,6 +43,7 @@ namespace Reelnode
             PanelAdmin.Controls.Add(controlSeriesCargar = new ControlGestionSeriesCargar());
             PanelAdmin.Controls.Add(controlSeriesActualizar = new ControlGestionSeriesActualizar());
             PanelAdmin.Controls.Add(controlGestionSeriesListarSeries = new ControlGestionSeriesListarSeries());
+            PanelAdmin.Controls.Add(controlGestionDashboard = new ControlGestionDashboard());
 
             controlCargarPelicula.Visible = false;
             controlListarPeliculas.Visible = false;
@@ -46,6 +52,7 @@ namespace Reelnode
             controlSeriesCargar.Visible = false;
             controlSeriesActualizar.Visible = false;
             controlGestionSeriesListarSeries.Visible = false;
+            controlGestionDashboard.Visible = true;
 
             PanelAdmin.Paint += PanelAdmin_Paint;
         }
@@ -99,6 +106,11 @@ namespace Reelnode
         private void listarSeriesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Utils.ShowControl(controlGestionSeriesListarSeries, PanelAdmin);
+        }
+
+        private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.ShowControl(controlGestionDashboard, PanelAdmin);
         }
     }
 }

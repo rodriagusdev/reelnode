@@ -9,11 +9,6 @@ namespace Reelnode
 {
     public partial class FormMain : Form, ITemaPersonalizable
     {
-        // ESTABLECIMIENTO DE TEMA
-       /* private Color _c1 = Color.FromArgb(20, 30, 48);
-        private Color _c2 = Color.FromArgb(36, 59, 85);
-        private LinearGradientMode _modo = LinearGradientMode.Vertical;*/
-
         // CREACION DE CONTROLES
         private ControlAdmin controlAdmin;
         private ControlCuentaUsuario controlCuentaUsuario;
@@ -25,20 +20,19 @@ namespace Reelnode
         private FlowLayoutPanel flowPanelSeries;
         private Label lblPeliculas;
         private Label lblSeries;
-        private Panel panelContenedor;
+        private PanelGradiente panelContenedor;
 
         public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
         {
-           /* _c1 = color1;
-            _c2 = color2;
-            _modo = modo;
-            panelContenedor.Invalidate();*/
+            panelContenedor.Color1 = color1;
+            panelContenedor.Color2 = color2;
+            panelContenedor.GradientMode = modo;
+            panelContenedor.Invalidate();
         }
+
         public FormMain()
         {
             InitializeComponent();
-
-            CrearUI();
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -52,6 +46,9 @@ namespace Reelnode
             UtilsBD.CargarSeries();
             UtilsBD.CargarNetwork();
             UtilsBD.CargarGeneros();
+            UtilsBD.CargarPeliculasMasVistas();
+
+            CrearUI();
 
             // Esta funcion permite cambiar todo el tema del proyecto. Apretar F12 para ver la funcion.
             AdministradorTema.AplicarTema(this);
@@ -114,14 +111,6 @@ namespace Reelnode
             get { return PanelMain; }
         }
 
-        private void panelContenedor_Paint(object sender, PaintEventArgs e)
-        {
-            /*using (var brush = new LinearGradientBrush(panelContenedor.ClientRectangle, _c1, _c2, _modo))
-            {
-                e.Graphics.FillRectangle(brush, panelContenedor.ClientRectangle);
-            }*/
-        }
-
         private void ToolStpMenuCuenta_Click(object sender, EventArgs e)
         {
             Utils.ShowControl(controlCuentaUsuario, PanelMain);
@@ -134,21 +123,21 @@ namespace Reelnode
 
         public void CrearUI()
         {
-            panelContenedor = new Panel
+            panelContenedor = new PanelGradiente
             {
                 Dock = DockStyle.Fill,
             };
-
-            panelContenedor.Paint += panelContenedor_Paint;
 
             PanelMain.BackColor = Color.Transparent;
             PanelBack.BackColor = Color.Transparent;
             PanelMain.Controls.Add(panelContenedor);
 
             controlAdmin = new ControlAdmin();
+
             controlCuentaUsuario = new ControlCuentaUsuario();
             controlCuentaUsuario.AbrirPelicula = AbrirPestanaPelicula;
             controlCuentaUsuario.AbrirSerie = AbrirPestanaSerie;
+
             controlVisualizacionSerie = new ControlVisualizacionSerie();
             controlVisualizacionPeliculas = new ControlVisualizacionPeliculas();
 

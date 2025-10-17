@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.dashboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStpMenuUsuarios = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStpMenuPeliculas = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStpSubMenuCargarPeliculas = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,6 +47,7 @@
             // 
             this.menuStrip1.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dashboardToolStripMenuItem,
             this.ToolStpMenuUsuarios,
             this.ToolStpMenuPeliculas,
             this.ToolStpMenuSeries});
@@ -54,6 +56,13 @@
             this.menuStrip1.Size = new System.Drawing.Size(1280, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // dashboardToolStripMenuItem
+            // 
+            this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
+            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
+            this.dashboardToolStripMenuItem.Text = "Dashboard";
+            this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
             // 
             // ToolStpMenuUsuarios
             // 
@@ -166,5 +175,6 @@
         private System.Windows.Forms.ToolStripMenuItem cargarSerieToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem listarSeriesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem actualizarSerieToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dashboardToolStripMenuItem;
     }
 }

@@ -864,29 +864,29 @@ INNER JOIN usuario u ON todas_visualizaciones.id_usuario = u.id_usuario
 GROUP BY u.id_usuario, u.nombre_usuario
 ORDER BY total_visualizaciones DESC;
 
-CREATE OR REPLACE VIEW vw_contenido_mas_visto AS -- Contenido más visto de peliculas y series
-SELECT
-    historial.contenido,
-    historial.tipo,
+-- Contenido más visto de peliculas y series
+CREATE VIEW vw_historial_peliculas AS
+SELECT 
+    p.id_pelicula,
+    p.nombre AS nombre,
+    p.imagenURL,
+    v.id_usuario,
     COUNT(*) AS veces_visto
-FROM (
-    SELECT 
-        p.nombre AS contenido,
-        'Pelicula' AS tipo,
-        id_usuario
-    FROM visualizaciones_pelicula v
-    INNER JOIN peliculas p ON v.id_pelicula = p.id_pelicula
+FROM visualizaciones_pelicula v
+INNER JOIN peliculas p ON v.id_pelicula = p.id_pelicula
+GROUP BY p.id_pelicula, p.nombre, p.imagenURL, v.id_usuario
+ORDER BY veces_visto DESC;
 
-    UNION ALL
-
-    SELECT 
-        s.nombre AS contenido,
-        'Serie' AS tipo,
-        id_usuario
-    FROM visualizaciones_serie v
-    INNER JOIN serie s ON v.id_serie = s.id_serie
-) AS historial
-GROUP BY historial.contenido, historial.tipo
+CREATE VIEW vw_historial_series AS
+SELECT 
+    s.id_serie,
+    s.nombre AS nombre,
+    s.imagenURL,
+    v.id_usuario,
+    COUNT(*) AS veces_visto
+FROM visualizaciones_serie v
+INNER JOIN serie s ON v.id_serie = s.id_serie
+GROUP BY s.id_serie, s.nombre, s.imagenURL, v.id_usuario
 ORDER BY veces_visto DESC;
 
 CREATE OR REPLACE VIEW vw_ultima_visualizacion AS -- Última visualización por usuario
@@ -1009,8 +1009,39 @@ begin
 end //
 DELIMITER ;
 
+DELIMITER //
+
+CREATE PROCEDURE sp_historial_peliculas(in p_max int)
+BEGIN
+    SELECT * FROM vw_historial_peliculas LIMIT p_max;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_historial_peliculas_por_usuario(IN p_id_usuario INT)
+BEGIN
+    SELECT *
+    FROM historial_peliculas
+    WHERE id_usuario = p_id_usuario
+    ORDER BY veces_visto DESC;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_historial_series(in p_max int)
+BEGIN
+    SELECT * FROM vw_historial_series LIMIT p_max;
+END //
+
+DELIMITER ;
+
 -- ----------------------- Pruebas
 
+call sp_historial_peliculas(5);
 SET SQL_SAFE_UPDATES = 0;
 select * from genero_x_pelicula;
 select * from calificaciones_peliculas;

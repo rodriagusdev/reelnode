@@ -72,7 +72,7 @@
             this.PanelVisualizarPeli.Name = "PanelVisualizarPeli";
             this.PanelVisualizarPeli.Size = new System.Drawing.Size(1280, 720);
             this.PanelVisualizarPeli.TabIndex = 0;
-
+            this.PanelVisualizarPeli.Tag = "Default";
             // 
             // LblGeneros
             // 

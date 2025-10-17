@@ -314,5 +314,102 @@ namespace Reelnode
                 flowPnl.Controls.Add(TarjetaMedia);
             }
         }
+
+        public static void RellenarFlowPanelMiniatura
+            (FlowLayoutPanel flowPnl,
+            List<PeliculaMiniatura> pelis,
+            bool mostrarCalif,
+            bool mostrarVistas)
+        {
+            flowPnl.Controls.Clear();
+
+            int alturaTarjetaBase = 220;
+
+            bool mostrarDatosAdicionales = mostrarCalif || mostrarVistas;
+
+            // Altura adicional si se muestra algún dato extra
+            int alturaAdicional = mostrarDatosAdicionales ? 25 : 0;
+
+            foreach (var peli in pelis)
+            {
+                // 1. Panel/Tarjeta Principal (Ajusta el tamaño)
+                Panel TarjetaMedia = new Panel
+                {
+                    // Ajusta la altura si se va a mostrar un label adicional
+                    Size = new Size(190, alturaTarjetaBase + alturaAdicional),
+                    BackColor = Color.FromArgb(30, 30, 30),
+                };
+
+                // 2. PictureBox (Poster) - Sin cambios
+                PictureBox poster = new PictureBox
+                {
+                    Size = new Size(180, 180),
+                    Location = new Point(5, 5),
+                    Image = DescargarImagenDesdeURL(peli.ImagenURL),
+                    SizeMode = PictureBoxSizeMode.StretchImage,
+                    Cursor = Cursors.Hand
+                };
+
+                // 3. Label del Título - La posición vertical es ahora 190 (altura poster + 5 margen)
+                Label titleLabel = new Label
+                {
+                    Text = peli.Nombre,
+                    Font = new Font("Courier New", 10, FontStyle.Bold),
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    ForeColor = Color.White,
+                    Location = new Point((TarjetaMedia.Width - 200) / 2, 190), // Posición vertical base
+                    Size = new Size(200, 20),
+                    BackColor = Color.Transparent
+                };
+
+                TarjetaMedia.Controls.Add(poster);
+                TarjetaMedia.Controls.Add(titleLabel);
+
+                // =======================================================
+                // 4. LÓGICA PARA DATOS ADICIONALES (CALIFICACIÓN Y VISTAS)
+                // =======================================================
+
+                int currentY = 210; // Posición Y inicial para los labels adicionales (debajo del título)
+
+                // a) Mostrar Calificación
+                if (mostrarCalif)
+                {
+                    // Se asume que peli.Calificacion existe y es int
+                    Label califLabel = new Label
+                    {
+                        Text = $"Rating: {peli.Calificacion}/10",
+                        Font = new Font("Courier New", 8),
+                        ForeColor = Color.Yellow,
+                        TextAlign = ContentAlignment.MiddleCenter,
+                        Location = new Point((TarjetaMedia.Width - 200) / 2, currentY),
+                        Size = new Size(200, 15),
+                        BackColor = Color.Transparent
+                    };
+                    TarjetaMedia.Controls.Add(califLabel);
+                    currentY += 15; // Mueve la posición Y para el siguiente label
+                }
+
+                // b) Mostrar Vistas
+                if (mostrarVistas)
+                {
+                    // Se asume que peli.CantidadVistas existe y es int
+                    Label vistasLabel = new Label
+                    {
+                        Text = $"Vistas: {peli.CantidadVistas}",
+                        Font = new Font("Courier New", 8),
+                        ForeColor = Color.LightGreen,
+                        TextAlign = ContentAlignment.MiddleCenter,
+                        Location = new Point((TarjetaMedia.Width - 200) / 2, currentY),
+                        Size = new Size(200, 15),
+                        BackColor = Color.Transparent
+                    };
+                    TarjetaMedia.Controls.Add(vistasLabel);
+                    // No es necesario mover currentY si este es el último label
+                }
+
+                // 5. Agregar la tarjeta al FlowLayoutPanel
+                flowPnl.Controls.Add(TarjetaMedia);
+            }
+        }
     }
 }

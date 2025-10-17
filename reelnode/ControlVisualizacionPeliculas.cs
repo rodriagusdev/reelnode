@@ -26,12 +26,13 @@ namespace Reelnode
             InitializeComponent();
 
             PanelMain = new PanelGradiente();
-            this.Controls.Add(PanelMain);
-
-            PanelMain.Controls.Add(PanelVisualizarPeli);
+            PanelMain.Tag = "Default";
+       
             PanelMain.Dock = DockStyle.Fill;
             PanelMain.Controls.Add(controlComentarios = new ControlComentarios());
+            PanelVisualizarPeli.Controls.Add(PanelMain);
             controlComentarios.Visible = false;
+            this.Controls.Add(PanelMain);
         }
 
         public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
