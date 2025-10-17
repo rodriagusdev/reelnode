@@ -616,7 +616,7 @@ namespace Reelnode
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue(procedure = tipo == "Pelicula" ? "p_id_pelicula" : "p_id_serie", idMedia);
+                    cmd.Parameters.AddWithValue(tipo == "Pelicula" ? "p_id_pelicula" : "p_id_serie", idMedia);
                     cmd.Parameters.AddWithValue("p_calificacion", puntuacion);
                     cmd.Parameters.AddWithValue("p_id_usuario", usuarioActual.Id);
 
@@ -630,6 +630,29 @@ namespace Reelnode
             catch (Exception ex)
             {
                 MessageBox.Show("Error al calificar la " + tipo == "Pelicula" ? "pelicula": "serie" + ex.Message);
+            }
+        }
+
+        public static void RegistrarVisualizacion(int idMedia, string tipo)
+        {
+            string procedure = "sp_registrar_visualizacion";
+
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand(procedure, Conexion.GetConnection()))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("p_tipo", tipo);
+                    cmd.Parameters.AddWithValue("p_id_media", idMedia);
+                    cmd.Parameters.AddWithValue("p_id_usuario", usuarioActual.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al calificar la " + tipo == "Pelicula" ? "pelicula" : "serie" + ex.Message);
             }
         }
 

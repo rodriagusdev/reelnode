@@ -984,7 +984,7 @@ begin
 		c.fecha_comentario, 
         c.texto,
         u.nombre_usuario,
-        u.avatar,
+        u.avatar
     from 
 		comentarios_peli c
 	inner join
@@ -1014,6 +1014,7 @@ DELIMITER ;
 SET SQL_SAFE_UPDATES = 0;
 select * from genero_x_pelicula;
 select * from calificaciones_peliculas;
+select * from visualizaciones_pelicula;
 select * from comentarios_peli;
 select * from peliculas;
 select * from serie;

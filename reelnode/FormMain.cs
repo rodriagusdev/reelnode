@@ -91,7 +91,10 @@ namespace Reelnode
         {
             Utils.peliculaSeleccionada = null;
             Utils.serieSeleccionada = UtilsBD.seriesCargadas[id - 1];
+
             controlVisualizacionSerie.CargarSerie(Utils.serieSeleccionada);
+            UtilsBD.RegistrarVisualizacion(Utils.serieSeleccionada.Id, "Serie");
+
             Utils.ShowControl(controlVisualizacionSerie, PanelMain);
         }
 
@@ -99,7 +102,10 @@ namespace Reelnode
         {
             Utils.serieSeleccionada = null;
             Utils.peliculaSeleccionada = UtilsBD.peliculasCargadas[id - 1];
+
             controlVisualizacionPeliculas.CargarPelicula(Utils.peliculaSeleccionada);
+            UtilsBD.RegistrarVisualizacion(Utils.peliculaSeleccionada.Id, "Pelicula");
+
             Utils.ShowControl(controlVisualizacionPeliculas, PanelMain);
         }
 
