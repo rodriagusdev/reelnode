@@ -262,6 +262,7 @@ namespace Reelnode
 
             foreach (var gen in generos.CheckedItems)
             { 
+                //en generosCargados el First obtiene el primer genero que machee con el nombre y devuelve la Id
                 int obtenerId = UtilsBD.generosCargados.First(g => g.Nombre == gen.ToString()).Id;
 
                 generosSeleccionados.Add(obtenerId);
