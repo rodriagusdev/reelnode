@@ -4,11 +4,14 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProjectoNuevo;
 
 namespace Reelnode
 {
@@ -41,6 +44,21 @@ namespace Reelnode
         private void ControlGestionPeliculasListarPeliculas_Load(object sender, EventArgs e)
         {
             Utils.ActualizarListaGrid(DataGridPeliculas, UtilsBD.peliculasCargadas, "Id", "Tipo");
+        }
+        private void BtnExportarJSON_Click(object sender, EventArgs e)
+        {
+           SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+            //Es una configuración del cuadro de diálogo “Guardar como” (SaveFileDialog) que define qué tipos de archivos puede ver o guardar el usuario.
+            saveFileDialog.Filter = "Archivos JSON (*.json)| *.json";
+            saveFileDialog.Title = "Exportar peliculas JSON";
+            saveFileDialog.FileName = "peliculas.json";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK) 
+            {
+                AdministradorJSON.ExportarPeliculasJSON(UtilsBD.peliculasCargadas);
+                AdministradorJSON.ExportarSeriesJSON(UtilsBD.seriesCargadas);
+            }
         }
     }
 }

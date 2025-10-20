@@ -320,7 +320,7 @@ namespace Reelnode
             List<MediaMiniatura> listaMedia,
             string tipoDato)
         {
-            double maxValor = 0;
+           /* double maxValor = 0;
             if(tipoDato == "cantidad_vistas")
             {
                 maxValor = listaMedia.Max(p => p.CantidadVistas);
@@ -412,7 +412,7 @@ namespace Reelnode
 
                 // Añadir todo al FlowLayoutPanel
                 flowPnl.Controls.Add(panelItem);
-            }
+            }*/
         } 
         
     }
