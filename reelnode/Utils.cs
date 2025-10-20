@@ -316,101 +316,108 @@ namespace Reelnode
         }
 
         public static void ReporteCrearPanelesBarra(
-            FlowLayoutPanel flowPnl,
-            List<MediaMiniatura> listaMedia,
-            string tipoDato)
+        FlowLayoutPanel flowPnl,
+        List<MediaMiniatura> listaMedia,
+        string tipoDato)
         {
            /* double maxValor = 0;
             if(tipoDato == "cantidad_vistas")
             {
                 maxValor = listaMedia.Max(p => p.CantidadVistas);
-                // el máximo para escalar las barras. En base a la peli mas vista, las demas se escalan proporcionalmente
             }
 
-            if(tipoDato == "calificaciones")
+            if (tipoDato == "calificaciones")
             {
-                maxValor = 5; // el maximo de calificaciones es 5
+                maxValor = 5;
             }
 
-            int anchoMaximo = 500;
+            // 🔸 Escalado 35%
+            double escala = 1.30;
+            int anchoMaximo = 344;
+            int altoPanel = (int)(30 * escala);
+            int altoBarra = (int)(12 * escala);
+            int margenY = (int)(15 * escala);
 
             foreach (var media in listaMedia)
             {
-                // Panel contenedor de la tarjeta (película)
+                // Panel contenedor
                 Panel panelItem = new Panel
                 {
-                    Width = anchoMaximo + 150,
-                    Height = 60,
+                    Width = (int)(anchoMaximo + 52 * escala),
+                    Height = altoPanel,
                     BackColor = Color.Transparent,
-                    Margin = new Padding(0, 0, 0, 2),
+                    Margin = new Padding(0, 0, 0, (int)(2 * escala)),
                 };
 
-                // Label: nombre
+                // Label nombre
                 Label lblNombre = new Label
                 {
                     Text = media.Nombre,
                     ForeColor = Color.White,
-                    Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                    Font = new Font("Consolas", (float)(8 * escala), FontStyle.Bold),
                     AutoSize = true,
-                    Location = new Point(5, 0)
+                    Location = new Point((int)(5 * escala), 0)
                 };
                 panelItem.Controls.Add(lblNombre);
 
-                // Panel de fondo
+                // Fondo de barra
                 Panel fondo = new Panel
                 {
                     BackColor = Color.FromArgb(50, 50, 50),
-                    Location = new Point(5, 25),
-                    Size = new Size(anchoMaximo, 20),
+                    Location = new Point((int)(5 * escala), margenY),
+                    Size = new Size(anchoMaximo, altoBarra),
                     Tag = "Default"
                 };
                 panelItem.Controls.Add(fondo);
 
                 // Cálculo proporcional
-                decimal calculoProporcional = tipoDato == "cantidad_vistas" ? media.CantidadVistas : media.CalificacionPromedio;
-                int anchoBarra = (int)((double)calculoProporcional / (double)maxValor * fondo.Width);
-                anchoBarra = Math.Max(5, anchoBarra); // mínimo visible
+                decimal calculoProporcional = tipoDato == "cantidad_vistas"
+                    ? media.CantidadVistas
+                    : media.CalificacionPromedio;
 
-                // Panel de la barra
+                int anchoBarra = (int)((double)calculoProporcional / (double)maxValor * fondo.Width);
+                anchoBarra = Math.Max((int)(5 * escala), anchoBarra);
+
+                // Barra
                 Panel barra = new Panel
                 {
                     BackColor = Color.FromArgb(255, 100, 0),
-                    Size = new Size(anchoBarra, 20),
+                    Size = new Size(anchoBarra, fondo.Height),
                     Location = new Point(0, 0),
                     Tag = "Barra"
                 };
                 fondo.Controls.Add(barra);
 
+                // ---- VISTAS ----
                 if (tipoDato == "cantidad_vistas")
                 {
-                    // Label del valor
                     Label lblValor = new Label
                     {
                         Text = $"{media.CantidadVistas:N0} 👁",
                         ForeColor = Color.White,
-                        Font = new Font("Segoe UI", 9),
-                        AutoSize = true,
-                        Location = new Point(fondo.Right + 10, 25)
+                        Font = new Font("Consolas", (float)(8 * escala), FontStyle.Regular),
+                        AutoSize = true
                     };
+
                     panelItem.Controls.Add(lblValor);
+                    lblValor.Location = new Point(fondo.Right + (int)(8 * escala), fondo.Top - (int)(2 * escala));
                 }
 
+                // ---- CALIFICACIONES ----
                 if (tipoDato == "calificaciones")
                 {
-                    // Label del valor
                     Label lblValor = new Label
                     {
-                        // N1 o N0 indica la cantidad de decimales a mostrar
                         Text = $"{media.CalificacionPromedio:N1} ★",
                         ForeColor = Color.White,
-                        Font = new Font("Segoe UI", 9),
-                        AutoSize = true,
-                        Location = new Point(fondo.Right + 10, 25)
+                        Font = new Font("Consolas", (float)(8.5 * escala), FontStyle.Regular),
+                        AutoSize = true
                     };
+
                     panelItem.Controls.Add(lblValor);
+                    lblValor.Location = new Point(fondo.Right + (int)(8 * escala), fondo.Top - (int)(2 * escala));
                 }
 
-                // Añadir todo al FlowLayoutPanel
                 flowPnl.Controls.Add(panelItem);
             }*/
         } 

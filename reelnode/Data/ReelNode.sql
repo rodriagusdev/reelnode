@@ -1052,14 +1052,14 @@ DELIMITER ;
 DELIMITER //
 
 CREATE PROCEDURE sp_top_calificaciones_peliculas(
-    IN limite INT
+    IN p_limite INT
 )
 BEGIN
     SELECT 
         *
     FROM vw_calificaciones_peliculas
     ORDER BY promedio_calificacion DESC
-    LIMIT limite;
+    LIMIT p_limite;
 END //
 
 DELIMITER ;
@@ -1067,15 +1067,37 @@ DELIMITER ;
 DELIMITER //
 
 CREATE PROCEDURE sp_top_calificaciones_series(
-    IN limite INT
+    IN p_limite INT
 )
 BEGIN
     SELECT 
         *
     FROM vw_calificaciones_series
     ORDER BY promedio_calificacion DESC
-    LIMIT limite;
+    LIMIT p_limite;
 END //
+
+DELIMITER ;
+
+insert into calificaciones_peliculas(calificacion, id_pelicula, id_usuario)
+values
+(5, 1, 1),(5, 1, 2),(2, 1, 3),
+(4, 2, 1),(5, 3, 1),(2, 2, 2);
+
+insert into visualizaciones_pelicula(id_usuario, id_pelicula, fecha_visualizacion)
+values
+(1, 1, Now()),(1, 1, Now()),(1, 1, Now()),
+(2, 2, Now()),(1, 3, Now()),(2, 2, Now());
+
+DELIMITER // 
+
+create procedure sp_ver_ranking_usuarios(in p_limit int)
+begin
+	select * 
+    from vw_ranking_usuarios 
+    order by total_visualizaciones desc
+	limit p_limit;
+end //
 
 DELIMITER ;
 

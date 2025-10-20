@@ -16,8 +16,10 @@ namespace Reelnode
 
         public static Usuario usuarioActual = new Usuario();
         public static List<Usuario> usuariosRegistrados = new List<Usuario>();
+
         public static List<Pelicula> peliculasCargadas = new List<Pelicula>();
         public static List<Serie> seriesCargadas = new List<Serie>();
+
         public static List<Network> networksCargadas = new List<Network>();
         public static List<Genero> generosCargados = new List<Genero>();
 
@@ -614,6 +616,7 @@ namespace Reelnode
                 MessageBox.Show("Error al actualizar la imagen: " + ex.Message);
             }
         }
+
 
         public static void Calificar(int idMedia, int puntuacion, string tipo)
         {

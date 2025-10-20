@@ -14,10 +14,6 @@ namespace Reelnode
     public partial class ControlGestionDashboard: UserControl, ITemaPersonalizable
     {
         private PanelGradiente PanelMain;
-        private FlowLayoutPanel flowPanelPeliculas;
-        private FlowLayoutPanel flowPanelSeries;
-        private Label lblSeries;
-        private Label lblPeliculas;
 
         public ControlGestionDashboard()
         {
@@ -44,69 +40,19 @@ namespace Reelnode
             PanelMain.Dock = DockStyle.Fill;
             this.Controls.Add(PanelMain);
 
-            int margenIzquierdo = 250;
-            int margenSuperior = 15;
-            int espacioEntrePaneles = 10;
-            int altoPanel = 220;
+            CargarDatos();
+            AdministradorTema.AplicarTema(this);
+        }
 
-            lblPeliculas = new Label
-            {
-                Text = "🎬 Películas mas vistas",
-                Font = new Font("Courier New", 14, FontStyle.Bold),
-                ForeColor = Color.White,
-                AutoSize = true,
-                Location = new Point(margenIzquierdo, margenSuperior),
-                BackColor = Color.Transparent,
-                Tag = "Titulo"
-            };
+        private void CargarDatos()
+        {
+            // VISTAS
+            Utils.ReporteCrearPanelesBarra(flowPanelPelisMasVistas, UtilsBD.pelisMasVistas, "cantidad_vistas");
+            Utils.ReporteCrearPanelesBarra(flowPanelSeriesMasVistas, UtilsBD.seriesMasVistas, "cantidad_vistas");
 
-            flowPanelPeliculas = new FlowLayoutPanel
-            {
-                FlowDirection = FlowDirection.TopDown,
-                WrapContents = false,
-                AutoScroll = true,
-                AutoSize = false,
-                BackColor = Color.Transparent,
-                Padding = new Padding(10),
-                Location = new Point(margenIzquierdo, lblPeliculas.Bottom + 10),
-                Size = new Size(this.ClientSize.Width - 2 * margenIzquierdo, altoPanel),
-                VerticalScroll = { Visible = true },
-                Tag = "Default"
-            };
-
-            lblSeries = new Label
-            {
-                Text = "📺 Series mas vistas",
-                Font = new Font("Courier New", 14, FontStyle.Bold),
-                ForeColor = Color.White,
-                AutoSize = true,
-                Location = new Point(margenIzquierdo, flowPanelPeliculas.Bottom + espacioEntrePaneles),
-                BackColor = Color.Transparent,
-                Tag = "Titulo"
-            };
-
-            flowPanelSeries = new FlowLayoutPanel
-            {
-                FlowDirection = FlowDirection.TopDown,
-                WrapContents = false,
-                AutoScroll = true,
-                AutoSize = false,
-                BackColor = Color.Transparent,
-                Padding = new Padding(10),
-                Location = new Point(margenIzquierdo, lblSeries.Bottom + 10),
-                Size = new Size(this.ClientSize.Width - 2 * margenIzquierdo, altoPanel),
-                VerticalScroll = { Visible = true },
-                Tag = "Default"
-            };
-
-            PanelMain.Controls.Add(flowPanelPeliculas);
-            PanelMain.Controls.Add(lblPeliculas);
-            PanelMain.Controls.Add(flowPanelSeries);
-            PanelMain.Controls.Add(lblSeries);
-
-            Utils.ReporteCrearPanelesBarra(flowPanelPeliculas, UtilsBD.pelisMasVistas, "cantidad_vistas");
-      
-            Utils.ReporteCrearPanelesBarra(flowPanelSeries, UtilsBD.peliculasCalificadas, "calificaciones");
+            // CALIFICACIONES
+            Utils.ReporteCrearPanelesBarra(flowPanelPeliculasMejorCalificadas, UtilsBD.peliculasCalificadas, "calificaciones");
+            Utils.ReporteCrearPanelesBarra(flowPanelSeriesMejorCalificadas, UtilsBD.seriesCalificadas, "calificaciones");
         }
     }
 }
