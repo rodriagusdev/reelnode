@@ -6,33 +6,34 @@ using System.Threading.Tasks;
 
 namespace Reelnode
 {
-    public class PeliculaMiniatura
+    public class MediaMiniatura
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string ImagenURL { get; set; }
         public int CantidadVistas { get; set; }
 
-        public int Calificacion { get; set; }
+        public decimal CalificacionPromedio { get; set; }
+        public int CantidadCalificaciones { get; set; }
 
-        public PeliculaMiniatura() { }
+        public MediaMiniatura() { }
 
-        public PeliculaMiniatura(int id, string nombre, string imagenURL)
+        public MediaMiniatura(int id, string nombre, string imagenURL)
         {
             Id = id;
             Nombre = nombre;
             ImagenURL = imagenURL;
         }
 
-        public PeliculaMiniatura(int id, string nombre, string imagenURL, int calif)
+        public MediaMiniatura(int id, string nombre, string imagenURL, decimal calif)
         {
             Id = id;
             Nombre = nombre;
             ImagenURL = imagenURL;
-            Calificacion = calif;
+            CalificacionPromedio = calif;
         }
 
-        /*public PeliculaMiniatura(int id, string nombre, string imagenURL, int vistas)
+        /*public MediaMiniatura(int id, string nombre, string imagenURL, int vistas)
         {
             Id = id;
             Nombre = nombre;

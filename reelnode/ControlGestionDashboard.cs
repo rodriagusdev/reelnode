@@ -21,9 +21,7 @@ namespace Reelnode
 
         public ControlGestionDashboard()
         {
-            InitializeComponent();
-
-            
+            InitializeComponent();            
         }
 
         public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
@@ -49,7 +47,7 @@ namespace Reelnode
             int margenIzquierdo = 250;
             int margenSuperior = 15;
             int espacioEntrePaneles = 10;
-            int altoPanel = 280;
+            int altoPanel = 220;
 
             lblPeliculas = new Label
             {
@@ -64,7 +62,7 @@ namespace Reelnode
 
             flowPanelPeliculas = new FlowLayoutPanel
             {
-                FlowDirection = FlowDirection.LeftToRight,
+                FlowDirection = FlowDirection.TopDown,
                 WrapContents = false,
                 AutoScroll = true,
                 AutoSize = false,
@@ -72,7 +70,7 @@ namespace Reelnode
                 Padding = new Padding(10),
                 Location = new Point(margenIzquierdo, lblPeliculas.Bottom + 10),
                 Size = new Size(this.ClientSize.Width - 2 * margenIzquierdo, altoPanel),
-                VerticalScroll = { Visible = false },
+                VerticalScroll = { Visible = true },
                 Tag = "Default"
             };
 
@@ -89,7 +87,7 @@ namespace Reelnode
 
             flowPanelSeries = new FlowLayoutPanel
             {
-                FlowDirection = FlowDirection.LeftToRight,
+                FlowDirection = FlowDirection.TopDown,
                 WrapContents = false,
                 AutoScroll = true,
                 AutoSize = false,
@@ -97,7 +95,7 @@ namespace Reelnode
                 Padding = new Padding(10),
                 Location = new Point(margenIzquierdo, lblSeries.Bottom + 10),
                 Size = new Size(this.ClientSize.Width - 2 * margenIzquierdo, altoPanel),
-                VerticalScroll = { Visible = false },
+                VerticalScroll = { Visible = true },
                 Tag = "Default"
             };
 
@@ -106,8 +104,9 @@ namespace Reelnode
             PanelMain.Controls.Add(flowPanelSeries);
             PanelMain.Controls.Add(lblSeries);
 
-            Utils.RellenarFlowPanelMiniatura(flowPanelPeliculas, UtilsBD.pelisMasVistas, false, true);
-            // Utils.RellenarFlowPanel(flowPanelSeries, seriesCalificadas, AbrirSerie);
+            Utils.ReporteCrearPanelesBarra(flowPanelPeliculas, UtilsBD.pelisMasVistas, "cantidad_vistas");
+      
+            Utils.ReporteCrearPanelesBarra(flowPanelSeries, UtilsBD.peliculasCalificadas, "calificaciones");
         }
     }
 }

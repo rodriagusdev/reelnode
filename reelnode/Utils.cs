@@ -74,9 +74,9 @@ namespace Reelnode
             }
         }
 
-        public static int ObtenerIdMedia() 
+        public static int ObtenerIdMedia()
         {
-            if(peliculaSeleccionada != null) return peliculaSeleccionada.Id;
+            if (peliculaSeleccionada != null) return peliculaSeleccionada.Id;
 
             return serieSeleccionada.Id;
         }
@@ -121,19 +121,19 @@ namespace Reelnode
         }
 
         // Metodo para actualizar las grillas de peliculas y series
-        public static void ActualizarListaGrid<T>(DataGridView grid, List<T> list, params string[] ocultarColumnas) 
+        public static void ActualizarListaGrid<T>(DataGridView grid, List<T> list, params string[] ocultarColumnas)
         {
             grid.DataSource = null;
             grid.AutoGenerateColumns = true;
             grid.DataSource = list;
 
-            foreach(var col in ocultarColumnas) 
+            foreach (var col in ocultarColumnas)
             {
                 if (grid.Columns.Contains(col)) grid.Columns[col].Visible = false;
             }
         }
 
-        public static void TemaControles(Panel PanelMain, PictureBox pic = null) 
+        public static void TemaControles(Panel PanelMain, PictureBox pic = null)
         {
             foreach (Panel pnl in PanelMain.Controls.OfType<Panel>())
             {
@@ -158,11 +158,11 @@ namespace Reelnode
                 btn.FlatAppearance.BorderColor = Color.FromArgb(0, 183, 235);
             }
 
-            if(pic != null) pic.BackColor = Color.FromArgb(42, 47, 79);
+            if (pic != null) pic.BackColor = Color.FromArgb(42, 47, 79);
 
         }
 
-        public static async Task<string> VerificarTrailer(Panel pnl, string trailerURL) 
+        public static async Task<string> VerificarTrailer(Panel pnl, string trailerURL)
         {
             pnl.Controls.Clear();
 
@@ -209,7 +209,7 @@ namespace Reelnode
             return embedUrl;
         }
 
-        public static int ObtenerNetworkId(string nombreNet) 
+        public static int ObtenerNetworkId(string nombreNet)
         {
             foreach (Network net in UtilsBD.networksCargadas)
             {
@@ -239,7 +239,7 @@ namespace Reelnode
         public static string ObtenerNombresGeneros(List<int> generosId)
         {
             string nombresGeneros = "";
-            
+
             foreach (var id in generosId)
             {
                 var genero = UtilsBD.generosCargados.FirstOrDefault(g => g.Id == id);
@@ -256,12 +256,12 @@ namespace Reelnode
             return nombresGeneros;
         }
 
-        public static List<int> ObtenerIdGeneros(CheckedListBox generos) 
+        public static List<int> ObtenerIdGeneros(CheckedListBox generos)
         {
             List<int> generosSeleccionados = new List<int>();
 
             foreach (var gen in generos.CheckedItems)
-            { 
+            {
                 int obtenerId = UtilsBD.generosCargados.First(g => g.Nombre == gen.ToString()).Id;
 
                 generosSeleccionados.Add(obtenerId);
@@ -315,101 +315,105 @@ namespace Reelnode
             }
         }
 
-        public static void RellenarFlowPanelMiniatura
-            (FlowLayoutPanel flowPnl,
-            List<PeliculaMiniatura> pelis,
-            bool mostrarCalif,
-            bool mostrarVistas)
+        public static void ReporteCrearPanelesBarra(
+            FlowLayoutPanel flowPnl,
+            List<MediaMiniatura> listaMedia,
+            string tipoDato)
         {
-            flowPnl.Controls.Clear();
-
-            int alturaTarjetaBase = 220;
-
-            bool mostrarDatosAdicionales = mostrarCalif || mostrarVistas;
-
-            // Altura adicional si se muestra algún dato extra
-            int alturaAdicional = mostrarDatosAdicionales ? 25 : 0;
-
-            foreach (var peli in pelis)
+            double maxValor = 0;
+            if(tipoDato == "cantidad_vistas")
             {
-                // 1. Panel/Tarjeta Principal (Ajusta el tamaño)
-                Panel TarjetaMedia = new Panel
-                {
-                    // Ajusta la altura si se va a mostrar un label adicional
-                    Size = new Size(190, alturaTarjetaBase + alturaAdicional),
-                    BackColor = Color.FromArgb(30, 30, 30),
-                };
-
-                // 2. PictureBox (Poster) - Sin cambios
-                PictureBox poster = new PictureBox
-                {
-                    Size = new Size(180, 180),
-                    Location = new Point(5, 5),
-                    Image = DescargarImagenDesdeURL(peli.ImagenURL),
-                    SizeMode = PictureBoxSizeMode.StretchImage,
-                    Cursor = Cursors.Hand
-                };
-
-                // 3. Label del Título - La posición vertical es ahora 190 (altura poster + 5 margen)
-                Label titleLabel = new Label
-                {
-                    Text = peli.Nombre,
-                    Font = new Font("Courier New", 10, FontStyle.Bold),
-                    TextAlign = ContentAlignment.MiddleCenter,
-                    ForeColor = Color.White,
-                    Location = new Point((TarjetaMedia.Width - 200) / 2, 190), // Posición vertical base
-                    Size = new Size(200, 20),
-                    BackColor = Color.Transparent
-                };
-
-                TarjetaMedia.Controls.Add(poster);
-                TarjetaMedia.Controls.Add(titleLabel);
-
-                // =======================================================
-                // 4. LÓGICA PARA DATOS ADICIONALES (CALIFICACIÓN Y VISTAS)
-                // =======================================================
-
-                int currentY = 210; // Posición Y inicial para los labels adicionales (debajo del título)
-
-                // a) Mostrar Calificación
-                if (mostrarCalif)
-                {
-                    // Se asume que peli.Calificacion existe y es int
-                    Label califLabel = new Label
-                    {
-                        Text = $"Rating: {peli.Calificacion}/10",
-                        Font = new Font("Courier New", 8),
-                        ForeColor = Color.Yellow,
-                        TextAlign = ContentAlignment.MiddleCenter,
-                        Location = new Point((TarjetaMedia.Width - 200) / 2, currentY),
-                        Size = new Size(200, 15),
-                        BackColor = Color.Transparent
-                    };
-                    TarjetaMedia.Controls.Add(califLabel);
-                    currentY += 15; // Mueve la posición Y para el siguiente label
-                }
-
-                // b) Mostrar Vistas
-                if (mostrarVistas)
-                {
-                    // Se asume que peli.CantidadVistas existe y es int
-                    Label vistasLabel = new Label
-                    {
-                        Text = $"Vistas: {peli.CantidadVistas}",
-                        Font = new Font("Courier New", 8),
-                        ForeColor = Color.LightGreen,
-                        TextAlign = ContentAlignment.MiddleCenter,
-                        Location = new Point((TarjetaMedia.Width - 200) / 2, currentY),
-                        Size = new Size(200, 15),
-                        BackColor = Color.Transparent
-                    };
-                    TarjetaMedia.Controls.Add(vistasLabel);
-                    // No es necesario mover currentY si este es el último label
-                }
-
-                // 5. Agregar la tarjeta al FlowLayoutPanel
-                flowPnl.Controls.Add(TarjetaMedia);
+                maxValor = listaMedia.Max(p => p.CantidadVistas);
+                // el máximo para escalar las barras. En base a la peli mas vista, las demas se escalan proporcionalmente
             }
-        }
+
+            if(tipoDato == "calificaciones")
+            {
+                maxValor = 5; // el maximo de calificaciones es 5
+            }
+
+            int anchoMaximo = 500;
+
+            foreach (var media in listaMedia)
+            {
+                // Panel contenedor de la tarjeta (película)
+                Panel panelItem = new Panel
+                {
+                    Width = anchoMaximo + 150,
+                    Height = 60,
+                    BackColor = Color.Transparent,
+                    Margin = new Padding(0, 0, 0, 2),
+                };
+
+                // Label: nombre
+                Label lblNombre = new Label
+                {
+                    Text = media.Nombre,
+                    ForeColor = Color.White,
+                    Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                    AutoSize = true,
+                    Location = new Point(5, 0)
+                };
+                panelItem.Controls.Add(lblNombre);
+
+                // Panel de fondo
+                Panel fondo = new Panel
+                {
+                    BackColor = Color.FromArgb(50, 50, 50),
+                    Location = new Point(5, 25),
+                    Size = new Size(anchoMaximo, 20),
+                    Tag = "Default"
+                };
+                panelItem.Controls.Add(fondo);
+
+                // Cálculo proporcional
+                decimal calculoProporcional = tipoDato == "cantidad_vistas" ? media.CantidadVistas : media.CalificacionPromedio;
+                int anchoBarra = (int)((double)calculoProporcional / (double)maxValor * fondo.Width);
+                anchoBarra = Math.Max(5, anchoBarra); // mínimo visible
+
+                // Panel de la barra
+                Panel barra = new Panel
+                {
+                    BackColor = Color.FromArgb(255, 100, 0),
+                    Size = new Size(anchoBarra, 20),
+                    Location = new Point(0, 0),
+                    Tag = "Barra"
+                };
+                fondo.Controls.Add(barra);
+
+                if (tipoDato == "cantidad_vistas")
+                {
+                    // Label del valor
+                    Label lblValor = new Label
+                    {
+                        Text = $"{media.CantidadVistas:N0} 👁",
+                        ForeColor = Color.White,
+                        Font = new Font("Segoe UI", 9),
+                        AutoSize = true,
+                        Location = new Point(fondo.Right + 10, 25)
+                    };
+                    panelItem.Controls.Add(lblValor);
+                }
+
+                if (tipoDato == "calificaciones")
+                {
+                    // Label del valor
+                    Label lblValor = new Label
+                    {
+                        // N1 o N0 indica la cantidad de decimales a mostrar
+                        Text = $"{media.CalificacionPromedio:N1} ★",
+                        ForeColor = Color.White,
+                        Font = new Font("Segoe UI", 9),
+                        AutoSize = true,
+                        Location = new Point(fondo.Right + 10, 25)
+                    };
+                    panelItem.Controls.Add(lblValor);
+                }
+
+                // Añadir todo al FlowLayoutPanel
+                flowPnl.Controls.Add(panelItem);
+            }
+        } 
+        
     }
 }

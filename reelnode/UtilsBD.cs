@@ -21,7 +21,11 @@ namespace Reelnode
         public static List<Network> networksCargadas = new List<Network>();
         public static List<Genero> generosCargados = new List<Genero>();
 
-        public static List<PeliculaMiniatura> pelisMasVistas = new List<PeliculaMiniatura>();
+        public static List<MediaMiniatura> pelisMasVistas = new List<MediaMiniatura>();
+        public static List<MediaMiniatura> seriesMasVistas = new List<MediaMiniatura>();
+
+        public static List<MediaMiniatura> seriesCalificadas = new List<MediaMiniatura>();
+        public static List<MediaMiniatura> peliculasCalificadas = new List<MediaMiniatura>();
 
         // USUARIOS: Registro, login, modificación.
         public static void RegistrarUsuarioBD(Usuario nuevoUsuario)
@@ -533,7 +537,7 @@ namespace Reelnode
             }
         }
 
-        public static void CargarCalificaciones(int idUsuario, List<Pelicula> peliculasCalificadas)
+        public static void CargarCalificacionesUsuario(int idUsuario, List<Pelicula> peliculasCalificadas)
         {
             using (MySqlCommand cmd = new MySqlCommand("sp_obtener_calificaciones_x_usuario_pelis", Conexion.GetConnection()))
             {
@@ -557,7 +561,7 @@ namespace Reelnode
             }
         }
 
-        public static void CargarCalificacionesSerie(int idUsuario, List<Serie> seriesCalificadas)
+        public static void CargarCalificacionesUsuarioSerie(int idUsuario, List<Serie> seriesCalificadas)
         {
             using (MySqlCommand cmd = new MySqlCommand("sp_obtener_calificaciones_x_usuario_serie", Conexion.GetConnection()))
             {
@@ -691,27 +695,91 @@ namespace Reelnode
 
         // REPORTES AVANZADOS
 
-        public static void CargarPeliculasMasVistas(int limit = 5)
+        public static void ReporteCargarVistas(int limit, string tipo)
         {
-            pelisMasVistas.Clear();
+            string procedure = "";
+            string idMediaColumna = "";
 
-            using (MySqlCommand cmd = new MySqlCommand("sp_historial_peliculas", UtilsBD.Conexion.GetConnection()))
+            if(tipo == "peliculas") 
+            { 
+                procedure = "sp_historial_peliculas";
+                idMediaColumna = "id_pelicula";
+            }
+            else
+            {
+                procedure = "sp_historial_series";
+                idMediaColumna = "id_serie";
+            }
+
+            using (MySqlCommand cmd = new MySqlCommand(procedure, UtilsBD.Conexion.GetConnection()))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("p_max", limit);
+                cmd.Parameters.AddWithValue("p_limite", limit);
 
                 using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        PeliculaMiniatura p = new PeliculaMiniatura
+                        MediaMiniatura p = new MediaMiniatura
                         {
-                            Id = reader.GetInt32("id_pelicula"),
+                            Id = reader.GetInt32(idMediaColumna),
                             Nombre = reader.GetString("nombre"),
-                            ImagenURL = reader.GetString("imagenURL"),
                             CantidadVistas = reader.GetInt32("veces_visto"),
                         };
-                        pelisMasVistas.Add(p);
+
+                        if (tipo == "peliculas")
+                        {
+                            pelisMasVistas.Add(p);
+                        }
+                        else
+                        {
+                            seriesMasVistas.Add(p);
+                        }                          
+                    }
+                }
+            }
+        }
+
+        public static void ReporteCargarCalificaciones(int limit, string tipo)
+        {
+            string procedure = "";
+            string idMediaColumna = "";
+
+            if (tipo == "peliculas")
+            {
+                procedure = "sp_top_calificaciones_peliculas";
+                idMediaColumna = "id_pelicula";
+            }
+            else
+            {
+                procedure = "sp_top_calificaciones_series";
+                idMediaColumna = "id_serie";
+            }
+
+            using (MySqlCommand cmd = new MySqlCommand(procedure, UtilsBD.Conexion.GetConnection()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("p_limite", limit);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        MediaMiniatura p = new MediaMiniatura
+                        {
+                            Id = reader.GetInt32(idMediaColumna),
+                            Nombre = reader.GetString("nombre"),
+                            CalificacionPromedio = reader.GetDecimal("promedio_calificacion"),
+                        };
+
+                        if (tipo == "peliculas")
+                        {
+                            peliculasCalificadas.Add(p);
+                        }
+                        else
+                        {
+                            seriesCalificadas.Add(p);
+                        }
                     }
                 }
             }

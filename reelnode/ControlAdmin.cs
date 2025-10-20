@@ -57,6 +57,22 @@ namespace Reelnode
             PanelAdmin.Paint += PanelAdmin_Paint;
         }
 
+        public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
+        {
+            _c1 = color1;
+            _c2 = color2;
+            _modo = modo;
+            PanelAdmin.Invalidate();
+        }
+
+        private void PanelAdmin_Paint(object sender, PaintEventArgs e)
+        {
+            using (var brush = new LinearGradientBrush(PanelAdmin.ClientRectangle, _c1, _c2, _modo))
+            {
+                e.Graphics.FillRectangle(brush, PanelAdmin.ClientRectangle);
+            }
+        }
+
         private void ToolStpSubMenuCargarPeliculas_Click(object sender, EventArgs e)
         {
             Utils.ShowControl(controlCargarPelicula, PanelAdmin);
@@ -75,22 +91,6 @@ namespace Reelnode
         private void ToolStpMenuActualizarPelicula_Click(object sender, EventArgs e)
         {
             Utils.ShowControl(controlActualizarPeliculas, PanelAdmin);
-        }
-
-        private void PanelAdmin_Paint(object sender, PaintEventArgs e)
-        {
-            using (var brush = new LinearGradientBrush(PanelAdmin.ClientRectangle, _c1, _c2, _modo))
-            {
-                e.Graphics.FillRectangle(brush, PanelAdmin.ClientRectangle);
-            }
-        }
-
-        public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
-        {
-            _c1 = color1;
-            _c2 = color2;
-            _modo = modo;
-            PanelAdmin.Invalidate();
         }
 
         private void cargarSerieToolStripMenuItem1_Click(object sender, EventArgs e)

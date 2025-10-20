@@ -29,7 +29,7 @@ namespace Reelnode
             this.Color1 = color1;
             this.Color2 = color2;
             this.GradientMode = modo;
-            this.Invalidate(); // Fuerza el repintado con los nuevos colores
+            this.Invalidate();
         }
     }
 }

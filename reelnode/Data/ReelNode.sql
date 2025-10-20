@@ -864,30 +864,48 @@ INNER JOIN usuario u ON todas_visualizaciones.id_usuario = u.id_usuario
 GROUP BY u.id_usuario, u.nombre_usuario
 ORDER BY total_visualizaciones DESC;
 
--- Contenido más visto de peliculas y series
-CREATE VIEW vw_historial_peliculas AS
+CREATE OR REPLACE VIEW vw_historial_peliculas AS
 SELECT 
-    p.id_pelicula,
-    p.nombre AS nombre,
-    p.imagenURL,
-    v.id_usuario,
+	p.id_pelicula,
+    p.nombre,
     COUNT(*) AS veces_visto
 FROM visualizaciones_pelicula v
 INNER JOIN peliculas p ON v.id_pelicula = p.id_pelicula
-GROUP BY p.id_pelicula, p.nombre, p.imagenURL, v.id_usuario
+GROUP BY p.nombre, p.id_pelicula
 ORDER BY veces_visto DESC;
 
-CREATE VIEW vw_historial_series AS
+CREATE OR REPLACE VIEW vw_historial_series AS
 SELECT 
-    s.id_serie,
-    s.nombre AS nombre,
-    s.imagenURL,
-    v.id_usuario,
+	s.id_serie,
+    s.nombre,
     COUNT(*) AS veces_visto
 FROM visualizaciones_serie v
 INNER JOIN serie s ON v.id_serie = s.id_serie
-GROUP BY s.id_serie, s.nombre, s.imagenURL, v.id_usuario
+GROUP BY s.nombre, s.id_serie
 ORDER BY veces_visto DESC;
+
+CREATE OR REPLACE VIEW vw_calificaciones_peliculas AS
+SELECT 
+    p.id_pelicula,
+    p.nombre,
+    ROUND(AVG(c.calificacion), 2) AS promedio_calificacion,
+    COUNT(c.id_calificacion) AS total_calificaciones
+FROM calificaciones_peliculas c
+INNER JOIN peliculas p ON c.id_pelicula = p.id_pelicula
+GROUP BY p.id_pelicula, p.nombre
+ORDER BY promedio_calificacion DESC;
+
+CREATE OR REPLACE VIEW vw_calificaciones_series AS
+SELECT 
+    s.id_serie,
+    s.nombre,
+    ROUND(AVG(c.calificacion), 2) AS promedio_calificacion,
+    COUNT(c.id_calificacion) AS total_calificaciones
+FROM calificaciones_serie c
+INNER JOIN serie s ON c.id_serie = s.id_serie
+GROUP BY s.id_serie, s.nombre
+ORDER BY promedio_calificacion DESC;
+
 
 CREATE OR REPLACE VIEW vw_ultima_visualizacion AS -- Última visualización por usuario
 SELECT
@@ -1011,41 +1029,61 @@ DELIMITER ;
 
 DELIMITER //
 
-CREATE PROCEDURE sp_historial_peliculas(in p_max int)
+CREATE PROCEDURE sp_historial_peliculas(IN p_limite INT)
 BEGIN
-    SELECT * FROM vw_historial_peliculas LIMIT p_max;
+    SELECT * 
+    FROM vw_historial_peliculas
+    LIMIT p_limite;
 END //
 
 DELIMITER ;
 
 DELIMITER //
 
-CREATE PROCEDURE sp_historial_peliculas_por_usuario(IN p_id_usuario INT)
+CREATE PROCEDURE sp_historial_series(IN p_limite INT)
 BEGIN
-    SELECT *
-    FROM historial_peliculas
-    WHERE id_usuario = p_id_usuario
-    ORDER BY veces_visto DESC;
+    SELECT * 
+    FROM vw_historial_series
+    LIMIT p_limite;
 END //
 
 DELIMITER ;
 
 DELIMITER //
 
-CREATE PROCEDURE sp_historial_series(in p_max int)
+CREATE PROCEDURE sp_top_calificaciones_peliculas(
+    IN limite INT
+)
 BEGIN
-    SELECT * FROM vw_historial_series LIMIT p_max;
+    SELECT 
+        *
+    FROM vw_calificaciones_peliculas
+    ORDER BY promedio_calificacion DESC
+    LIMIT limite;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_top_calificaciones_series(
+    IN limite INT
+)
+BEGIN
+    SELECT 
+        *
+    FROM vw_calificaciones_series
+    ORDER BY promedio_calificacion DESC
+    LIMIT limite;
 END //
 
 DELIMITER ;
 
 -- ----------------------- Pruebas
 
-call sp_historial_peliculas(5);
 SET SQL_SAFE_UPDATES = 0;
 select * from genero_x_pelicula;
 select * from calificaciones_peliculas;
-select * from visualizaciones_pelicula;
 select * from comentarios_peli;
 select * from peliculas;
 select * from serie;

@@ -113,8 +113,8 @@ namespace Reelnode
             PicAvatar.Image = Utils.DescargarImagenDesdeURL(UtilsBD.usuarioActual.Avatar);
             LblEmail.Text = UtilsBD.usuarioActual.Email;
             LblUsuario.Text = UtilsBD.usuarioActual.NombreUsuario;  
-            UtilsBD.CargarCalificaciones(UtilsBD.usuarioActual.Id, peliculasCalificadas);
-            UtilsBD.CargarCalificacionesSerie(UtilsBD.usuarioActual.Id, seriesCalificadas);
+            UtilsBD.CargarCalificacionesUsuario(UtilsBD.usuarioActual.Id, peliculasCalificadas);
+            UtilsBD.CargarCalificacionesUsuarioSerie(UtilsBD.usuarioActual.Id, seriesCalificadas);
             Utils.RellenarFlowPanel(flowPanelPeliculas, peliculasCalificadas, AbrirPelicula);
             Utils.RellenarFlowPanel(flowPanelSeries, seriesCalificadas, AbrirSerie);
         }

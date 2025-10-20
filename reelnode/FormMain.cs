@@ -46,7 +46,10 @@ namespace Reelnode
             UtilsBD.CargarSeries();
             UtilsBD.CargarNetwork();
             UtilsBD.CargarGeneros();
-            UtilsBD.CargarPeliculasMasVistas();
+            UtilsBD.ReporteCargarVistas(5, "peliculas");
+            UtilsBD.ReporteCargarVistas(5, "series"); 
+            UtilsBD.ReporteCargarCalificaciones(5, "peliculas");
+            UtilsBD.ReporteCargarCalificaciones(5, "series");
 
             CrearUI();
 

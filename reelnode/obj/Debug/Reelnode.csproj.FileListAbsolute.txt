@@ -408,3 +408,4 @@ C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\ProjectoNuevo.exe.config
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.ControlComentarios.resources
 D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlComentarios.resources
 D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlGestionDashboard.resources
+C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.ControlGestionDashboard.resources
