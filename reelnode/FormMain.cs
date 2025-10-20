@@ -38,9 +38,15 @@ namespace Reelnode
         private void FormMain_Load(object sender, EventArgs e)
         {
             UtilsBD.Conexion.AbrirBD();
+            UtilsBD.CargarUsuario();
+
+            FormLogin login = new FormLogin();
+
+            login.ShowDialog();
+
+            ToolStpMenuAdmin.Visible = UtilsBD.usuarioActual.RolUsuario == "Admin" ? true : false;
 
             // CARGA DE DATOS
-            UtilsBD.CargarUsuario();
             UtilsBD.CargarSeries();
             UtilsBD.CargarPeliculas();
             UtilsBD.CargarSeries();
@@ -59,11 +65,6 @@ namespace Reelnode
             MostrarPeliculas();
             MostrarSeries();
 
-            FormLogin login = new FormLogin();
-
-            login.ShowDialog();
-
-            ToolStpMenuAdmin.Visible = UtilsBD.usuarioActual.RolUsuario == "Admin" ? true : false;
 
         }
 
