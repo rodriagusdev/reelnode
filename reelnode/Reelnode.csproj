@@ -122,8 +122,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdministradorCalificaciones.cs" />
     <Compile Include="AdministradorDashboard.cs" />
     <Compile Include="AdministradorJSON.cs" />
+    <Compile Include="AdministradorPermisos.cs" />
     <Compile Include="Comentario.cs" />
     <Compile Include="ComentarioHelper.cs" />
     <Compile Include="ControlComentarios.cs">

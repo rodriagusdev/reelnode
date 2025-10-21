@@ -26,6 +26,8 @@ namespace Reelnode
             PanelMain.Dock = DockStyle.Fill;
             PanelMain.Controls.Add(PanelGestionUsuarios);
             this.Controls.Add(PanelMain);
+
+            PanelCambiarRol.Enabled = false;
         }
 
         private void BtnExportar_Click(object sender, EventArgs e)
@@ -83,6 +85,8 @@ namespace Reelnode
                 UtilsBD.CargarUsuario();
                 DataGridUsuarios.DataSource = null;
                 DataGridUsuarios.DataSource = UtilsBD.usuariosRegistrados;
+
+                PanelCambiarRol.Enabled = false;
             }
         }
 
@@ -115,7 +119,7 @@ namespace Reelnode
 
         private void CtxMenuModificarRol_Click(object sender, EventArgs e)
         {
-            PanelCambiarRol.Visible = true;
+            PanelCambiarRol.Enabled = Enabled;
             RbtAdmin.Checked = true;
         }
 
@@ -124,6 +128,28 @@ namespace Reelnode
             DataGridUsuarios.DataSource = null;
             DataGridUsuarios.DataSource = UtilsBD.usuariosRegistrados;
             // DataGridUsuarios.Columns["Avatar"].Visible = false;
+        }
+
+        private void BtnConfirmarPermisos_Click(object sender, EventArgs e)
+        {
+            AdministradorPermisos.AsignarPermisos
+                (Convert.ToInt32(DataGridUsuarios.CurrentRow.Cells["Id"].Value), 
+                ChkListPermisos);
+
+            PanelPermisos.Enabled = false;
+        }
+
+        private void BtnSeleccionarTodos_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < ChkListPermisos.Items.Count; i++)
+            {
+                ChkListPermisos.SetItemChecked(i, true);
+            }
+        }
+
+        private void CtxMenuAsignarPermisos_Click(object sender, EventArgs e)
+        {
+            PanelPermisos.Enabled = true;
         }
     }
 }

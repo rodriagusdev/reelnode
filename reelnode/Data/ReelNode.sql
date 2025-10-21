@@ -230,24 +230,26 @@ CREATE TABLE calificaciones_peliculas (
 );
 create table permisos(
 	id_permiso int primary key auto_increment,
-    tipo_permiso varchar(255)
+    tipo_permiso varchar(255) unique
 );
 
-create table permisos_usuarios(
-id_permiso_X_usuario int primary key auto_increment,
-id_usuario int,
-id_permiso int,
-FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
-ON DELETE CASCADE ON UPDATE CASCADE,
-foreign key (id_permiso) references permisos(id_permiso)
+CREATE TABLE permisos_usuarios (
+    id_permiso_X_usuario INT PRIMARY KEY AUTO_INCREMENT,
+    id_usuario INT,
+    id_permiso INT,
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (id_permiso) REFERENCES permisos(id_permiso),
+    UNIQUE KEY uk_usuario_permiso (id_usuario, id_permiso) -- evita duplicados
 );
 
 INSERT INTO permisos(tipo_permiso) VALUES
-("comentar"),
+("administrar"),
 ('calificar'),
 ('administrar_roles'),
 ('administrar_permisos'),
 ('administrar_media'),
+('moderar_comentarios'),
 ("loguear");
 
 create table rol_x_usuario(
@@ -374,62 +376,6 @@ BEGIN
     WHERE nombre_usuario = p_nombre_usuario;
 END //
 DELIMITER ;
-
-
--- Procedimiento almacenado para consultar historial
-/*
-!!! Mejor esperar a que este bien terminado lo anterior antes de lidiar con el historial,
-puede producir problemas hasta que no este implementado.
-
--- Función para contar visualizaciones de un usuario
-DELIMITER //
-create function fn_total_visualizaciones(p_id_usuario int) 
-returns int
-deterministic
-begin
-    declare total int default 0;
-    declare total_peliculas int default 0;
-
-    select COUNT(*) into total
-    from visualizaciones_serie
-    where id_usuario = p_id_usuario;
-
-    select COUNT(*) into total_peliculas
-    from visualizaciones_pelicula
-    where id_usuario = p_id_usuario;
-
-    set total = total + total_peliculas;
-
-    return total;
-end //
-DELIMITER ;
-
-*/
-
-/*DELIMITER //
-create procedure sp_reporte_admin()
-begin
-	select count(*) as total_usuarios from usuario;
-    
-    -- peliculas mas vistas 
-    select p.nombre, count(v.id_pelicula) as vistas
-    from visualizaciones_pelicula v 
-    join peliculas p on v.id_pelicula = p.id_pelicula
-    group by p.nombre
-    order by vistas desc
-    limit 5;
-    
-    -- Series más vistas
-    select s.nombre, count(v.id_serie) as vistas
-    from visualizaciones_serie v
-    join serie s on v.id_serie = s.id_serie
-    group by s.nombre
-    order by vistas desc
-    limit 5;
-end //
-DELIMITER ;
--- 
-*/
 
 -- Procedimientos almacenados 
 DELIMITER //
@@ -762,33 +708,32 @@ end //
 DELIMITER ;
 
 DELIMITER //
-create procedure sp_asignar_permiso(
-    in p_id_usuario int,
-    in p_tipo_permiso varchar(255)
+CREATE PROCEDURE sp_asignar_permiso(
+    IN p_id_usuario INT,
+    IN p_tipo_permiso VARCHAR(255)
 )
-begin
-    declare v_id_permiso int;
+BEGIN
+    DECLARE v_id_permiso INT;
 
-    -- Buscar si el permiso ya existe para el usuario
-    select id_permiso into v_id_permiso
-    from permisos
-    where tipo_permiso = p_tipo_permiso and id_usuario = p_id_usuario
-    limit 1;
+    -- Buscar si el permiso ya existe (a nivel global)
+    SELECT id_permiso INTO v_id_permiso
+    FROM permisos
+    WHERE tipo_permiso = p_tipo_permiso
+    LIMIT 1;
 
-    -- Si no existe, lo insertamos
-    if v_id_permiso is null then
-        insert into permisos(tipo_permiso, id_usuario)
-        values(p_tipo_permiso, p_id_usuario);
-        
-        set v_id_permiso = LAST_INSERT_ID(); -- devuelve el último valor de columna AUTO_INCREMENT que se insertó en la sesión actual.
-    end if;
+    -- Si no existe, lo creamos
+    IF v_id_permiso IS NULL THEN
+        INSERT INTO permisos(tipo_permiso)
+        VALUES (p_tipo_permiso);
+        SET v_id_permiso = LAST_INSERT_ID();
+    END IF;
 
-    -- Insertar en tabla de relación para que quede registrado // Evita duplicados usando ON DUPLICATE KEY UPDATE
-    insert into permisos_usuarios(id_usuario, id_permiso)
-    values(p_id_usuario, v_id_permiso)
-    on duplicate key update id_permiso = id_permiso;
-    
-end //
+    -- Asignar permiso al usuario, evitando duplicados
+    INSERT INTO permisos_usuarios(id_usuario, id_permiso)
+    VALUES(p_id_usuario, v_id_permiso)
+    ON DUPLICATE KEY UPDATE id_permiso = id_permiso; -- no hace nada, pero evita error
+
+END //
 DELIMITER ;
 
 DELIMITER //
@@ -1140,3 +1085,5 @@ select * from serie;
 select * from usuario;
 select * from network;
 select * from vw_historial_total;
+select * from permisos;
+select * from permisos_usuarios;

@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.CtxMain = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.CtxMenuModificarRol = new System.Windows.Forms.ToolStripMenuItem();
+            this.CtxMenuAsignarPermisos = new System.Windows.Forms.ToolStripMenuItem();
             this.PanelGrid = new System.Windows.Forms.Panel();
             this.DataGridUsuarios = new System.Windows.Forms.DataGridView();
             this.PanelCambiarRol = new System.Windows.Forms.Panel();
@@ -39,26 +40,39 @@
             this.BtnConfirmar = new System.Windows.Forms.Button();
             this.BtnExportar = new System.Windows.Forms.Button();
             this.PanelGestionUsuarios = new System.Windows.Forms.Panel();
+            this.PanelPermisos = new System.Windows.Forms.Panel();
+            this.BtnSeleccionarTodos = new System.Windows.Forms.Button();
+            this.BtnConfirmarPermisos = new System.Windows.Forms.Button();
+            this.ChkListPermisos = new System.Windows.Forms.CheckedListBox();
             this.CtxMain.SuspendLayout();
             this.PanelGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridUsuarios)).BeginInit();
             this.PanelCambiarRol.SuspendLayout();
             this.PanelGestionUsuarios.SuspendLayout();
+            this.PanelPermisos.SuspendLayout();
             this.SuspendLayout();
             // 
             // CtxMain
             // 
             this.CtxMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CtxMenuModificarRol});
+            this.CtxMenuModificarRol,
+            this.CtxMenuAsignarPermisos});
             this.CtxMain.Name = "CtxMain";
-            this.CtxMain.Size = new System.Drawing.Size(126, 26);
+            this.CtxMain.Size = new System.Drawing.Size(181, 70);
             // 
             // CtxMenuModificarRol
             // 
             this.CtxMenuModificarRol.Name = "CtxMenuModificarRol";
-            this.CtxMenuModificarRol.Size = new System.Drawing.Size(125, 22);
+            this.CtxMenuModificarRol.Size = new System.Drawing.Size(180, 22);
             this.CtxMenuModificarRol.Text = "Modificar";
             this.CtxMenuModificarRol.Click += new System.EventHandler(this.CtxMenuModificarRol_Click);
+            // 
+            // CtxMenuAsignarPermisos
+            // 
+            this.CtxMenuAsignarPermisos.Name = "CtxMenuAsignarPermisos";
+            this.CtxMenuAsignarPermisos.Size = new System.Drawing.Size(180, 22);
+            this.CtxMenuAsignarPermisos.Text = "Asignar permisos";
+            this.CtxMenuAsignarPermisos.Click += new System.EventHandler(this.CtxMenuAsignarPermisos_Click);
             // 
             // PanelGrid
             // 
@@ -84,7 +98,6 @@
             this.DataGridUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataGridUsuarios.Size = new System.Drawing.Size(742, 174);
             this.DataGridUsuarios.TabIndex = 2;
-          
             this.DataGridUsuarios.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DataGridUsuarios_CellFormatting);
             // 
             // PanelCambiarRol
@@ -93,11 +106,10 @@
             this.PanelCambiarRol.Controls.Add(this.RbtAdmin);
             this.PanelCambiarRol.Controls.Add(this.RbtUsuario);
             this.PanelCambiarRol.Controls.Add(this.BtnConfirmar);
-            this.PanelCambiarRol.Location = new System.Drawing.Point(713, 325);
+            this.PanelCambiarRol.Location = new System.Drawing.Point(575, 337);
             this.PanelCambiarRol.Name = "PanelCambiarRol";
             this.PanelCambiarRol.Size = new System.Drawing.Size(286, 100);
             this.PanelCambiarRol.TabIndex = 9;
-            this.PanelCambiarRol.Visible = false;
             // 
             // RbtAdmin
             // 
@@ -129,6 +141,7 @@
             // 
             // BtnConfirmar
             // 
+            this.BtnConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnConfirmar.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnConfirmar.Location = new System.Drawing.Point(19, 28);
             this.BtnConfirmar.Name = "BtnConfirmar";
@@ -140,8 +153,9 @@
             // 
             // BtnExportar
             // 
+            this.BtnExportar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnExportar.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnExportar.Location = new System.Drawing.Point(222, 387);
+            this.BtnExportar.Location = new System.Drawing.Point(879, 337);
             this.BtnExportar.Name = "BtnExportar";
             this.BtnExportar.Size = new System.Drawing.Size(120, 38);
             this.BtnExportar.TabIndex = 10;
@@ -152,6 +166,7 @@
             // PanelGestionUsuarios
             // 
             this.PanelGestionUsuarios.BackColor = System.Drawing.Color.Transparent;
+            this.PanelGestionUsuarios.Controls.Add(this.PanelPermisos);
             this.PanelGestionUsuarios.Controls.Add(this.BtnExportar);
             this.PanelGestionUsuarios.Controls.Add(this.PanelCambiarRol);
             this.PanelGestionUsuarios.Controls.Add(this.PanelGrid);
@@ -161,7 +176,60 @@
             this.PanelGestionUsuarios.Size = new System.Drawing.Size(1280, 720);
             this.PanelGestionUsuarios.TabIndex = 0;
             this.PanelGestionUsuarios.Tag = "Default";
-
+            // 
+            // PanelPermisos
+            // 
+            this.PanelPermisos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(47)))), ((int)(((byte)(71)))));
+            this.PanelPermisos.Controls.Add(this.BtnSeleccionarTodos);
+            this.PanelPermisos.Controls.Add(this.BtnConfirmarPermisos);
+            this.PanelPermisos.Controls.Add(this.ChkListPermisos);
+            this.PanelPermisos.Enabled = false;
+            this.PanelPermisos.Location = new System.Drawing.Point(222, 337);
+            this.PanelPermisos.Name = "PanelPermisos";
+            this.PanelPermisos.Size = new System.Drawing.Size(330, 143);
+            this.PanelPermisos.TabIndex = 10;
+            // 
+            // BtnSeleccionarTodos
+            // 
+            this.BtnSeleccionarTodos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSeleccionarTodos.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnSeleccionarTodos.Location = new System.Drawing.Point(9, 95);
+            this.BtnSeleccionarTodos.Name = "BtnSeleccionarTodos";
+            this.BtnSeleccionarTodos.Size = new System.Drawing.Size(134, 44);
+            this.BtnSeleccionarTodos.TabIndex = 14;
+            this.BtnSeleccionarTodos.Text = "Seleccionar todos";
+            this.BtnSeleccionarTodos.UseVisualStyleBackColor = true;
+            this.BtnSeleccionarTodos.Click += new System.EventHandler(this.BtnSeleccionarTodos_Click);
+            // 
+            // BtnConfirmarPermisos
+            // 
+            this.BtnConfirmarPermisos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnConfirmarPermisos.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnConfirmarPermisos.Location = new System.Drawing.Point(7, 16);
+            this.BtnConfirmarPermisos.Name = "BtnConfirmarPermisos";
+            this.BtnConfirmarPermisos.Size = new System.Drawing.Size(134, 44);
+            this.BtnConfirmarPermisos.TabIndex = 13;
+            this.BtnConfirmarPermisos.Text = "Confirmar permisos";
+            this.BtnConfirmarPermisos.UseVisualStyleBackColor = true;
+            this.BtnConfirmarPermisos.Click += new System.EventHandler(this.BtnConfirmarPermisos_Click);
+            // 
+            // ChkListPermisos
+            // 
+            this.ChkListPermisos.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ChkListPermisos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChkListPermisos.FormattingEnabled = true;
+            this.ChkListPermisos.Items.AddRange(new object[] {
+            "Administrar_Media",
+            "Administrar_Permisos",
+            "Administrar_Roles",
+            "Moderar_Comentarios",
+            "Calificar",
+            "Comentar",
+            "Loguear"});
+            this.ChkListPermisos.Location = new System.Drawing.Point(149, 16);
+            this.ChkListPermisos.Name = "ChkListPermisos";
+            this.ChkListPermisos.Size = new System.Drawing.Size(167, 119);
+            this.ChkListPermisos.TabIndex = 12;
             // 
             // ControlGestionUsuarios
             // 
@@ -178,6 +246,7 @@
             this.PanelCambiarRol.ResumeLayout(false);
             this.PanelCambiarRol.PerformLayout();
             this.PanelGestionUsuarios.ResumeLayout(false);
+            this.PanelPermisos.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -193,5 +262,10 @@
         private System.Windows.Forms.Button BtnConfirmar;
         private System.Windows.Forms.Button BtnExportar;
         private System.Windows.Forms.Panel PanelGestionUsuarios;
+        private System.Windows.Forms.Panel PanelPermisos;
+        private System.Windows.Forms.Button BtnConfirmarPermisos;
+        private System.Windows.Forms.CheckedListBox ChkListPermisos;
+        private System.Windows.Forms.Button BtnSeleccionarTodos;
+        private System.Windows.Forms.ToolStripMenuItem CtxMenuAsignarPermisos;
     }
 }

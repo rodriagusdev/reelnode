@@ -8,9 +8,6 @@ namespace Reelnode
     {
         private PanelGradiente PanelMain;
 
-        private List<Pelicula> peliculasCalificadas = new List<Pelicula>();
-        private List<Serie> seriesCalificadas = new List<Serie>();
-
         /* !--- Acciones para abrir pelicula o serie ---! */
 
         // Al hacerlas publicas, puedo asignarlas desde el formulario principal
@@ -35,22 +32,34 @@ namespace Reelnode
 
         private void ConfiguracionCuentaUsuario()
         {
+            AdministradorCalificaciones.OnCalificacionActualizada += MostrarCalificaciones;
             /* !--- CARGAR DATOS DE USUARIO ---! */
 
             PicAvatar.Image = Utils.DescargarImagenDesdeURL(UtilsBD.usuarioActual.Avatar);
             LblEmail.Text = UtilsBD.usuarioActual.Email;
             LblUsuario.Text = UtilsBD.usuarioActual.NombreUsuario;
-            UtilsBD.CargarCalificacionesUsuario(UtilsBD.usuarioActual.Id, peliculasCalificadas);
-            UtilsBD.CargarCalificacionesUsuarioSerie(UtilsBD.usuarioActual.Id, seriesCalificadas);
+
+            AdministradorCalificaciones.CargarCalificacionesUsuarioPeliculas
+                (UtilsBD.usuarioActual.Id, AdministradorCalificaciones.peliculasCalificadasUsuario);
+            AdministradorCalificaciones.CargarCalificacionesUsuarioSeries
+                (UtilsBD.usuarioActual.Id, AdministradorCalificaciones.seriesCalificadasUsuario);
 
             /* !--- FIN DE CARGADO ---! */
 
             /* !--- RELLENAR FLOW PANELS CON DATOS ---! */
 
-            Utils.RellenarFlowPanel(FlowPanelPeliculas, peliculasCalificadas, AbrirPelicula);
-            Utils.RellenarFlowPanel(FlowPanelSeries, seriesCalificadas, AbrirSerie);
+            MostrarCalificaciones();
 
             /* !--- FIN DE RELLENO ---! */
+        }
+
+        private void MostrarCalificaciones()
+        {
+            Utils.RellenarFlowPanel(FlowPanelPeliculas,
+                AdministradorCalificaciones.peliculasCalificadasUsuario, AbrirPelicula);
+
+            Utils.RellenarFlowPanel(FlowPanelSeries,
+                AdministradorCalificaciones.seriesCalificadasUsuario, AbrirSerie);
         }
 
         /* !--- EVENTOS DE BOTONES ---! */

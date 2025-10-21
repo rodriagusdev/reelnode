@@ -52,12 +52,13 @@ namespace Reelnode
                     if(pnl.Tag == "Default") pnl.BackColor = Color.Transparent;
                     if (pnl.Tag == null || pnl.Tag == "") pnl.BackColor = AzulOscuroNeon;
                     if (pnl.Tag == "Barra") pnl.BackColor = VerdeClaroNeon;
+
                 }
                 else if (ctrl is System.Windows.Forms.CheckedListBox chkList)
                 {
                     chkList.BackColor = AzulOscuroNeon;
                     chkList.ForeColor = VerdeClaroNeon;
-                    chkList.BorderStyle = BorderStyle.FixedSingle;
+
                 }
                 else if (ctrl is System.Windows.Forms.TextBox txt)
                 {

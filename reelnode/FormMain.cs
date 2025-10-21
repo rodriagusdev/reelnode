@@ -93,8 +93,8 @@ namespace Reelnode
             Panel.BackColor = Color.Transparent;
 
             // Relleno los flow panels de la UI principal con las peliculas y series cargadas en la base de datos
-            Utils.RellenarFlowPanel(FlowPanelPeliculas, UtilsBD.peliculasCargadas, AbrirPestanaPelicula);
-            Utils.RellenarFlowPanel(FlowPanelSeries, UtilsBD.seriesCargadas, AbrirPestanaSerie);
+            Utils.RellenarFlowPanelTest(FlowPanelPeliculas, UtilsBD.peliculasCargadas, AbrirPestanaPelicula);
+            Utils.RellenarFlowPanelTest(FlowPanelSeries, UtilsBD.seriesCargadas, AbrirPestanaSerie);
 
             /* !--- FIN CONFIGURACION DE UI PRINCIPAL ---! */
         }

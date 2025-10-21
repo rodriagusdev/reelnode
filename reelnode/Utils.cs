@@ -270,7 +270,7 @@ namespace Reelnode
             return generosSeleccionados;
         }
 
-        public static void RellenarFlowPanel<T>(FlowLayoutPanel flowPnl, List<T> list, Action<int> abrirPestana) where T : Media
+        public static void RellenarFlowPanel<T>(FlowLayoutPanel flowPnl, List<T> list, Action<int> abrirPestana) where T : MediaMiniatura 
         {
             flowPnl.Controls.Clear();
 
@@ -314,5 +314,160 @@ namespace Reelnode
                 flowPnl.Controls.Add(TarjetaMedia);
             }
         }
+
+        public static void RellenarFlowPanelTest<T>(FlowLayoutPanel flowPnl, List<T> list, Action<int> abrirPestana) where T : Media
+        {
+            flowPnl.Controls.Clear();
+
+            foreach (var media in list)
+            {
+                // Por cada media (pelicula o serie) creo una tarjeta (Panel) con su poster y titulo
+                Panel TarjetaMedia = new Panel
+                {
+                    Size = new Size(190, 220),
+                    BackColor = Color.FromArgb(30, 30, 30),
+                };
+
+                PictureBox poster = new PictureBox
+                {
+                    Size = new Size(180, 180),
+                    Location = new Point(5, 5),
+                    Image = Utils.DescargarImagenDesdeURL(media.ImagenURL),
+                    SizeMode = PictureBoxSizeMode.StretchImage,
+                    Cursor = Cursors.Hand
+                };
+
+                // Creo un evento click para abrir la pestana de detalles al hacer click en el poster
+                poster.Click += (s, e) => abrirPestana(media.Id);
+
+                Label titleLabel = new Label
+                {
+                    Text = media.Nombre,
+                    Font = new Font("Courier New", 10, FontStyle.Bold),
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    ForeColor = Color.White,
+                    Location = new Point((TarjetaMedia.Width - 200) / 2, 190),
+                    Size = new Size(200, 20),
+                    BackColor = Color.Transparent
+                };
+
+
+                // Los agrego al panel, el cual agrego al FlowLayoutPanel de la interfaz del formulario principal
+                TarjetaMedia.Controls.Add(poster);
+                TarjetaMedia.Controls.Add(titleLabel);
+
+                flowPnl.Controls.Add(TarjetaMedia);
+            }
+        }
+
+        public static void ReporteCrearPanelesBarra(
+        FlowLayoutPanel flowPnl,
+        List<MediaMiniatura> listaMedia,
+        string tipoDato)
+        {
+            if (listaMedia.Count < 1) return;
+
+            double maxValor = 0;
+            if (tipoDato == "cantidad_vistas")
+            {
+                maxValor = listaMedia.Max(p => p.CantidadVistas);
+            }
+
+            if (tipoDato == "calificaciones")
+            {
+                maxValor = 5;
+            }
+
+            // 🔸 Escalado 35%
+            double escala = 1.30;
+            int anchoMaximo = 344;
+            int altoPanel = (int)(30 * escala);
+            int altoBarra = (int)(12 * escala);
+            int margenY = (int)(15 * escala);
+
+            foreach (var media in listaMedia)
+            {
+                // Panel contenedor
+                Panel panelItem = new Panel
+                {
+                    Width = (int)(anchoMaximo + 52 * escala),
+                    Height = altoPanel,
+                    BackColor = Color.Transparent,
+                    Margin = new Padding(0, 0, 0, (int)(2 * escala)),
+                };
+
+                // Label nombre
+                Label lblNombre = new Label
+                {
+                    Text = media.Nombre,
+                    ForeColor = Color.White,
+                    Font = new Font("Consolas", (float)(8 * escala), FontStyle.Bold),
+                    AutoSize = true,
+                    Location = new Point((int)(5 * escala), 0)
+                };
+                panelItem.Controls.Add(lblNombre);
+
+                // Fondo de barra
+                Panel fondo = new Panel
+                {
+                    BackColor = Color.FromArgb(50, 50, 50),
+                    Location = new Point((int)(5 * escala), margenY),
+                    Size = new Size(anchoMaximo, altoBarra),
+                    Tag = "Default"
+                };
+                panelItem.Controls.Add(fondo);
+
+                // Cálculo proporcional
+                decimal calculoProporcional = tipoDato == "cantidad_vistas"
+                    ? media.CantidadVistas
+                    : media.CalificacionPromedio;
+
+                int anchoBarra = (int)((double)calculoProporcional / (double)maxValor * fondo.Width);
+                anchoBarra = Math.Max((int)(5 * escala), anchoBarra);
+
+                // Barra
+                Panel barra = new Panel
+                {
+                    BackColor = Color.FromArgb(255, 100, 0),
+                    Size = new Size(anchoBarra, fondo.Height),
+                    Location = new Point(0, 0),
+                    Tag = "Barra"
+                };
+                fondo.Controls.Add(barra);
+
+                // ---- VISTAS ----
+                if (tipoDato == "cantidad_vistas")
+                {
+                    Label lblValor = new Label
+                    {
+                        Text = $"{media.CantidadVistas:N0} 👁",
+                        ForeColor = Color.White,
+                        Font = new Font("Consolas", (float)(8 * escala), FontStyle.Regular),
+                        AutoSize = true
+                    };
+
+                    panelItem.Controls.Add(lblValor);
+                    lblValor.Location = new Point(fondo.Right + (int)(8 * escala), fondo.Top - (int)(2 * escala));
+                }
+
+                // ---- CALIFICACIONES ----
+                if (tipoDato == "calificaciones")
+                {
+                    Label lblValor = new Label
+                    {
+                        Text = $"{media.CalificacionPromedio:N1} ★",
+                        ForeColor = Color.White,
+                        Font = new Font("Consolas", (float)(8.5 * escala), FontStyle.Regular),
+                        AutoSize = true
+                    };
+
+                    panelItem.Controls.Add(lblValor);
+                    lblValor.Location = new Point(fondo.Right + (int)(8 * escala), fondo.Top - (int)(2 * escala));
+                }
+
+                flowPnl.Controls.Add(panelItem);
+            }
+        }
+
     }
 }

@@ -149,6 +149,8 @@ namespace Reelnode
         List<MediaMiniatura> listaMedia,
         string tipoDato)
         {
+            if (listaMedia.Count < 1) return;
+
             double maxValor = 0;
             if (tipoDato == "cantidad_vistas")
             {

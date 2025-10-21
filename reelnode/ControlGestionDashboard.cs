@@ -34,8 +34,8 @@ namespace Reelnode
 
             AdministradorDashboard.CargarTopVistas(5, "peliculas", UtilsBD.pelisMasVistas);
             AdministradorDashboard.CargarTopVistas(5, "series", UtilsBD.seriesMasVistas);
-            AdministradorDashboard.CargarTopCalificaciones(5, "peliculas", UtilsBD.peliculasCalificadas);
-            AdministradorDashboard.CargarTopCalificaciones(5, "series", UtilsBD.seriesCalificadas);
+            AdministradorDashboard.CargarTopCalificaciones(5, "peliculas", AdministradorCalificaciones.peliculasCalificadasUsuario);
+            AdministradorDashboard.CargarTopCalificaciones(5, "series", AdministradorCalificaciones.seriesCalificadasUsuario);
 
             /* !--- FIN CARGA DE DATOS ---! */
 
@@ -45,8 +45,8 @@ namespace Reelnode
             // De los datos de visualizaciones y calificaciones creo los paneles de barra correspondientes
             AdministradorDashboard.ReporteCrearPanelesBarra(flowPanelPelisMasVistas, UtilsBD.pelisMasVistas, "cantidad_vistas");
             AdministradorDashboard.ReporteCrearPanelesBarra(flowPanelSeriesMasVistas, UtilsBD.seriesMasVistas, "cantidad_vistas");
-            AdministradorDashboard.ReporteCrearPanelesBarra(flowPanelPeliculasMejorCalificadas, UtilsBD.peliculasCalificadas, "calificaciones");
-            AdministradorDashboard.ReporteCrearPanelesBarra(flowPanelSeriesMejorCalificadas, UtilsBD.seriesCalificadas, "calificaciones");
+            AdministradorDashboard.ReporteCrearPanelesBarra(flowPanelPeliculasMejorCalificadas, AdministradorCalificaciones.peliculasCalificadasUsuario, "calificaciones");
+            AdministradorDashboard.ReporteCrearPanelesBarra(flowPanelSeriesMejorCalificadas, AdministradorCalificaciones.seriesCalificadasUsuario, "calificaciones");
 
             // Estos datos se cargan y se muestran directamente
             AdministradorDashboard.CargarVisualizacionesUltimoMes(LblVisualizacionesUltimoMes);
