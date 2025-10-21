@@ -42,7 +42,7 @@
             // 
             // Panel
             // 
-            this.Panel.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.Panel.BackColor = System.Drawing.Color.Transparent;
             this.Panel.Controls.Add(this.flowPanelComentarios);
             this.Panel.Controls.Add(this.BtnVerComentarios);
             this.Panel.Controls.Add(this.panel1);
@@ -55,7 +55,7 @@
             this.Panel.Name = "Panel";
             this.Panel.Size = new System.Drawing.Size(1280, 720);
             this.Panel.TabIndex = 0;
-            this.Panel.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel_Paint);
+            this.Panel.Tag = "Default";
             // 
             // flowPanelComentarios
             // 
@@ -145,6 +145,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.Panel);
             this.Name = "ControlComentarios";
             this.Size = new System.Drawing.Size(1280, 720);

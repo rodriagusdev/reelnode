@@ -49,7 +49,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.BtnPrevisualizar = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
-            this.PanelMain = new System.Windows.Forms.Panel();
+            this.PanelSerie = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
             this.ChkListGeneros = new System.Windows.Forms.CheckedListBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -61,8 +61,6 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.TxtURLTrailer = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -79,7 +77,7 @@
             this.PanelDescripcion.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.PanelMain.SuspendLayout();
+            this.PanelSerie.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel5.SuspendLayout();
             this.SuspendLayout();
@@ -320,45 +318,43 @@
             this.label8.TabIndex = 41;
             this.label8.Text = "e.g. \"https://sitio/content//imagen.jpg\"";
             // 
-            // PanelMain
+            // PanelSerie
             // 
-            this.PanelMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
-            this.PanelMain.Controls.Add(this.label12);
-            this.PanelMain.Controls.Add(this.ChkListGeneros);
-            this.PanelMain.Controls.Add(this.label13);
-            this.PanelMain.Controls.Add(this.panel10);
-            this.PanelMain.Controls.Add(this.label2);
-            this.PanelMain.Controls.Add(this.BtnPrevisualizarTrailer);
-            this.PanelMain.Controls.Add(this.PanelTrailerSerie);
-            this.PanelMain.Controls.Add(this.panel5);
-            this.PanelMain.Controls.Add(this.label5);
-            this.PanelMain.Controls.Add(this.panel4);
-            this.PanelMain.Controls.Add(this.panel3);
-            this.PanelMain.Controls.Add(this.label6);
-            this.PanelMain.Controls.Add(this.label4);
-            this.PanelMain.Controls.Add(this.label3);
-            this.PanelMain.Controls.Add(this.label7);
-            this.PanelMain.Controls.Add(this.label1);
-            this.PanelMain.Controls.Add(this.label11);
-            this.PanelMain.Controls.Add(this.label10);
-            this.PanelMain.Controls.Add(this.label8);
-            this.PanelMain.Controls.Add(this.BtnPrevisualizar);
-            this.PanelMain.Controls.Add(this.label9);
-            this.PanelMain.Controls.Add(this.panel2);
-            this.PanelMain.Controls.Add(this.panel1);
-            this.PanelMain.Controls.Add(this.BtnCargar);
-            this.PanelMain.Controls.Add(this.PanelDescripcion);
-            this.PanelMain.Controls.Add(this.PanelImagen);
-            this.PanelMain.Controls.Add(this.PanelDuracion);
-            this.PanelMain.Controls.Add(this.PanelDirector);
-            this.PanelMain.Controls.Add(this.PanelFecha);
-            this.PanelMain.Controls.Add(this.PanelUsuario);
-            this.PanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelMain.Location = new System.Drawing.Point(0, 0);
-            this.PanelMain.Name = "PanelMain";
-            this.PanelMain.Size = new System.Drawing.Size(1280, 720);
-            this.PanelMain.TabIndex = 3;
-            this.PanelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelMain_Paint);
+            this.PanelSerie.BackColor = System.Drawing.Color.Transparent;
+            this.PanelSerie.Controls.Add(this.label12);
+            this.PanelSerie.Controls.Add(this.ChkListGeneros);
+            this.PanelSerie.Controls.Add(this.label13);
+            this.PanelSerie.Controls.Add(this.panel10);
+            this.PanelSerie.Controls.Add(this.label2);
+            this.PanelSerie.Controls.Add(this.BtnPrevisualizarTrailer);
+            this.PanelSerie.Controls.Add(this.PanelTrailerSerie);
+            this.PanelSerie.Controls.Add(this.panel5);
+            this.PanelSerie.Controls.Add(this.label5);
+            this.PanelSerie.Controls.Add(this.label6);
+            this.PanelSerie.Controls.Add(this.label4);
+            this.PanelSerie.Controls.Add(this.label3);
+            this.PanelSerie.Controls.Add(this.label7);
+            this.PanelSerie.Controls.Add(this.label1);
+            this.PanelSerie.Controls.Add(this.label11);
+            this.PanelSerie.Controls.Add(this.label10);
+            this.PanelSerie.Controls.Add(this.label8);
+            this.PanelSerie.Controls.Add(this.BtnPrevisualizar);
+            this.PanelSerie.Controls.Add(this.label9);
+            this.PanelSerie.Controls.Add(this.panel2);
+            this.PanelSerie.Controls.Add(this.panel1);
+            this.PanelSerie.Controls.Add(this.BtnCargar);
+            this.PanelSerie.Controls.Add(this.PanelDescripcion);
+            this.PanelSerie.Controls.Add(this.PanelImagen);
+            this.PanelSerie.Controls.Add(this.PanelDuracion);
+            this.PanelSerie.Controls.Add(this.PanelDirector);
+            this.PanelSerie.Controls.Add(this.PanelFecha);
+            this.PanelSerie.Controls.Add(this.PanelUsuario);
+            this.PanelSerie.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelSerie.Location = new System.Drawing.Point(0, 0);
+            this.PanelSerie.Name = "PanelSerie";
+            this.PanelSerie.Size = new System.Drawing.Size(1280, 720);
+            this.PanelSerie.TabIndex = 3;
+            this.PanelSerie.Tag = "Default";
             // 
             // label12
             // 
@@ -483,24 +479,6 @@
             this.label5.TabIndex = 50;
             this.label5.Text = "URL del trailer";
             // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.panel4.Location = new System.Drawing.Point(101, 621);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1081, 2);
-            this.panel4.TabIndex = 46;
-            this.panel4.Tag = "";
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.panel3.Location = new System.Drawing.Point(101, 29);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1081, 2);
-            this.panel3.TabIndex = 49;
-            this.panel3.Tag = "";
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -589,7 +567,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.PanelMain);
+            this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.PanelSerie);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ControlGestionSeriesCargar";
             this.Size = new System.Drawing.Size(1280, 720);
@@ -609,8 +588,8 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.PanelMain.ResumeLayout(false);
-            this.PanelMain.PerformLayout();
+            this.PanelSerie.ResumeLayout(false);
+            this.PanelSerie.PerformLayout();
             this.panel10.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
@@ -640,7 +619,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button BtnPrevisualizar;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Panel PanelMain;
+        private System.Windows.Forms.Panel PanelSerie;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
@@ -648,8 +627,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.TextBox TxtURLTrailer;

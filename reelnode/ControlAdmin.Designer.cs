@@ -53,14 +53,16 @@
             this.ToolStpMenuSeries});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1280, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6);
+            this.menuStrip1.Size = new System.Drawing.Size(1280, 30);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // dashboardToolStripMenuItem
             // 
+            this.dashboardToolStripMenuItem.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
-            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
+            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(82, 18);
             this.dashboardToolStripMenuItem.Text = "Dashboard";
             this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
             // 
@@ -68,7 +70,7 @@
             // 
             this.ToolStpMenuUsuarios.Font = new System.Drawing.Font("Consolas", 9F);
             this.ToolStpMenuUsuarios.Name = "ToolStpMenuUsuarios";
-            this.ToolStpMenuUsuarios.Size = new System.Drawing.Size(145, 20);
+            this.ToolStpMenuUsuarios.Size = new System.Drawing.Size(145, 18);
             this.ToolStpMenuUsuarios.Text = "Gestionar Usuarios";
             this.ToolStpMenuUsuarios.Click += new System.EventHandler(this.ToolStpMenuUsuarios_Click);
             // 
@@ -80,7 +82,7 @@
             this.ToolStpMenuActualizarPelicula});
             this.ToolStpMenuPeliculas.Font = new System.Drawing.Font("Consolas", 9F);
             this.ToolStpMenuPeliculas.Name = "ToolStpMenuPeliculas";
-            this.ToolStpMenuPeliculas.Size = new System.Drawing.Size(152, 20);
+            this.ToolStpMenuPeliculas.Size = new System.Drawing.Size(152, 18);
             this.ToolStpMenuPeliculas.Text = "Gestionar Peliculas";
             // 
             // ToolStpSubMenuCargarPeliculas
@@ -112,7 +114,7 @@
             this.actualizarSerieToolStripMenuItem});
             this.ToolStpMenuSeries.Font = new System.Drawing.Font("Consolas", 9F);
             this.ToolStpMenuSeries.Name = "ToolStpMenuSeries";
-            this.ToolStpMenuSeries.Size = new System.Drawing.Size(131, 20);
+            this.ToolStpMenuSeries.Size = new System.Drawing.Size(131, 18);
             this.ToolStpMenuSeries.Text = "Gestionar Series";
             // 
             // cargarSerieToolStripMenuItem1
@@ -139,18 +141,18 @@
             // PanelAdmin
             // 
             this.PanelAdmin.AutoSize = true;
-            this.PanelAdmin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
+            this.PanelAdmin.BackColor = System.Drawing.Color.Transparent;
             this.PanelAdmin.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelAdmin.Location = new System.Drawing.Point(0, 24);
+            this.PanelAdmin.Location = new System.Drawing.Point(0, 30);
             this.PanelAdmin.Name = "PanelAdmin";
-            this.PanelAdmin.Size = new System.Drawing.Size(1280, 696);
+            this.PanelAdmin.Size = new System.Drawing.Size(1280, 690);
             this.PanelAdmin.TabIndex = 3;
-            this.PanelAdmin.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelAdmin_Paint);
             // 
             // ControlAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.PanelAdmin);
             this.Controls.Add(this.menuStrip1);
             this.Name = "ControlAdmin";

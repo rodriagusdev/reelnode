@@ -15,33 +15,17 @@ using System.Windows.Forms;
 
 namespace Reelnode
 {
-    public partial class ControlGestionUsuarios : UserControl, ITemaPersonalizable
+    public partial class ControlGestionUsuarios : UserControl
     {
-
-        private Color _c1 = Color.FromArgb(20, 30, 48);
-        private Color _c2 = Color.FromArgb(36, 59, 85);
-        private LinearGradientMode _modo = LinearGradientMode.Vertical;
+        private PanelGradiente PanelMain;
         public ControlGestionUsuarios()
         {
             InitializeComponent();
 
-            Utils.TemaControles(PanelGestionUsuarios, null);
-        }
-
-        private void PanelGestionUsuarios_Paint(object sender, PaintEventArgs e)
-        {
-            using (var brush = new LinearGradientBrush(PanelGestionUsuarios.ClientRectangle, _c1, _c2, _modo))
-            {
-                e.Graphics.FillRectangle(brush, PanelGestionUsuarios.ClientRectangle);
-            }
-        }
-
-        public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
-        {
-            _c1 = color1;
-            _c2 = color2;
-            _modo = modo;
-            PanelGestionUsuarios.Invalidate();
+            PanelMain = new PanelGradiente();
+            PanelMain.Dock = DockStyle.Fill;
+            PanelMain.Controls.Add(PanelGestionUsuarios);
+            this.Controls.Add(PanelMain);
         }
 
         private void BtnExportar_Click(object sender, EventArgs e)
@@ -140,10 +124,6 @@ namespace Reelnode
             DataGridUsuarios.DataSource = null;
             DataGridUsuarios.DataSource = UtilsBD.usuariosRegistrados;
             // DataGridUsuarios.Columns["Avatar"].Visible = false;
-        }
-
-        private void DataGridUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
         }
     }
 }

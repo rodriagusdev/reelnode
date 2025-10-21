@@ -14,41 +14,25 @@ using System.Windows.Forms;
 
 namespace Reelnode
 {
-    public partial class ControlGestionSeriesCargar : UserControl, ITemaPersonalizable
+    public partial class ControlGestionSeriesCargar : UserControl
     {
-        private Color _c1 = Color.FromArgb(20, 30, 48);
-        private Color _c2 = Color.FromArgb(36, 59, 85);
-        private LinearGradientMode _modo = LinearGradientMode.Vertical;
+        private PanelGradiente PanelMain;
         private string trailerFinalURL = null;
         public ControlGestionSeriesCargar()
         {
             InitializeComponent();
 
-            BtnCargar.FlatAppearance.BorderColor = Color.FromArgb(25, 47, 71);
-            BtnPrevisualizar.FlatAppearance.BorderColor = Color.FromArgb(25, 47, 71);
-
-            // Utils.TemaControles(PanelMain, PicSerie);
-        }
-
-        private void PanelMain_Paint(object sender, PaintEventArgs e)
-        {
-            using (var brush = new LinearGradientBrush(PanelMain.ClientRectangle, _c1, _c2, _modo))
-            {
-                e.Graphics.FillRectangle(brush, PanelMain.ClientRectangle);
-            }
-        }
-
-        public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
-        {
-            _c1 = color1;
-            _c2 = color2;
-            _modo = modo;
-            PanelMain.Invalidate();
+            PanelMain = new PanelGradiente();
+            PanelMain.Dock = DockStyle.Fill;
+            PanelMain.Controls.Add(PanelSerie);
+            this.Controls.Add(PanelMain);
         }
 
         private void BtnCargar_Click(object sender, EventArgs e)
         {
-            if(PicSerie.Image == null)
+            /* !--- INICIO VALIDACIONES --- ! */
+
+            if (PicSerie.Image == null)
             {
                 MessageBox.Show("Imagen invalida.", "Error al cargar serie", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -73,6 +57,8 @@ namespace Reelnode
                 return;
             }
 
+            /* !--- FIN VALIDACIONES --- ! */
+
             Serie nuevaSerie = new Serie
             {
                 Nombre = TxtNombre.Text,
@@ -90,19 +76,34 @@ namespace Reelnode
             UtilsBD.InsertarSerieBD(nuevaSerie);
         }
 
-        private void BtnPrevisualizar_Click(object sender, EventArgs e)
-        {
-            Utils.CargarImagenDesdeURL(PicSerie, TxtURLImagen.Text);
-        }
+        /* !--- PREVISUALIZACION DE POSTER Y TRAILER ---! */
 
-        // Uso una funcion asincrona (async) porque la URL del trailer necesita hacer una peticion a la internet que toma un tiempo
-        // y no quiero que la interfaz de usuario se congele mientras espera la respuesta. Ademas, no quiero que la funcion avance
-        // hasta que la peticion se complete, por eso uso 'await'.
+        /* 
+            SOBRE LA CARGA DE IMAGENES Y TRAILERS:
+            Mi eleccion es la carga a traves de URLs para no sobrecargar la base de datos.     
+        */
+
+        /* 
+         * Explicacion sobre funcion asincrona:
+         
+         * Uso una funcion asincrona (async) porque la URL del trailer necesita 
+         * hacer una peticion a la internet que toma un tiempo
+         * y no quiero que la interfaz de usuario se congele mientras espera la respuesta. 
+         * Ademas, no quiero que la funcion avance hasta que la peticion se complete,
+         * lo cual logro usando 'await'. Es esencial que sea una funcion asincrona.
+         
+        */
         private async void BtnPrevisualizarTrailer_Click(object sender, EventArgs e)
         {
             trailerFinalURL = null;
             trailerFinalURL = await Utils.VerificarTrailer(PanelTrailerSerie, TxtURLTrailer.Text);
         }
+        private void BtnPrevisualizar_Click(object sender, EventArgs e)
+        {
+            Utils.CargarImagenDesdeURL(PicSerie, TxtURLImagen.Text);
+        }
+
+        /* !--- FIN DE PREVISUALIZACION DE POSTER Y TRAILER --- ! */
 
         private void ControlGestionSeriesCargar_Load(object sender, EventArgs e)
         {

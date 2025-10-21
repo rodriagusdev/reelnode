@@ -84,7 +84,7 @@
             this.DataGridUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataGridUsuarios.Size = new System.Drawing.Size(742, 174);
             this.DataGridUsuarios.TabIndex = 2;
-            this.DataGridUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridUsuarios_CellContentClick);
+          
             this.DataGridUsuarios.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DataGridUsuarios_CellFormatting);
             // 
             // PanelCambiarRol
@@ -151,7 +151,7 @@
             // 
             // PanelGestionUsuarios
             // 
-            this.PanelGestionUsuarios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
+            this.PanelGestionUsuarios.BackColor = System.Drawing.Color.Transparent;
             this.PanelGestionUsuarios.Controls.Add(this.BtnExportar);
             this.PanelGestionUsuarios.Controls.Add(this.PanelCambiarRol);
             this.PanelGestionUsuarios.Controls.Add(this.PanelGrid);
@@ -160,12 +160,14 @@
             this.PanelGestionUsuarios.Name = "PanelGestionUsuarios";
             this.PanelGestionUsuarios.Size = new System.Drawing.Size(1280, 720);
             this.PanelGestionUsuarios.TabIndex = 0;
-            this.PanelGestionUsuarios.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelGestionUsuarios_Paint);
+            this.PanelGestionUsuarios.Tag = "Default";
+
             // 
             // ControlGestionUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.PanelGestionUsuarios);
             this.Name = "ControlGestionUsuarios";
             this.Size = new System.Drawing.Size(1280, 720);

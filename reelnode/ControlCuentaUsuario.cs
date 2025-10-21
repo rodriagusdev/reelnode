@@ -1,125 +1,59 @@
-﻿using iTextSharp.xmp.impl;
-using Reelnode;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Reelnode
 {
-    public partial class ControlCuentaUsuario : UserControl, ITemaPersonalizable
+    public partial class ControlCuentaUsuario : UserControl
     {
-        private PanelGradiente gradientPanelMain;
+        private PanelGradiente PanelMain;
+
         private List<Pelicula> peliculasCalificadas = new List<Pelicula>();
         private List<Serie> seriesCalificadas = new List<Serie>();
-        private FlowLayoutPanel flowPanelPeliculas;
-        private FlowLayoutPanel flowPanelSeries;
-        private Label lblSeries;
-        private Label lblPeliculas;
 
+        /* !--- Acciones para abrir pelicula o serie ---! */
+
+        // Al hacerlas publicas, puedo asignarlas desde el formulario principal
+        // que tambien comparte la misma logica de abrir una pantalla de pelicula o serie
         public Action<int> AbrirPelicula { get; set; }
         public Action<int> AbrirSerie { get; set; }
+
+        /* !--- Fin de Acciones ---! */
         public ControlCuentaUsuario()
         {
             InitializeComponent();
 
-            int margenIzquierdo = 250;
-            int margenSuperior = 15;
-            int espacioEntrePaneles = 10;
-            int altoPanel = 280;
+            PanelMain = new PanelGradiente();
+            PanelMain.Dock = DockStyle.Fill;
+            this.Controls.Add(PanelMain);
 
-            lblPeliculas = new Label
-            {
-                Text = "🎬 Películas que has calificado",
-                Font = new Font("Courier New", 14, FontStyle.Bold),
-                ForeColor = Color.White,
-                AutoSize = true,
-                Location = new Point(margenIzquierdo, margenSuperior),
-                BackColor = Color.Transparent,
-                Tag = "Titulo"
-            };
+            PanelMain.Controls.Add(FlowPanelPeliculas);
+            PanelMain.Controls.Add(FlowPanelSeries);
 
-            flowPanelPeliculas = new FlowLayoutPanel
-            {
-                FlowDirection = FlowDirection.LeftToRight,
-                WrapContents = false,
-                AutoScroll = true,
-                AutoSize = false,
-                BackColor = Color.Transparent,
-                Padding = new Padding(10),
-                Location = new Point(margenIzquierdo, lblPeliculas.Bottom + 10),
-                Size = new Size(this.ClientSize.Width - 2 * margenIzquierdo, altoPanel),
-                VerticalScroll = { Visible = false },
-                Tag = "Default"
-            };
-
-            lblSeries = new Label
-            {
-                Text = "📺 Series que has calificado",
-                Font = new Font("Courier New", 14, FontStyle.Bold),
-                ForeColor = Color.White,
-                AutoSize = true,
-                Location = new Point(margenIzquierdo, flowPanelPeliculas.Bottom + espacioEntrePaneles),
-                BackColor = Color.Transparent,
-                Tag = "Titulo"
-            };
-
-            flowPanelSeries = new FlowLayoutPanel
-            {
-                FlowDirection = FlowDirection.LeftToRight,
-                WrapContents = false,
-                AutoScroll = true,
-                AutoSize = false,
-                BackColor = Color.Transparent,
-                Padding = new Padding(10),
-                Location = new Point(margenIzquierdo, lblSeries.Bottom + 10),
-                Size = new Size(this.ClientSize.Width - 2 * margenIzquierdo, altoPanel),
-                VerticalScroll = { Visible = false },
-                Tag = "Default"
-            };
-
-
-            gradientPanelMain = new PanelGradiente();
-            gradientPanelMain.Dock = DockStyle.Fill;
-            this.Controls.Add(gradientPanelMain);
-            gradientPanelMain.Controls.Add(flowPanelPeliculas);
-            gradientPanelMain.Controls.Add(lblPeliculas);
-            gradientPanelMain.Controls.Add(flowPanelSeries);
-            gradientPanelMain.Controls.Add(lblSeries);
+            ConfiguracionCuentaUsuario();
         }
 
-        public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
+        private void ConfiguracionCuentaUsuario()
         {
-            gradientPanelMain.Color1 = color1;
-            gradientPanelMain.Color2 = color2;
-            gradientPanelMain.GradientMode = modo;
-            gradientPanelMain.Invalidate();
-        }
+            /* !--- CARGAR DATOS DE USUARIO ---! */
 
-        public PanelGradiente MainPanel
-        {
-            get { return gradientPanelMain; }
-        }
-
-        private void ControlCuentaUsuario_Load(object sender, EventArgs e)
-        {
             PicAvatar.Image = Utils.DescargarImagenDesdeURL(UtilsBD.usuarioActual.Avatar);
             LblEmail.Text = UtilsBD.usuarioActual.Email;
-            LblUsuario.Text = UtilsBD.usuarioActual.NombreUsuario;  
+            LblUsuario.Text = UtilsBD.usuarioActual.NombreUsuario;
             UtilsBD.CargarCalificacionesUsuario(UtilsBD.usuarioActual.Id, peliculasCalificadas);
             UtilsBD.CargarCalificacionesUsuarioSerie(UtilsBD.usuarioActual.Id, seriesCalificadas);
-            Utils.RellenarFlowPanel(flowPanelPeliculas, peliculasCalificadas, AbrirPelicula);
-            Utils.RellenarFlowPanel(flowPanelSeries, seriesCalificadas, AbrirSerie);
-        }
-      
 
+            /* !--- FIN DE CARGADO ---! */
+
+            /* !--- RELLENAR FLOW PANELS CON DATOS ---! */
+
+            Utils.RellenarFlowPanel(FlowPanelPeliculas, peliculasCalificadas, AbrirPelicula);
+            Utils.RellenarFlowPanel(FlowPanelSeries, seriesCalificadas, AbrirSerie);
+
+            /* !--- FIN DE RELLENO ---! */
+        }
+
+        /* !--- EVENTOS DE BOTONES ---! */
         private void BtnAvatar_Click(object sender, EventArgs e)
         {
             BtnConfirmarAvatar.Visible = true;
@@ -133,5 +67,7 @@ namespace Reelnode
 
             UtilsBD.CambiarAvatar(UtilsBD.usuarioActual.Id, TxtURLImagen.Text, PicAvatar);
         }
+
+        /* !--- FIN DE EVENTOS DE BOTONES ---! */
     }
 }

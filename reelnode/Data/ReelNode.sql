@@ -150,12 +150,15 @@ CREATE TABLE usuario (
     FOREIGN KEY (id_rol) REFERENCES rol(id_rol)
 );
 
-select* from peliculas;
+select* from usuario;
 
 insert into usuario (nombre_usuario, email_usuario, password_usuario, avatar, fecha_registro, id_rol)
-values("rodri", "rodri@gmail.com", "1", null, now(), 1),
-("san", "san@gmail.com", "2", null, now(), 1),
-("agus", "agus@gmail.com", "3", null, now(), 1);
+values("rodri", "rodri@gmail.com", "1", 'https://www.reddit.com/media?url=https%3A%2F%2Fi.redd.it%2Fs1m74zu5ny811.jpg', "2025-08-1", 1),
+("san", "san@gmail.com", "2", "https://i.pinimg.com/originals/ce/66/2b/ce662b67df27a2c003ba567ad01c5fb0.jpg", "2025-08-1", 1),
+("agus", "agus@gmail.com", "3", "https://i.ytimg.com/vi/aaHoHQXFSjk/maxresdefault.jpg", "2025-08-1", 1);
+
+update usuario
+set avatar = "https://i.ytimg.com/vi/aaHoHQXFSjk/maxresdefault.jpg" where id_usuario = 3;
 
 CREATE TABLE visualizaciones_serie (
     id_visualizacion INT PRIMARY KEY AUTO_INCREMENT,
@@ -1079,25 +1082,50 @@ END //
 
 DELIMITER ;
 
-insert into calificaciones_peliculas(calificacion, id_pelicula, id_usuario)
-values
-(5, 1, 1),(5, 1, 2),(2, 1, 3),
-(4, 2, 1),(5, 3, 1),(2, 2, 2);
+DELIMITER //
 
-insert into visualizaciones_pelicula(id_usuario, id_pelicula, fecha_visualizacion)
-values
-(1, 1, Now()),(1, 1, Now()),(1, 1, Now()),
-(2, 2, Now()),(1, 3, Now()),(2, 2, Now());
+CREATE PROCEDURE sp_obtener_visualizaciones_ultimo_mes()
+BEGIN
+	select
+		(
+		select count(vp.id_visualizacion) 
+        from visualizaciones_pelicula vp
+        where vp.fecha_visualizacion >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+              and vp.fecha_visualizacion < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+		)+
+		(
+		select count(vs.id_visualizacion) 
+        from visualizaciones_serie vs
+        where vs.fecha_visualizacion >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+              and vs.fecha_visualizacion < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+        ) as total_visualizaciones;
+END //
 
-DELIMITER // 
+DELIMITER ;
 
-create procedure sp_ver_ranking_usuarios(in p_limit int)
-begin
-	select * 
-    from vw_ranking_usuarios 
-    order by total_visualizaciones desc
-	limit p_limit;
-end //
+DELIMITER //
+
+CREATE PROCEDURE sp_obtener_cantidad_usuarios()
+BEGIN
+	select
+		count(id_usuario) AS usuarios_registrados
+    from 
+		usuario;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_obtener_usuarios_registrados_ultimo_mes()
+BEGIN
+	select
+		count(id_usuario) AS usuarios_registrados
+    from 
+		usuario
+	where fecha_registro >= date_sub(curdate(), interval 1 month)
+    and fecha_registro < date_add(curdate(), interval 1 day);
+END //
 
 DELIMITER ;
 

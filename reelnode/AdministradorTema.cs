@@ -7,6 +7,8 @@ namespace Reelnode
 {
     public static class AdministradorTema
     {
+        /* !--- DEFINICION DE COLORES DEL TEMA CYBERPUNK ---! */
+
         private static Color AzulOscuroNeon = Color.FromArgb(42, 47, 79);
         private static Color VerdeClaroNeon = Color.FromArgb(0, 230, 118);
         private static Color RosaNeon = Color.FromArgb(255, 0, 127);
@@ -15,6 +17,8 @@ namespace Reelnode
         private static Color GradienteAzulOscuroSegundo = Color.FromArgb(13, 17, 23);
         private static Color MoradoNeonBoton = Color.FromArgb(123, 44, 191);
         private static Color AzulNeonBorde = Color.FromArgb(0, 183, 235);
+
+        /* !--- FIN DE DEFINICION DE COLORES DEL TEMA CYBERPUNK ---! */
 
         // Esta funcion me permite recuperar todos los controles hijos de un control padre.
         public static IEnumerable<Control> GetAllControls(Control parent)
@@ -30,6 +34,9 @@ namespace Reelnode
         {
             foreach (Control ctrl in GetAllControls(parent))
             {
+                /* !--- TEMA GRADIENTE USANDO INTERFAZ ---! */
+
+                // Si el control implementa la interfaz ITemaPersonalizable, aplico el gradiente definido
                 if (ctrl is ITemaPersonalizable controlTematico)
                 {
                     controlTematico.EstablecerGradiente(
@@ -38,10 +45,12 @@ namespace Reelnode
                         LinearGradientMode.Vertical);
                 }
 
+                /* !--- TEMA GRADIENTE USANDO INTERFAA ---! */
+
                 else if (ctrl is System.Windows.Forms.Panel pnl)
                 {
                     if(pnl.Tag == "Default") pnl.BackColor = Color.Transparent;
-                    if (pnl.Tag == null || pnl.Tag.ToString() == "") pnl.BackColor = AzulOscuroNeon;
+                    if (pnl.Tag == null || pnl.Tag == "") pnl.BackColor = AzulOscuroNeon;
                     if (pnl.Tag == "Barra") pnl.BackColor = VerdeClaroNeon;
                 }
                 else if (ctrl is System.Windows.Forms.CheckedListBox chkList)
@@ -72,6 +81,7 @@ namespace Reelnode
                     btn.BackColor = MoradoNeonBoton;
                     btn.ForeColor = CyanNeon;
                     btn.FlatAppearance.BorderColor = AzulNeonBorde;
+                    btn.FlatAppearance.BorderSize = 1;
                     btn.Font = new Font("Consolas", btn.Font.Size, FontStyle.Bold);
                 }
                 else if (ctrl is PictureBox pic)

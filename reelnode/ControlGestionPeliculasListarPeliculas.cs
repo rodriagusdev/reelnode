@@ -12,35 +12,36 @@ using System.Windows.Forms;
 
 namespace Reelnode
 {
-    public partial class ControlGestionPeliculasListarPeliculas : UserControl, ITemaPersonalizable
+    public partial class ControlGestionPeliculasListarPeliculas : UserControl
     {
-        private Color _c1 = Color.FromArgb(20, 30, 48);
-        private Color _c2 = Color.FromArgb(36, 59, 85);
-        private LinearGradientMode _modo = LinearGradientMode.Vertical;
+        private PanelGradiente PanelMain;
         public ControlGestionPeliculasListarPeliculas()
         {
             InitializeComponent();
-        }
 
-        private void PanelListar_Paint(object sender, PaintEventArgs e)
-        {
-            using (var brush = new LinearGradientBrush(PanelListar.ClientRectangle, _c1, _c2, _modo))
-            {
-                e.Graphics.FillRectangle(brush, PanelListar.ClientRectangle);
-            }
-        }
-
-        public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
-        {
-            _c1 = color1;
-            _c2 = color2;
-            _modo = modo;
-            PanelListar.Invalidate();
+            PanelMain = new PanelGradiente();
+            PanelMain.Dock = DockStyle.Fill;
+            PanelMain.Controls.Add(PanelListar);
+            this.Controls.Add(PanelMain);
         }
 
         private void ControlGestionPeliculasListarPeliculas_Load(object sender, EventArgs e)
         {
             Utils.ActualizarListaGrid(DataGridPeliculas, UtilsBD.peliculasCargadas, "Id", "Tipo");
+        }
+
+        private void BtnExportarJSON_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+            saveFileDialog.Filter = "Archivos JSON (*.json)| *.json";
+            saveFileDialog.Title = "Exportar peliculas JSON";
+            saveFileDialog.FileName = "peliculas.json";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                AdministradorJSON.ExportarPeliculasJSON(UtilsBD.peliculasCargadas, saveFileDialog.FileName);
+            }
         }
     }
 }

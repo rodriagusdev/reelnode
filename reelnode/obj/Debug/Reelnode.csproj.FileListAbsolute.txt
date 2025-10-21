@@ -327,7 +327,6 @@ D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlCuentaUsuario
 D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlVisualizacionSerie.resources
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.csproj.AssemblyReference.cache
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.ControlCuentaUsuario.resources
-C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\ProjectoNuevo.ControlExpandirPelicula.resources
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.ControlGestionPeliculasActualizar.resources
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.ControlAdmin.resources
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.ControlGestionPeliculasCargar.resources

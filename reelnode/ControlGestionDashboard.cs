@@ -1,58 +1,69 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Drawing.Drawing2D;
 
 namespace Reelnode
 {
-    public partial class ControlGestionDashboard: UserControl, ITemaPersonalizable
+    public partial class ControlGestionDashboard: UserControl
     {
         private PanelGradiente PanelMain;
 
         public ControlGestionDashboard()
         {
-            InitializeComponent();            
-        }
+            InitializeComponent();
 
-        public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
-        {
-            PanelMain.Color1 = color1;
-            PanelMain.Color2 = color2;
-            PanelMain.GradientMode = modo;
-            PanelMain.Invalidate();
-        }
-
-        public PanelGradiente MainPanel
-        {
-            get { return PanelMain; }
+            PanelMain = new PanelGradiente();
+            PanelMain.Tag = "Default";
+            PanelMain.Dock = DockStyle.Fill; 
+            PanelMain.Controls.Add(PanelMenu);
+            PanelMain.Controls.Add(PanelDashboard);
+            this.Controls.Add(PanelMain);
         }
 
         private void ControlGestionDashboard_Load(object sender, EventArgs e)
         {
-            PanelMain = new PanelGradiente();
-            PanelMain.Tag = "Default";
-            PanelMain.Dock = DockStyle.Fill;
-            this.Controls.Add(PanelMain);
 
-            CargarDatos();
+            CargarDatosUsuario();
+            CargarDatosDashboard();
+
             AdministradorTema.AplicarTema(this);
         }
 
-        private void CargarDatos()
+        private void CargarDatosDashboard()
         {
-            // VISTAS
-            Utils.ReporteCrearPanelesBarra(flowPanelPelisMasVistas, UtilsBD.pelisMasVistas, "cantidad_vistas");
-            Utils.ReporteCrearPanelesBarra(flowPanelSeriesMasVistas, UtilsBD.seriesMasVistas, "cantidad_vistas");
+            /* !--- CARGA DE DATOS ---! */
 
-            // CALIFICACIONES
-            Utils.ReporteCrearPanelesBarra(flowPanelPeliculasMejorCalificadas, UtilsBD.peliculasCalificadas, "calificaciones");
-            Utils.ReporteCrearPanelesBarra(flowPanelSeriesMejorCalificadas, UtilsBD.seriesCalificadas, "calificaciones");
+            AdministradorDashboard.CargarTopVistas(5, "peliculas", UtilsBD.pelisMasVistas);
+            AdministradorDashboard.CargarTopVistas(5, "series", UtilsBD.seriesMasVistas);
+            AdministradorDashboard.CargarTopCalificaciones(5, "peliculas", UtilsBD.peliculasCalificadas);
+            AdministradorDashboard.CargarTopCalificaciones(5, "series", UtilsBD.seriesCalificadas);
+
+            /* !--- FIN CARGA DE DATOS ---! */
+
+
+            /* !--- MOSTRAR DATOS EN UI ---! */
+
+            // De los datos de visualizaciones y calificaciones creo los paneles de barra correspondientes
+            AdministradorDashboard.ReporteCrearPanelesBarra(flowPanelPelisMasVistas, UtilsBD.pelisMasVistas, "cantidad_vistas");
+            AdministradorDashboard.ReporteCrearPanelesBarra(flowPanelSeriesMasVistas, UtilsBD.seriesMasVistas, "cantidad_vistas");
+            AdministradorDashboard.ReporteCrearPanelesBarra(flowPanelPeliculasMejorCalificadas, UtilsBD.peliculasCalificadas, "calificaciones");
+            AdministradorDashboard.ReporteCrearPanelesBarra(flowPanelSeriesMejorCalificadas, UtilsBD.seriesCalificadas, "calificaciones");
+
+            // Estos datos se cargan y se muestran directamente
+            AdministradorDashboard.CargarVisualizacionesUltimoMes(LblVisualizacionesUltimoMes);
+            AdministradorDashboard.CargarUsuariosRegistrados(LblUsuariosRegistrados);
+            AdministradorDashboard.CargarUsuariosRegistradosUltimoMes(LblUsuariosRegistradosUltimoMes);
+
+            /* !--- FIN DE MUESTRA DE DATOS ---! */
+        }
+
+        private void CargarDatosUsuario()
+        {
+            if(UtilsBD.usuarioActual.Avatar != null) 
+            {
+                PicAvatar.Image = Utils.DescargarImagenDesdeURL(UtilsBD.usuarioActual.Avatar);
+            }
+
+            LblUsuario.Text = UtilsBD.usuarioActual.NombreUsuario;
         }
     }
 }

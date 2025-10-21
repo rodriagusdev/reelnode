@@ -13,13 +13,12 @@ using System.Windows.Forms;
 
 namespace Reelnode
 {
-    public partial class ControlAdmin : UserControl, ITemaPersonalizable
+    public partial class ControlAdmin : UserControl
     {
-        private Color _c1 = Color.FromArgb(20, 30, 48);
-        private Color _c2 = Color.FromArgb(36, 59, 85);
-        private LinearGradientMode _modo = LinearGradientMode.Vertical;
+        private PanelGradiente PanelMain;
 
-        // Creacion de controles
+        /* !--- CREACION DE USER CONTROLS ---! */
+
         private ControlGestionPeliculasCargar controlCargarPelicula;
         private ControlGestionPeliculasListarPeliculas controlListarPeliculas;
         private ControlGestionPeliculasActualizar controlActualizarPeliculas;
@@ -29,12 +28,23 @@ namespace Reelnode
         private ControlGestionSeriesListarSeries controlGestionSeriesListarSeries;
         private ControlGestionDashboard controlGestionDashboard;
 
+        /* !--- FIN DE CREACION DE USER CONTROLS ---! */
+
+        // Evento para volver al home
         public event EventHandler HomeClicked;
+
+        /* REVEER SU USO
         public Action<int> AbrirPelicula { get; set; }
         public Action<int> AbrirSerie { get; set; }
+        */
         public ControlAdmin()
         {
             InitializeComponent();
+
+            PanelMain = new PanelGradiente();
+            PanelMain.Dock = DockStyle.Fill;
+            PanelMain.Controls.Add(PanelAdmin);
+            this.Controls.Add(PanelMain);
 
             PanelAdmin.Controls.Add(controlCargarPelicula = new ControlGestionPeliculasCargar());
             PanelAdmin.Controls.Add(controlListarPeliculas = new ControlGestionPeliculasListarPeliculas());
@@ -53,26 +63,9 @@ namespace Reelnode
             controlSeriesActualizar.Visible = false;
             controlGestionSeriesListarSeries.Visible = false;
             controlGestionDashboard.Visible = true;
-
-            PanelAdmin.Paint += PanelAdmin_Paint;
         }
 
-        public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
-        {
-            _c1 = color1;
-            _c2 = color2;
-            _modo = modo;
-            PanelAdmin.Invalidate();
-        }
-
-        private void PanelAdmin_Paint(object sender, PaintEventArgs e)
-        {
-            using (var brush = new LinearGradientBrush(PanelAdmin.ClientRectangle, _c1, _c2, _modo))
-            {
-                e.Graphics.FillRectangle(brush, PanelAdmin.ClientRectangle);
-            }
-        }
-
+        /* !--- Eventos de los ToolStripMenuItems ---! */
         private void ToolStpSubMenuCargarPeliculas_Click(object sender, EventArgs e)
         {
             Utils.ShowControl(controlCargarPelicula, PanelAdmin);
@@ -112,5 +105,7 @@ namespace Reelnode
         {
             Utils.ShowControl(controlGestionDashboard, PanelAdmin);
         }
+
+        /* !--- Fin de eventos de los ToolStripMenuItems ---! */
     }
 }

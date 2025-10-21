@@ -2,37 +2,35 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-using Font = System.Drawing.Font;
-using Label = System.Windows.Forms.Label;
 
 namespace Reelnode
 {
-    public partial class FormMain : Form, ITemaPersonalizable
+    public partial class FormMain : Form
     {
-        // CREACION DE CONTROLES
+        private PanelGradiente PanelMain;
+
+        // !--- CREACION DE USER CONTROLS ---!
+
         private ControlAdmin controlAdmin;
         private ControlCuentaUsuario controlCuentaUsuario;
         private ControlVisualizacionSerie controlVisualizacionSerie;
         private ControlVisualizacionPeliculas controlVisualizacionPeliculas;
 
-        // CREACION DE UI
-        private FlowLayoutPanel flowPanelPeliculas;
-        private FlowLayoutPanel flowPanelSeries;
-        private Label lblPeliculas;
-        private Label lblSeries;
-        private PanelGradiente panelContenedor;
-
-        public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
-        {
-            panelContenedor.Color1 = color1;
-            panelContenedor.Color2 = color2;
-            panelContenedor.GradientMode = modo;
-            panelContenedor.Invalidate();
-        }
+        // !--- FIN CREACION DE USER CONTROLS ---!
 
         public FormMain()
         {
             InitializeComponent();
+
+            // CREACION DEL PANEL PRINCIPAL CON GRADIENTE
+            PanelMain = new PanelGradiente
+            {
+                Dock = DockStyle.Fill,
+            };
+
+            PanelMain.Controls.Add(FlowPanelPeliculas);
+            PanelMain.Controls.Add(FlowPanelSeries);
+            Panel.Controls.Add(PanelMain);
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -46,46 +44,59 @@ namespace Reelnode
 
             ToolStpMenuAdmin.Visible = UtilsBD.usuarioActual.RolUsuario == "Admin" ? true : false;
 
-            // CARGA DE DATOS
+            /* !--- CARGA DE DATOS ---! */
+
             UtilsBD.CargarSeries();
             UtilsBD.CargarPeliculas();
             UtilsBD.CargarSeries();
             UtilsBD.CargarNetwork();
             UtilsBD.CargarGeneros();
-            UtilsBD.ReporteCargarVistas(5, "peliculas");
-            UtilsBD.ReporteCargarVistas(5, "series"); 
-            UtilsBD.ReporteCargarCalificaciones(5, "peliculas");
-            UtilsBD.ReporteCargarCalificaciones(5, "series");
 
-            CrearUI();
+            /* !--- FIN CARGADO DE DATOS ---! */
 
-            // Esta funcion permite cambiar todo el tema del proyecto. Apretar F12 para ver la funcion.
+            ConfiguracionAPP();
+
+            // APLICACION DE TEMA -> F12 para abrir la configuracion de tema
             AdministradorTema.AplicarTema(this);
-
-            MostrarPeliculas();
-            MostrarSeries();
-
-
         }
 
-        private void ToolStpMenuAdmin_Click_1(object sender, EventArgs e)
+        public void ConfiguracionAPP()
         {
-            Utils.ShowControl(controlAdmin, PanelMain);
-        }
+            /* !--- ESTABLECIMIENTO Y CONFIGURACION DE USER CONTROLS ---! */
 
-        private void salirToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+            controlAdmin = new ControlAdmin();
+            controlAdmin.Visible = false;
 
-        private void MostrarPeliculas()
-        {
-            Utils.RellenarFlowPanel(flowPanelPeliculas, UtilsBD.peliculasCargadas, AbrirPestanaPelicula);
-        }
+            controlCuentaUsuario = new ControlCuentaUsuario();
+            controlCuentaUsuario.Visible = false;
+            // Asigno las mismas funciones del main para abrir peliculas y series a las acciones del control de cuenta de usuario
+            // Permite al usuario abrir una serie desde su cuenta y no solo desde el Home
+            controlCuentaUsuario.AbrirPelicula = AbrirPestanaPelicula;
+            controlCuentaUsuario.AbrirSerie = AbrirPestanaSerie;
 
-        private void MostrarSeries()
-        {
-            Utils.RellenarFlowPanel(flowPanelSeries, UtilsBD.seriesCargadas, AbrirPestanaSerie);
+            controlVisualizacionSerie = new ControlVisualizacionSerie();
+            controlVisualizacionSerie.Visible = false;
+
+            controlVisualizacionPeliculas = new ControlVisualizacionPeliculas();
+            controlVisualizacionPeliculas.Visible = false;
+
+            /* !--- CONFIGURACION DE USER CONTROLS FINALIZADA ---! */
+
+
+            /* !--- CONFIGURACION DE UI PRINCIPAL ---! */
+
+            // Agrego los controles creados al panel principal
+            Panel.Controls.Add(controlAdmin);
+            Panel.Controls.Add(controlCuentaUsuario);
+            Panel.Controls.Add(controlVisualizacionSerie);
+            Panel.Controls.Add(controlVisualizacionPeliculas);
+            Panel.BackColor = Color.Transparent;
+
+            // Relleno los flow panels de la UI principal con las peliculas y series cargadas en la base de datos
+            Utils.RellenarFlowPanel(FlowPanelPeliculas, UtilsBD.peliculasCargadas, AbrirPestanaPelicula);
+            Utils.RellenarFlowPanel(FlowPanelSeries, UtilsBD.seriesCargadas, AbrirPestanaSerie);
+
+            /* !--- FIN CONFIGURACION DE UI PRINCIPAL ---! */
         }
 
         public void AbrirPestanaSerie(int id)
@@ -96,7 +107,7 @@ namespace Reelnode
             controlVisualizacionSerie.CargarSerie(Utils.serieSeleccionada);
             UtilsBD.RegistrarVisualizacion(Utils.serieSeleccionada.Id, "Serie");
 
-            Utils.ShowControl(controlVisualizacionSerie, PanelMain);
+            Utils.ShowControl(controlVisualizacionSerie, Panel);
         }
 
         public void AbrirPestanaPelicula(int id)
@@ -107,120 +118,30 @@ namespace Reelnode
             controlVisualizacionPeliculas.CargarPelicula(Utils.peliculaSeleccionada);
             UtilsBD.RegistrarVisualizacion(Utils.peliculaSeleccionada.Id, "Pelicula");
 
-            Utils.ShowControl(controlVisualizacionPeliculas, PanelMain);
+            Utils.ShowControl(controlVisualizacionPeliculas, Panel);
         }
 
-        public Panel MainPanel
+
+        /* !--- EVENTOS DE BOTONES DEL MENU ---! */
+        private void ToolStpMenuAdmin_Click_1(object sender, EventArgs e)
         {
-            get { return PanelMain; }
+            Utils.ShowControl(controlAdmin, Panel);
         }
-
         private void ToolStpMenuCuenta_Click(object sender, EventArgs e)
         {
-            Utils.ShowControl(controlCuentaUsuario, PanelMain);
+            Utils.ShowControl(controlCuentaUsuario, Panel);
         }
 
         private void ToolStpMenuHome_Click(object sender, EventArgs e)
         {
-            Utils.ShowControl(panelContenedor, PanelMain);
+            Utils.ShowControl(PanelMain, Panel);
         }
 
-        public void CrearUI()
+        private void ToolStpMenuSalir_Click(object sender, EventArgs e)
         {
-            panelContenedor = new PanelGradiente
-            {
-                Dock = DockStyle.Fill,
-            };
-
-            PanelMain.BackColor = Color.Transparent;
-            PanelBack.BackColor = Color.Transparent;
-            PanelMain.Controls.Add(panelContenedor);
-
-            controlAdmin = new ControlAdmin();
-
-            controlCuentaUsuario = new ControlCuentaUsuario();
-            controlCuentaUsuario.AbrirPelicula = AbrirPestanaPelicula;
-            controlCuentaUsuario.AbrirSerie = AbrirPestanaSerie;
-
-            controlVisualizacionSerie = new ControlVisualizacionSerie();
-            controlVisualizacionPeliculas = new ControlVisualizacionPeliculas();
-
-            PanelMain.Controls.Add(controlAdmin);
-            PanelMain.Controls.Add(controlCuentaUsuario);
-            PanelMain.Controls.Add(controlVisualizacionSerie);
-            PanelMain.Controls.Add(controlVisualizacionPeliculas);
-
-            controlAdmin.Visible = false;
-            controlCuentaUsuario.Visible = false;
-            controlVisualizacionSerie.Visible = false;
-            controlVisualizacionPeliculas.Visible = false;
-
-            int margenIzquierdo = 10;
-            int margenSuperior = 15;
-            int espacioEntrePaneles = 10;
-            int altoPanel = 280;
-
-            lblPeliculas = new Label
-            {
-                Text = "🎬 Películas",
-                Font = new Font("Courier New", 14, FontStyle.Bold),
-                ForeColor = Color.White,
-                AutoSize = true,
-                Location = new Point(margenIzquierdo, margenSuperior),
-                BackColor = Color.Transparent,
-                Tag = "Titulo"
-            };
-
-            flowPanelPeliculas = new FlowLayoutPanel
-            {
-                FlowDirection = FlowDirection.LeftToRight,
-                WrapContents = false,
-                AutoScroll = true,
-                AutoSize = false,
-                BackColor = Color.Transparent,
-                Padding = new Padding(10),
-                Location = new Point(margenIzquierdo, lblPeliculas.Bottom + 10),
-                Size = new Size(this.ClientSize.Width - 2 * margenIzquierdo, altoPanel),
-                VerticalScroll = { Visible = false },
-                Tag = "Default"
-            };
-
-            lblSeries = new Label
-            {
-                Text = "📺 Series",
-                Font = new Font("Courier New", 14, FontStyle.Bold),
-                ForeColor = Color.White,
-                AutoSize = true,
-                Location = new Point(margenIzquierdo, flowPanelPeliculas.Bottom + espacioEntrePaneles),
-                BackColor = Color.Transparent,
-                Tag = "Titulo"
-            };
-
-            flowPanelSeries = new FlowLayoutPanel
-            {
-                FlowDirection = FlowDirection.LeftToRight,
-                WrapContents = false,
-                AutoScroll = true,
-                AutoSize = false,
-                BackColor = Color.Transparent,
-                Padding = new Padding(10),
-                Location = new Point(margenIzquierdo, lblSeries.Bottom + 10),
-                Size = new Size(this.ClientSize.Width - 2 * margenIzquierdo, altoPanel),
-                VerticalScroll = { Visible = false },
-                Tag = "Default"
-            };
-
-            panelContenedor.Controls.Add(flowPanelPeliculas);
-            panelContenedor.Controls.Add(flowPanelSeries);
-            panelContenedor.Controls.Add(lblPeliculas);
-            panelContenedor.Controls.Add(lblSeries);
+            Application.Exit();
         }
+
+        /* !--- FIN EVENTOS DE BOTONES DEL MENU ---! */
     }
 }
-/*private void CargarUsuariosJSON()
-{
-    string ruta = Path.Combine(Application.StartupPath, "personas.json");
-    string json = File.ReadAllText(ruta);
-    UtilsBD.usuariosRegistrados = JsonSerializer.Deserialize<List<Usuario>>(json);
-}
-*/

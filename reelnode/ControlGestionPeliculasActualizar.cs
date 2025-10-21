@@ -14,11 +14,10 @@ using System.Windows.Forms;
 
 namespace Reelnode
 {
-    public partial class ControlGestionPeliculasActualizar: UserControl, ITemaPersonalizable
+    public partial class ControlGestionPeliculasActualizar: UserControl
     {
-        private Color _c1 = Color.FromArgb(20, 30, 48);
-        private Color _c2 = Color.FromArgb(36, 59, 85);
-        private LinearGradientMode _modo = LinearGradientMode.Vertical;
+        private PanelGradiente PanelMain;
+
         private string trailerFinalURL = null;
 
         private DataGridViewRow filaSeleccionada;
@@ -26,24 +25,10 @@ namespace Reelnode
         {
             InitializeComponent();
 
-            BtnPrevisualizar.FlatAppearance.BorderColor = Color.FromArgb(74, 184, 192);
-            BtnActualizar.FlatAppearance.BorderColor = Color.FromArgb(74, 184, 192);
-            BtnBuscarPelicula.FlatAppearance.BorderColor = Color.FromArgb(74, 184, 192);
-        }
-        private void PanelMain_Paint(object sender, PaintEventArgs e)
-        {
-            using (var brush = new LinearGradientBrush(PanelMain.ClientRectangle, _c1, _c2, _modo))
-            {
-                e.Graphics.FillRectangle(brush, PanelMain.ClientRectangle);
-            }
-        }
-
-        public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
-        {
-            _c1 = color1;
-            _c2 = color2;
-            _modo = modo;
-            PanelMain.Invalidate();
+            PanelMain = new PanelGradiente();
+            PanelMain.Dock = DockStyle.Fill;
+            PanelMain.Controls.Add(PanelActualizar);
+            this.Controls.Add(PanelMain);
         }
 
         private void BtnBuscarPelicula_Click(object sender, EventArgs e)

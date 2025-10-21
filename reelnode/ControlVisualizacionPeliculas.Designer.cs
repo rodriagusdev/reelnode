@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.PanelVisualizarPeli = new System.Windows.Forms.Panel();
+            this.PanelVisualizar = new System.Windows.Forms.Panel();
             this.LblGeneros = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.LblTitulo = new System.Windows.Forms.Label();
@@ -44,35 +44,35 @@
             this.BtnCalificar = new System.Windows.Forms.Button();
             this.PanelImagenPeli = new System.Windows.Forms.Panel();
             this.PicPeli = new System.Windows.Forms.PictureBox();
-            this.PanelVisualizarPeli.SuspendLayout();
+            this.PanelVisualizar.SuspendLayout();
             this.PanelDescripcion.SuspendLayout();
             this.PanelImagenPeli.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicPeli)).BeginInit();
             this.SuspendLayout();
             // 
-            // PanelVisualizarPeli
+            // PanelVisualizar
             // 
-            this.PanelVisualizarPeli.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
-            this.PanelVisualizarPeli.Controls.Add(this.LblGeneros);
-            this.PanelVisualizarPeli.Controls.Add(this.panel2);
-            this.PanelVisualizarPeli.Controls.Add(this.LblTitulo);
-            this.PanelVisualizarPeli.Controls.Add(this.panel1);
-            this.PanelVisualizarPeli.Controls.Add(this.label2);
-            this.PanelVisualizarPeli.Controls.Add(this.label1);
-            this.PanelVisualizarPeli.Controls.Add(this.BtnComentar);
-            this.PanelVisualizarPeli.Controls.Add(this.LblDuracion);
-            this.PanelVisualizarPeli.Controls.Add(this.LblDirector);
-            this.PanelVisualizarPeli.Controls.Add(this.PanelDescripcion);
-            this.PanelVisualizarPeli.Controls.Add(this.PanelTrailerPeli);
-            this.PanelVisualizarPeli.Controls.Add(this.BtnCalificar);
-            this.PanelVisualizarPeli.Controls.Add(this.PanelImagenPeli);
-            this.PanelVisualizarPeli.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelVisualizarPeli.Location = new System.Drawing.Point(0, 0);
-            this.PanelVisualizarPeli.Margin = new System.Windows.Forms.Padding(2);
-            this.PanelVisualizarPeli.Name = "PanelVisualizarPeli";
-            this.PanelVisualizarPeli.Size = new System.Drawing.Size(1280, 720);
-            this.PanelVisualizarPeli.TabIndex = 0;
-            this.PanelVisualizarPeli.Tag = "Default";
+            this.PanelVisualizar.BackColor = System.Drawing.Color.Transparent;
+            this.PanelVisualizar.Controls.Add(this.LblGeneros);
+            this.PanelVisualizar.Controls.Add(this.panel2);
+            this.PanelVisualizar.Controls.Add(this.LblTitulo);
+            this.PanelVisualizar.Controls.Add(this.panel1);
+            this.PanelVisualizar.Controls.Add(this.label2);
+            this.PanelVisualizar.Controls.Add(this.label1);
+            this.PanelVisualizar.Controls.Add(this.BtnComentar);
+            this.PanelVisualizar.Controls.Add(this.LblDuracion);
+            this.PanelVisualizar.Controls.Add(this.LblDirector);
+            this.PanelVisualizar.Controls.Add(this.PanelDescripcion);
+            this.PanelVisualizar.Controls.Add(this.PanelTrailerPeli);
+            this.PanelVisualizar.Controls.Add(this.BtnCalificar);
+            this.PanelVisualizar.Controls.Add(this.PanelImagenPeli);
+            this.PanelVisualizar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelVisualizar.Location = new System.Drawing.Point(0, 0);
+            this.PanelVisualizar.Margin = new System.Windows.Forms.Padding(2);
+            this.PanelVisualizar.Name = "PanelVisualizar";
+            this.PanelVisualizar.Size = new System.Drawing.Size(1280, 720);
+            this.PanelVisualizar.TabIndex = 0;
+            this.PanelVisualizar.Tag = "Default";
             // 
             // LblGeneros
             // 
@@ -266,13 +266,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.Controls.Add(this.PanelVisualizarPeli);
+            this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.PanelVisualizar);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ControlVisualizacionPeliculas";
             this.Size = new System.Drawing.Size(1280, 720);
-            this.Enter += new System.EventHandler(this.ControlVisualizacionPeliculas_Enter);
-            this.PanelVisualizarPeli.ResumeLayout(false);
-            this.PanelVisualizarPeli.PerformLayout();
+            this.PanelVisualizar.ResumeLayout(false);
+            this.PanelVisualizar.PerformLayout();
             this.PanelDescripcion.ResumeLayout(false);
             this.PanelImagenPeli.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PicPeli)).EndInit();
@@ -282,7 +282,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel PanelVisualizarPeli;
+        private System.Windows.Forms.Panel PanelVisualizar;
         private System.Windows.Forms.Panel PanelImagenPeli;
         private System.Windows.Forms.PictureBox PicPeli;
         private System.Windows.Forms.Button BtnCalificar;
