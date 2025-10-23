@@ -100,6 +100,10 @@
             this.DtpDesde = new System.Windows.Forms.DateTimePicker();
             this.DataGridReportes = new System.Windows.Forms.DataGridView();
             this.PanelReportesAvanzados = new System.Windows.Forms.Panel();
+            this.ChkDuracion = new System.Windows.Forms.CheckBox();
+            this.NumUpDuracion = new System.Windows.Forms.NumericUpDown();
+            this.label31 = new System.Windows.Forms.Label();
+            this.CboNetwork = new System.Windows.Forms.ComboBox();
             this.label30 = new System.Windows.Forms.Label();
             this.TxtDirector = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
@@ -110,10 +114,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label28 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.CboNetwork = new System.Windows.Forms.ComboBox();
-            this.NumUpDuracion = new System.Windows.Forms.NumericUpDown();
-            this.ChkDuracion = new System.Windows.Forms.CheckBox();
             this.PanelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicAvatar)).BeginInit();
             this.PanelDashboardMain.SuspendLayout();
@@ -926,6 +926,7 @@
             // 
             // DataGridReportes
             // 
+            this.DataGridReportes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DataGridReportes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridReportes.Location = new System.Drawing.Point(44, 333);
             this.DataGridReportes.Name = "DataGridReportes";
@@ -966,6 +967,63 @@
             this.PanelReportesAvanzados.TabIndex = 22;
             this.PanelReportesAvanzados.Tag = "Default";
             this.PanelReportesAvanzados.Visible = false;
+            // 
+            // ChkDuracion
+            // 
+            this.ChkDuracion.AutoSize = true;
+            this.ChkDuracion.Location = new System.Drawing.Point(746, 246);
+            this.ChkDuracion.Name = "ChkDuracion";
+            this.ChkDuracion.Size = new System.Drawing.Size(101, 17);
+            this.ChkDuracion.TabIndex = 64;
+            this.ChkDuracion.Text = "Utilizar duracion";
+            this.ChkDuracion.UseVisualStyleBackColor = true;
+            this.ChkDuracion.CheckedChanged += new System.EventHandler(this.ChkDuracion_CheckedChanged);
+            // 
+            // NumUpDuracion
+            // 
+            this.NumUpDuracion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.NumUpDuracion.Enabled = false;
+            this.NumUpDuracion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NumUpDuracion.Location = new System.Drawing.Point(746, 277);
+            this.NumUpDuracion.Maximum = new decimal(new int[] {
+            700,
+            0,
+            0,
+            0});
+            this.NumUpDuracion.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NumUpDuracion.Name = "NumUpDuracion";
+            this.NumUpDuracion.Size = new System.Drawing.Size(48, 24);
+            this.NumUpDuracion.TabIndex = 63;
+            this.NumUpDuracion.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label31
+            // 
+            this.label31.BackColor = System.Drawing.Color.Transparent;
+            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.Location = new System.Drawing.Point(546, 118);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(104, 21);
+            this.label31.TabIndex = 60;
+            this.label31.Tag = "Titulo";
+            this.label31.Text = "Network";
+            this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // CboNetwork
+            // 
+            this.CboNetwork.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CboNetwork.FormattingEnabled = true;
+            this.CboNetwork.Location = new System.Drawing.Point(549, 148);
+            this.CboNetwork.Name = "CboNetwork";
+            this.CboNetwork.Size = new System.Drawing.Size(165, 21);
+            this.CboNetwork.TabIndex = 59;
             // 
             // label30
             // 
@@ -1075,63 +1133,6 @@
             this.label28.Text = "Desde";
             this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label31
-            // 
-            this.label31.BackColor = System.Drawing.Color.Transparent;
-            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(546, 118);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(104, 21);
-            this.label31.TabIndex = 60;
-            this.label31.Tag = "Titulo";
-            this.label31.Text = "Network";
-            this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // CboNetwork
-            // 
-            this.CboNetwork.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CboNetwork.FormattingEnabled = true;
-            this.CboNetwork.Location = new System.Drawing.Point(549, 148);
-            this.CboNetwork.Name = "CboNetwork";
-            this.CboNetwork.Size = new System.Drawing.Size(165, 21);
-            this.CboNetwork.TabIndex = 59;
-            // 
-            // NumUpDuracion
-            // 
-            this.NumUpDuracion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.NumUpDuracion.Enabled = false;
-            this.NumUpDuracion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NumUpDuracion.Location = new System.Drawing.Point(746, 277);
-            this.NumUpDuracion.Maximum = new decimal(new int[] {
-            700,
-            0,
-            0,
-            0});
-            this.NumUpDuracion.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.NumUpDuracion.Name = "NumUpDuracion";
-            this.NumUpDuracion.Size = new System.Drawing.Size(48, 24);
-            this.NumUpDuracion.TabIndex = 63;
-            this.NumUpDuracion.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // ChkDuracion
-            // 
-            this.ChkDuracion.AutoSize = true;
-            this.ChkDuracion.Location = new System.Drawing.Point(746, 246);
-            this.ChkDuracion.Name = "ChkDuracion";
-            this.ChkDuracion.Size = new System.Drawing.Size(101, 17);
-            this.ChkDuracion.TabIndex = 64;
-            this.ChkDuracion.Text = "Utilizar duracion";
-            this.ChkDuracion.UseVisualStyleBackColor = true;
-            this.ChkDuracion.CheckedChanged += new System.EventHandler(this.ChkDuracion_CheckedChanged);
-            // 
             // ControlGestionDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1145,6 +1146,7 @@
             this.Name = "ControlGestionDashboard";
             this.Size = new System.Drawing.Size(1280, 720);
             this.Load += new System.EventHandler(this.ControlGestionDashboard_Load);
+            this.VisibleChanged += new System.EventHandler(this.ControlGestionDashboard_VisibleChanged);
             this.PanelMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PicAvatar)).EndInit();
             this.PanelDashboardMain.ResumeLayout(false);

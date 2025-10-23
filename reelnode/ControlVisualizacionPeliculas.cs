@@ -1,19 +1,6 @@
-﻿using iTextSharp.xmp.impl;
-using Microsoft.Web.WebView2.WinForms;
-using Org.BouncyCastle.Utilities.Encoders;
-using ProjectoNuevo;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
+using WebView2 = Microsoft.Web.WebView2.WinForms.WebView2;
 
 namespace Reelnode
 {
@@ -21,6 +8,7 @@ namespace Reelnode
     {
         private ControlComentarios controlComentarios;
         private PanelGradiente PanelMain;
+        public WebView2 trailer = new WebView2 { Dock = DockStyle.Fill };
         public ControlVisualizacionPeliculas()
         {
             InitializeComponent();
@@ -47,6 +35,16 @@ namespace Reelnode
             Utils.ShowControl(controlComentarios, PanelVisualizar);
         }
 
+        public void DetenerTrailer()
+        {
+            try
+            {
+                if (trailer.CoreWebView2 != null)
+                    trailer.CoreWebView2.Navigate("about:blank");
+            }
+            catch { }
+        }
+
         public void CargarPelicula(Pelicula pelicula)
         {
             if (pelicula == null)
@@ -69,7 +67,6 @@ namespace Reelnode
 
                 string URLDefault = $"{trailerURL}?rel=0&controls=1&autoplay=1";
 
-                WebView2 trailer = new WebView2 { Dock = DockStyle.Fill };
                 PanelTrailerPeli.Controls.Add(trailer);
                 trailer.Source = new Uri(URLDefault);
             }

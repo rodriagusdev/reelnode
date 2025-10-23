@@ -35,7 +35,7 @@ namespace Reelnode
 
         public void CargarComentarios()
         {
-            listaComentarios = UtilsBD.CargarComentariosPelicula(Utils.peliculaSeleccionada.Id);
+            // listaComentarios = UtilsBD.CargarComentariosPelicula(Utils.peliculaSeleccionada.Id);
 
 
             var paneles = CreadorPanel.CrearPanelesComentarios(listaComentarios);

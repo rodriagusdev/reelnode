@@ -87,7 +87,7 @@ CREATE TABLE genero (
     id_genero INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(255) NOT NULL
 );
-select * from genero;
+
 INSERT INTO genero (nombre) VALUES
 ('Action'),
 ('Adventure'),
@@ -123,6 +123,36 @@ CREATE TABLE genero_x_serie (
     FOREIGN KEY (id_serie) REFERENCES serie(id_serie)
 );
 
+-- Breaking Bad
+INSERT INTO genero_x_serie (id_genero, id_serie) VALUES (11,1), (4,1), (8,1);
+
+-- Stranger Things
+INSERT INTO genero_x_serie (id_genero, id_serie) VALUES (6,2), (7,2), (10,2), (8,2);
+
+-- Game of Thrones
+INSERT INTO genero_x_serie (id_genero, id_serie) VALUES (1,3), (7,3), (4,3);
+
+-- The Office
+INSERT INTO genero_x_serie (id_genero, id_serie) VALUES (3,4);
+
+-- The Mandalorian
+INSERT INTO genero_x_serie (id_genero, id_serie) VALUES (1,5), (2,5), (6,5);
+
+-- Dark
+INSERT INTO genero_x_serie (id_genero, id_serie) VALUES (10,6), (6,6), (25,6);
+
+-- Sherlock
+INSERT INTO genero_x_serie (id_genero, id_serie) VALUES (11,7), (10,7), (4,7);
+
+-- The Crown
+INSERT INTO genero_x_serie (id_genero, id_serie) VALUES (18,8), (4,8), (19,8);
+
+-- Peaky Blinders
+INSERT INTO genero_x_serie (id_genero, id_serie) VALUES (11,9), (4,9), (19,9);
+
+-- Loki
+INSERT INTO genero_x_serie (id_genero, id_serie) VALUES (1,10), (7,10), (21,10);
+
 CREATE TABLE genero_x_pelicula (
     id_gxp INT PRIMARY KEY AUTO_INCREMENT,
     id_genero INT,
@@ -130,6 +160,36 @@ CREATE TABLE genero_x_pelicula (
     FOREIGN KEY (id_genero) REFERENCES genero(id_genero),
     FOREIGN KEY (id_pelicula) REFERENCES peliculas(id_pelicula)
 );
+
+-- Robot Salvaje
+INSERT INTO genero_x_pelicula (id_genero, id_pelicula) VALUES (12,1), (2,1), (14,1);
+
+-- Duna: Parte Dos
+INSERT INTO genero_x_pelicula (id_genero, id_pelicula) VALUES (1,2), (2,2), (6,2);
+
+-- Oppenheimer
+INSERT INTO genero_x_pelicula (id_genero, id_pelicula) VALUES (18,3), (4,3), (19,3), (17,3);
+
+-- Barbie
+INSERT INTO genero_x_pelicula (id_genero, id_pelicula) VALUES (3,4), (7,4), (2,4);
+
+-- Spider-Man: Across the Spider-Verse
+INSERT INTO genero_x_pelicula (id_genero, id_pelicula) VALUES (1,5), (2,5), (12,5), (21,5);
+
+-- Napoleón
+INSERT INTO genero_x_pelicula (id_genero, id_pelicula) VALUES (18,6), (4,6), (19,6), (17,6);
+
+-- Misión Imposible: Sentencia Mortal - Parte Uno
+INSERT INTO genero_x_pelicula (id_genero, id_pelicula) VALUES (1,7), (8,7), (2,7);
+
+-- Wonka
+INSERT INTO genero_x_pelicula (id_genero, id_pelicula) VALUES (7,8), (15,8), (14,8), (3,8);
+
+-- Los Asesinos de la Luna
+INSERT INTO genero_x_pelicula (id_genero, id_pelicula) VALUES (11,9), (4,9), (19,9), (8,9);
+
+-- Elemental
+INSERT INTO genero_x_pelicula (id_genero, id_pelicula) VALUES (12,10), (9,10), (14,10), (7,10);
 
 CREATE TABLE rol (
     id_rol INT PRIMARY KEY AUTO_INCREMENT,
@@ -943,7 +1003,8 @@ begin
 	inner join
 		serie s on s.id_serie = c.id_serie
 	inner join
-		usuario u on u.id_usuario = c.id_usuario;
+		usuario u on u.id_usuario = c.id_usuario
+	where u.id_usuario = p_id_usuario;
 end //
 DELIMITER ;
 
@@ -961,7 +1022,8 @@ begin
 	inner join
 		peliculas p on p.id_pelicula = c.id_pelicula
 	inner join
-		usuario u on u.id_usuario = c.id_usuario;
+		usuario u on u.id_usuario = c.id_usuario
+	where u.id_usuario = p_id_usuario;
 end //
 DELIMITER ;
 
@@ -1216,9 +1278,11 @@ end //
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE sp_reporte_avanzado(
-    IN p_titulo VARCHAR(255),
-    IN p_genero VARCHAR(50),
+CREATE PROCEDURE sp_reporte_avanzado_series(
+	IN p_nombre VARCHAR(255),
+    IN p_genero_nombre VARCHAR(50),
+    IN p_director VARCHAR(255),
+    IN p_network_nombre VARCHAR(255),
     IN p_fecha_desde DATE,
     IN p_fecha_hasta DATE
 )
@@ -1229,33 +1293,51 @@ BEGIN
      */
      
     SET @sql = '
-        SELECT
-            p.titulo,
-            p.fecha_estreno,
-            p.descripcion,
-            p.director,
-            p.duracion
-        FROM peliculas p
+        SELECT DISTINCT
+            s.nombre as Titulo,
+            s.fecha_estreno as Fecha_Estreno,
+            s.fecha_fin as Fecha_Fin,
+            s.descripcion as Descripcion,
+            s.director as Director,
+            s.cant_temporadas as Temporadas,
+            n.nombre as Network,
+            g.nombre as Genero
+        FROM serie s
+        LEFT JOIN network n ON p.id_network = n.id_network
+        LEFT JOIN genero_x_serie gxs ON s.id_serie = gxs.id_serie
+        LEFT JOIN genero g ON gxs.id_genero = g.id_genero
         WHERE 1=1';
 
-    -- Filtro de Título (si p_titulo no es NULL o cadena vacía)
-    IF p_titulo IS NOT NULL AND p_titulo != '' THEN
-        SET @sql = CONCAT(@sql, ' AND p.titulo LIKE CONCAT(''%'', p_titulo, ''%'')');
+	-- WHERE 1=1 es necesario para poder concatenar la logica. De lo contrario, habra error.
+
+   IF p_network_nombre IS NOT NULL AND p_network_nombre != '' THEN
+        -- Como usamos LEFT JOIN, el filtro se agrega con AND
+        SET @sql = CONCAT(@sql, ' AND n.nombre = ''', p_network_nombre, '''');
     END IF;
 
-    -- Filtro de Género (si p_genero no es NULL o cadena vacía)
-    IF p_genero IS NOT NULL AND p_genero != '' THEN
-        SET @sql = CONCAT(@sql, ' AND p.genero = p_genero');
+    -- Filtro de Título
+    IF p_nombre IS NOT NULL AND p_nombre != '' THEN
+        SET @sql = CONCAT(@sql, ' AND s.nombre LIKE CONCAT(''%'', s_nombre, ''%'')');
+	-- Si el nombre de la peli es Avatar el CONCAT leera esto como '%Avatar%'
+    END IF;
+    
+    -- Filtro de Director
+    IF p_director IS NOT NULL AND p_director != '' THEN
+        SET @sql = CONCAT(@sql, ' AND s.director LIKE CONCAT(''%'', s_director, ''%'')');
     END IF;
 
-    -- Filtro de Fechas (si ambas fechas no son NULL, son validas, y fecha_desde es menor que fecha_hasta)
+    -- Filtro de Género
+    IF p_genero_nombre IS NOT NULL AND p_genero_nombre != '' THEN
+        SET @sql = CONCAT(@sql, ' AND g.nombre = ''', p_genero_nombre, '''');
+    END IF;
+
+    -- Filtro de Fechas
     IF p_fecha_desde IS NOT NULL AND p_fecha_hasta IS NOT NULL AND p_fecha_desde <= p_fecha_hasta THEN
-        SET @sql = CONCAT(@sql, ' AND p.fecha_estreno BETWEEN p_fecha_desde AND p_fecha_hasta');
+        SET @sql = CONCAT(@sql, ' AND s.fecha_estreno BETWEEN ''', p_fecha_desde, ''' AND ''', p_fecha_hasta, '''');
     END IF;
 
-    SET @sql = CONCAT(@sql, ' ORDER BY p.fecha_estreno DESC');
+    SET @sql = CONCAT(@sql, ' ORDER BY s.fecha_estreno DESC');
 
-    -- Preparar y Ejecutar la consulta dinámica. Le asigno el nobmre query_con_filtros
     PREPARE query_con_filtros FROM @sql;
     EXECUTE query_con_filtros;
     DEALLOCATE PREPARE query_con_filtros;

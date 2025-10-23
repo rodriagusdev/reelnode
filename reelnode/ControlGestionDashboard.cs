@@ -13,6 +13,7 @@ namespace Reelnode
         private PanelGradiente PanelMain;
         bool usarCalificacionMinima = false;
         bool usarDuracionMinima = false;
+        string URLUsuarioAvatarActual = null;
 
         public ControlGestionDashboard()
         {
@@ -66,6 +67,11 @@ namespace Reelnode
             foreach (Genero gen in UtilsBD.generosCargados)
             {
                 CboGeneros.Items.Add(gen.Nombre);
+            }
+
+            foreach (string network in UtilsBD.networksCargadas.ConvertAll(n => n.Nombre))
+            {
+                CboNetwork.Items.Add(network);
             }
             // Estos datos se cargan y se muestran directamente
 
@@ -138,7 +144,17 @@ namespace Reelnode
 
         private void BtnAplicarFiltrosConsultar_Click(object sender, EventArgs e)
         {
-            string query = "";
+            AdministradorReportesAvanzados.ObtenerReporteAvanzadoSeries(
+                TxtPalabrasTitulo.Text,
+                CboGeneros.SelectedItem?.ToString(),
+                TxtDirector.Text,
+                CboNetwork.SelectedItem?.ToString(),
+                DtpDesde.Value,
+                DtpHasta.Value,
+                DataGridReportes
+            );
+
+            /*string query = "";
 
             // Determinar tabla segun tipo de reporte en combobox
             // WHERE 1=1 permite agregar condiciones con AND sin que tire error
@@ -185,8 +201,6 @@ namespace Reelnode
             // Agrupación y orden
             query += " GROUP BY p.nombre, p.fecha_estreno, p.descripcion, p.director, p.duracion ORDER BY p.fecha_estreno DESC;";
 
-            MessageBox.Show("Consulta generada:\n" + query);
-
             MySqlConnection conn = UtilsBD.Conexion.GetConnection();
 
             // 2️⃣ Ejecutar consulta y llenar DataTable
@@ -202,7 +216,12 @@ namespace Reelnode
             // *Es crucial:* Cierra el DataAdapter para liberar recursos,
             // pero NO cierres la conexión (conn.Close() o UtilsBD.Conexion.CerrarBD()),
             // ya que es la conexión compartida de toda la aplicación.
-            da.Dispose();
+            da.Dispose();*/
+        }
+
+        private void ControlGestionDashboard_VisibleChanged(object sender, EventArgs e)
+        {
+            CargarDatosUsuario();
         }
     }
 }

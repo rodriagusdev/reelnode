@@ -600,7 +600,7 @@ namespace Reelnode
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("p_id_usuario", usuarioActual.Id);
-                    cmd.Parameters.AddWithValue("p_id_pelicula", idMedia);
+                    cmd.Parameters.AddWithValue(tipo == "Pelicula" ? "p_id_pelicula" : "p_id_serie", idMedia);
                     cmd.Parameters.AddWithValue("p_texto", comentario);
 
                     cmd.ExecuteNonQuery();

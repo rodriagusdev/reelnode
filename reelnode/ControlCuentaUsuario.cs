@@ -20,14 +20,20 @@ namespace Reelnode
         {
             InitializeComponent();
 
-            PanelMain = new PanelGradiente();
-            PanelMain.Dock = DockStyle.Fill;
+            /* Necesario para que funcione el panel con gradiente de fondo */
+            PanelMain = new PanelGradiente
+            {
+                Dock = DockStyle.Fill
+            };
+
+            while (this.Controls.Count > 0)
+            {
+                Control ctrl = this.Controls[0];
+                this.Controls.RemoveAt(0);
+                PanelMain.Controls.Add(ctrl);
+            }
             this.Controls.Add(PanelMain);
-
-            PanelMain.Controls.Add(FlowPanelPeliculas);
-            PanelMain.Controls.Add(FlowPanelSeries);
-
-            ConfiguracionCuentaUsuario();
+            /* ------------------------------------------------------------- */
         }
 
         private void ConfiguracionCuentaUsuario()
@@ -39,10 +45,10 @@ namespace Reelnode
             LblEmail.Text = UtilsBD.usuarioActual.Email;
             LblUsuario.Text = UtilsBD.usuarioActual.NombreUsuario;
 
-            AdministradorCalificaciones.CargarCalificacionesUsuarioPeliculas
-                (UtilsBD.usuarioActual.Id, AdministradorCalificaciones.peliculasCalificadasUsuario);
-            AdministradorCalificaciones.CargarCalificacionesUsuarioSeries
-                (UtilsBD.usuarioActual.Id, AdministradorCalificaciones.seriesCalificadasUsuario);
+            AdministradorCalificaciones.CargarCalificacionesUsuarioPeliculas();
+
+            AdministradorCalificaciones.CargarCalificacionesUsuarioSeries();
+  
 
             /* !--- FIN DE CARGADO ---! */
 
@@ -63,18 +69,24 @@ namespace Reelnode
         }
 
         /* !--- EVENTOS DE BOTONES ---! */
-        private void BtnAvatar_Click(object sender, EventArgs e)
-        {
-            BtnConfirmarAvatar.Visible = true;
-            PanelURL.Visible = true;
-        }
 
-        private void BtnConfirmarAvatar_Click(object sender, EventArgs e)
+        private void BtnConfirmarAvatar_Click_1(object sender, EventArgs e)
         {
             BtnConfirmarAvatar.Visible = false;
             PanelURL.Visible = false;
 
             UtilsBD.CambiarAvatar(UtilsBD.usuarioActual.Id, TxtURLImagen.Text, PicAvatar);
+        }
+
+        private void BtnAvatar_Click_1(object sender, EventArgs e)
+        {
+            BtnConfirmarAvatar.Visible = true;
+            PanelURL.Visible = true;
+        }
+
+        private void ControlCuentaUsuario_Load(object sender, EventArgs e)
+        {
+            ConfiguracionCuentaUsuario();
         }
 
         /* !--- FIN DE EVENTOS DE BOTONES ---! */

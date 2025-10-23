@@ -28,75 +28,104 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.PicAvatar = new System.Windows.Forms.PictureBox();
-            this.LblUsuario = new System.Windows.Forms.Label();
-            this.LblEmail = new System.Windows.Forms.Label();
-            this.BtnAvatar = new System.Windows.Forms.Button();
+            this.PanelCuenta = new System.Windows.Forms.Panel();
+            this.FlowPanelSeries = new System.Windows.Forms.FlowLayoutPanel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.FlowPanelPeliculas = new System.Windows.Forms.FlowLayoutPanel();
+            this.BtnConfirmarAvatar = new System.Windows.Forms.Button();
             this.PanelURL = new System.Windows.Forms.Panel();
             this.TxtURLImagen = new System.Windows.Forms.TextBox();
-            this.BtnConfirmarAvatar = new System.Windows.Forms.Button();
-            this.FlowPanelPeliculas = new System.Windows.Forms.FlowLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.FlowPanelSeries = new System.Windows.Forms.FlowLayoutPanel();
-            ((System.ComponentModel.ISupportInitialize)(this.PicAvatar)).BeginInit();
+            this.BtnAvatar = new System.Windows.Forms.Button();
+            this.LblEmail = new System.Windows.Forms.Label();
+            this.LblUsuario = new System.Windows.Forms.Label();
+            this.PicAvatar = new System.Windows.Forms.PictureBox();
+            this.PanelCuenta.SuspendLayout();
             this.PanelURL.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PicAvatar)).BeginInit();
             this.SuspendLayout();
             // 
-            // PicAvatar
+            // PanelCuenta
             // 
-            this.PicAvatar.Location = new System.Drawing.Point(53, 53);
-            this.PicAvatar.Name = "PicAvatar";
-            this.PicAvatar.Size = new System.Drawing.Size(195, 193);
-            this.PicAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PicAvatar.TabIndex = 0;
-            this.PicAvatar.TabStop = false;
+            this.PanelCuenta.Controls.Add(this.FlowPanelSeries);
+            this.PanelCuenta.Controls.Add(this.label2);
+            this.PanelCuenta.Controls.Add(this.label1);
+            this.PanelCuenta.Controls.Add(this.FlowPanelPeliculas);
+            this.PanelCuenta.Controls.Add(this.BtnConfirmarAvatar);
+            this.PanelCuenta.Controls.Add(this.PanelURL);
+            this.PanelCuenta.Controls.Add(this.BtnAvatar);
+            this.PanelCuenta.Controls.Add(this.LblEmail);
+            this.PanelCuenta.Controls.Add(this.LblUsuario);
+            this.PanelCuenta.Controls.Add(this.PicAvatar);
+            this.PanelCuenta.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelCuenta.Location = new System.Drawing.Point(0, 0);
+            this.PanelCuenta.Name = "PanelCuenta";
+            this.PanelCuenta.Size = new System.Drawing.Size(1280, 720);
+            this.PanelCuenta.TabIndex = 50;
+            this.PanelCuenta.Tag = "Default";
             // 
-            // LblUsuario
+            // FlowPanelSeries
             // 
-            this.LblUsuario.BackColor = System.Drawing.Color.Transparent;
-            this.LblUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LblUsuario.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblUsuario.ForeColor = System.Drawing.Color.Black;
-            this.LblUsuario.Location = new System.Drawing.Point(52, 26);
-            this.LblUsuario.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LblUsuario.Name = "LblUsuario";
-            this.LblUsuario.Size = new System.Drawing.Size(184, 24);
-            this.LblUsuario.TabIndex = 42;
-            this.LblUsuario.Text = "LblUsuario";
+            this.FlowPanelSeries.Location = new System.Drawing.Point(272, 400);
+            this.FlowPanelSeries.Name = "FlowPanelSeries";
+            this.FlowPanelSeries.Size = new System.Drawing.Size(973, 280);
+            this.FlowPanelSeries.TabIndex = 57;
+            this.FlowPanelSeries.Tag = "Default";
+            this.FlowPanelSeries.WrapContents = false;
             // 
-            // LblEmail
+            // label2
             // 
-            this.LblEmail.BackColor = System.Drawing.Color.Transparent;
-            this.LblEmail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LblEmail.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblEmail.ForeColor = System.Drawing.Color.Black;
-            this.LblEmail.Location = new System.Drawing.Point(50, 307);
-            this.LblEmail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LblEmail.Name = "LblEmail";
-            this.LblEmail.Size = new System.Drawing.Size(184, 24);
-            this.LblEmail.TabIndex = 43;
-            this.LblEmail.Text = "LblEmail";
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(268, 367);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(210, 20);
+            this.label2.TabIndex = 59;
+            this.label2.Tag = "Titulo";
+            this.label2.Text = "Series que has calificado";
             // 
-            // BtnAvatar
+            // label1
             // 
-            this.BtnAvatar.Location = new System.Drawing.Point(221, 24);
-            this.BtnAvatar.Name = "BtnAvatar";
-            this.BtnAvatar.Size = new System.Drawing.Size(27, 23);
-            this.BtnAvatar.TabIndex = 44;
-            this.BtnAvatar.Text = "C";
-            this.BtnAvatar.UseVisualStyleBackColor = true;
-            this.BtnAvatar.Click += new System.EventHandler(this.BtnAvatar_Click);
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(268, 41);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(252, 20);
+            this.label1.TabIndex = 58;
+            this.label1.Tag = "Titulo";
+            this.label1.Text = "🎬 Películas que has calificado";
+            // 
+            // FlowPanelPeliculas
+            // 
+            this.FlowPanelPeliculas.AutoScroll = true;
+            this.FlowPanelPeliculas.Location = new System.Drawing.Point(272, 70);
+            this.FlowPanelPeliculas.Name = "FlowPanelPeliculas";
+            this.FlowPanelPeliculas.Size = new System.Drawing.Size(973, 280);
+            this.FlowPanelPeliculas.TabIndex = 56;
+            this.FlowPanelPeliculas.Tag = "Default";
+            this.FlowPanelPeliculas.WrapContents = false;
+            // 
+            // BtnConfirmarAvatar
+            // 
+            this.BtnConfirmarAvatar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnConfirmarAvatar.Location = new System.Drawing.Point(39, 345);
+            this.BtnConfirmarAvatar.Name = "BtnConfirmarAvatar";
+            this.BtnConfirmarAvatar.Size = new System.Drawing.Size(195, 23);
+            this.BtnConfirmarAvatar.TabIndex = 55;
+            this.BtnConfirmarAvatar.Text = "Confirmar";
+            this.BtnConfirmarAvatar.UseVisualStyleBackColor = true;
+            this.BtnConfirmarAvatar.Visible = false;
+            this.BtnConfirmarAvatar.Click += new System.EventHandler(this.BtnConfirmarAvatar_Click_1);
             // 
             // PanelURL
             // 
             this.PanelURL.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.PanelURL.Controls.Add(this.TxtURLImagen);
-            this.PanelURL.Location = new System.Drawing.Point(53, 252);
+            this.PanelURL.Location = new System.Drawing.Point(39, 316);
             this.PanelURL.Name = "PanelURL";
             this.PanelURL.Padding = new System.Windows.Forms.Padding(5);
             this.PanelURL.Size = new System.Drawing.Size(195, 23);
-            this.PanelURL.TabIndex = 45;
+            this.PanelURL.TabIndex = 54;
             this.PanelURL.Visible = false;
             // 
             // TxtURLImagen
@@ -111,96 +140,84 @@
             this.TxtURLImagen.Size = new System.Drawing.Size(185, 17);
             this.TxtURLImagen.TabIndex = 12;
             // 
-            // BtnConfirmarAvatar
+            // BtnAvatar
             // 
-            this.BtnConfirmarAvatar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnConfirmarAvatar.Location = new System.Drawing.Point(53, 281);
-            this.BtnConfirmarAvatar.Name = "BtnConfirmarAvatar";
-            this.BtnConfirmarAvatar.Size = new System.Drawing.Size(195, 23);
-            this.BtnConfirmarAvatar.TabIndex = 46;
-            this.BtnConfirmarAvatar.Text = "Confirmar";
-            this.BtnConfirmarAvatar.UseVisualStyleBackColor = true;
-            this.BtnConfirmarAvatar.Visible = false;
-            this.BtnConfirmarAvatar.Click += new System.EventHandler(this.BtnConfirmarAvatar_Click);
+            this.BtnAvatar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnAvatar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAvatar.Location = new System.Drawing.Point(194, 70);
+            this.BtnAvatar.Name = "BtnAvatar";
+            this.BtnAvatar.Size = new System.Drawing.Size(40, 34);
+            this.BtnAvatar.TabIndex = 53;
+            this.BtnAvatar.Text = "⏬";
+            this.BtnAvatar.UseVisualStyleBackColor = true;
+            this.BtnAvatar.Click += new System.EventHandler(this.BtnAvatar_Click_1);
             // 
-            // FlowPanelPeliculas
+            // LblEmail
             // 
-            this.FlowPanelPeliculas.AutoScroll = true;
-            this.FlowPanelPeliculas.Location = new System.Drawing.Point(286, 53);
-            this.FlowPanelPeliculas.Name = "FlowPanelPeliculas";
-            this.FlowPanelPeliculas.Size = new System.Drawing.Size(973, 280);
-            this.FlowPanelPeliculas.TabIndex = 47;
-            this.FlowPanelPeliculas.Tag = "Default";
-            this.FlowPanelPeliculas.WrapContents = false;
+            this.LblEmail.BackColor = System.Drawing.Color.Transparent;
+            this.LblEmail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LblEmail.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblEmail.ForeColor = System.Drawing.Color.Black;
+            this.LblEmail.Location = new System.Drawing.Point(36, 371);
+            this.LblEmail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblEmail.Name = "LblEmail";
+            this.LblEmail.Size = new System.Drawing.Size(184, 24);
+            this.LblEmail.TabIndex = 52;
+            this.LblEmail.Text = "LblEmail";
             // 
-            // label1
+            // LblUsuario
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(282, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(252, 20);
-            this.label1.TabIndex = 48;
-            this.label1.Tag = "Titulo";
-            this.label1.Text = "🎬 Películas que has calificado";
+            this.LblUsuario.BackColor = System.Drawing.Color.Transparent;
+            this.LblUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LblUsuario.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblUsuario.ForeColor = System.Drawing.Color.Black;
+            this.LblUsuario.Location = new System.Drawing.Point(38, 90);
+            this.LblUsuario.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblUsuario.Name = "LblUsuario";
+            this.LblUsuario.Size = new System.Drawing.Size(79, 24);
+            this.LblUsuario.TabIndex = 51;
+            this.LblUsuario.Text = "LblUsuario";
             // 
-            // label2
+            // PicAvatar
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(282, 350);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(210, 20);
-            this.label2.TabIndex = 49;
-            this.label2.Tag = "Titulo";
-            this.label2.Text = "Series que has calificado";
-            // 
-            // FlowPanelSeries
-            // 
-            this.FlowPanelSeries.Location = new System.Drawing.Point(286, 383);
-            this.FlowPanelSeries.Name = "FlowPanelSeries";
-            this.FlowPanelSeries.Size = new System.Drawing.Size(973, 280);
-            this.FlowPanelSeries.TabIndex = 48;
-            this.FlowPanelSeries.Tag = "Default";
-            this.FlowPanelSeries.WrapContents = false;
+            this.PicAvatar.Location = new System.Drawing.Point(39, 117);
+            this.PicAvatar.Name = "PicAvatar";
+            this.PicAvatar.Size = new System.Drawing.Size(195, 193);
+            this.PicAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PicAvatar.TabIndex = 50;
+            this.PicAvatar.TabStop = false;
             // 
             // ControlCuentaUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.FlowPanelSeries);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.FlowPanelPeliculas);
-            this.Controls.Add(this.BtnConfirmarAvatar);
-            this.Controls.Add(this.PanelURL);
-            this.Controls.Add(this.BtnAvatar);
-            this.Controls.Add(this.LblEmail);
-            this.Controls.Add(this.LblUsuario);
-            this.Controls.Add(this.PicAvatar);
+            this.Controls.Add(this.PanelCuenta);
             this.Name = "ControlCuentaUsuario";
             this.Size = new System.Drawing.Size(1280, 720);
-            ((System.ComponentModel.ISupportInitialize)(this.PicAvatar)).EndInit();
+            this.Load += new System.EventHandler(this.ControlCuentaUsuario_Load);
+            this.PanelCuenta.ResumeLayout(false);
+            this.PanelCuenta.PerformLayout();
             this.PanelURL.ResumeLayout(false);
             this.PanelURL.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PicAvatar)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox PicAvatar;
-        private System.Windows.Forms.Label LblUsuario;
-        private System.Windows.Forms.Label LblEmail;
-        private System.Windows.Forms.Button BtnAvatar;
+        private System.Windows.Forms.Panel PanelCuenta;
+        private System.Windows.Forms.FlowLayoutPanel FlowPanelSeries;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.FlowLayoutPanel FlowPanelPeliculas;
+        private System.Windows.Forms.Button BtnConfirmarAvatar;
         private System.Windows.Forms.Panel PanelURL;
         private System.Windows.Forms.TextBox TxtURLImagen;
-        private System.Windows.Forms.Button BtnConfirmarAvatar;
-        private System.Windows.Forms.FlowLayoutPanel FlowPanelPeliculas;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.FlowLayoutPanel FlowPanelSeries;
+        private System.Windows.Forms.Button BtnAvatar;
+        private System.Windows.Forms.Label LblEmail;
+        private System.Windows.Forms.Label LblUsuario;
+        private System.Windows.Forms.PictureBox PicAvatar;
     }
 }

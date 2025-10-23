@@ -44,6 +44,8 @@ namespace Reelnode
 
             ToolStpMenuAdmin.Visible = UtilsBD.usuarioActual.RolUsuario == "Admin" ? true : false;
 
+            UtilsBD.CargarUsuario();
+
             /* !--- CARGA DE DATOS ---! */
 
             UtilsBD.CargarSeries();
@@ -135,6 +137,16 @@ namespace Reelnode
         private void ToolStpMenuHome_Click(object sender, EventArgs e)
         {
             Utils.ShowControl(PanelMain, Panel);
+
+            if (controlVisualizacionPeliculas.trailer != null)
+            {
+                controlVisualizacionPeliculas.DetenerTrailer();
+            }
+
+            if (controlVisualizacionSerie.trailer != null)
+            {
+                controlVisualizacionSerie.DetenerTrailer();
+            }
         }
 
         private void ToolStpMenuSalir_Click(object sender, EventArgs e)

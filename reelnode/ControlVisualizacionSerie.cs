@@ -10,6 +10,7 @@ namespace Reelnode
     {
         private PanelGradiente PanelMain;
         private ControlComentarios controlComentarios;
+        public WebView2 trailer = new WebView2 { Dock = DockStyle.Fill };
         public ControlVisualizacionSerie()
         {
             InitializeComponent();
@@ -46,7 +47,7 @@ namespace Reelnode
 
                 string URLDefault = $"{trailerURL}?rel=0&controls=1&autoplay=1";
 
-                WebView2 trailer = new WebView2 { Dock = DockStyle.Fill };
+                trailer = new WebView2 { Dock = DockStyle.Fill };
                 PanelTrailerSerie.Controls.Add(trailer);
                 trailer.Source = new Uri(URLDefault);
             }
@@ -54,6 +55,16 @@ namespace Reelnode
             {
                 PanelTrailerSerie.Visible = false;
             }
+        }
+
+        public void DetenerTrailer()
+        {
+            try
+            {
+                if (trailer.CoreWebView2 != null)
+                    trailer.CoreWebView2.Navigate("about:blank");
+            }
+            catch { }
         }
 
         private void BtnCalificar_Click(object sender, EventArgs e)

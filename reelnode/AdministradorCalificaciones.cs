@@ -15,12 +15,12 @@ namespace Reelnode
         public static List<MediaMiniatura> peliculasCalificadasUsuario = new List<MediaMiniatura>();
 
         public static event Action OnCalificacionActualizada;
-        public static void CargarCalificacionesUsuarioPeliculas(int idUsuario, List<MediaMiniatura> peliculasCalificadas)
+        public static void CargarCalificacionesUsuarioPeliculas()
         {
             using (MySqlCommand cmd = new MySqlCommand("sp_obtener_calificaciones_x_usuario_pelis", UtilsBD.Conexion.GetConnection()))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("p_id_usuario", idUsuario);
+                cmd.Parameters.AddWithValue("p_id_usuario", UtilsBD.usuarioActual.Id);
 
                 using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -33,18 +33,18 @@ namespace Reelnode
                             ImagenURL = reader.GetString("imagenURL"),
                         };
 
-                        peliculasCalificadas.Add(pelicula);
+                        peliculasCalificadasUsuario.Add(pelicula);
                     }
                 }
             }
         }
 
-        public static void CargarCalificacionesUsuarioSeries(int idUsuario, List<MediaMiniatura> seriesCalificadas)
+        public static void CargarCalificacionesUsuarioSeries()
         {
             using (MySqlCommand cmd = new MySqlCommand("sp_obtener_calificaciones_x_usuario_serie", UtilsBD.Conexion.GetConnection()))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("p_id_usuario", idUsuario);
+                cmd.Parameters.AddWithValue("p_id_usuario", UtilsBD.usuarioActual.Id);
 
                 using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -57,7 +57,7 @@ namespace Reelnode
                             ImagenURL = reader.GetString("imagenURL"),
                         };
 
-                        seriesCalificadas.Add(serie);
+                        seriesCalificadasUsuario.Add(serie);
                     }
                 }
             }
@@ -85,12 +85,12 @@ namespace Reelnode
                     if(tipo == "Pelicula")
                     {
                         peliculasCalificadasUsuario.Clear();
-                        CargarCalificacionesUsuarioPeliculas(UtilsBD.usuarioActual.Id, peliculasCalificadasUsuario);
+                        CargarCalificacionesUsuarioPeliculas();
                     }
                     else 
                     {
                         seriesCalificadasUsuario.Clear();
-                        CargarCalificacionesUsuarioSeries(UtilsBD.usuarioActual.Id, seriesCalificadasUsuario);
+                        CargarCalificacionesUsuarioSeries();
                     }
 
                     OnCalificacionActualizada?.Invoke();
