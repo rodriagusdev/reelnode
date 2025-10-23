@@ -12,6 +12,7 @@ namespace Reelnode
     {
         private PanelGradiente PanelMain;
         bool usarCalificacionMinima = false;
+        bool usarDuracionMinima = false;
 
         public ControlGestionDashboard()
         {
@@ -128,6 +129,13 @@ namespace Reelnode
             usarCalificacionMinima = ChkFiltroCalif.Checked;
         }
 
+
+        private void ChkDuracion_CheckedChanged(object sender, EventArgs e)
+        {
+            NumUpDuracion.Enabled = ChkDuracion.Checked;
+            usarDuracionMinima = ChkFiltroCalif.Checked;
+        }
+
         private void BtnAplicarFiltrosConsultar_Click(object sender, EventArgs e)
         {
             string query = "";
@@ -196,6 +204,5 @@ namespace Reelnode
             // ya que es la conexión compartida de toda la aplicación.
             da.Dispose();
         }
-
     }
 }

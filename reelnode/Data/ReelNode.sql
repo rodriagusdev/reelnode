@@ -1215,6 +1215,54 @@ end //
 
 DELIMITER ;
 
+DELIMITER //
+CREATE PROCEDURE sp_reporte_avanzado(
+    IN p_titulo VARCHAR(255),
+    IN p_genero VARCHAR(50),
+    IN p_fecha_desde DATE,
+    IN p_fecha_hasta DATE
+)
+BEGIN
+     /*Procedimientos Almacenados normales tienen una limitación: 
+     no pueden cambiar su estructura SQL en tiempo de ejecución.
+     Con lo siguiente puedo lograr crear una consulta dinámica.
+     */
+     
+    SET @sql = '
+        SELECT
+            p.titulo,
+            p.fecha_estreno,
+            p.descripcion,
+            p.director,
+            p.duracion
+        FROM peliculas p
+        WHERE 1=1';
+
+    -- Filtro de Título (si p_titulo no es NULL o cadena vacía)
+    IF p_titulo IS NOT NULL AND p_titulo != '' THEN
+        SET @sql = CONCAT(@sql, ' AND p.titulo LIKE CONCAT(''%'', p_titulo, ''%'')');
+    END IF;
+
+    -- Filtro de Género (si p_genero no es NULL o cadena vacía)
+    IF p_genero IS NOT NULL AND p_genero != '' THEN
+        SET @sql = CONCAT(@sql, ' AND p.genero = p_genero');
+    END IF;
+
+    -- Filtro de Fechas (si ambas fechas no son NULL, son validas, y fecha_desde es menor que fecha_hasta)
+    IF p_fecha_desde IS NOT NULL AND p_fecha_hasta IS NOT NULL AND p_fecha_desde <= p_fecha_hasta THEN
+        SET @sql = CONCAT(@sql, ' AND p.fecha_estreno BETWEEN p_fecha_desde AND p_fecha_hasta');
+    END IF;
+
+    SET @sql = CONCAT(@sql, ' ORDER BY p.fecha_estreno DESC');
+
+    -- Preparar y Ejecutar la consulta dinámica. Le asigno el nobmre query_con_filtros
+    PREPARE query_con_filtros FROM @sql;
+    EXECUTE query_con_filtros;
+    DEALLOCATE PREPARE query_con_filtros;
+
+END //
+DELIMITER ;
+
 
 /* IMPLEMENTAR LOGIN A TRAVES D EBASE DATOS ANTES DE CREAR ESTE PROCEDIMIENTO
 DELIMITER //
