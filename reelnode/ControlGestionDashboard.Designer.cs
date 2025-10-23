@@ -107,6 +107,10 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label28 = new System.Windows.Forms.Label();
+            this.TxtPalabrasTitulo = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.TxtDirector = new System.Windows.Forms.TextBox();
             this.PanelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicAvatar)).BeginInit();
             this.PanelDashboardMain.SuspendLayout();
@@ -839,7 +843,7 @@
             // 
             this.lblcalif.BackColor = System.Drawing.Color.Transparent;
             this.lblcalif.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblcalif.Location = new System.Drawing.Point(739, 147);
+            this.lblcalif.Location = new System.Drawing.Point(682, 239);
             this.lblcalif.Name = "lblcalif";
             this.lblcalif.Size = new System.Drawing.Size(229, 21);
             this.lblcalif.TabIndex = 41;
@@ -873,7 +877,7 @@
             this.NumUpCalificacionMinima.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NumUpCalificacionMinima.Enabled = false;
             this.NumUpCalificacionMinima.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NumUpCalificacionMinima.Location = new System.Drawing.Point(742, 176);
+            this.NumUpCalificacionMinima.Location = new System.Drawing.Point(685, 268);
             this.NumUpCalificacionMinima.Maximum = new decimal(new int[] {
             5,
             0,
@@ -895,6 +899,7 @@
             // 
             // CboTipoReporte
             // 
+            this.CboTipoReporte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboTipoReporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CboTipoReporte.FormattingEnabled = true;
             this.CboTipoReporte.Items.AddRange(new object[] {
@@ -938,6 +943,10 @@
             // PanelReportesAvanzados
             // 
             this.PanelReportesAvanzados.AutoScroll = true;
+            this.PanelReportesAvanzados.Controls.Add(this.label30);
+            this.PanelReportesAvanzados.Controls.Add(this.TxtDirector);
+            this.PanelReportesAvanzados.Controls.Add(this.label29);
+            this.PanelReportesAvanzados.Controls.Add(this.TxtPalabrasTitulo);
             this.PanelReportesAvanzados.Controls.Add(this.label22);
             this.PanelReportesAvanzados.Controls.Add(this.DtpHasta);
             this.PanelReportesAvanzados.Controls.Add(this.ChkFiltroCalif);
@@ -956,9 +965,9 @@
             this.PanelReportesAvanzados.Controls.Add(this.BtnAplicarFiltrosConsultar);
             this.PanelReportesAvanzados.Controls.Add(this.label18);
             this.PanelReportesAvanzados.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PanelReportesAvanzados.Location = new System.Drawing.Point(195, 0);
+            this.PanelReportesAvanzados.Location = new System.Drawing.Point(252, 0);
             this.PanelReportesAvanzados.Name = "PanelReportesAvanzados";
-            this.PanelReportesAvanzados.Size = new System.Drawing.Size(1021, 720);
+            this.PanelReportesAvanzados.Size = new System.Drawing.Size(964, 720);
             this.PanelReportesAvanzados.TabIndex = 22;
             this.PanelReportesAvanzados.Tag = "Default";
             this.PanelReportesAvanzados.Visible = false;
@@ -987,7 +996,7 @@
             // ChkFiltroCalif
             // 
             this.ChkFiltroCalif.AutoSize = true;
-            this.ChkFiltroCalif.Location = new System.Drawing.Point(742, 213);
+            this.ChkFiltroCalif.Location = new System.Drawing.Point(685, 305);
             this.ChkFiltroCalif.Name = "ChkFiltroCalif";
             this.ChkFiltroCalif.Size = new System.Drawing.Size(148, 17);
             this.ChkFiltroCalif.TabIndex = 52;
@@ -1028,6 +1037,48 @@
             this.label28.Tag = "Titulo";
             this.label28.Text = "Desde";
             this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // TxtPalabrasTitulo
+            // 
+            this.TxtPalabrasTitulo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtPalabrasTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtPalabrasTitulo.Location = new System.Drawing.Point(685, 147);
+            this.TxtPalabrasTitulo.Name = "TxtPalabrasTitulo";
+            this.TxtPalabrasTitulo.Size = new System.Drawing.Size(165, 22);
+            this.TxtPalabrasTitulo.TabIndex = 55;
+            // 
+            // label29
+            // 
+            this.label29.BackColor = System.Drawing.Color.Transparent;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(682, 116);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(168, 21);
+            this.label29.TabIndex = 56;
+            this.label29.Tag = "Titulo";
+            this.label29.Text = "Palabras en titulo:";
+            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label30
+            // 
+            this.label30.BackColor = System.Drawing.Color.Transparent;
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(682, 179);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(168, 21);
+            this.label30.TabIndex = 58;
+            this.label30.Tag = "Titulo";
+            this.label30.Text = "Nombre del director:";
+            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // TxtDirector
+            // 
+            this.TxtDirector.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtDirector.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtDirector.Location = new System.Drawing.Point(685, 203);
+            this.TxtDirector.Name = "TxtDirector";
+            this.TxtDirector.Size = new System.Drawing.Size(165, 22);
+            this.TxtDirector.TabIndex = 57;
             // 
             // ControlGestionDashboard
             // 
@@ -1146,5 +1197,9 @@
         private System.Windows.Forms.CheckBox ChkFiltroCalif;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.DateTimePicker DtpHasta;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.TextBox TxtDirector;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.TextBox TxtPalabrasTitulo;
     }
 }
