@@ -42,7 +42,7 @@ namespace Reelnode
 
                 cmd.ExecuteNonQuery();
 
-                usuariosRegistrados.Add(nuevoUsuario);
+                CargarUsuario();
             }
         }
 
@@ -85,7 +85,7 @@ namespace Reelnode
         {
             usuariosRegistrados.Clear();
 
-            using (MySqlCommand cmd = new MySqlCommand("sp_listar_usuarios", UtilsBD.Conexion.GetConnection()))
+            using (MySqlCommand cmd = new MySqlCommand("sp_listar_usuarios", Conexion.GetConnection()))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
 

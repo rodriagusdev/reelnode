@@ -209,6 +209,7 @@
     </Compile>
     <Compile Include="CorreoHelper.cs" />
     <Compile Include="CreadorPanel.cs" />
+    <Compile Include="CreadorUI.cs" />
     <Compile Include="FormCalificar.cs">
       <SubType>Form</SubType>
     </Compile>

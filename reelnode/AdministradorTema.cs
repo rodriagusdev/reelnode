@@ -60,6 +60,12 @@ namespace Reelnode
                     chkList.ForeColor = VerdeClaroNeon;
 
                 }
+                else if (ctrl is System.Windows.Forms.ListView listView)
+                {
+                    listView.BackColor = AzulOscuroNeon;
+                    listView.ForeColor = VerdeClaroNeon;
+
+                }
                 else if (ctrl is System.Windows.Forms.TextBox txt)
                 {
                     txt.BackColor = AzulOscuroNeon;

@@ -58,6 +58,7 @@ namespace Reelnode
         private void BtnIngresar_Click_1(object sender, EventArgs e)
         {
             bool usuarioEncontrado = false;
+
             foreach(Usuario u in UtilsBD.usuariosRegistrados)
             {
                 if (TxtUsuario.Text == u.NombreUsuario && TxtPassword.Text == u.Password)
@@ -68,6 +69,9 @@ namespace Reelnode
                     UtilsBD.usuarioActual.RolUsuario = u.RolUsuario;
                     UtilsBD.usuarioActual.Email = u.Email;
                     UtilsBD.usuarioActual.Avatar = u.Avatar;
+
+                    AdministradorPermisos.CargarPermisosIniciales(u.Id);
+
                     usuarioEncontrado = true;
                     this.Close();
                     break;
