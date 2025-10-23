@@ -290,7 +290,6 @@ C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\Reelnode.ControlGestionSe
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\Reelnode.ControlGestionSeriesCargar.resources
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\Reelnode.ControlGestionSeriesListarSeries.resources
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.FormPassword.resources
-D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\ProjectoNuevo.ControlExpandirPelicula.resources
 D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlVisualizacionPeliculas.resources
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.ControlExpandirPelicula.resources
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\Reelnode.ControlVisualizacionPeliculas.resources
@@ -315,7 +314,6 @@ D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\Microsoft.Web.WebView2.Wpf.xm
 D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.FormCalificar.resources
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\Reelnode.FormCalificar.resources
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\ProjectoNuevo.ControlComentarios.resources
-D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\ProjectoNuevo.ControlComentarios.resources
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\Assets\home.png
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\logo.png
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\bin\Debug\Assets\logo.jpeg
@@ -328,7 +326,6 @@ D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlCuentaUsuario
 D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlVisualizacionSerie.resources
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.csproj.AssemblyReference.cache
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.ControlCuentaUsuario.resources
-C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\ProjectoNuevo.ControlExpandirPelicula.resources
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.ControlGestionPeliculasActualizar.resources
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.ControlAdmin.resources
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.ControlGestionPeliculasCargar.resources
@@ -407,3 +404,6 @@ C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\ProjectoNuevo.exe
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\ProjectoNuevo.pdb
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\ProjectoNuevo.exe.config
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.ControlComentarios.resources
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlComentarios.resources
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlGestionDashboard.resources
+C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.ControlGestionDashboard.resources

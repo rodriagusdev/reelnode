@@ -71,6 +71,7 @@
             this.PanelVisualizar.Name = "PanelVisualizar";
             this.PanelVisualizar.Size = new System.Drawing.Size(1280, 720);
             this.PanelVisualizar.TabIndex = 1;
+            this.PanelVisualizar.Tag = "Default";
             // 
             // LblGeneros
             // 
@@ -162,6 +163,7 @@
             this.BtnComentar.TabIndex = 42;
             this.BtnComentar.Text = "Comentar";
             this.BtnComentar.UseVisualStyleBackColor = false;
+            this.BtnComentar.Click += new System.EventHandler(this.BtnComentar_Click);
             // 
             // LblTemporadas
             // 
@@ -262,10 +264,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.PanelVisualizar);
             this.Name = "ControlVisualizacionSerie";
             this.Size = new System.Drawing.Size(1280, 720);
-            this.Load += new System.EventHandler(this.ControlVisualizacionSerie_Load);
             this.PanelVisualizar.ResumeLayout(false);
             this.PanelVisualizar.PerformLayout();
             this.PanelDescripcion.ResumeLayout(false);

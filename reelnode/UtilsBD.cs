@@ -16,10 +16,15 @@ namespace Reelnode
 
         public static Usuario usuarioActual = new Usuario();
         public static List<Usuario> usuariosRegistrados = new List<Usuario>();
+
         public static List<Pelicula> peliculasCargadas = new List<Pelicula>();
         public static List<Serie> seriesCargadas = new List<Serie>();
+
         public static List<Network> networksCargadas = new List<Network>();
         public static List<Genero> generosCargados = new List<Genero>();
+
+        public static List<MediaMiniatura> pelisMasVistas = new List<MediaMiniatura>();
+        public static List<MediaMiniatura> seriesMasVistas = new List<MediaMiniatura>();
 
         // USUARIOS: Registro, login, modificación.
         public static void RegistrarUsuarioBD(Usuario nuevoUsuario)
@@ -37,7 +42,7 @@ namespace Reelnode
 
                 cmd.ExecuteNonQuery();
 
-                usuariosRegistrados.Add(nuevoUsuario);
+                CargarUsuario();
             }
         }
 
@@ -80,7 +85,7 @@ namespace Reelnode
         {
             usuariosRegistrados.Clear();
 
-            using (MySqlCommand cmd = new MySqlCommand("sp_listar_usuarios", UtilsBD.Conexion.GetConnection()))
+            using (MySqlCommand cmd = new MySqlCommand("sp_listar_usuarios", Conexion.GetConnection()))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
 
@@ -531,54 +536,6 @@ namespace Reelnode
             }
         }
 
-        public static void CargarCalificaciones(int idUsuario, List<Pelicula> peliculasCalificadas)
-        {
-            using (MySqlCommand cmd = new MySqlCommand("sp_obtener_calificaciones_x_usuario_pelis", Conexion.GetConnection()))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("p_id_usuario", idUsuario);
-
-                using (MySqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        var pelicula = new Pelicula
-                        {
-                            Id = reader.GetInt32("id_pelicula"),
-                            Nombre = reader.GetString("nombre"),
-                            ImagenURL = reader.GetString("imagenURL"),
-                        };
-
-                        peliculasCalificadas.Add(pelicula);
-                    }
-                }
-            }
-        }
-
-        public static void CargarCalificacionesSerie(int idUsuario, List<Serie> seriesCalificadas)
-        {
-            using (MySqlCommand cmd = new MySqlCommand("sp_obtener_calificaciones_x_usuario_serie", Conexion.GetConnection()))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("p_id_usuario", idUsuario);
-
-                using (MySqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        var pelicula = new Serie
-                        {
-                            Id = reader.GetInt32("id_serie"),
-                            Nombre = reader.GetString("nombre"),
-                            ImagenURL = reader.GetString("imagenURL"),
-                        };
-
-                        seriesCalificadas.Add(pelicula);
-                    }
-                }
-            }
-        }
-
         // ACCIONES
 
         public static void CambiarAvatar(int idUsuario, string URL, PictureBox pnl)
@@ -609,10 +566,9 @@ namespace Reelnode
             }
         }
 
-        public static void Calificar(int idMedia, int puntuacion, string tipo)
+        public static void RegistrarVisualizacion(int idMedia, string tipo)
         {
-            string procedure = tipo == "Pelicula" ? "sp_calificar_pelicula" : "sp_calificar_serie";
-            
+            string procedure = "sp_registrar_visualizacion";
 
             try
             {
@@ -620,20 +576,16 @@ namespace Reelnode
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue(procedure = tipo == "Pelicula" ? "p_id_pelicula" : "p_id_serie", idMedia);
-                    cmd.Parameters.AddWithValue("p_calificacion", puntuacion);
+                    cmd.Parameters.AddWithValue("p_tipo", tipo);
+                    cmd.Parameters.AddWithValue("p_id_media", idMedia);
                     cmd.Parameters.AddWithValue("p_id_usuario", usuarioActual.Id);
 
                     cmd.ExecuteNonQuery();
-
-                    MessageBox.Show("Calificacion enviada", "Actualización Exitosa",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al calificar la " + tipo == "Pelicula" ? "pelicula": "serie" + ex.Message);
+                MessageBox.Show("Error al visualizar la " + tipo == "Pelicula" ? "pelicula" : "serie" + ex.Message);
             }
         }
 
@@ -663,5 +615,5 @@ namespace Reelnode
                 MessageBox.Show("Error al calificar la " + tipo == "Pelicula" ? "pelicula" : "serie" + ex.Message);
             }
         }
-    } 
+    }
 }

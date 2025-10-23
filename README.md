@@ -46,7 +46,7 @@ ToolStripMenu: ToolStpMenuX
 
 ✅Exportar usuarios a PDF
 
-❌Generar reportes avanzados y PDF
+✅Generar reportes avanzados y PDF
 
 ✅Gestionar roles de usuario
 
@@ -57,7 +57,7 @@ ToolStripMenu: ToolStpMenuX
 ## Usuario
 ✅Registrar Calificaciones
 
-❌Consultar series y peliculas con filtros
+✅Consultar series y peliculas con filtros
 
 ✅Visualizar imagenes y comentarios
 

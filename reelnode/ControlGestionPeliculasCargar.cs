@@ -1,50 +1,28 @@
-﻿using Microsoft.Web.WebView2.WinForms;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Reelnode
 {
-    public partial class ControlGestionPeliculasCargar : UserControl, ITemaPersonalizable
+    public partial class ControlGestionPeliculasCargar : UserControl
     {
-        private Color _c1 = Color.FromArgb(20, 30, 48);
-        private Color _c2 = Color.FromArgb(36, 59, 85);
-        private LinearGradientMode _modo = LinearGradientMode.Vertical;
+        private PanelGradiente PanelMain;
+
         private string trailerFinalURL = null;
         public ControlGestionPeliculasCargar()
         {
             InitializeComponent();
 
-            BtnCargar.FlatAppearance.BorderColor = Color.FromArgb(25, 47, 71);
-            BtnPrevisualizar.FlatAppearance.BorderColor = Color.FromArgb(25, 47, 71);          
-        }
-        private void PanelPeliculaCreacion_Paint(object sender, PaintEventArgs e)
-        {
-            using (var brush = new LinearGradientBrush(PanelPeliculaCreacion.ClientRectangle, _c1, _c2, _modo))
-            {
-                e.Graphics.FillRectangle(brush, PanelPeliculaCreacion.ClientRectangle);
-            }
-        }
-        public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
-        {
-            _c1 = color1;
-            _c2 = color2;
-            _modo = modo;
-            PanelPeliculaCreacion.Invalidate();
+            PanelMain = new PanelGradiente();
+            PanelMain.Dock = DockStyle.Fill;
+            PanelMain.Controls.Add(PanelPeliculaCreacion);
+            this.Controls.Add(PanelMain);         
         }
 
         private void BtnCargar_Click(object sender, EventArgs e)
         {
+            /* !--- INICIO VALIDACIONES --- ! */
             if (PicPelicula.Image == null)
             {
                 MessageBox.Show("Imagen invalida.", "Error al cargar serie", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -70,6 +48,8 @@ namespace Reelnode
                 return;
             }
 
+            /* !--- FIN VALIDACIONES --- ! */
+
             Pelicula nuevaPelicula = new Pelicula
             {
                 Nombre = TxtNombre.Text,
@@ -84,12 +64,27 @@ namespace Reelnode
             };
 
             UtilsBD.InsertarPeliculaBD(nuevaPelicula);
+
             LimpiarCampos();
         }
-      
-        // Uso una funcion asincrona (async) porque la URL del trailer necesita hacer una peticion a la internet que toma un tiempo
-        // y no quiero que la interfaz de usuario se congele mientras espera la respuesta. Ademas, no quiero que la funcion avance
-        // hasta que la peticion se complete, por eso uso 'await'.
+
+        /* !--- PREVISUALIZACION DE POSTER Y TRAILER ---! */
+
+        /* 
+            SOBRE LA CARGA DE IMAGENES Y TRAILERS:
+            Mi eleccion es la carga a traves de URLs para no sobrecargar la base de datos.     
+        */
+
+        /* 
+         * Explicacion sobre funcion asincrona:
+         
+         * Uso una funcion asincrona (async) porque la URL del trailer necesita 
+         * hacer una peticion a la internet que toma un tiempo
+         * y no quiero que la interfaz de usuario se congele mientras espera la respuesta. 
+         * Ademas, no quiero que la funcion avance hasta que la peticion se complete,
+         * lo cual logro usando 'await'. Es esencial que sea una funcion asincrona.
+         
+        */
         private async void BtnPrevisualizarTrailer_Click(object sender, EventArgs e)
         {
             trailerFinalURL = null;
@@ -100,6 +95,8 @@ namespace Reelnode
         {
             Utils.CargarImagenDesdeURL(PicPelicula, TxtURLImagen.Text);
         }
+
+        /* !--- FIN DE PREVISUALIZACION DE POSTER Y TRAILER --- ! */
 
         private void LimpiarCampos()
         {

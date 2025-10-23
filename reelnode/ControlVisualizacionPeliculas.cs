@@ -17,7 +17,7 @@ using System.Windows.Forms;
 
 namespace Reelnode
 {
-    public partial class ControlVisualizacionPeliculas : UserControl, ITemaPersonalizable
+    public partial class ControlVisualizacionPeliculas : UserControl
     {
         private ControlComentarios controlComentarios;
         private PanelGradiente PanelMain;
@@ -25,28 +25,14 @@ namespace Reelnode
         {
             InitializeComponent();
 
-            PanelMain = new PanelGradiente();
+            PanelMain = new PanelGradiente(); 
+            PanelMain.Dock = DockStyle.Fill;
             this.Controls.Add(PanelMain);
 
-            PanelMain.Controls.Add(PanelVisualizarPeli);
-            PanelMain.Dock = DockStyle.Fill;
             PanelMain.Controls.Add(controlComentarios = new ControlComentarios());
+            PanelMain.Controls.Add(PanelVisualizar);
             controlComentarios.Visible = false;
         }
-
-        public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
-        {
-            PanelMain.Color1 = color1;
-            PanelMain.Color2 = color2;
-            PanelMain.GradientMode = modo;
-            PanelMain.Invalidate();
-        }
-
-        public PanelGradiente MainPanel
-        {
-            get { return PanelMain; }
-        }
-
 
         private void BtnCalificar_Click(object sender, EventArgs e)
         {
@@ -58,7 +44,7 @@ namespace Reelnode
         private void BtnComentar_Click(object sender, EventArgs e)
         {
             controlComentarios.CargarComentarios();
-            Utils.ShowControl(controlComentarios, PanelMain);
+            Utils.ShowControl(controlComentarios, PanelVisualizar);
         }
 
         public void CargarPelicula(Pelicula pelicula)
@@ -92,13 +78,7 @@ namespace Reelnode
                 PanelTrailerPeli.Visible = false;
             }
 
-            Utils.ShowControl(PanelVisualizarPeli, PanelMain);
-        }
-
-
-        private void ControlVisualizacionPeliculas_Enter(object sender, EventArgs e)
-        {
-            
+            Utils.ShowControl(PanelVisualizar, PanelMain);
         }
     }
 }

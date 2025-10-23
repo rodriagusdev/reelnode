@@ -150,12 +150,12 @@ CREATE TABLE usuario (
     FOREIGN KEY (id_rol) REFERENCES rol(id_rol)
 );
 
-select* from peliculas;
+select* from usuario;
 
 insert into usuario (nombre_usuario, email_usuario, password_usuario, avatar, fecha_registro, id_rol)
-values("rodri", "rodri@gmail.com", "1", null, now(), 1),
-("san", "san@gmail.com", "2", null, now(), 1),
-("agus", "agus@gmail.com", "3", null, now(), 1);
+values("rodri", "rodri@gmail.com", "1", 'https://wallpapercave.com/wp/wp5273986.jpg', "2025-08-1", 1),
+("san", "san@gmail.com", "2", "https://i.pinimg.com/originals/ce/66/2b/ce662b67df27a2c003ba567ad01c5fb0.jpg", "2025-08-1", 1),
+("agus", "agus@gmail.com", "3", "https://i.ytimg.com/vi/aaHoHQXFSjk/maxresdefault.jpg", "2025-08-1", 1);
 
 CREATE TABLE visualizaciones_serie (
     id_visualizacion INT PRIMARY KEY AUTO_INCREMENT,
@@ -227,24 +227,25 @@ CREATE TABLE calificaciones_peliculas (
 );
 create table permisos(
 	id_permiso int primary key auto_increment,
-    tipo_permiso varchar(255)
+    tipo_permiso varchar(255) unique
 );
 
-create table permisos_usuarios(
-id_permiso_X_usuario int primary key auto_increment,
-id_usuario int,
-id_permiso int,
-FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
-ON DELETE CASCADE ON UPDATE CASCADE,
-foreign key (id_permiso) references permisos(id_permiso)
+CREATE TABLE permisos_usuarios (
+    id_permiso_X_usuario INT PRIMARY KEY AUTO_INCREMENT,
+    id_usuario INT,
+    id_permiso INT,
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (id_permiso) REFERENCES permisos(id_permiso),
+    UNIQUE KEY uk_usuario_permiso (id_usuario, id_permiso) -- evita duplicados
 );
 
 INSERT INTO permisos(tipo_permiso) VALUES
-("comentar"),
-('calificar'),
 ('administrar_roles'),
 ('administrar_permisos'),
 ('administrar_media'),
+('moderar_comentarios'),
+('calificar'),
 ("loguear");
 
 create table rol_x_usuario(
@@ -311,9 +312,10 @@ CREATE PROCEDURE sp_insertar_usuario(
 BEGIN 
     INSERT INTO usuario(nombre_usuario, password_usuario, email_usuario, fecha_registro, id_rol)
     VALUES(p_nombre, p_password, p_email, CURDATE(), p_id_rol);
+    
+    call sp_asignar_permiso_usuario_comun(LAST_INSERT_ID());
 END //
 DELIMITER ;
-
 
 -- 1. Login inicial con validación de credenciales y carga de rol.
 
@@ -371,62 +373,6 @@ BEGIN
     WHERE nombre_usuario = p_nombre_usuario;
 END //
 DELIMITER ;
-
-
--- Procedimiento almacenado para consultar historial
-/*
-!!! Mejor esperar a que este bien terminado lo anterior antes de lidiar con el historial,
-puede producir problemas hasta que no este implementado.
-
--- Función para contar visualizaciones de un usuario
-DELIMITER //
-create function fn_total_visualizaciones(p_id_usuario int) 
-returns int
-deterministic
-begin
-    declare total int default 0;
-    declare total_peliculas int default 0;
-
-    select COUNT(*) into total
-    from visualizaciones_serie
-    where id_usuario = p_id_usuario;
-
-    select COUNT(*) into total_peliculas
-    from visualizaciones_pelicula
-    where id_usuario = p_id_usuario;
-
-    set total = total + total_peliculas;
-
-    return total;
-end //
-DELIMITER ;
-
-*/
-
-/*DELIMITER //
-create procedure sp_reporte_admin()
-begin
-	select count(*) as total_usuarios from usuario;
-    
-    -- peliculas mas vistas 
-    select p.nombre, count(v.id_pelicula) as vistas
-    from visualizaciones_pelicula v 
-    join peliculas p on v.id_pelicula = p.id_pelicula
-    group by p.nombre
-    order by vistas desc
-    limit 5;
-    
-    -- Series más vistas
-    select s.nombre, count(v.id_serie) as vistas
-    from visualizaciones_serie v
-    join serie s on v.id_serie = s.id_serie
-    group by s.nombre
-    order by vistas desc
-    limit 5;
-end //
-DELIMITER ;
--- 
-*/
 
 -- Procedimientos almacenados 
 DELIMITER //
@@ -759,33 +705,60 @@ end //
 DELIMITER ;
 
 DELIMITER //
-create procedure sp_asignar_permiso(
-    in p_id_usuario int,
-    in p_tipo_permiso varchar(255)
+CREATE PROCEDURE sp_asignar_permiso(
+    IN p_id_usuario INT,
+    IN p_tipo_permiso VARCHAR(255)
 )
-begin
-    declare v_id_permiso int;
-
-    -- Buscar si el permiso ya existe para el usuario
-    select id_permiso into v_id_permiso
-    from permisos
-    where tipo_permiso = p_tipo_permiso and id_usuario = p_id_usuario
-    limit 1;
-
-    -- Si no existe, lo insertamos
-    if v_id_permiso is null then
-        insert into permisos(tipo_permiso, id_usuario)
-        values(p_tipo_permiso, p_id_usuario);
-        
-        set v_id_permiso = LAST_INSERT_ID(); -- devuelve el último valor de columna AUTO_INCREMENT que se insertó en la sesión actual.
-    end if;
-
-    -- Insertar en tabla de relación para que quede registrado // Evita duplicados usando ON DUPLICATE KEY UPDATE
-    insert into permisos_usuarios(id_usuario, id_permiso)
-    values(p_id_usuario, v_id_permiso)
-    on duplicate key update id_permiso = id_permiso;
+BEGIN
+    DECLARE v_id_permiso INT;
     
+    -- Buscar si el permiso ya existe (a nivel global)
+    SELECT id_permiso INTO v_id_permiso
+    FROM permisos
+    WHERE tipo_permiso = p_tipo_permiso
+    LIMIT 1;
+
+    -- Si no existe, lo creamos
+    IF v_id_permiso IS NULL THEN
+        INSERT INTO permisos(tipo_permiso)
+        VALUES (p_tipo_permiso);
+        SET v_id_permiso = LAST_INSERT_ID();
+    END IF;
+
+    -- Asignar permiso al usuario, evitando duplicados
+    INSERT INTO permisos_usuarios(id_usuario, id_permiso)
+    VALUES(p_id_usuario, v_id_permiso)
+    ON DUPLICATE KEY UPDATE id_permiso = id_permiso; -- no hace nada, pero evita error
+END //
+DELIMITER ;
+
+DELIMITER //
+create procedure sp_borrar_todos_permisos_usuario(in p_id_usuario int)
+begin
+	delete from permisos_usuarios where id_usuario = p_id_usuario;
 end //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_asignar_permiso_usuario_comun(IN p_id_usuario INT)
+BEGIN
+	call sp_asignar_permiso(p_id_usuario, "logear");
+    call sp_asignar_permiso(p_id_usuario, "calificar");
+    call sp_asignar_permiso(p_id_usuario, "comentar");
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_asignar_permiso_usuario_admin(IN p_id_usuario INT)
+BEGIN
+	call sp_asignar_permiso(p_id_usuario, "logear");
+    call sp_asignar_permiso(p_id_usuario, "calificar");
+    call sp_asignar_permiso(p_id_usuario, "comentar");
+    call sp_asignar_permiso(p_id_usuario, "administrar_roles");
+	call sp_asignar_permiso(p_id_usuario, "administrar_media");
+	call sp_asignar_permiso(p_id_usuario, "administrar_permisos");
+	call sp_asignar_permiso(p_id_usuario, "moderar_comentarios");
+END //
 DELIMITER ;
 
 DELIMITER //
@@ -850,6 +823,43 @@ group by
     historial.tipo
 order by ultima_vez desc;
 
+-- Vistas necesarias para obtener al usuario que mas comento
+create or replace view vw_comentarios_usuarios_peliculas as
+select
+	id_usuario,
+    count(id_comentario) as cantidad_comentarios
+from
+	comentarios_peli
+group by id_usuario;
+
+create or replace view vw_comentarios_usuarios_series as
+select
+	id_usuario,
+    count(id_comentario) as cantidad_comentarios
+from
+	comentarios_serie
+group by id_usuario;
+/* -----------------------------------------------------*/
+
+-- Vistas necesarias para obtener al usuario que mas califico
+create or replace view vw_calificaciones_peliculas_por_usuario as
+select 
+	id_usuario, 
+    count(id_calificacion) as cantidad_calificaciones
+from
+	calificaciones_peliculas
+group by id_usuario;
+
+create or replace view vw_calificaciones_series_por_usuario as
+select 
+	id_usuario, 
+    count(id_calificacion) as cantidad_calificaciones
+from
+	calificaciones_serie
+group by id_usuario;
+
+/* -----------------------------------------------------------*/
+
 CREATE OR REPLACE VIEW vw_ranking_usuarios AS -- Ranking de usuarios más activos
 SELECT
     u.id_usuario,
@@ -864,60 +874,47 @@ INNER JOIN usuario u ON todas_visualizaciones.id_usuario = u.id_usuario
 GROUP BY u.id_usuario, u.nombre_usuario
 ORDER BY total_visualizaciones DESC;
 
-CREATE OR REPLACE VIEW vw_contenido_mas_visto AS -- Contenido más visto de peliculas y series
-SELECT
-    historial.contenido,
-    historial.tipo,
+CREATE OR REPLACE VIEW vw_historial_peliculas AS
+SELECT 
+	p.id_pelicula,
+    p.nombre,
     COUNT(*) AS veces_visto
-FROM (
-    SELECT 
-        p.nombre AS contenido,
-        'Pelicula' AS tipo,
-        id_usuario
-    FROM visualizaciones_pelicula v
-    INNER JOIN peliculas p ON v.id_pelicula = p.id_pelicula
-
-    UNION ALL
-
-    SELECT 
-        s.nombre AS contenido,
-        'Serie' AS tipo,
-        id_usuario
-    FROM visualizaciones_serie v
-    INNER JOIN serie s ON v.id_serie = s.id_serie
-) AS historial
-GROUP BY historial.contenido, historial.tipo
+FROM visualizaciones_pelicula v
+INNER JOIN peliculas p ON v.id_pelicula = p.id_pelicula
+GROUP BY p.nombre, p.id_pelicula
 ORDER BY veces_visto DESC;
 
-CREATE OR REPLACE VIEW vw_ultima_visualizacion AS -- Última visualización por usuario
-SELECT
-    u.id_usuario,
-    u.nombre_usuario,
-    historial.contenido,
-    historial.tipo,
-    MAX(historial.fecha_visualizacion) AS ultima_vez
-FROM (
-    SELECT 
-        v.id_usuario,
-        p.nombre AS contenido,
-        'Pelicula' AS tipo,
-        v.fecha_visualizacion
-    FROM visualizaciones_pelicula v
-    INNER JOIN peliculas p ON v.id_pelicula = p.id_pelicula
+CREATE OR REPLACE VIEW vw_historial_series AS
+SELECT 
+	s.id_serie,
+    s.nombre,
+    COUNT(*) AS veces_visto
+FROM visualizaciones_serie v
+INNER JOIN serie s ON v.id_serie = s.id_serie
+GROUP BY s.nombre, s.id_serie
+ORDER BY veces_visto DESC;
 
-    UNION ALL
+CREATE OR REPLACE VIEW vw_calificaciones_peliculas AS
+SELECT 
+    p.id_pelicula,
+    p.nombre,
+    ROUND(AVG(c.calificacion), 2) AS promedio_calificacion,
+    COUNT(c.id_calificacion) AS total_calificaciones
+FROM calificaciones_peliculas c
+INNER JOIN peliculas p ON c.id_pelicula = p.id_pelicula
+GROUP BY p.id_pelicula, p.nombre
+ORDER BY promedio_calificacion DESC;
 
-    SELECT 
-        v.id_usuario,
-        s.nombre AS contenido,
-        'Serie' AS tipo,
-        v.fecha_visualizacion
-    FROM visualizaciones_serie v
-    INNER JOIN serie s ON v.id_serie = s.id_serie
-) AS historial
-INNER JOIN usuario u ON historial.id_usuario = u.id_usuario
-GROUP BY u.id_usuario, u.nombre_usuario, historial.contenido, historial.tipo
-ORDER BY ultima_vez DESC;
+CREATE OR REPLACE VIEW vw_calificaciones_series AS
+SELECT 
+    s.id_serie,
+    s.nombre,
+    ROUND(AVG(c.calificacion), 2) AS promedio_calificacion,
+    COUNT(c.id_calificacion) AS total_calificaciones
+FROM calificaciones_serie c
+INNER JOIN serie s ON c.id_serie = s.id_serie
+GROUP BY s.id_serie, s.nombre
+ORDER BY promedio_calificacion DESC;
 
 CREATE OR REPLACE VIEW vw_generos_mas_vistos AS -- generos mas vistos
 SELECT 
@@ -984,7 +981,7 @@ begin
 		c.fecha_comentario, 
         c.texto,
         u.nombre_usuario,
-        u.avatar,
+        u.avatar
     from 
 		comentarios_peli c
 	inner join
@@ -1009,6 +1006,235 @@ begin
 end //
 DELIMITER ;
 
+DELIMITER //
+
+CREATE PROCEDURE sp_historial_peliculas(IN p_limite INT)
+BEGIN
+    SELECT * 
+    FROM vw_historial_peliculas
+    LIMIT p_limite;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_historial_series(IN p_limite INT)
+BEGIN
+    SELECT * 
+    FROM vw_historial_series
+    LIMIT p_limite;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_top_calificaciones_peliculas(
+    IN p_limite INT
+)
+BEGIN
+    SELECT 
+        *
+    FROM vw_calificaciones_peliculas
+    ORDER BY promedio_calificacion DESC
+    LIMIT p_limite;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_top_calificaciones_series(
+    IN p_limite INT
+)
+BEGIN
+    SELECT 
+        *
+    FROM vw_calificaciones_series
+    ORDER BY promedio_calificacion DESC
+    LIMIT p_limite;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_obtener_visualizaciones_ultimo_mes()
+BEGIN
+	select
+		(
+		select count(vp.id_visualizacion) 
+        from visualizaciones_pelicula vp
+        where vp.fecha_visualizacion >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+              and vp.fecha_visualizacion < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+		)+
+		(
+		select count(vs.id_visualizacion) 
+        from visualizaciones_serie vs
+        where vs.fecha_visualizacion >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+              and vs.fecha_visualizacion < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
+        ) as total_visualizaciones;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_obtener_cantidad_usuarios()
+BEGIN
+	select
+		count(id_usuario) AS usuarios_registrados
+    from 
+		usuario;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_obtener_cantidad_usuarios_registrados_ultimo_mes()
+BEGIN
+	select
+		count(id_usuario) AS usuarios_registrados
+    from 
+		usuario
+	where fecha_registro >= date_sub(curdate(), interval 1 month)
+    and fecha_registro < date_add(curdate(), interval 1 day);
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_obtener_ultimo_usuario_registrado()
+BEGIN
+	select
+		nombre_usuario, 
+        avatar,
+        fecha_registro
+	from 
+		usuario
+	order by fecha_registro desc
+    limit 1;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_obtener_permisos_usuario(in p_id_usuario int)
+BEGIN
+	select
+		p.tipo_permiso
+    from 
+		permisos p
+    inner join
+		permisos_usuarios pu on pu.id_permiso = p.id_permiso
+	WHERE 
+		pu.id_usuario = p_id_usuario;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_ranking_usuarios(in p_limit int)
+begin
+	select 
+		nombre_usuario, 
+        total_visualizaciones 
+	from 
+		vw_ranking_usuarios
+	limit p_limit;
+end //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_usuario_mas_calificador()
+begin
+	select
+		u.nombre_usuario,
+        COALESCE(vwp.cantidad_calificaciones, 0) + coalesce(vws.cantidad_calificaciones, 0) as total_calificaciones
+	from 
+		usuario u
+	left join vw_calificaciones_peliculas_por_usuario vwp on vwp.id_usuario = u.id_usuario
+    left join vw_calificaciones_series_por_usuario vws on vws.id_usuario = u.id_usuario
+	order by total_calificaciones desc
+    limit 1;
+end //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_usuario_mas_comentador()
+begin
+	select
+		u.nombre_usuario,
+        COALESCE(vcup.cantidad_comentarios, 0) + coalesce(vcus.cantidad_comentarios, 0) as total_comentarios
+	from 
+		usuario u
+	left join vw_comentarios_usuarios_peliculas vcup on vcup.id_usuario = u.id_usuario
+    left join vw_comentarios_usuarios_series vcus on vcus.id_usuario = u.id_usuario
+	order by total_comentarios desc
+    limit 1;
+end //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_ultima_pelicula_cargada()
+begin
+	select
+		id_pelicula,
+		nombre,
+        imagenURL
+	from peliculas
+    order by id_pelicula desc
+    limit 1;
+end //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_ultima_serie_cargada()
+begin
+	select
+		id_serie,
+		nombre,
+        imagenURL
+	from serie
+    order by id_serie desc
+    limit 1;
+end //
+
+DELIMITER ;
+
+
+/* IMPLEMENTAR LOGIN A TRAVES D EBASE DATOS ANTES DE CREAR ESTE PROCEDIMIENTO
+DELIMITER //
+
+CREATE PROCEDURE sp_ultimo_login_usuario(in p_limit int)
+begin
+	select 
+		nombre_usuario, 
+        total_visualizaciones 
+	from 
+		vw_ranking_usuarios
+	limit p_limit;
+end //
+
+DELIMITER ;
+*/
+
+call sp_asignar_permiso_usuario_admin(1);
+call sp_asignar_permiso_usuario_admin(2);
+call sp_asignar_permiso_usuario_admin(3);
 -- ----------------------- Pruebas
 
 SET SQL_SAFE_UPDATES = 0;
@@ -1020,3 +1246,5 @@ select * from serie;
 select * from usuario;
 select * from network;
 select * from vw_historial_total;
+select * from permisos;
+select * from permisos_usuarios;

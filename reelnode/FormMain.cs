@@ -2,62 +2,41 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-using Font = System.Drawing.Font;
-using Label = System.Windows.Forms.Label;
 
 namespace Reelnode
 {
-    public partial class FormMain : Form, ITemaPersonalizable
+    public partial class FormMain : Form
     {
-        // ESTABLECIMIENTO DE TEMA
-       /* private Color _c1 = Color.FromArgb(20, 30, 48);
-        private Color _c2 = Color.FromArgb(36, 59, 85);
-        private LinearGradientMode _modo = LinearGradientMode.Vertical;*/
+        private PanelGradiente PanelMain;
 
-        // CREACION DE CONTROLES
+        // !--- CREACION DE USER CONTROLS ---!
+
         private ControlAdmin controlAdmin;
         private ControlCuentaUsuario controlCuentaUsuario;
         private ControlVisualizacionSerie controlVisualizacionSerie;
         private ControlVisualizacionPeliculas controlVisualizacionPeliculas;
 
-        // CREACION DE UI
-        private FlowLayoutPanel flowPanelPeliculas;
-        private FlowLayoutPanel flowPanelSeries;
-        private Label lblPeliculas;
-        private Label lblSeries;
-        private Panel panelContenedor;
+        // !--- FIN CREACION DE USER CONTROLS ---!
 
-        public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
-        {
-           /* _c1 = color1;
-            _c2 = color2;
-            _modo = modo;
-            panelContenedor.Invalidate();*/
-        }
         public FormMain()
         {
             InitializeComponent();
 
-            CrearUI();
+            // CREACION DEL PANEL PRINCIPAL CON GRADIENTE
+            PanelMain = new PanelGradiente
+            {
+                Dock = DockStyle.Fill,
+            };
+
+            PanelMain.Controls.Add(FlowPanelPeliculas);
+            PanelMain.Controls.Add(FlowPanelSeries);
+            Panel.Controls.Add(PanelMain);
         }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
             UtilsBD.Conexion.AbrirBD();
-
-            // CARGA DE DATOS
             UtilsBD.CargarUsuario();
-            UtilsBD.CargarSeries();
-            UtilsBD.CargarPeliculas();
-            UtilsBD.CargarSeries();
-            UtilsBD.CargarNetwork();
-            UtilsBD.CargarGeneros();
-
-            // Esta funcion permite cambiar todo el tema del proyecto. Apretar F12 para ver la funcion.
-            AdministradorTema.AplicarTema(this);
-
-            MostrarPeliculas();
-            MostrarSeries();
 
             FormLogin login = new FormLogin();
 
@@ -65,163 +44,104 @@ namespace Reelnode
 
             ToolStpMenuAdmin.Visible = UtilsBD.usuarioActual.RolUsuario == "Admin" ? true : false;
 
+            /* !--- CARGA DE DATOS ---! */
+
+            UtilsBD.CargarSeries();
+            UtilsBD.CargarPeliculas();
+            UtilsBD.CargarSeries();
+            UtilsBD.CargarNetwork();
+            UtilsBD.CargarGeneros();
+
+            /* !--- FIN CARGADO DE DATOS ---! */
+
+            ConfiguracionAPP();
+
+            // APLICACION DE TEMA -> F12 para abrir la configuracion de tema
+            AdministradorTema.AplicarTema(this);
         }
 
-        private void ToolStpMenuAdmin_Click_1(object sender, EventArgs e)
+        public void ConfiguracionAPP()
         {
-            Utils.ShowControl(controlAdmin, PanelMain);
-        }
+            /* !--- ESTABLECIMIENTO Y CONFIGURACION DE USER CONTROLS ---! */
 
-        private void salirToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+            controlAdmin = new ControlAdmin();
+            controlAdmin.Visible = false;
 
-        private void MostrarPeliculas()
-        {
-            Utils.RellenarFlowPanel(flowPanelPeliculas, UtilsBD.peliculasCargadas, AbrirPestanaPelicula);
-        }
+            controlCuentaUsuario = new ControlCuentaUsuario();
+            controlCuentaUsuario.Visible = false;
+            // Asigno las mismas funciones del main para abrir peliculas y series a las acciones del control de cuenta de usuario
+            // Permite al usuario abrir una serie desde su cuenta y no solo desde el Home
+            controlCuentaUsuario.AbrirPelicula = AbrirPestanaPelicula;
+            controlCuentaUsuario.AbrirSerie = AbrirPestanaSerie;
 
-        private void MostrarSeries()
-        {
-            Utils.RellenarFlowPanel(flowPanelSeries, UtilsBD.seriesCargadas, AbrirPestanaSerie);
+            controlVisualizacionSerie = new ControlVisualizacionSerie();
+            controlVisualizacionSerie.Visible = false;
+
+            controlVisualizacionPeliculas = new ControlVisualizacionPeliculas();
+            controlVisualizacionPeliculas.Visible = false;
+
+            /* !--- CONFIGURACION DE USER CONTROLS FINALIZADA ---! */
+
+
+            /* !--- CONFIGURACION DE UI PRINCIPAL ---! */
+
+            // Agrego los controles creados al panel principal
+            Panel.Controls.Add(controlAdmin);
+            Panel.Controls.Add(controlCuentaUsuario);
+            Panel.Controls.Add(controlVisualizacionSerie);
+            Panel.Controls.Add(controlVisualizacionPeliculas);
+            Panel.BackColor = Color.Transparent;
+
+            // Relleno los flow panels de la UI principal con las peliculas y series cargadas en la base de datos
+            Utils.RellenarFlowPanelTest(FlowPanelPeliculas, UtilsBD.peliculasCargadas, AbrirPestanaPelicula);
+            Utils.RellenarFlowPanelTest(FlowPanelSeries, UtilsBD.seriesCargadas, AbrirPestanaSerie);
+
+            /* !--- FIN CONFIGURACION DE UI PRINCIPAL ---! */
         }
 
         public void AbrirPestanaSerie(int id)
         {
             Utils.peliculaSeleccionada = null;
             Utils.serieSeleccionada = UtilsBD.seriesCargadas[id - 1];
+
             controlVisualizacionSerie.CargarSerie(Utils.serieSeleccionada);
-            Utils.ShowControl(controlVisualizacionSerie, PanelMain);
+            UtilsBD.RegistrarVisualizacion(Utils.serieSeleccionada.Id, "Serie");
+
+            Utils.ShowControl(controlVisualizacionSerie, Panel);
         }
 
         public void AbrirPestanaPelicula(int id)
         {
             Utils.serieSeleccionada = null;
             Utils.peliculaSeleccionada = UtilsBD.peliculasCargadas[id - 1];
+
             controlVisualizacionPeliculas.CargarPelicula(Utils.peliculaSeleccionada);
-            Utils.ShowControl(controlVisualizacionPeliculas, PanelMain);
+            UtilsBD.RegistrarVisualizacion(Utils.peliculaSeleccionada.Id, "Pelicula");
+
+            Utils.ShowControl(controlVisualizacionPeliculas, Panel);
         }
 
-        public Panel MainPanel
+
+        /* !--- EVENTOS DE BOTONES DEL MENU ---! */
+        private void ToolStpMenuAdmin_Click_1(object sender, EventArgs e)
         {
-            get { return PanelMain; }
+            Utils.ShowControl(controlAdmin, Panel);
         }
-
-        private void panelContenedor_Paint(object sender, PaintEventArgs e)
-        {
-            /*using (var brush = new LinearGradientBrush(panelContenedor.ClientRectangle, _c1, _c2, _modo))
-            {
-                e.Graphics.FillRectangle(brush, panelContenedor.ClientRectangle);
-            }*/
-        }
-
         private void ToolStpMenuCuenta_Click(object sender, EventArgs e)
         {
-            Utils.ShowControl(controlCuentaUsuario, PanelMain);
+            Utils.ShowControl(controlCuentaUsuario, Panel);
         }
 
         private void ToolStpMenuHome_Click(object sender, EventArgs e)
         {
-            Utils.ShowControl(panelContenedor, PanelMain);
+            Utils.ShowControl(PanelMain, Panel);
         }
 
-        public void CrearUI()
+        private void ToolStpMenuSalir_Click(object sender, EventArgs e)
         {
-            panelContenedor = new Panel
-            {
-                Dock = DockStyle.Fill,
-            };
-
-            panelContenedor.Paint += panelContenedor_Paint;
-
-            PanelMain.BackColor = Color.Transparent;
-            PanelBack.BackColor = Color.Transparent;
-            PanelMain.Controls.Add(panelContenedor);
-
-            controlAdmin = new ControlAdmin();
-            controlCuentaUsuario = new ControlCuentaUsuario();
-            controlCuentaUsuario.AbrirPelicula = AbrirPestanaPelicula;
-            controlCuentaUsuario.AbrirSerie = AbrirPestanaSerie;
-            controlVisualizacionSerie = new ControlVisualizacionSerie();
-            controlVisualizacionPeliculas = new ControlVisualizacionPeliculas();
-
-            PanelMain.Controls.Add(controlAdmin);
-            PanelMain.Controls.Add(controlCuentaUsuario);
-            PanelMain.Controls.Add(controlVisualizacionSerie);
-            PanelMain.Controls.Add(controlVisualizacionPeliculas);
-
-            controlAdmin.Visible = false;
-            controlCuentaUsuario.Visible = false;
-            controlVisualizacionSerie.Visible = false;
-            controlVisualizacionPeliculas.Visible = false;
-
-            int margenIzquierdo = 10;
-            int margenSuperior = 15;
-            int espacioEntrePaneles = 10;
-            int altoPanel = 280;
-
-            lblPeliculas = new Label
-            {
-                Text = "🎬 Películas",
-                Font = new Font("Courier New", 14, FontStyle.Bold),
-                ForeColor = Color.White,
-                AutoSize = true,
-                Location = new Point(margenIzquierdo, margenSuperior),
-                BackColor = Color.Transparent,
-                Tag = "Titulo"
-            };
-
-            flowPanelPeliculas = new FlowLayoutPanel
-            {
-                FlowDirection = FlowDirection.LeftToRight,
-                WrapContents = false,
-                AutoScroll = true,
-                AutoSize = false,
-                BackColor = Color.Transparent,
-                Padding = new Padding(10),
-                Location = new Point(margenIzquierdo, lblPeliculas.Bottom + 10),
-                Size = new Size(this.ClientSize.Width - 2 * margenIzquierdo, altoPanel),
-                VerticalScroll = { Visible = false },
-                Tag = "Default"
-            };
-
-            lblSeries = new Label
-            {
-                Text = "📺 Series",
-                Font = new Font("Courier New", 14, FontStyle.Bold),
-                ForeColor = Color.White,
-                AutoSize = true,
-                Location = new Point(margenIzquierdo, flowPanelPeliculas.Bottom + espacioEntrePaneles),
-                BackColor = Color.Transparent,
-                Tag = "Titulo"
-            };
-
-            flowPanelSeries = new FlowLayoutPanel
-            {
-                FlowDirection = FlowDirection.LeftToRight,
-                WrapContents = false,
-                AutoScroll = true,
-                AutoSize = false,
-                BackColor = Color.Transparent,
-                Padding = new Padding(10),
-                Location = new Point(margenIzquierdo, lblSeries.Bottom + 10),
-                Size = new Size(this.ClientSize.Width - 2 * margenIzquierdo, altoPanel),
-                VerticalScroll = { Visible = false },
-                Tag = "Default"
-            };
-
-            panelContenedor.Controls.Add(flowPanelPeliculas);
-            panelContenedor.Controls.Add(flowPanelSeries);
-            panelContenedor.Controls.Add(lblPeliculas);
-            panelContenedor.Controls.Add(lblSeries);
+            Application.Exit();
         }
+
+        /* !--- FIN EVENTOS DE BOTONES DEL MENU ---! */
     }
 }
-/*private void CargarUsuariosJSON()
-{
-    string ruta = Path.Combine(Application.StartupPath, "personas.json");
-    string json = File.ReadAllText(ruta);
-    UtilsBD.usuariosRegistrados = JsonSerializer.Deserialize<List<Usuario>>(json);
-}
-*/

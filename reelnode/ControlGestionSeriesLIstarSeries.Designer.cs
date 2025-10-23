@@ -38,7 +38,7 @@
             // 
             // PanelListar
             // 
-            this.PanelListar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
+            this.PanelListar.BackColor = System.Drawing.Color.Transparent;
             this.PanelListar.Controls.Add(this.panel1);
             this.PanelListar.Controls.Add(this.panel3);
             this.PanelListar.Controls.Add(this.DataGridSeries);
@@ -47,7 +47,7 @@
             this.PanelListar.Name = "PanelListar";
             this.PanelListar.Size = new System.Drawing.Size(1280, 720);
             this.PanelListar.TabIndex = 1;
-            this.PanelListar.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelListar_Paint);
+            this.PanelListar.Tag = "Default";
             // 
             // panel1
             // 
@@ -87,6 +87,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.PanelListar);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ControlGestionSeriesListarSeries";

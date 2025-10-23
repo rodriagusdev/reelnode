@@ -72,7 +72,7 @@ namespace Reelnode
             {
                 int idMedia = Utils.peliculaSeleccionada != null ? Utils.peliculaSeleccionada.Id: Utils.serieSeleccionada.Id;
                 // Si peliculaSeleccionada es null, entonces se clickeó una serie
-                UtilsBD.Calificar(idMedia, puntuacion, Utils.peliculaSeleccionada != null ? "Pelicula" : "Serie");
+                AdministradorCalificaciones.Calificar(idMedia, puntuacion, Utils.peliculaSeleccionada != null ? "Pelicula" : "Serie");
                 this.Close();
             }
             else MessageBox.Show("Debe elegir una puntuacion", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);            

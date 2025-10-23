@@ -29,11 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.PanelMain = new System.Windows.Forms.Panel();
+            this.PanelActualizar = new System.Windows.Forms.Panel();
             this.label19 = new System.Windows.Forms.Label();
             this.ChkListGeneros = new System.Windows.Forms.CheckedListBox();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
             this.BtnPrevisualizarTrailer = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.TxtURLTrailer = new System.Windows.Forms.TextBox();
@@ -75,7 +73,7 @@
             this.BtnBuscarPelicula = new System.Windows.Forms.Button();
             this.PanelBuscarPeliculaNombre = new System.Windows.Forms.Panel();
             this.TxtBuscarNombrePelicula = new System.Windows.Forms.TextBox();
-            this.PanelMain.SuspendLayout();
+            this.PanelActualizar.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -91,46 +89,45 @@
             this.PanelBuscarPeliculaNombre.SuspendLayout();
             this.SuspendLayout();
             // 
-            // PanelMain
+            // PanelActualizar
             // 
-            this.PanelMain.Controls.Add(this.label19);
-            this.PanelMain.Controls.Add(this.ChkListGeneros);
-            this.PanelMain.Controls.Add(this.panel7);
-            this.PanelMain.Controls.Add(this.panel6);
-            this.PanelMain.Controls.Add(this.BtnPrevisualizarTrailer);
-            this.PanelMain.Controls.Add(this.panel5);
-            this.PanelMain.Controls.Add(this.label10);
-            this.PanelMain.Controls.Add(this.label9);
-            this.PanelMain.Controls.Add(this.label12);
-            this.PanelMain.Controls.Add(this.PanelTrailer);
-            this.PanelMain.Controls.Add(this.label13);
-            this.PanelMain.Controls.Add(this.panel10);
-            this.PanelMain.Controls.Add(this.BtnPrevisualizar);
-            this.PanelMain.Controls.Add(this.label6);
-            this.PanelMain.Controls.Add(this.label8);
-            this.PanelMain.Controls.Add(this.panel1);
-            this.PanelMain.Controls.Add(this.label5);
-            this.PanelMain.Controls.Add(this.label4);
-            this.PanelMain.Controls.Add(this.label3);
-            this.PanelMain.Controls.Add(this.label2);
-            this.PanelMain.Controls.Add(this.label1);
-            this.PanelMain.Controls.Add(this.BtnActualizar);
-            this.PanelMain.Controls.Add(this.PanelDescripcion);
-            this.PanelMain.Controls.Add(this.PanelImagen);
-            this.PanelMain.Controls.Add(this.PanelDuracion);
-            this.PanelMain.Controls.Add(this.PanelDirector);
-            this.PanelMain.Controls.Add(this.PanelFecha);
-            this.PanelMain.Controls.Add(this.PanelUsuario);
-            this.PanelMain.Controls.Add(this.DataGridPeliculas);
-            this.PanelMain.Controls.Add(this.label7);
-            this.PanelMain.Controls.Add(this.BtnBuscarPelicula);
-            this.PanelMain.Controls.Add(this.PanelBuscarPeliculaNombre);
-            this.PanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelMain.Location = new System.Drawing.Point(0, 0);
-            this.PanelMain.Name = "PanelMain";
-            this.PanelMain.Size = new System.Drawing.Size(1280, 720);
-            this.PanelMain.TabIndex = 2;
-            this.PanelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelMain_Paint);
+            this.PanelActualizar.BackColor = System.Drawing.Color.Transparent;
+            this.PanelActualizar.Controls.Add(this.label19);
+            this.PanelActualizar.Controls.Add(this.ChkListGeneros);
+            this.PanelActualizar.Controls.Add(this.BtnPrevisualizarTrailer);
+            this.PanelActualizar.Controls.Add(this.panel5);
+            this.PanelActualizar.Controls.Add(this.label10);
+            this.PanelActualizar.Controls.Add(this.label9);
+            this.PanelActualizar.Controls.Add(this.label12);
+            this.PanelActualizar.Controls.Add(this.PanelTrailer);
+            this.PanelActualizar.Controls.Add(this.label13);
+            this.PanelActualizar.Controls.Add(this.panel10);
+            this.PanelActualizar.Controls.Add(this.BtnPrevisualizar);
+            this.PanelActualizar.Controls.Add(this.label6);
+            this.PanelActualizar.Controls.Add(this.label8);
+            this.PanelActualizar.Controls.Add(this.panel1);
+            this.PanelActualizar.Controls.Add(this.label5);
+            this.PanelActualizar.Controls.Add(this.label4);
+            this.PanelActualizar.Controls.Add(this.label3);
+            this.PanelActualizar.Controls.Add(this.label2);
+            this.PanelActualizar.Controls.Add(this.label1);
+            this.PanelActualizar.Controls.Add(this.BtnActualizar);
+            this.PanelActualizar.Controls.Add(this.PanelDescripcion);
+            this.PanelActualizar.Controls.Add(this.PanelImagen);
+            this.PanelActualizar.Controls.Add(this.PanelDuracion);
+            this.PanelActualizar.Controls.Add(this.PanelDirector);
+            this.PanelActualizar.Controls.Add(this.PanelFecha);
+            this.PanelActualizar.Controls.Add(this.PanelUsuario);
+            this.PanelActualizar.Controls.Add(this.DataGridPeliculas);
+            this.PanelActualizar.Controls.Add(this.label7);
+            this.PanelActualizar.Controls.Add(this.BtnBuscarPelicula);
+            this.PanelActualizar.Controls.Add(this.PanelBuscarPeliculaNombre);
+            this.PanelActualizar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelActualizar.Location = new System.Drawing.Point(0, 0);
+            this.PanelActualizar.Name = "PanelActualizar";
+            this.PanelActualizar.Size = new System.Drawing.Size(1280, 720);
+            this.PanelActualizar.TabIndex = 2;
+            this.PanelActualizar.Tag = "Default";
             // 
             // label19
             // 
@@ -152,24 +149,6 @@
             this.ChkListGeneros.Name = "ChkListGeneros";
             this.ChkListGeneros.Size = new System.Drawing.Size(205, 105);
             this.ChkListGeneros.TabIndex = 94;
-            // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.panel7.Location = new System.Drawing.Point(31, 73);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(3, 580);
-            this.panel7.TabIndex = 89;
-            this.panel7.Tag = "";
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.panel6.Location = new System.Drawing.Point(1231, 73);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(3, 580);
-            this.panel6.TabIndex = 88;
-            this.panel6.Tag = "";
             // 
             // BtnPrevisualizarTrailer
             // 
@@ -643,13 +622,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
-            this.Controls.Add(this.PanelMain);
+            this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.PanelActualizar);
             this.Name = "ControlGestionPeliculasActualizar";
             this.Size = new System.Drawing.Size(1280, 720);
             this.Load += new System.EventHandler(this.ControlGestionPeliculasActualizar_Load);
-            this.PanelMain.ResumeLayout(false);
-            this.PanelMain.PerformLayout();
+            this.PanelActualizar.ResumeLayout(false);
+            this.PanelActualizar.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.panel10.ResumeLayout(false);
@@ -676,7 +655,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel PanelMain;
+        private System.Windows.Forms.Panel PanelActualizar;
         private System.Windows.Forms.Panel PanelDescripcion;
         private System.Windows.Forms.TextBox TxtDescripcion;
         private System.Windows.Forms.Panel PanelImagen;
@@ -718,8 +697,6 @@
         private System.Windows.Forms.TextBox TxtURLTrailer;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button BtnPrevisualizarTrailer;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.CheckedListBox ChkListGeneros;
     }

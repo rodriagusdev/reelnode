@@ -41,8 +41,6 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.TxtURLTrailer = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.BtnPrevisualizar = new System.Windows.Forms.Button();
@@ -83,7 +81,7 @@
             // 
             // PanelPeliculaCreacion
             // 
-            this.PanelPeliculaCreacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
+            this.PanelPeliculaCreacion.BackColor = System.Drawing.Color.Transparent;
             this.PanelPeliculaCreacion.Controls.Add(this.label14);
             this.PanelPeliculaCreacion.Controls.Add(this.ChkListGeneros);
             this.PanelPeliculaCreacion.Controls.Add(this.label13);
@@ -94,8 +92,6 @@
             this.PanelPeliculaCreacion.Controls.Add(this.PanelTrailerSerie);
             this.PanelPeliculaCreacion.Controls.Add(this.panel5);
             this.PanelPeliculaCreacion.Controls.Add(this.label10);
-            this.PanelPeliculaCreacion.Controls.Add(this.panel3);
-            this.PanelPeliculaCreacion.Controls.Add(this.panel2);
             this.PanelPeliculaCreacion.Controls.Add(this.label9);
             this.PanelPeliculaCreacion.Controls.Add(this.label8);
             this.PanelPeliculaCreacion.Controls.Add(this.BtnPrevisualizar);
@@ -119,7 +115,7 @@
             this.PanelPeliculaCreacion.Name = "PanelPeliculaCreacion";
             this.PanelPeliculaCreacion.Size = new System.Drawing.Size(1280, 720);
             this.PanelPeliculaCreacion.TabIndex = 2;
-            this.PanelPeliculaCreacion.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelPeliculaCreacion_Paint);
+            this.PanelPeliculaCreacion.Tag = "Default";
             // 
             // label14
             // 
@@ -255,24 +251,6 @@
             this.label10.Size = new System.Drawing.Size(88, 17);
             this.label10.TabIndex = 52;
             this.label10.Text = "URL del trailer";
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.panel3.Location = new System.Drawing.Point(101, 640);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1081, 2);
-            this.panel3.TabIndex = 46;
-            this.panel3.Tag = "";
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.panel2.Location = new System.Drawing.Point(101, 47);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1081, 2);
-            this.panel2.TabIndex = 46;
-            this.panel2.Tag = "";
             // 
             // label9
             // 
@@ -567,6 +545,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.PanelPeliculaCreacion);
             this.Name = "ControlGestionPeliculasCargar";
             this.Size = new System.Drawing.Size(1280, 720);
@@ -618,8 +597,6 @@
         private System.Windows.Forms.Button BtnPrevisualizar;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.TextBox TxtURLTrailer;
         private System.Windows.Forms.Label label10;
