@@ -101,16 +101,16 @@
             this.DtpDesde = new System.Windows.Forms.DateTimePicker();
             this.DataGridReportes = new System.Windows.Forms.DataGridView();
             this.PanelReportesAvanzados = new System.Windows.Forms.Panel();
+            this.label30 = new System.Windows.Forms.Label();
+            this.TxtDirector = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.TxtPalabrasTitulo = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.DtpHasta = new System.Windows.Forms.DateTimePicker();
             this.ChkFiltroCalif = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label28 = new System.Windows.Forms.Label();
-            this.TxtPalabrasTitulo = new System.Windows.Forms.TextBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.TxtDirector = new System.Windows.Forms.TextBox();
             this.PanelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicAvatar)).BeginInit();
             this.PanelDashboardMain.SuspendLayout();
@@ -239,9 +239,9 @@
             this.PanelDashboardMain.Controls.Add(this.label1);
             this.PanelDashboardMain.Controls.Add(this.flowPanelSeriesMasVistas);
             this.PanelDashboardMain.Controls.Add(this.flowPanelPelisMasVistas);
-            this.PanelDashboardMain.Location = new System.Drawing.Point(1247, 0);
+            this.PanelDashboardMain.Location = new System.Drawing.Point(252, 0);
             this.PanelDashboardMain.Name = "PanelDashboardMain";
-            this.PanelDashboardMain.Size = new System.Drawing.Size(33, 720);
+            this.PanelDashboardMain.Size = new System.Drawing.Size(1028, 720);
             this.PanelDashboardMain.TabIndex = 20;
             this.PanelDashboardMain.Tag = "Default";
             // 
@@ -506,9 +506,9 @@
             this.PanelDashboardMetricasUsuario.Controls.Add(this.FlowPanelMasActivos);
             this.PanelDashboardMetricasUsuario.Controls.Add(this.panel8);
             this.PanelDashboardMetricasUsuario.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PanelDashboardMetricasUsuario.Location = new System.Drawing.Point(1216, 0);
+            this.PanelDashboardMetricasUsuario.Location = new System.Drawing.Point(1222, 0);
             this.PanelDashboardMetricasUsuario.Name = "PanelDashboardMetricasUsuario";
-            this.PanelDashboardMetricasUsuario.Size = new System.Drawing.Size(64, 720);
+            this.PanelDashboardMetricasUsuario.Size = new System.Drawing.Size(58, 720);
             this.PanelDashboardMetricasUsuario.TabIndex = 21;
             this.PanelDashboardMetricasUsuario.Tag = "Default";
             this.PanelDashboardMetricasUsuario.Visible = false;
@@ -934,6 +934,7 @@
             // 
             // DataGridReportes
             // 
+            this.DataGridReportes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DataGridReportes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridReportes.Location = new System.Drawing.Point(44, 333);
             this.DataGridReportes.Name = "DataGridReportes";
@@ -965,12 +966,54 @@
             this.PanelReportesAvanzados.Controls.Add(this.BtnAplicarFiltrosConsultar);
             this.PanelReportesAvanzados.Controls.Add(this.label18);
             this.PanelReportesAvanzados.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PanelReportesAvanzados.Location = new System.Drawing.Point(252, 0);
+            this.PanelReportesAvanzados.Location = new System.Drawing.Point(1127, 0);
             this.PanelReportesAvanzados.Name = "PanelReportesAvanzados";
-            this.PanelReportesAvanzados.Size = new System.Drawing.Size(964, 720);
+            this.PanelReportesAvanzados.Size = new System.Drawing.Size(95, 720);
             this.PanelReportesAvanzados.TabIndex = 22;
             this.PanelReportesAvanzados.Tag = "Default";
             this.PanelReportesAvanzados.Visible = false;
+            // 
+            // label30
+            // 
+            this.label30.BackColor = System.Drawing.Color.Transparent;
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(682, 179);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(168, 21);
+            this.label30.TabIndex = 58;
+            this.label30.Tag = "Titulo";
+            this.label30.Text = "Nombre del director:";
+            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // TxtDirector
+            // 
+            this.TxtDirector.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtDirector.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtDirector.Location = new System.Drawing.Point(685, 203);
+            this.TxtDirector.Name = "TxtDirector";
+            this.TxtDirector.Size = new System.Drawing.Size(165, 22);
+            this.TxtDirector.TabIndex = 57;
+            // 
+            // label29
+            // 
+            this.label29.BackColor = System.Drawing.Color.Transparent;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(682, 116);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(168, 21);
+            this.label29.TabIndex = 56;
+            this.label29.Tag = "Titulo";
+            this.label29.Text = "Palabras en titulo:";
+            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // TxtPalabrasTitulo
+            // 
+            this.TxtPalabrasTitulo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtPalabrasTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtPalabrasTitulo.Location = new System.Drawing.Point(685, 147);
+            this.TxtPalabrasTitulo.Name = "TxtPalabrasTitulo";
+            this.TxtPalabrasTitulo.Size = new System.Drawing.Size(165, 22);
+            this.TxtPalabrasTitulo.TabIndex = 55;
             // 
             // label22
             // 
@@ -1037,48 +1080,6 @@
             this.label28.Tag = "Titulo";
             this.label28.Text = "Desde";
             this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // TxtPalabrasTitulo
-            // 
-            this.TxtPalabrasTitulo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TxtPalabrasTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtPalabrasTitulo.Location = new System.Drawing.Point(685, 147);
-            this.TxtPalabrasTitulo.Name = "TxtPalabrasTitulo";
-            this.TxtPalabrasTitulo.Size = new System.Drawing.Size(165, 22);
-            this.TxtPalabrasTitulo.TabIndex = 55;
-            // 
-            // label29
-            // 
-            this.label29.BackColor = System.Drawing.Color.Transparent;
-            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(682, 116);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(168, 21);
-            this.label29.TabIndex = 56;
-            this.label29.Tag = "Titulo";
-            this.label29.Text = "Palabras en titulo:";
-            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label30
-            // 
-            this.label30.BackColor = System.Drawing.Color.Transparent;
-            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(682, 179);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(168, 21);
-            this.label30.TabIndex = 58;
-            this.label30.Tag = "Titulo";
-            this.label30.Text = "Nombre del director:";
-            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // TxtDirector
-            // 
-            this.TxtDirector.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TxtDirector.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtDirector.Location = new System.Drawing.Point(685, 203);
-            this.TxtDirector.Name = "TxtDirector";
-            this.TxtDirector.Size = new System.Drawing.Size(165, 22);
-            this.TxtDirector.TabIndex = 57;
             // 
             // ControlGestionDashboard
             // 
