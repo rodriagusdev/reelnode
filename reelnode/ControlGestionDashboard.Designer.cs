@@ -155,7 +155,7 @@
             // 
             this.BtnReportesAvanzados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnReportesAvanzados.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnReportesAvanzados.Location = new System.Drawing.Point(41, 523);
+            this.BtnReportesAvanzados.Location = new System.Drawing.Point(41, 522);
             this.BtnReportesAvanzados.Name = "BtnReportesAvanzados";
             this.BtnReportesAvanzados.Size = new System.Drawing.Size(171, 44);
             this.BtnReportesAvanzados.TabIndex = 22;
@@ -167,7 +167,7 @@
             // 
             this.BtnVerMetricasGenerales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnVerMetricasGenerales.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnVerMetricasGenerales.Location = new System.Drawing.Point(41, 341);
+            this.BtnVerMetricasGenerales.Location = new System.Drawing.Point(41, 333);
             this.BtnVerMetricasGenerales.Name = "BtnVerMetricasGenerales";
             this.BtnVerMetricasGenerales.Size = new System.Drawing.Size(171, 44);
             this.BtnVerMetricasGenerales.TabIndex = 21;
@@ -213,7 +213,7 @@
             // 
             this.BtnVerMetricasUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnVerMetricasUsuarios.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnVerMetricasUsuarios.Location = new System.Drawing.Point(41, 432);
+            this.BtnVerMetricasUsuarios.Location = new System.Drawing.Point(41, 427);
             this.BtnVerMetricasUsuarios.Name = "BtnVerMetricasUsuarios";
             this.BtnVerMetricasUsuarios.Size = new System.Drawing.Size(171, 44);
             this.BtnVerMetricasUsuarios.TabIndex = 12;
@@ -842,6 +842,7 @@
             this.BtnBorrarFiltros.TabIndex = 39;
             this.BtnBorrarFiltros.Text = "Borrar filtros";
             this.BtnBorrarFiltros.UseVisualStyleBackColor = true;
+            this.BtnBorrarFiltros.Click += new System.EventHandler(this.BtnBorrarFiltros_Click);
             // 
             // CboGeneros
             // 
@@ -918,10 +919,10 @@
             // DtpDesde
             // 
             this.DtpDesde.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DtpDesde.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DtpDesde.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DtpDesde.Location = new System.Drawing.Point(44, 205);
             this.DtpDesde.Name = "DtpDesde";
-            this.DtpDesde.Size = new System.Drawing.Size(226, 26);
+            this.DtpDesde.Size = new System.Drawing.Size(226, 21);
             this.DtpDesde.TabIndex = 47;
             // 
             // DataGridReportes
@@ -984,7 +985,7 @@
             this.NumUpDuracion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NumUpDuracion.Enabled = false;
             this.NumUpDuracion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NumUpDuracion.Location = new System.Drawing.Point(746, 277);
+            this.NumUpDuracion.Location = new System.Drawing.Point(746, 281);
             this.NumUpDuracion.Maximum = new decimal(new int[] {
             700,
             0,
@@ -1041,7 +1042,7 @@
             // 
             this.TxtDirector.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtDirector.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtDirector.Location = new System.Drawing.Point(549, 286);
+            this.TxtDirector.Location = new System.Drawing.Point(549, 283);
             this.TxtDirector.Name = "TxtDirector";
             this.TxtDirector.Size = new System.Drawing.Size(165, 22);
             this.TxtDirector.TabIndex = 57;
@@ -1062,7 +1063,7 @@
             // 
             this.TxtPalabrasTitulo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtPalabrasTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtPalabrasTitulo.Location = new System.Drawing.Point(549, 207);
+            this.TxtPalabrasTitulo.Location = new System.Drawing.Point(549, 203);
             this.TxtPalabrasTitulo.Name = "TxtPalabrasTitulo";
             this.TxtPalabrasTitulo.Size = new System.Drawing.Size(165, 22);
             this.TxtPalabrasTitulo.TabIndex = 55;
@@ -1082,11 +1083,13 @@
             // DtpHasta
             // 
             this.DtpHasta.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DtpHasta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DtpHasta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DtpHasta.Location = new System.Drawing.Point(291, 204);
+            this.DtpHasta.MaxDate = new System.DateTime(2095, 7, 7, 0, 0, 0, 0);
             this.DtpHasta.Name = "DtpHasta";
-            this.DtpHasta.Size = new System.Drawing.Size(226, 26);
+            this.DtpHasta.Size = new System.Drawing.Size(226, 21);
             this.DtpHasta.TabIndex = 53;
+            this.DtpHasta.Value = new System.DateTime(2025, 10, 23, 0, 0, 0, 0);
             // 
             // ChkFiltroCalif
             // 

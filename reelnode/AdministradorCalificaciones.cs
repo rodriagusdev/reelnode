@@ -20,7 +20,7 @@ namespace Reelnode
             using (MySqlCommand cmd = new MySqlCommand("sp_obtener_calificaciones_x_usuario_pelis", UtilsBD.Conexion.GetConnection()))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("p_id_usuario", UtilsBD.usuarioActual.Id);
+                cmd.Parameters.AddWithValue("p_id_usuario", AdministradorUsuarios.usuarioActual.Id);
 
                 using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -44,7 +44,7 @@ namespace Reelnode
             using (MySqlCommand cmd = new MySqlCommand("sp_obtener_calificaciones_x_usuario_serie", UtilsBD.Conexion.GetConnection()))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("p_id_usuario", UtilsBD.usuarioActual.Id);
+                cmd.Parameters.AddWithValue("p_id_usuario", AdministradorUsuarios.usuarioActual.Id);
 
                 using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -74,7 +74,7 @@ namespace Reelnode
 
                     cmd.Parameters.AddWithValue(tipo == "Pelicula" ? "p_id_pelicula" : "p_id_serie", idMedia);
                     cmd.Parameters.AddWithValue("p_calificacion", puntuacion);
-                    cmd.Parameters.AddWithValue("p_id_usuario", UtilsBD.usuarioActual.Id);
+                    cmd.Parameters.AddWithValue("p_id_usuario", AdministradorUsuarios.usuarioActual.Id);
 
                     cmd.ExecuteNonQuery();
 

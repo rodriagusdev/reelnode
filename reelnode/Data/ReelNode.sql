@@ -1277,6 +1277,77 @@ end //
 
 DELIMITER ;
 
+     /*
+     
+     Procedimientos Almacenados normales tienen una limitación: 
+     no pueden cambiar su estructura SQL en tiempo de ejecución.
+     Con lo @sql puedo lograr crear una consulta dinámica que
+     voy a utilizar en los procesos de 
+     sp_reporte_avanzado_peliculas
+     sp_reporte_avanzado_series
+     
+     */
+
+DELIMITER //
+CREATE PROCEDURE sp_reporte_avanzado_peliculas(
+    IN p_nombre VARCHAR(255),
+    IN p_genero_nombre VARCHAR(50),
+    IN p_director VARCHAR(255),
+    IN p_network_nombre VARCHAR(255),
+    IN p_fecha_desde DATE,
+    IN p_fecha_hasta DATE
+)
+BEGIN
+    
+    SET @sql = '
+        SELECT DISTINCT
+            p.nombre,
+            p.fecha_estreno,
+            p.descripcion,
+            p.director,
+            p.duracion,
+            n.nombre,
+            g.nombre
+        FROM peliculas p
+        LEFT JOIN network n ON p.id_network = n.id_network
+        LEFT JOIN genero_x_pelicula gxp ON p.id_pelicula = gxp.id_pelicula
+        LEFT JOIN genero g ON gxp.id_genero = g.id_genero
+        WHERE 1=1';
+
+    IF p_network_nombre IS NOT NULL AND p_network_nombre != '' THEN
+        SET @sql = CONCAT(@sql, ' AND n.nombre = ''', p_network_nombre, '''');
+    END IF;
+
+    -- Filtro de Título
+    IF p_nombre IS NOT NULL AND p_nombre != '' THEN
+        SET @sql = CONCAT(@sql, ' AND p.nombre LIKE ''%', p_nombre, '%'''); 
+    END IF;
+    
+    -- Filtro de Director
+    IF p_director IS NOT NULL AND p_director != '' THEN
+        SET @sql = CONCAT(@sql, ' AND p.director LIKE ''%', p_director, '%'''); 
+    END IF;
+
+    -- Filtro de Género
+    IF p_genero_nombre IS NOT NULL AND p_genero_nombre != '' THEN
+        SET @sql = CONCAT(@sql, ' AND g.nombre = ''', p_genero_nombre, '''');
+    END IF;
+
+    -- Filtro de Fechas (CORREGIDO)
+    IF p_fecha_desde IS NOT NULL AND p_fecha_hasta IS NOT NULL AND p_fecha_desde <= p_fecha_hasta THEN
+        -- Añadimos las comillas simples (''') alrededor de las variables de fecha
+        SET @sql = CONCAT(@sql, ' AND p.fecha_estreno BETWEEN ''', p_fecha_desde, ''' AND ''', p_fecha_hasta, '''');
+    END IF;
+
+    SET @sql = CONCAT(@sql, ' ORDER BY p.fecha_estreno DESC');
+
+    PREPARE query_con_filtros FROM @sql;
+    EXECUTE query_con_filtros;
+    DEALLOCATE PREPARE query_con_filtros;
+
+END //
+DELIMITER ;
+
 DELIMITER //
 CREATE PROCEDURE sp_reporte_avanzado_series(
 	IN p_nombre VARCHAR(255),
@@ -1287,14 +1358,10 @@ CREATE PROCEDURE sp_reporte_avanzado_series(
     IN p_fecha_hasta DATE
 )
 BEGIN
-     /*Procedimientos Almacenados normales tienen una limitación: 
-     no pueden cambiar su estructura SQL en tiempo de ejecución.
-     Con lo siguiente puedo lograr crear una consulta dinámica.
-     */
-     
+	
     SET @sql = '
-        SELECT DISTINCT
-            s.nombre as Titulo,
+        SELECT
+            DISTINCT s.nombre as Titulo,
             s.fecha_estreno as Fecha_Estreno,
             s.fecha_fin as Fecha_Fin,
             s.descripcion as Descripcion,
@@ -1303,7 +1370,7 @@ BEGIN
             n.nombre as Network,
             g.nombre as Genero
         FROM serie s
-        LEFT JOIN network n ON p.id_network = n.id_network
+        LEFT JOIN network n ON s.id_network = n.id_network
         LEFT JOIN genero_x_serie gxs ON s.id_serie = gxs.id_serie
         LEFT JOIN genero g ON gxs.id_genero = g.id_genero
         WHERE 1=1';
@@ -1317,13 +1384,13 @@ BEGIN
 
     -- Filtro de Título
     IF p_nombre IS NOT NULL AND p_nombre != '' THEN
-        SET @sql = CONCAT(@sql, ' AND s.nombre LIKE CONCAT(''%'', s_nombre, ''%'')');
+        SET @sql = CONCAT(@sql, ' AND s.nombre LIKE ''%', p_nombre, '%'''); 
 	-- Si el nombre de la peli es Avatar el CONCAT leera esto como '%Avatar%'
     END IF;
     
     -- Filtro de Director
     IF p_director IS NOT NULL AND p_director != '' THEN
-        SET @sql = CONCAT(@sql, ' AND s.director LIKE CONCAT(''%'', s_director, ''%'')');
+        SET @sql = CONCAT(@sql, ' AND s.director LIKE ''%', p_director, '%'''); 
     END IF;
 
     -- Filtro de Género

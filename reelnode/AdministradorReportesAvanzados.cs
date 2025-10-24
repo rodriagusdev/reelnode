@@ -11,7 +11,7 @@ namespace Reelnode
 {
     public static class AdministradorReportesAvanzados
     {
-        public static void ObtenerReporteAvanzadoPelicula(
+        public static void ObtenerReporteAvanzadoPeliculas(
             string nombre,
             string genero,
             string director,

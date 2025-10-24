@@ -95,7 +95,7 @@ namespace Reelnode
 
         public static void CargarPermisosIniciales(int idUsuario)
         {
-            permisosUsuarioActual = ObtenerPermisosUsuario(UtilsBD.usuarioActual.Id);
+            permisosUsuarioActual = ObtenerPermisosUsuario(AdministradorUsuarios.usuarioActual.Id);
         }
     }
 }

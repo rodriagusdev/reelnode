@@ -36,15 +36,15 @@ namespace Reelnode
         private void FormMain_Load(object sender, EventArgs e)
         {
             UtilsBD.Conexion.AbrirBD();
-            UtilsBD.CargarUsuario();
+            AdministradorUsuarios.CargarUsuario();
 
             FormLogin login = new FormLogin();
 
             login.ShowDialog();
 
-            ToolStpMenuAdmin.Visible = UtilsBD.usuarioActual.RolUsuario == "Admin" ? true : false;
+            ToolStpMenuAdmin.Visible = AdministradorUsuarios.usuarioActual.RolUsuario == "Admin" ? true : false;
 
-            UtilsBD.CargarUsuario();
+            AdministradorUsuarios.CargarUsuario();
 
             /* !--- CARGA DE DATOS ---! */
 

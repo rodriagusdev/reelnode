@@ -13,7 +13,6 @@ namespace Reelnode
         private PanelGradiente PanelMain;
         bool usarCalificacionMinima = false;
         bool usarDuracionMinima = false;
-        string URLUsuarioAvatarActual = null;
 
         public ControlGestionDashboard()
         {
@@ -87,12 +86,12 @@ namespace Reelnode
 
         private void CargarDatosUsuario()
         {
-            if(UtilsBD.usuarioActual.Avatar != null) 
+            if(AdministradorUsuarios.usuarioActual.Avatar != null) 
             {
-                PicAvatar.Image = Utils.DescargarImagenDesdeURL(UtilsBD.usuarioActual.Avatar);
+                PicAvatar.Image = Utils.DescargarImagenDesdeURL(AdministradorUsuarios.usuarioActual.Avatar);
             }
 
-            LblUsuario.Text = UtilsBD.usuarioActual.NombreUsuario;
+            LblUsuario.Text = AdministradorUsuarios.usuarioActual.NombreUsuario;
         }
 
         /* !--- VISIBILIDAD DE PANELES ---! */
@@ -144,84 +143,53 @@ namespace Reelnode
 
         private void BtnAplicarFiltrosConsultar_Click(object sender, EventArgs e)
         {
-            AdministradorReportesAvanzados.ObtenerReporteAvanzadoSeries(
-                TxtPalabrasTitulo.Text,
-                CboGeneros.SelectedItem?.ToString(),
-                TxtDirector.Text,
-                CboNetwork.SelectedItem?.ToString(),
-                DtpDesde.Value,
-                DtpHasta.Value,
-                DataGridReportes
-            );
-
-            /*string query = "";
-
-            // Determinar tabla segun tipo de reporte en combobox
-            // WHERE 1=1 permite agregar condiciones con AND sin que tire error
-            if (CboTipoReporte.SelectedItem?.ToString() == "Peliculas")
+            switch (CboTipoReporte.Text)
             {
-                query = @"
-                SELECT p.nombre, p.fecha_estreno, p.descripcion, p.director, p.duracion
-                FROM peliculas p
-                WHERE 1=1  
-                ";
+                case "Películas":
+                    AdministradorReportesAvanzados.ObtenerReporteAvanzadoPeliculas(
+                        TxtPalabrasTitulo.Text,
+                        CboGeneros.SelectedItem?.ToString(),
+                        TxtDirector.Text,
+                        CboNetwork.SelectedItem?.ToString(),
+                        DtpDesde.Value,
+                        DtpHasta.Value,
+                        DataGridReportes
+                    );
+                    break;
+                case "Series":
+                    AdministradorReportesAvanzados.ObtenerReporteAvanzadoSeries(
+                        TxtPalabrasTitulo.Text,
+                        CboGeneros.SelectedItem?.ToString(),
+                        TxtDirector.Text,
+                        CboNetwork.SelectedItem?.ToString(),
+                        DtpDesde.Value,
+                        DtpHasta.Value,
+                        DataGridReportes
+                    );
+                    break;
+                default:
+                    MessageBox.Show("Seleccioná un tipo de reporte válido (Películas o Series).");
+                    break;
             }
-            else if (CboTipoReporte.SelectedItem?.ToString() == "Series")
-            {
-                query = @"
-                SELECT s.titulo, COUNT(v.id_visualizacion) AS vistas
-                FROM serie s
-                INNER JOIN series_vistas v ON s.id_serie = v.id_serie
-                WHERE 1=1
-                ";
-            }
-            else
-            {
-                MessageBox.Show("Seleccioná un tipo de reporte válido (Películas o Series).");
-                return;
-            }
-
-            // Filtro de género (si se selecciona uno)
-            if (CboGeneros.SelectedIndex > 0)
-            {
-                // query += $" AND p.genero = '{CboGeneros.SelectedItem}'";
-            }
-
-            // Filtro de fechas 
-            if (DtpDesde.Value <= DtpHasta.Value)
-            {
-                query += $" AND p.fecha_estreno BETWEEN '{DtpDesde.Value:yyyy-MM-dd}' AND '{DtpHasta.Value:yyyy-MM-dd}'";
-            }
-            else
-            {
-                MessageBox.Show("La fecha 'Desde' no puede ser mayor que 'Hasta'.");
-                return;
-            }
-
-            // Agrupación y orden
-            query += " GROUP BY p.nombre, p.fecha_estreno, p.descripcion, p.director, p.duracion ORDER BY p.fecha_estreno DESC;";
-
-            MySqlConnection conn = UtilsBD.Conexion.GetConnection();
-
-            // 2️⃣ Ejecutar consulta y llenar DataTable
-            // Usamos la conexión obtenida, que debe estar abierta.
-            MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-
-            // 3️⃣ Asignar el DataTable al DataGridView
-            DataGridReportes.DataSource = dt;
-
-            // 4️⃣ Limpieza de recursos
-            // *Es crucial:* Cierra el DataAdapter para liberar recursos,
-            // pero NO cierres la conexión (conn.Close() o UtilsBD.Conexion.CerrarBD()),
-            // ya que es la conexión compartida de toda la aplicación.
-            da.Dispose();*/
         }
 
         private void ControlGestionDashboard_VisibleChanged(object sender, EventArgs e)
         {
             CargarDatosUsuario();
+        }
+
+        private void BtnBorrarFiltros_Click(object sender, EventArgs e)
+        {
+            TxtDirector.Text = "";
+            TxtPalabrasTitulo.Text = "";
+            CboGeneros.SelectedIndex = -1;
+            CboNetwork.SelectedIndex = -1;
+            DtpDesde.Value = DateTime.Now;
+            DtpHasta.Value = DateTime.Now;
+            NumUpCalificacionMinima.Value = 1;
+            NumUpDuracion.Value = 1;
+            ChkDuracion.Checked = false;
+            ChkFiltroCalif.Checked = false;
         }
     }
 }

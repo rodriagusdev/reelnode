@@ -41,9 +41,9 @@ namespace Reelnode
             AdministradorCalificaciones.OnCalificacionActualizada += MostrarCalificaciones;
             /* !--- CARGAR DATOS DE USUARIO ---! */
 
-            PicAvatar.Image = Utils.DescargarImagenDesdeURL(UtilsBD.usuarioActual.Avatar);
-            LblEmail.Text = UtilsBD.usuarioActual.Email;
-            LblUsuario.Text = UtilsBD.usuarioActual.NombreUsuario;
+            PicAvatar.Image = Utils.DescargarImagenDesdeURL(AdministradorUsuarios.usuarioActual.Avatar);
+            LblEmail.Text = AdministradorUsuarios.usuarioActual.Email;
+            LblUsuario.Text = AdministradorUsuarios.usuarioActual.NombreUsuario;
 
             AdministradorCalificaciones.CargarCalificacionesUsuarioPeliculas();
 
@@ -75,7 +75,7 @@ namespace Reelnode
             BtnConfirmarAvatar.Visible = false;
             PanelURL.Visible = false;
 
-            UtilsBD.CambiarAvatar(UtilsBD.usuarioActual.Id, TxtURLImagen.Text, PicAvatar);
+            AdministradorUsuarios.CambiarAvatar(AdministradorUsuarios.usuarioActual.Id, TxtURLImagen.Text, PicAvatar);
         }
 
         private void BtnAvatar_Click_1(object sender, EventArgs e)

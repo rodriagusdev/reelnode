@@ -78,7 +78,7 @@ namespace Reelnode
                  File.WriteAllText(Path.Combine(Application.StartupPath, "personas.json"), toJSON);
                 */
 
-                UtilsBD.RegistrarUsuarioBD(nuevo);
+                AdministradorUsuarios.RegistrarUsuarioBD(nuevo);
 
                 MessageBox.Show("Usuario registrado con éxito", "Registro Exitoso", 
                     MessageBoxButtons.OK, 

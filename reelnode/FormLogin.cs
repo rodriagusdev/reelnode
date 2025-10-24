@@ -59,16 +59,16 @@ namespace Reelnode
         {
             bool usuarioEncontrado = false;
 
-            foreach(Usuario u in UtilsBD.usuariosRegistrados)
+            foreach(Usuario u in AdministradorUsuarios.usuariosRegistrados)
             {
                 if (TxtUsuario.Text == u.NombreUsuario && TxtPassword.Text == u.Password)
                 {
-                    UtilsBD.usuarioActual.Id = u.Id;
-                    UtilsBD.usuarioActual.NombreUsuario = u.NombreUsuario;
-                    UtilsBD.usuarioActual.Password = u.Password;
-                    UtilsBD.usuarioActual.RolUsuario = u.RolUsuario;
-                    UtilsBD.usuarioActual.Email = u.Email;
-                    UtilsBD.usuarioActual.Avatar = u.Avatar;
+                    AdministradorUsuarios.usuarioActual.Id = u.Id;
+                    AdministradorUsuarios.usuarioActual.NombreUsuario = u.NombreUsuario;
+                    AdministradorUsuarios.usuarioActual.Password = u.Password;
+                    AdministradorUsuarios.usuarioActual.RolUsuario = u.RolUsuario;
+                    AdministradorUsuarios.usuarioActual.Email = u.Email;
+                    AdministradorUsuarios.usuarioActual.Avatar = u.Avatar;
 
                     AdministradorPermisos.CargarPermisosIniciales(u.Id);
 

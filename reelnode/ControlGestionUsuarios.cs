@@ -35,7 +35,7 @@ namespace Reelnode
         private void ControlGestionUsuarios_Load(object sender, EventArgs e)
         {
             DataGridUsuarios.DataSource = null;
-            DataGridUsuarios.DataSource = UtilsBD.usuariosRegistrados;
+            DataGridUsuarios.DataSource = AdministradorUsuarios.usuariosRegistrados;
             // DataGridUsuarios.Columns["Avatar"].Visible = false;
         }
 
@@ -51,10 +51,10 @@ namespace Reelnode
 
             if (resultado == DialogResult.Yes)
             {
-                UtilsBD.ModificarUsuarioBD(DataGridUsuarios);
-                UtilsBD.CargarUsuario();
+                AdministradorUsuarios.ModificarUsuarioBD(DataGridUsuarios);
+                AdministradorUsuarios.CargarUsuario();
                 DataGridUsuarios.DataSource = null;
-                DataGridUsuarios.DataSource = UtilsBD.usuariosRegistrados;
+                DataGridUsuarios.DataSource = AdministradorUsuarios.usuariosRegistrados;
 
                 PanelCambiarRol.Enabled = false;
             }

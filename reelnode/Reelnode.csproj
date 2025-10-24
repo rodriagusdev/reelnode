@@ -127,6 +127,7 @@
     <Compile Include="AdministradorJSON.cs" />
     <Compile Include="AdministradorPermisos.cs" />
     <Compile Include="AdministradorReportesAvanzados.cs" />
+    <Compile Include="AdministradorUsuarios.cs" />
     <Compile Include="Comentario.cs" />
     <Compile Include="ComentarioHelper.cs" />
     <Compile Include="ControlComentarios.cs">
