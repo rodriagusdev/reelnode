@@ -27,7 +27,7 @@ namespace Reelnode
 
         private void ControlGestionPeliculasListarPeliculas_Load(object sender, EventArgs e)
         {
-            Utils.ActualizarListaGrid(DataGridPeliculas, UtilsBD.peliculasCargadas, "Id", "Tipo");
+            Utils.ActualizarListaGrid(DataGridPeliculas, AdministradorPeliculas.peliculasCargadas, "Id", "Tipo");
         }
 
         private void BtnExportarJSON_Click(object sender, EventArgs e)
@@ -40,7 +40,7 @@ namespace Reelnode
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                AdministradorJSON.ExportarPeliculasJSON(UtilsBD.peliculasCargadas, saveFileDialog.FileName);
+                AdministradorJSON.ExportarPeliculasJSON(AdministradorPeliculas.peliculasCargadas, saveFileDialog.FileName);
             }
         }
     }

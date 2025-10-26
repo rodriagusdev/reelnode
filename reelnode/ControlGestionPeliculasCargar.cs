@@ -20,31 +20,44 @@ namespace Reelnode
             this.Controls.Add(PanelMain);         
         }
 
+        private void ControlGestionPeliculasCargar_Load(object sender, EventArgs e)
+        {
+            CreadorUI.CargarNetwork(CboNetwork);
+
+            CreadorUI.CargarGeneros(ChkListGeneros);
+        }
+
         private void BtnCargar_Click(object sender, EventArgs e)
         {
             /* !--- INICIO VALIDACIONES --- ! */
             if (PicPelicula.Image == null)
             {
-                MessageBox.Show("Imagen invalida.", "Error al cargar serie", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Imagen invalida.", "Error al cargar película", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (trailerFinalURL == null)
             {
-                MessageBox.Show("Trailer invalido.", "Error al cargar serie", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Trailer invalido.", "Error al cargar película", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (TxtNombre.Text == "" || TxtNombre.Text == null)
             {
-                MessageBox.Show("La pelicula no tiene titulo.", "Error al cargar serie", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("La pelicula no tiene titulo.", "Error al cargar película", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (TxtDirector.Text == "" || TxtDirector.Text == null)
+            {
+                MessageBox.Show("No se especificó nombre del director.", "Error al cargar película", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             int duracion;
             if (!int.TryParse(TxtDuracion.Text, out duracion))
             {
-                MessageBox.Show("La duracion no es un numero entero.", "Error al cargar serie", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("La duracion no es un numero entero.", "Error al cargar película", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -59,21 +72,24 @@ namespace Reelnode
                 Descripcion = TxtDescripcion.Text,
                 ImagenURL = TxtURLImagen.Text,
                 TrailerURL = TxtURLTrailer.Text,
-                Network = Utils.ObtenerNetworkId(CboNetwork.Text),
-                Generos = Utils.ObtenerIdGeneros(ChkListGeneros) 
+                Network = UtilsBD.ObtenerNetworkId(CboNetwork.Text),
+                Generos = UtilsBD.ObtenerIdGeneros(ChkListGeneros) 
             };
 
-            UtilsBD.InsertarPeliculaBD(nuevaPelicula);
+            bool operacionExitosa = AdministradorPeliculas.InsertarPeliculaBD(nuevaPelicula);
 
-            LimpiarCampos();
+            if (operacionExitosa) 
+            {
+                trailerFinalURL = null;
+                Utils.LimpiarCampos(this);
+            }
+            
         }
 
         /* !--- PREVISUALIZACION DE POSTER Y TRAILER ---! */
 
-        /* 
-            SOBRE LA CARGA DE IMAGENES Y TRAILERS:
-            Mi eleccion es la carga a traves de URLs para no sobrecargar la base de datos.     
-        */
+        // SOBRE LA CARGA DE IMAGENES Y TRAILERS:
+        // La eleccion es la carga a traves de URLs para no sobrecargar la base de datos.   
 
         /* 
          * Explicacion sobre funcion asincrona:
@@ -97,30 +113,5 @@ namespace Reelnode
         }
 
         /* !--- FIN DE PREVISUALIZACION DE POSTER Y TRAILER --- ! */
-
-        private void LimpiarCampos()
-        {
-            PicPelicula.Image = null;
-            TxtURLImagen.Text = "";
-            TxtNombre.Text = "";
-            TxtDirector.Text = "";
-            TxtDuracion.Text = "";
-            DtpFechaEstreno.Value = DateTime.Now;
-            TxtDescripcion.Text = "";
-            TxtURLTrailer.Text = "";
-            PanelTrailerSerie.Controls.Clear();
-            CboNetwork.SelectedIndex = -1;
-            for (int i = 0; i < ChkListGeneros.Items.Count; i++)
-            {
-                ChkListGeneros.SetItemChecked(i, false);
-            }
-            trailerFinalURL = null;
-        }
-        private void ControlGestionPeliculasCargar_Load(object sender, EventArgs e)
-        {
-           Utils.CargarNetwork(CboNetwork);
-
-           Utils.CargarGeneros(ChkListGeneros);
-        }
     }
 }

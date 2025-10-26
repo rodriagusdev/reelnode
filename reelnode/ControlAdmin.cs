@@ -1,14 +1,4 @@
-﻿using iTextSharp.xmp.impl;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
 
 namespace Reelnode
@@ -29,8 +19,8 @@ namespace Reelnode
         private ControlGestionDashboard controlGestionDashboard;
 
         /* !--- FIN DE CREACION DE USER CONTROLS ---! */
-
-        // Evento para volver al home
+         
+        // Evento para volver al home REVEER
         public event EventHandler HomeClicked;
 
         /* REVEER SU USO
@@ -65,7 +55,7 @@ namespace Reelnode
             controlGestionDashboard.Visible = true;
         }
 
-        /* !--- Eventos de los ToolStripMenuItems ---! */
+        /* !--- Eventos de las opciones de menu ---! */
         private void ToolStpSubMenuCargarPeliculas_Click(object sender, EventArgs e)
         {
             Utils.ShowControl(controlCargarPelicula, PanelAdmin);
@@ -86,22 +76,22 @@ namespace Reelnode
             Utils.ShowControl(controlActualizarPeliculas, PanelAdmin);
         }
 
-        private void cargarSerieToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void ToolStpMenuCargarSerie_Click(object sender, EventArgs e)
         {
             Utils.ShowControl(controlSeriesCargar, PanelAdmin);
         }
 
-        private void actualizarSerieToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Utils.ShowControl(controlSeriesActualizar, PanelAdmin);
-        }
-
-        private void listarSeriesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ToolStpMenuListarSerie_Click(object sender, EventArgs e)
         {
             Utils.ShowControl(controlGestionSeriesListarSeries, PanelAdmin);
         }
 
-        private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ToolStpMenuActualizarSerie_Click(object sender, EventArgs e)
+        {
+            Utils.ShowControl(controlSeriesActualizar, PanelAdmin);
+        }
+
+        private void ToolStpMenuDashboard_Click(object sender, EventArgs e)
         {
             Utils.ShowControl(controlGestionDashboard, PanelAdmin);
         }

@@ -21,49 +21,17 @@ namespace Reelnode
         public FormMain()
         {
             InitializeComponent();
-
-            // CREACION DEL PANEL PRINCIPAL CON GRADIENTE
-            PanelMain = new PanelGradiente
-            {
-                Dock = DockStyle.Fill,
-            };
+            PanelMain = new PanelGradiente { Dock = DockStyle.Fill };
 
             PanelMain.Controls.Add(FlowPanelPeliculas);
             PanelMain.Controls.Add(FlowPanelSeries);
             Panel.Controls.Add(PanelMain);
         }
 
-        private void FormMain_Load(object sender, EventArgs e)
-        {
-            UtilsBD.Conexion.AbrirBD();
-            AdministradorUsuarios.CargarUsuario();
-
-            FormLogin login = new FormLogin();
-
-            login.ShowDialog();
-
-            ToolStpMenuAdmin.Visible = AdministradorUsuarios.usuarioActual.RolUsuario == "Admin" ? true : false;
-
-            AdministradorUsuarios.CargarUsuario();
-
-            /* !--- CARGA DE DATOS ---! */
-
-            UtilsBD.CargarSeries();
-            UtilsBD.CargarPeliculas();
-            UtilsBD.CargarSeries();
-            UtilsBD.CargarNetwork();
-            UtilsBD.CargarGeneros();
-
-            /* !--- FIN CARGADO DE DATOS ---! */
-
-            ConfiguracionAPP();
-
-            // APLICACION DE TEMA -> F12 para abrir la configuracion de tema
-            AdministradorTema.AplicarTema(this);
-        }
-
         public void ConfiguracionAPP()
         {
+            // UTILIZAR ESTA FUNCION EN EL LOAD
+
             /* !--- ESTABLECIMIENTO Y CONFIGURACION DE USER CONTROLS ---! */
 
             controlAdmin = new ControlAdmin();
@@ -71,10 +39,6 @@ namespace Reelnode
 
             controlCuentaUsuario = new ControlCuentaUsuario();
             controlCuentaUsuario.Visible = false;
-            // Asigno las mismas funciones del main para abrir peliculas y series a las acciones del control de cuenta de usuario
-            // Permite al usuario abrir una serie desde su cuenta y no solo desde el Home
-            controlCuentaUsuario.AbrirPelicula = AbrirPestanaPelicula;
-            controlCuentaUsuario.AbrirSerie = AbrirPestanaSerie;
 
             controlVisualizacionSerie = new ControlVisualizacionSerie();
             controlVisualizacionSerie.Visible = false;
@@ -84,6 +48,16 @@ namespace Reelnode
 
             /* !--- CONFIGURACION DE USER CONTROLS FINALIZADA ---! */
 
+            /* INICIO ASIGNACION DE FUNCIONES */
+
+            // Asigno las mismas funciones del main para abrir peliculas y series
+            // a las acciones del control de cuenta de usuario
+            // Permite al usuario abrir una serie desde su cuenta y no solo desde el Home
+
+            controlCuentaUsuario.AbrirPelicula = AbrirPestanaPelicula;
+            controlCuentaUsuario.AbrirSerie = AbrirPestanaSerie;
+
+            /* FIN ASIGNACION DE FUNCIONES */
 
             /* !--- CONFIGURACION DE UI PRINCIPAL ---! */
 
@@ -95,40 +69,111 @@ namespace Reelnode
             Panel.BackColor = Color.Transparent;
 
             // Relleno los flow panels de la UI principal con las peliculas y series cargadas en la base de datos
-            Utils.RellenarFlowPanelTest(FlowPanelPeliculas, UtilsBD.peliculasCargadas, AbrirPestanaPelicula);
-            Utils.RellenarFlowPanelTest(FlowPanelSeries, UtilsBD.seriesCargadas, AbrirPestanaSerie);
+            CreadorUI.MostrarGaleriaMedia(
+                FlowPanelPeliculas,
+                AdministradorPeliculas.CargarPeliculasPreview(),
+                AbrirPestanaPelicula
+            );
+            CreadorUI.MostrarGaleriaMedia(
+                FlowPanelSeries,
+                AdministradorSeries.CargarSeriesPreview(),
+                AbrirPestanaSerie
+            );
+
+            /* !--- CARGA DE PERMISOS ---! */
+
+            // Aca solo elijo si mostrar o no el menu de Administracion, disponible
+            // solo para Superadmin y admins.
+            AdministradorPermisos.CargarPermisosActuales(AdministradorUsuarios.usuarioActual.Id);
+
+            ToolStpMenuAdmin.Visible = AdministradorPermisos.permisosUsuarioActual.Contains(
+                EnumPermisos.administrar_media.ToString()
+            )
+                ? true
+                : false;
+
+            /* !--- FIN CARGA DE PERMISOS ---! */
 
             /* !--- FIN CONFIGURACION DE UI PRINCIPAL ---! */
         }
 
-        public void AbrirPestanaSerie(int id)
+        private void FormMain_Load(object sender, EventArgs e)
         {
-            Utils.peliculaSeleccionada = null;
-            Utils.serieSeleccionada = UtilsBD.seriesCargadas[id - 1];
+            /* !--- LOGIN ---! */
 
-            controlVisualizacionSerie.CargarSerie(Utils.serieSeleccionada);
-            UtilsBD.RegistrarVisualizacion(Utils.serieSeleccionada.Id, "Serie");
+            UtilsBD.Conexion.AbrirBD();
+
+            // Necesario para poder usar los usuarios en el login.
+            AdministradorUsuarios.CargarUsuarios();
+
+            FormLogin login = new FormLogin();
+
+            login.ShowDialog();
+
+            /* !--- FIN LOGIN ---! */
+
+            /* !--- CARGA DE DATOS ---! */
+
+            // Cargo devuelta los usuarios si se registro uno nuevo.
+            AdministradorUsuarios.CargarUsuarios();
+            AdministradorPeliculas.CargarPeliculas();
+            AdministradorSeries.CargarSeries();
+            UtilsBD.CargarNetworks();
+            UtilsBD.CargarGeneros();
+
+            /* !--- FIN CARGADO DE DATOS ---! */
+
+            ConfiguracionAPP();
+
+            // APLICACION DE TEMA -> F12 para abrir la configuracion de tema
+            AdministradorTema.AplicarTema(this);
+        }
+
+        /* !--- EVENTOS DE CLICK SOBRE CONTENIDO AUDIOVISUAL ---! */
+        public void AbrirPestanaSerie(int idAudiovisualClick)
+        {
+            AdministradorPeliculas.peliculaSeleccionada = null;
+
+            AdministradorSeries.serieSeleccionada = AdministradorSeries.seriesCargadas[
+                idAudiovisualClick - 1
+            ];
+
+            controlVisualizacionSerie.CargarSerie(AdministradorSeries.serieSeleccionada);
+            AdministradorVisualizaciones.RegistrarVisualizacion(
+                AdministradorSeries.serieSeleccionada.Id,
+                "Serie"
+            );
 
             Utils.ShowControl(controlVisualizacionSerie, Panel);
         }
 
-        public void AbrirPestanaPelicula(int id)
+        public void AbrirPestanaPelicula(int idAudiovisualClick)
         {
-            Utils.serieSeleccionada = null;
-            Utils.peliculaSeleccionada = UtilsBD.peliculasCargadas[id - 1];
+            AdministradorSeries.serieSeleccionada = null;
 
-            controlVisualizacionPeliculas.CargarPelicula(Utils.peliculaSeleccionada);
-            UtilsBD.RegistrarVisualizacion(Utils.peliculaSeleccionada.Id, "Pelicula");
+            AdministradorPeliculas.peliculaSeleccionada = AdministradorPeliculas.peliculasCargadas[
+                idAudiovisualClick - 1
+            ];
+
+            controlVisualizacionPeliculas.CargarPelicula(
+                AdministradorPeliculas.peliculaSeleccionada
+            );
+            AdministradorVisualizaciones.RegistrarVisualizacion(
+                AdministradorPeliculas.peliculaSeleccionada.Id,
+                "Pelicula"
+            );
 
             Utils.ShowControl(controlVisualizacionPeliculas, Panel);
         }
 
+        /* !--- FIN DE EVENTOS DE CLICK SOBRE CONTENIDO AUDIOVISUAL ---! */
 
         /* !--- EVENTOS DE BOTONES DEL MENU ---! */
         private void ToolStpMenuAdmin_Click_1(object sender, EventArgs e)
         {
             Utils.ShowControl(controlAdmin, Panel);
         }
+
         private void ToolStpMenuCuenta_Click(object sender, EventArgs e)
         {
             Utils.ShowControl(controlCuentaUsuario, Panel);

@@ -32,6 +32,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.DataGridSeries = new System.Windows.Forms.DataGridView();
+            this.BtnExportarJSON = new System.Windows.Forms.Button();
             this.PanelListar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridSeries)).BeginInit();
             this.SuspendLayout();
@@ -39,6 +40,7 @@
             // PanelListar
             // 
             this.PanelListar.BackColor = System.Drawing.Color.Transparent;
+            this.PanelListar.Controls.Add(this.BtnExportarJSON);
             this.PanelListar.Controls.Add(this.panel1);
             this.PanelListar.Controls.Add(this.panel3);
             this.PanelListar.Controls.Add(this.DataGridSeries);
@@ -74,14 +76,28 @@
             this.DataGridSeries.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DataGridSeries.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(27)))), ((int)(((byte)(43)))));
             this.DataGridSeries.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridSeries.Location = new System.Drawing.Point(231, 150);
+            this.DataGridSeries.Location = new System.Drawing.Point(232, 150);
             this.DataGridSeries.Name = "DataGridSeries";
             this.DataGridSeries.ReadOnly = true;
             this.DataGridSeries.RowHeadersVisible = false;
             this.DataGridSeries.RowHeadersWidth = 51;
             this.DataGridSeries.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridSeries.Size = new System.Drawing.Size(791, 316);
+            this.DataGridSeries.Size = new System.Drawing.Size(837, 316);
             this.DataGridSeries.TabIndex = 2;
+            // 
+            // BtnExportarJSON
+            // 
+            this.BtnExportarJSON.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(184)))), ((int)(((byte)(193)))));
+            this.BtnExportarJSON.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnExportarJSON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnExportarJSON.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnExportarJSON.ForeColor = System.Drawing.Color.Black;
+            this.BtnExportarJSON.Location = new System.Drawing.Point(232, 510);
+            this.BtnExportarJSON.Name = "BtnExportarJSON";
+            this.BtnExportarJSON.Size = new System.Drawing.Size(221, 35);
+            this.BtnExportarJSON.TabIndex = 1;
+            this.BtnExportarJSON.Text = "Exportar JSON";
+            this.BtnExportarJSON.UseVisualStyleBackColor = false;
             // 
             // ControlGestionSeriesListarSeries
             // 
@@ -105,5 +121,6 @@
         private System.Windows.Forms.DataGridView DataGridSeries;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button BtnExportarJSON;
     }
 }

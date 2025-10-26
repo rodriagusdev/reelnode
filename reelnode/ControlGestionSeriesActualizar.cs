@@ -27,15 +27,15 @@ namespace Reelnode
         }
         private void ControlGestionSeriesActualizar_Load(object sender, EventArgs e)
         {
-            Utils.CargarNetwork(CboNetwork);
-            Utils.CargarGeneros(ChkListGeneros);
+            CreadorUI.CargarNetwork(CboNetwork);
+            CreadorUI.CargarGeneros(ChkListGeneros);
         }
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
             string textoBuscador = TxtBuscarSerie.Text;
 
-            List<Serie> seriesEncontradas = UtilsBD.seriesCargadas
+            List<Serie> seriesEncontradas = AdministradorSeries.seriesCargadas
                 .Where(s => s.Nombre.ToLower().Contains(textoBuscador.ToLower()))
                 .ToList();
 
@@ -87,15 +87,20 @@ namespace Reelnode
                     actualizarSerie.Temporadas = int.Parse(TxtCantTemporadas.Text);
                     actualizarSerie.Descripcion = TxtDescripcion.Text;
                     actualizarSerie.ImagenURL = TxtURLImagen.Text;
-                    actualizarSerie.Network = Utils.ObtenerNetworkId(CboNetwork.Text);
+                    actualizarSerie.Network = UtilsBD.ObtenerNetworkId(CboNetwork.Text);
                     actualizarSerie.TrailerURL = TxtURLTrailer.Text;
-                    actualizarSerie.Generos = Utils.ObtenerIdGeneros(ChkListGeneros);
+                    actualizarSerie.Generos = UtilsBD.ObtenerIdGeneros(ChkListGeneros);
                 }
 
-                UtilsBD.ActualizarSerie(actualizarSerie);
-                DataGridActualizarSerie.DataSource = null;
-                filaSeleccionada = null;
-                LimpiarCampos();
+                bool operacionExitosa = AdministradorSeries.ActualizarSerie(actualizarSerie);
+
+                if (operacionExitosa)
+                {
+                    filaSeleccionada = null;
+                    trailerFinalURL = null;
+                    DataGridActualizarSerie.DataSource = null;
+                    Utils.LimpiarCampos(this);
+                }
             }
             else
             {
@@ -132,8 +137,10 @@ namespace Reelnode
             {
                 int id = int.Parse(filaSeleccionada.Cells["Id"].Value.ToString());
 
-                UtilsBD.EliminarSerie(id);
+                AdministradorSeries.EliminarSerie(id);
 
+                filaSeleccionada = null;
+                Utils.ActualizarListaGrid(DataGridActualizarSerie, AdministradorSeries.seriesCargadas, "Id", "Tipo");
             }
             else MessageBox.Show("No se ha seleccionado ninguna fila.");
         }

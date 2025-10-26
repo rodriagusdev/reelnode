@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Reelnode
 {
-    public abstract class Media
+    public abstract class Audiovisual
     {
         public abstract int Id { get; set; }
         public abstract string Nombre { get; set; }

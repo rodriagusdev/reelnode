@@ -11,6 +11,11 @@ namespace Reelnode
         private PanelGradiente PanelMain;
 
         private List<Comentario> listaComentarios = new List<Comentario>();
+
+        public string procedimiento;
+        public string p_id;
+        public int idAudiovisual;
+
         public ControlComentarios()
         {
             InitializeComponent();
@@ -30,26 +35,14 @@ namespace Reelnode
 
         private void BtnEnviarComentario_Click(object sender, EventArgs e)
         {
-            UtilsBD.Comentar(Utils.ObtenerIdMedia(), TxtComentario.Text, Utils.peliculaSeleccionada != null ? "Pelicula" : "Serie");
-        }
+            AdministradorComentarios.Comentar(
+                AdministradorAudiovisual.ObtenerIdAudiovisual(),
+                TxtComentario.Text,
+                AdministradorPeliculas.peliculaSeleccionada != null ? "Pelicula" : "Serie"
+            );
 
-        public void CargarComentarios()
-        {
-            // listaComentarios = UtilsBD.CargarComentariosPelicula(Utils.peliculaSeleccionada.Id);
-
-
-            var paneles = CreadorPanel.CrearPanelesComentarios(listaComentarios);
-
-            //comentarios = CreadorFlowPanel.CrearPanelesComentarios(UtilsBD.CargarComentariosPelicula(Utils.peliculaSeleccionada.Id));
-
-            foreach (var pnl in paneles)
-            {
-                pnl.Width = flowPanelComentarios.ClientSize.Width - pnl.Margin.Horizontal;
-
-                flowPanelComentarios.Controls.Add(pnl);
-            }
-
-            AdministradorTema.AplicarTema(flowPanelComentarios);
+            CargarComentarios();
+            CreadorUI.CrearPanelesComentarios(flowPanelComentarios, listaComentarios);
         }
 
         private void BtnVerComentarios_Click(object sender, EventArgs e)
@@ -58,12 +51,32 @@ namespace Reelnode
 
             if (flowPanelComentarios.Visible)
             {
-                BtnVerComentarios.Text = "Ocultar comentarios";
+                CargarComentarios();
+
+                if (listaComentarios.Count > 0)
+                {
+                    BtnVerComentarios.Text = "Ocultar comentarios";
+
+                    CreadorUI.CrearPanelesComentarios(flowPanelComentarios, listaComentarios);
+                }
             }
             else
             {
+                flowPanelComentarios.Visible = false;
                 BtnVerComentarios.Text = "Ver comentarios";
             }
+        }
+
+        private void CargarComentarios()
+        {
+            listaComentarios.Clear();
+            flowPanelComentarios.Controls.Clear();
+
+            listaComentarios = AdministradorComentarios.ObtenerComentarios(
+                procedimiento,
+                p_id,
+                idAudiovisual
+            );
         }
     }
 }

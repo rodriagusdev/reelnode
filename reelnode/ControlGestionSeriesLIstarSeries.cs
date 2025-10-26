@@ -27,7 +27,7 @@ namespace Reelnode
 
         private void ControlGestionSeriesListarSeries_Load(object sender, EventArgs e)
         {
-            Utils.ActualizarListaGrid(DataGridSeries, UtilsBD.seriesCargadas, "Id", "Tipo");
+            Utils.ActualizarListaGrid(DataGridSeries, AdministradorSeries.seriesCargadas, "Id", "Tipo");
         }
     }
 }

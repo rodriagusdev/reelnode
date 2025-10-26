@@ -21,6 +21,7 @@ namespace Reelnode
             InitializeComponent();
 
             /* Necesario para que funcione el panel con gradiente de fondo */
+            // ESPECIFICO DE ESTE USERCONTROL
             PanelMain = new PanelGradiente
             {
                 Dock = DockStyle.Fill
@@ -45,14 +46,9 @@ namespace Reelnode
             LblEmail.Text = AdministradorUsuarios.usuarioActual.Email;
             LblUsuario.Text = AdministradorUsuarios.usuarioActual.NombreUsuario;
 
-            AdministradorCalificaciones.CargarCalificacionesUsuarioPeliculas();
+            /* !--- FIN DE DATOS DE USUARIO ---! */
 
-            AdministradorCalificaciones.CargarCalificacionesUsuarioSeries();
-  
-
-            /* !--- FIN DE CARGADO ---! */
-
-            /* !--- RELLENAR FLOW PANELS CON DATOS ---! */
+            /* !--- RELLENAR FLOW PANELS CON CONTENIDO AUDIOVISUAL ---! */
 
             MostrarCalificaciones();
 
@@ -61,11 +57,11 @@ namespace Reelnode
 
         private void MostrarCalificaciones()
         {
-            Utils.RellenarFlowPanel(FlowPanelPeliculas,
-                AdministradorCalificaciones.peliculasCalificadasUsuario, AbrirPelicula);
+            CreadorUI.MostrarGaleriaMedia(FlowPanelPeliculas,
+                AdministradorCalificaciones.CargarCalificacionesUsuarioPeliculas(), AbrirPelicula);
 
-            Utils.RellenarFlowPanel(FlowPanelSeries,
-                AdministradorCalificaciones.seriesCalificadasUsuario, AbrirSerie);
+            CreadorUI.MostrarGaleriaMedia(FlowPanelSeries,
+                AdministradorCalificaciones.CargarCalificacionesUsuarioSeries(), AbrirSerie);
         }
 
         /* !--- EVENTOS DE BOTONES ---! */
@@ -75,7 +71,7 @@ namespace Reelnode
             BtnConfirmarAvatar.Visible = false;
             PanelURL.Visible = false;
 
-            AdministradorUsuarios.CambiarAvatar(AdministradorUsuarios.usuarioActual.Id, TxtURLImagen.Text, PicAvatar);
+            AdministradorUsuarios.CambiarAvatarUsuario(AdministradorUsuarios.usuarioActual.Id, TxtURLImagen.Text, PicAvatar);
         }
 
         private void BtnAvatar_Click_1(object sender, EventArgs e)

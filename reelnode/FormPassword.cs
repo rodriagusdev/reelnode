@@ -16,7 +16,7 @@ using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ProjectoNuevo
+namespace Reelnode
 {
     public partial class FormPassword : Form, ITemaPersonalizable
     {
@@ -29,14 +29,6 @@ namespace ProjectoNuevo
 
             BtnCambiar.FlatAppearance.BorderColor = Color.FromArgb(0, 29, 35);
             BtnSalir.FlatAppearance.BorderColor = Color.FromArgb(0, 29, 35);
-        }
-
-        public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
-        {
-            _c1 = color1;
-            _c2 = color2;
-            _modo = modo;
-            PanelMain.Invalidate();
         }
 
         private void BtnCambiar_Click(object sender, EventArgs e)
@@ -59,7 +51,7 @@ namespace ProjectoNuevo
                 return;
             }
 
-            bool cambiado = UtilsBD.CambiarPassword(usuario, email, nuevaPassword);
+            bool cambiado = AdministradorUsuarios.CambiarPasswordUsuario(usuario, email, nuevaPassword);
 
             if (cambiado)
             {
@@ -152,6 +144,14 @@ namespace ProjectoNuevo
                 e.Graphics.FillRectangle(brush, PanelMain.ClientRectangle);
             }
         }
+        public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
+        {
+            _c1 = color1;
+            _c2 = color2;
+            _modo = modo;
+            PanelMain.Invalidate();
+        }
+
     }
-    
+
 }

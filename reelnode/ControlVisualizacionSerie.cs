@@ -1,8 +1,6 @@
-﻿using Microsoft.Web.WebView2.WinForms;
-using System;
-using System.Drawing;
-using System.Drawing.Drawing2D;
+﻿using System;
 using System.Windows.Forms;
+using Microsoft.Web.WebView2.WinForms;
 
 namespace Reelnode
 {
@@ -11,18 +9,34 @@ namespace Reelnode
         private PanelGradiente PanelMain;
         private ControlComentarios controlComentarios;
         public WebView2 trailer = new WebView2 { Dock = DockStyle.Fill };
+
         public ControlVisualizacionSerie()
         {
             InitializeComponent();
 
             PanelMain = new PanelGradiente();
             PanelMain.Dock = DockStyle.Fill;
-
             this.Controls.Add(PanelMain);
 
             PanelMain.Controls.Add(controlComentarios = new ControlComentarios());
             PanelMain.Controls.Add(PanelVisualizar);
             controlComentarios.Visible = false;
+        }
+
+
+        private void BtnCalificar_Click(object sender, EventArgs e)
+        {
+            FormCalificar calificar = new FormCalificar();
+
+            calificar.ShowDialog();
+        }
+
+        private void BtnComentar_Click(object sender, EventArgs e)
+        {
+            controlComentarios.procedimiento = "sp_obtener_comentarios_serie";
+            controlComentarios.p_id = "p_id_serie";
+            controlComentarios.idAudiovisual = AdministradorSeries.serieSeleccionada.Id;
+            Utils.ShowControl(controlComentarios, PanelMain);
         }
 
         public void CargarSerie(Serie serie)
@@ -37,7 +51,7 @@ namespace Reelnode
             LblDirector.Text = serie.Director;
             LblTemporadas.Text = serie.Temporadas + " temporadas";
             LblTitulo.Text = serie.Nombre;
-            LblGeneros.Text = Utils.ObtenerNombresGeneros(serie.Generos);
+            LblGeneros.Text = UtilsBD.ObtenerNombresGeneros(serie.Generos);
 
             if (!string.IsNullOrEmpty(serie.TrailerURL))
             {
@@ -55,6 +69,8 @@ namespace Reelnode
             {
                 PanelTrailerSerie.Visible = false;
             }
+
+            Utils.ShowControl(PanelVisualizar, PanelMain);
         }
 
         public void DetenerTrailer()
@@ -65,19 +81,6 @@ namespace Reelnode
                     trailer.CoreWebView2.Navigate("about:blank");
             }
             catch { }
-        }
-
-        private void BtnCalificar_Click(object sender, EventArgs e)
-        {
-            FormCalificar calificar = new FormCalificar();
-
-            calificar.ShowDialog();
-        }
-
-        private void BtnComentar_Click(object sender, EventArgs e)
-        {
-            controlComentarios.CargarComentarios();
-            Utils.ShowControl(controlComentarios, PanelVisualizar);
         }
     }
 }

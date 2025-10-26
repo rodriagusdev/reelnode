@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,20 +11,19 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace Reelnode
 {
-    public partial class FormRegistrar: Form, ITemaPersonalizable
+    public partial class FormRegistrar : Form, ITemaPersonalizable
     {
         private Color _c1 = Color.FromArgb(20, 30, 48);
         private Color _c2 = Color.FromArgb(36, 59, 85);
         private LinearGradientMode _modo = LinearGradientMode.Vertical;
+
         public FormRegistrar()
         {
             InitializeComponent();
-
-            BtnIngresar.FlatAppearance.BorderColor = Color.FromArgb(0, 29, 35);
-            BtnSalir.FlatAppearance.BorderColor = Color.FromArgb(0, 29, 35);
         }
 
         public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
@@ -39,10 +37,10 @@ namespace Reelnode
         private void BtnIngresar_Click(object sender, EventArgs e)
         {
             errorProvider.Clear();
-            bool valido = true;
+            bool registracionValida = true;
             if (string.IsNullOrWhiteSpace(TxtUsuario.Text))
             {
-                valido = false;
+                registracionValida = false;
                 errorProvider.SetError(TxtUsuario, "El nombre no puede estar vacío.");
             }
             errorProvider.SetError(TxtEmail, "");
@@ -50,48 +48,35 @@ namespace Reelnode
             if (string.IsNullOrEmpty(email))
             {
                 errorProvider.SetError(TxtEmail, "El email no es válido.");
-                valido = false;
-
+                registracionValida = false;
             }
             else if (!email.Contains("@") || !email.Contains(".com"))
             {
                 errorProvider.SetError(TxtEmail, "El email no es válido.");
-                valido = false;
+                registracionValida = false;
             }
             else
             {
                 errorProvider.SetError(TxtEmail, "");
             }
 
-            if (valido) 
+            if (registracionValida)
             {
                 Usuario nuevo = new Usuario
                 {
                     NombreUsuario = TxtUsuario.Text,
                     Email = TxtEmail.Text,
                     Password = TxtPassword.Text,
-                    RolUsuario = "Usuario"
+                    RolUsuario = "Usuario",
                 };
 
-                /* Utils.usuariosRegistrados.Add(persona);
-                 string toJSON = JsonSerializer.Serialize(Utils.usuariosRegistrados);
-                 File.WriteAllText(Path.Combine(Application.StartupPath, "personas.json"), toJSON);
-                */
+                bool registracionExitosa = AdministradorUsuarios.RegistrarUsuarioBD(nuevo);
 
-                AdministradorUsuarios.RegistrarUsuarioBD(nuevo);
-
-                MessageBox.Show("Usuario registrado con éxito", "Registro Exitoso", 
-                    MessageBoxButtons.OK, 
-                    MessageBoxIcon.
-                    Information);
-
-                this.Close();
+                if (registracionExitosa)
+                {
+                    this.Close();
+                }
             }
-        }
-
-        private void FormRegistrar_Load(object sender, EventArgs e)
-        {
-            BtnIngresar.FlatAppearance.BorderColor = Color.FromArgb(0, 29, 35);
         }
 
         private void TxtUsuario_TextChanged(object sender, EventArgs e)

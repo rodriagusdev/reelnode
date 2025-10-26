@@ -1,4 +1,4 @@
-﻿namespace ProjectoNuevo
+﻿namespace Reelnode
 {
     partial class FormPassword
     {
@@ -80,10 +80,10 @@
             this.BtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSalir.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnSalir.ForeColor = System.Drawing.Color.White;
-            this.BtnSalir.Location = new System.Drawing.Point(55, 380);
+            this.BtnSalir.Location = new System.Drawing.Point(59, 380);
             this.BtnSalir.Name = "BtnSalir";
             this.BtnSalir.Size = new System.Drawing.Size(307, 36);
-            this.BtnSalir.TabIndex = 25;
+            this.BtnSalir.TabIndex = 6;
             this.BtnSalir.Text = "V   O   L   V   E   R";
             this.BtnSalir.UseVisualStyleBackColor = false;
             this.BtnSalir.Click += new System.EventHandler(this.BtnSalir_Click);
@@ -94,7 +94,7 @@
             this.PanelConfirmarPassword.Controls.Add(this.LblConfirmarPassword);
             this.PanelConfirmarPassword.Controls.Add(this.PanelConfirmarLinea);
             this.PanelConfirmarPassword.Controls.Add(this.TxtConfirmarPassword);
-            this.PanelConfirmarPassword.Location = new System.Drawing.Point(55, 272);
+            this.PanelConfirmarPassword.Location = new System.Drawing.Point(59, 272);
             this.PanelConfirmarPassword.Name = "PanelConfirmarPassword";
             this.PanelConfirmarPassword.Padding = new System.Windows.Forms.Padding(5);
             this.PanelConfirmarPassword.Size = new System.Drawing.Size(306, 35);
@@ -132,7 +132,7 @@
             this.TxtConfirmarPassword.Name = "TxtConfirmarPassword";
             this.TxtConfirmarPassword.PasswordChar = '*';
             this.TxtConfirmarPassword.Size = new System.Drawing.Size(296, 22);
-            this.TxtConfirmarPassword.TabIndex = 12;
+            this.TxtConfirmarPassword.TabIndex = 4;
             this.TxtConfirmarPassword.TextChanged += new System.EventHandler(this.TxtConfirmarPassword_TextChanged);
             // 
             // PanelEmail
@@ -141,7 +141,7 @@
             this.PanelEmail.Controls.Add(this.LblPanelEmail);
             this.PanelEmail.Controls.Add(this.PanelEmailLinea);
             this.PanelEmail.Controls.Add(this.TxtEmail);
-            this.PanelEmail.Location = new System.Drawing.Point(56, 170);
+            this.PanelEmail.Location = new System.Drawing.Point(60, 170);
             this.PanelEmail.Name = "PanelEmail";
             this.PanelEmail.Padding = new System.Windows.Forms.Padding(5);
             this.PanelEmail.Size = new System.Drawing.Size(306, 35);
@@ -178,7 +178,7 @@
             this.TxtEmail.Location = new System.Drawing.Point(5, 5);
             this.TxtEmail.Name = "TxtEmail";
             this.TxtEmail.Size = new System.Drawing.Size(296, 22);
-            this.TxtEmail.TabIndex = 12;
+            this.TxtEmail.TabIndex = 2;
             this.TxtEmail.TextChanged += new System.EventHandler(this.TxtEmail_TextChanged);
             // 
             // PanelPassword
@@ -187,7 +187,7 @@
             this.PanelPassword.Controls.Add(this.LblPanelPassword);
             this.PanelPassword.Controls.Add(this.PanelPasswordLinea);
             this.PanelPassword.Controls.Add(this.TxtCambiarPassword);
-            this.PanelPassword.Location = new System.Drawing.Point(56, 222);
+            this.PanelPassword.Location = new System.Drawing.Point(60, 222);
             this.PanelPassword.Name = "PanelPassword";
             this.PanelPassword.Padding = new System.Windows.Forms.Padding(5);
             this.PanelPassword.Size = new System.Drawing.Size(306, 35);
@@ -225,7 +225,7 @@
             this.TxtCambiarPassword.Name = "TxtCambiarPassword";
             this.TxtCambiarPassword.PasswordChar = '*';
             this.TxtCambiarPassword.Size = new System.Drawing.Size(296, 22);
-            this.TxtCambiarPassword.TabIndex = 12;
+            this.TxtCambiarPassword.TabIndex = 3;
             this.TxtCambiarPassword.TextChanged += new System.EventHandler(this.TxtCambiarPassword_TextChanged);
             // 
             // PanelUsuario
@@ -234,7 +234,7 @@
             this.PanelUsuario.Controls.Add(this.LblPanelUsuario);
             this.PanelUsuario.Controls.Add(this.PanelUsuarioLinea);
             this.PanelUsuario.Controls.Add(this.TxtUsuario);
-            this.PanelUsuario.Location = new System.Drawing.Point(56, 120);
+            this.PanelUsuario.Location = new System.Drawing.Point(60, 120);
             this.PanelUsuario.Name = "PanelUsuario";
             this.PanelUsuario.Padding = new System.Windows.Forms.Padding(5);
             this.PanelUsuario.Size = new System.Drawing.Size(306, 35);
@@ -271,7 +271,7 @@
             this.TxtUsuario.Location = new System.Drawing.Point(5, 5);
             this.TxtUsuario.Name = "TxtUsuario";
             this.TxtUsuario.Size = new System.Drawing.Size(296, 22);
-            this.TxtUsuario.TabIndex = 12;
+            this.TxtUsuario.TabIndex = 1;
             this.TxtUsuario.TextChanged += new System.EventHandler(this.TxtUsuario_TextChanged);
             // 
             // BtnCambiar
@@ -281,10 +281,10 @@
             this.BtnCambiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCambiar.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnCambiar.ForeColor = System.Drawing.Color.White;
-            this.BtnCambiar.Location = new System.Drawing.Point(56, 328);
+            this.BtnCambiar.Location = new System.Drawing.Point(60, 328);
             this.BtnCambiar.Name = "BtnCambiar";
             this.BtnCambiar.Size = new System.Drawing.Size(307, 36);
-            this.BtnCambiar.TabIndex = 13;
+            this.BtnCambiar.TabIndex = 5;
             this.BtnCambiar.Text = "C   A   M   B  I   A   R ";
             this.BtnCambiar.UseVisualStyleBackColor = false;
             this.BtnCambiar.Click += new System.EventHandler(this.BtnCambiar_Click);
@@ -295,7 +295,7 @@
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(15, -26);
+            this.pictureBox1.Location = new System.Drawing.Point(26, -27);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(377, 149);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

@@ -158,7 +158,7 @@
             this.BtnReportesAvanzados.Location = new System.Drawing.Point(41, 522);
             this.BtnReportesAvanzados.Name = "BtnReportesAvanzados";
             this.BtnReportesAvanzados.Size = new System.Drawing.Size(171, 44);
-            this.BtnReportesAvanzados.TabIndex = 22;
+            this.BtnReportesAvanzados.TabIndex = 3;
             this.BtnReportesAvanzados.Text = "Reportes Avanzados";
             this.BtnReportesAvanzados.UseVisualStyleBackColor = true;
             this.BtnReportesAvanzados.Click += new System.EventHandler(this.BtnReportesAvanzados_Click);
@@ -170,7 +170,7 @@
             this.BtnVerMetricasGenerales.Location = new System.Drawing.Point(41, 333);
             this.BtnVerMetricasGenerales.Name = "BtnVerMetricasGenerales";
             this.BtnVerMetricasGenerales.Size = new System.Drawing.Size(171, 44);
-            this.BtnVerMetricasGenerales.TabIndex = 21;
+            this.BtnVerMetricasGenerales.TabIndex = 1;
             this.BtnVerMetricasGenerales.Text = "Ver métricas generales";
             this.BtnVerMetricasGenerales.UseVisualStyleBackColor = true;
             this.BtnVerMetricasGenerales.Click += new System.EventHandler(this.BtnVerMetricasGenerales_Click);
@@ -216,7 +216,7 @@
             this.BtnVerMetricasUsuarios.Location = new System.Drawing.Point(41, 427);
             this.BtnVerMetricasUsuarios.Name = "BtnVerMetricasUsuarios";
             this.BtnVerMetricasUsuarios.Size = new System.Drawing.Size(171, 44);
-            this.BtnVerMetricasUsuarios.TabIndex = 12;
+            this.BtnVerMetricasUsuarios.TabIndex = 2;
             this.BtnVerMetricasUsuarios.Text = "Ver métricas de usuarios";
             this.BtnVerMetricasUsuarios.UseVisualStyleBackColor = true;
             this.BtnVerMetricasUsuarios.Click += new System.EventHandler(this.BtnVerMetricasUsuarios_Click);
@@ -243,9 +243,9 @@
             this.PanelDashboardMain.Controls.Add(this.label1);
             this.PanelDashboardMain.Controls.Add(this.flowPanelSeriesMasVistas);
             this.PanelDashboardMain.Controls.Add(this.flowPanelPelisMasVistas);
-            this.PanelDashboardMain.Location = new System.Drawing.Point(1247, 0);
+            this.PanelDashboardMain.Location = new System.Drawing.Point(252, 0);
             this.PanelDashboardMain.Name = "PanelDashboardMain";
-            this.PanelDashboardMain.Size = new System.Drawing.Size(33, 720);
+            this.PanelDashboardMain.Size = new System.Drawing.Size(1028, 720);
             this.PanelDashboardMain.TabIndex = 20;
             this.PanelDashboardMain.Tag = "Default";
             // 
@@ -827,7 +827,7 @@
             this.BtnAplicarFiltrosConsultar.Location = new System.Drawing.Point(44, 271);
             this.BtnAplicarFiltrosConsultar.Name = "BtnAplicarFiltrosConsultar";
             this.BtnAplicarFiltrosConsultar.Size = new System.Drawing.Size(226, 38);
-            this.BtnAplicarFiltrosConsultar.TabIndex = 38;
+            this.BtnAplicarFiltrosConsultar.TabIndex = 15;
             this.BtnAplicarFiltrosConsultar.Text = "Aplicar filtros y consultar";
             this.BtnAplicarFiltrosConsultar.UseVisualStyleBackColor = true;
             this.BtnAplicarFiltrosConsultar.Click += new System.EventHandler(this.BtnAplicarFiltrosConsultar_Click);
@@ -839,19 +839,20 @@
             this.BtnBorrarFiltros.Location = new System.Drawing.Point(291, 271);
             this.BtnBorrarFiltros.Name = "BtnBorrarFiltros";
             this.BtnBorrarFiltros.Size = new System.Drawing.Size(226, 38);
-            this.BtnBorrarFiltros.TabIndex = 39;
+            this.BtnBorrarFiltros.TabIndex = 16;
             this.BtnBorrarFiltros.Text = "Borrar filtros";
             this.BtnBorrarFiltros.UseVisualStyleBackColor = true;
             this.BtnBorrarFiltros.Click += new System.EventHandler(this.BtnBorrarFiltros_Click);
             // 
             // CboGeneros
             // 
+            this.CboGeneros.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboGeneros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CboGeneros.FormattingEnabled = true;
             this.CboGeneros.Location = new System.Drawing.Point(291, 148);
             this.CboGeneros.Name = "CboGeneros";
             this.CboGeneros.Size = new System.Drawing.Size(226, 21);
-            this.CboGeneros.TabIndex = 42;
+            this.CboGeneros.TabIndex = 5;
             // 
             // label24
             // 
@@ -883,7 +884,7 @@
             0});
             this.NumUpCalificacionMinima.Name = "NumUpCalificacionMinima";
             this.NumUpCalificacionMinima.Size = new System.Drawing.Size(48, 24);
-            this.NumUpCalificacionMinima.TabIndex = 44;
+            this.NumUpCalificacionMinima.TabIndex = 8;
             this.NumUpCalificacionMinima.Value = new decimal(new int[] {
             1,
             0,
@@ -902,7 +903,8 @@
             this.CboTipoReporte.Location = new System.Drawing.Point(44, 149);
             this.CboTipoReporte.Name = "CboTipoReporte";
             this.CboTipoReporte.Size = new System.Drawing.Size(226, 21);
-            this.CboTipoReporte.TabIndex = 45;
+            this.CboTipoReporte.TabIndex = 4;
+            this.CboTipoReporte.Tag = "";
             // 
             // label25
             // 
@@ -923,7 +925,7 @@
             this.DtpDesde.Location = new System.Drawing.Point(44, 205);
             this.DtpDesde.Name = "DtpDesde";
             this.DtpDesde.Size = new System.Drawing.Size(226, 21);
-            this.DtpDesde.TabIndex = 47;
+            this.DtpDesde.TabIndex = 9;
             // 
             // DataGridReportes
             // 
@@ -962,9 +964,9 @@
             this.PanelReportesAvanzados.Controls.Add(this.BtnAplicarFiltrosConsultar);
             this.PanelReportesAvanzados.Controls.Add(this.label18);
             this.PanelReportesAvanzados.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PanelReportesAvanzados.Location = new System.Drawing.Point(252, 0);
+            this.PanelReportesAvanzados.Location = new System.Drawing.Point(1182, 0);
             this.PanelReportesAvanzados.Name = "PanelReportesAvanzados";
-            this.PanelReportesAvanzados.Size = new System.Drawing.Size(964, 720);
+            this.PanelReportesAvanzados.Size = new System.Drawing.Size(34, 720);
             this.PanelReportesAvanzados.TabIndex = 22;
             this.PanelReportesAvanzados.Tag = "Default";
             this.PanelReportesAvanzados.Visible = false;
@@ -975,7 +977,7 @@
             this.ChkDuracion.Location = new System.Drawing.Point(746, 246);
             this.ChkDuracion.Name = "ChkDuracion";
             this.ChkDuracion.Size = new System.Drawing.Size(101, 17);
-            this.ChkDuracion.TabIndex = 64;
+            this.ChkDuracion.TabIndex = 12;
             this.ChkDuracion.Text = "Utilizar duracion";
             this.ChkDuracion.UseVisualStyleBackColor = true;
             this.ChkDuracion.CheckedChanged += new System.EventHandler(this.ChkDuracion_CheckedChanged);
@@ -998,7 +1000,7 @@
             0});
             this.NumUpDuracion.Name = "NumUpDuracion";
             this.NumUpDuracion.Size = new System.Drawing.Size(48, 24);
-            this.NumUpDuracion.TabIndex = 63;
+            this.NumUpDuracion.TabIndex = 13;
             this.NumUpDuracion.Value = new decimal(new int[] {
             1,
             0,
@@ -1019,12 +1021,13 @@
             // 
             // CboNetwork
             // 
+            this.CboNetwork.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboNetwork.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CboNetwork.FormattingEnabled = true;
             this.CboNetwork.Location = new System.Drawing.Point(549, 148);
             this.CboNetwork.Name = "CboNetwork";
             this.CboNetwork.Size = new System.Drawing.Size(165, 21);
-            this.CboNetwork.TabIndex = 59;
+            this.CboNetwork.TabIndex = 6;
             // 
             // label30
             // 
@@ -1045,7 +1048,7 @@
             this.TxtDirector.Location = new System.Drawing.Point(549, 283);
             this.TxtDirector.Name = "TxtDirector";
             this.TxtDirector.Size = new System.Drawing.Size(165, 22);
-            this.TxtDirector.TabIndex = 57;
+            this.TxtDirector.TabIndex = 14;
             // 
             // label29
             // 
@@ -1066,7 +1069,7 @@
             this.TxtPalabrasTitulo.Location = new System.Drawing.Point(549, 203);
             this.TxtPalabrasTitulo.Name = "TxtPalabrasTitulo";
             this.TxtPalabrasTitulo.Size = new System.Drawing.Size(165, 22);
-            this.TxtPalabrasTitulo.TabIndex = 55;
+            this.TxtPalabrasTitulo.TabIndex = 11;
             // 
             // label22
             // 
@@ -1088,7 +1091,7 @@
             this.DtpHasta.MaxDate = new System.DateTime(2095, 7, 7, 0, 0, 0, 0);
             this.DtpHasta.Name = "DtpHasta";
             this.DtpHasta.Size = new System.Drawing.Size(226, 21);
-            this.DtpHasta.TabIndex = 53;
+            this.DtpHasta.TabIndex = 10;
             this.DtpHasta.Value = new System.DateTime(2025, 10, 23, 0, 0, 0, 0);
             // 
             // ChkFiltroCalif
@@ -1097,7 +1100,7 @@
             this.ChkFiltroCalif.Location = new System.Drawing.Point(746, 159);
             this.ChkFiltroCalif.Name = "ChkFiltroCalif";
             this.ChkFiltroCalif.Size = new System.Drawing.Size(148, 17);
-            this.ChkFiltroCalif.TabIndex = 52;
+            this.ChkFiltroCalif.TabIndex = 7;
             this.ChkFiltroCalif.Text = "Utilizar calificacion minima";
             this.ChkFiltroCalif.UseVisualStyleBackColor = true;
             this.ChkFiltroCalif.CheckedChanged += new System.EventHandler(this.ChkFiltroCalif_CheckedChanged);
@@ -1109,7 +1112,7 @@
             this.button2.Location = new System.Drawing.Point(585, 588);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(326, 38);
-            this.button2.TabIndex = 51;
+            this.button2.TabIndex = 18;
             this.button2.Text = "Exportar JSON";
             this.button2.UseVisualStyleBackColor = true;
             // 
@@ -1120,7 +1123,7 @@
             this.button1.Location = new System.Drawing.Point(44, 584);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(326, 38);
-            this.button1.TabIndex = 50;
+            this.button1.TabIndex = 17;
             this.button1.Text = "Exportar PDF";
             this.button1.UseVisualStyleBackColor = true;
             // 

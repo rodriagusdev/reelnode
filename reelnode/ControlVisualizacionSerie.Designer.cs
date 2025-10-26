@@ -160,7 +160,7 @@
             this.BtnComentar.Margin = new System.Windows.Forms.Padding(2);
             this.BtnComentar.Name = "BtnComentar";
             this.BtnComentar.Size = new System.Drawing.Size(205, 35);
-            this.BtnComentar.TabIndex = 42;
+            this.BtnComentar.TabIndex = 2;
             this.BtnComentar.Text = "Comentar";
             this.BtnComentar.UseVisualStyleBackColor = false;
             this.BtnComentar.Click += new System.EventHandler(this.BtnComentar_Click);
@@ -234,7 +234,7 @@
             this.BtnCalificar.Margin = new System.Windows.Forms.Padding(2);
             this.BtnCalificar.Name = "BtnCalificar";
             this.BtnCalificar.Size = new System.Drawing.Size(205, 35);
-            this.BtnCalificar.TabIndex = 34;
+            this.BtnCalificar.TabIndex = 1;
             this.BtnCalificar.Text = "Calificar";
             this.BtnCalificar.UseVisualStyleBackColor = false;
             this.BtnCalificar.Click += new System.EventHandler(this.BtnCalificar_Click);

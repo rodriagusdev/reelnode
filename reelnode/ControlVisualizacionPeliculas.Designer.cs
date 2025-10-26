@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.PanelVisualizar = new System.Windows.Forms.Panel();
-            this.LblGeneros = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.LblTitulo = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -44,6 +43,7 @@
             this.BtnCalificar = new System.Windows.Forms.Button();
             this.PanelImagenPeli = new System.Windows.Forms.Panel();
             this.PicPeli = new System.Windows.Forms.PictureBox();
+            this.LblGeneros = new System.Windows.Forms.Label();
             this.PanelVisualizar.SuspendLayout();
             this.PanelDescripcion.SuspendLayout();
             this.PanelImagenPeli.SuspendLayout();
@@ -74,21 +74,6 @@
             this.PanelVisualizar.TabIndex = 0;
             this.PanelVisualizar.Tag = "Default";
             // 
-            // LblGeneros
-            // 
-            this.LblGeneros.AutoSize = true;
-            this.LblGeneros.BackColor = System.Drawing.Color.Transparent;
-            this.LblGeneros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LblGeneros.Font = new System.Drawing.Font("Courier New", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblGeneros.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.LblGeneros.Location = new System.Drawing.Point(520, 443);
-            this.LblGeneros.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LblGeneros.Name = "LblGeneros";
-            this.LblGeneros.Size = new System.Drawing.Size(79, 19);
-            this.LblGeneros.TabIndex = 47;
-            this.LblGeneros.Tag = "Titulo";
-            this.LblGeneros.Text = "Generos";
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
@@ -103,12 +88,12 @@
             this.LblTitulo.AutoSize = true;
             this.LblTitulo.BackColor = System.Drawing.Color.Transparent;
             this.LblTitulo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LblTitulo.Font = new System.Drawing.Font("Courier New", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblTitulo.Font = new System.Drawing.Font("Courier New", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
             this.LblTitulo.Location = new System.Drawing.Point(88, 507);
             this.LblTitulo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LblTitulo.Name = "LblTitulo";
-            this.LblTitulo.Size = new System.Drawing.Size(158, 31);
+            this.LblTitulo.Size = new System.Drawing.Size(127, 23);
             this.LblTitulo.TabIndex = 36;
             this.LblTitulo.Tag = "Titulo";
             this.LblTitulo.Text = "LblTitulo";
@@ -161,7 +146,7 @@
             this.BtnComentar.Margin = new System.Windows.Forms.Padding(2);
             this.BtnComentar.Name = "BtnComentar";
             this.BtnComentar.Size = new System.Drawing.Size(205, 35);
-            this.BtnComentar.TabIndex = 42;
+            this.BtnComentar.TabIndex = 2;
             this.BtnComentar.Text = "Comentar";
             this.BtnComentar.UseVisualStyleBackColor = false;
             this.BtnComentar.Click += new System.EventHandler(this.BtnComentar_Click);
@@ -170,7 +155,7 @@
             // 
             this.LblDuracion.BackColor = System.Drawing.Color.Transparent;
             this.LblDuracion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LblDuracion.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblDuracion.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblDuracion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
             this.LblDuracion.Location = new System.Drawing.Point(91, 539);
             this.LblDuracion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -235,7 +220,7 @@
             this.BtnCalificar.Margin = new System.Windows.Forms.Padding(2);
             this.BtnCalificar.Name = "BtnCalificar";
             this.BtnCalificar.Size = new System.Drawing.Size(205, 35);
-            this.BtnCalificar.TabIndex = 34;
+            this.BtnCalificar.TabIndex = 1;
             this.BtnCalificar.Text = "Calificar";
             this.BtnCalificar.UseVisualStyleBackColor = false;
             this.BtnCalificar.Click += new System.EventHandler(this.BtnCalificar_Click);
@@ -260,6 +245,19 @@
             this.PicPeli.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PicPeli.TabIndex = 0;
             this.PicPeli.TabStop = false;
+            // 
+            // LblGeneros
+            // 
+            this.LblGeneros.BackColor = System.Drawing.Color.Transparent;
+            this.LblGeneros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LblGeneros.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblGeneros.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
+            this.LblGeneros.Location = new System.Drawing.Point(520, 456);
+            this.LblGeneros.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblGeneros.Name = "LblGeneros";
+            this.LblGeneros.Size = new System.Drawing.Size(396, 24);
+            this.LblGeneros.TabIndex = 48;
+            this.LblGeneros.Text = "lblGeneros";
             // 
             // ControlVisualizacionPeliculas
             // 

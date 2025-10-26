@@ -58,10 +58,10 @@
             this.BtnExportarJSON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnExportarJSON.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnExportarJSON.ForeColor = System.Drawing.Color.Black;
-            this.BtnExportarJSON.Location = new System.Drawing.Point(252, 485);
+            this.BtnExportarJSON.Location = new System.Drawing.Point(232, 484);
             this.BtnExportarJSON.Name = "BtnExportarJSON";
             this.BtnExportarJSON.Size = new System.Drawing.Size(221, 35);
-            this.BtnExportarJSON.TabIndex = 53;
+            this.BtnExportarJSON.TabIndex = 1;
             this.BtnExportarJSON.Text = "Exportar JSON";
             this.BtnExportarJSON.UseVisualStyleBackColor = false;
             this.BtnExportarJSON.Click += new System.EventHandler(this.BtnExportarJSON_Click);
@@ -92,12 +92,12 @@
             this.DataGridPeliculas.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.DataGridPeliculas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DataGridPeliculas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridPeliculas.Location = new System.Drawing.Point(252, 125);
+            this.DataGridPeliculas.Location = new System.Drawing.Point(232, 125);
             this.DataGridPeliculas.Name = "DataGridPeliculas";
             this.DataGridPeliculas.ReadOnly = true;
             this.DataGridPeliculas.RowHeadersVisible = false;
             this.DataGridPeliculas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridPeliculas.Size = new System.Drawing.Size(791, 316);
+            this.DataGridPeliculas.Size = new System.Drawing.Size(837, 316);
             this.DataGridPeliculas.TabIndex = 2;
             // 
             // ControlGestionPeliculasListarPeliculas
