@@ -13,63 +13,15 @@ CheckBoxList: ChkList
 ToolStripMenu: ToolStpMenuX
 
 # Todo List
+❌Implementar permisos en: calificacion, comentar.
 
-## Login
+❌Implementar login desde la base de datos
 
-✅Logear al sistema
-
-✅Registrarse en el sistema
-
-✅¿Olvide mi contraseña? (lo hizo mandu) 
-
-## Administrador
-
-✅Crear peliculas
-
-✅Actualizar peliculas
-
-✅Obtener peliculas
-
-✅Borrar peliculas
-
-✅Crear series 🎖️ -> mandu
-
-✅Actualizar series🎖️ -> mandu
-
-✅Obtener series 🎖️ -> mandu
-
-✅Borrar series 🎖️ -> mandu
-
-✅Importar peliculas/series desde un JSON y Base de datos.
-
-✅Exportar datos a JSON
-
-✅Exportar usuarios a PDF
-
-❌Generar reportes avanzados y PDF
-
-✅Gestionar roles de usuario
-
-❌Moderar comentarios
-
-✅Carga de imagenes
-
-## Usuario
-✅Registrar Calificaciones
-
-❌Consultar series y peliculas con filtros
-
-✅Visualizar imagenes y comentarios
+❌Moderar comentarios (VER IA o simplemente hacerlo)
 
 ❌Ver historial
 
 ❌Exportar historial
-
-✅Dejar comentarios
-
-✅Dejar calificaciones
-
-✅Registrar Visualizaciones
 
 # Tema: colores que se pueden usar, no necesariemente en el componente indicado.
 
