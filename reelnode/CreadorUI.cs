@@ -254,25 +254,25 @@ namespace Reelnode
             }
         }
         
-        public static void MostrarGaleriaMedia<T>(FlowLayoutPanel flowPnl, List<T> list, Action<int> abrirPestana) where T : AudiovisualMiniatura
+        public static void MostrarGaleriaMedia<T>(FlowLayoutPanel flowPnl, List<T> list, Action<int> abrirPestana, int ancho, int alto) where T : AudiovisualMiniatura
         {
             flowPnl.Controls.Clear();
 
             /* Configuracion de la tarjeta */
-            int anchoTarjeta = 190;
-            int altoPanel = 220;
+            int anchoTarjeta = ancho;
+            int altoPanel = alto;
             int margenY = 0;
 
             /* Configuracion del poster */
-            int anchoPoster = 180;
-            int altoPoster = 180;
+            int anchoPoster = anchoTarjeta - 10;
+            int altoPoster = altoPanel-40;
             Point location = new Point(5, 5);
 
             /* Configuracion del titulo */
             int posicionX = (anchoTarjeta - 200) / 2;
-            int posicionY = 190;
+            int posicionY = anchoTarjeta;
             Point posicionTitulo = new Point(posicionX, posicionY);
-            int anchoTitulo = 200;
+            int anchoTitulo = anchoTarjeta - 0;
             int altoTitulo = 20;
 
             foreach (var audiovisual in list)

@@ -41,6 +41,11 @@ namespace Reelnode
 
         private void BtnConfirmar_Click(object sender, EventArgs e)
         {
+            if (!AdministradorPermisos.permisosUsuarioActual.Contains(EnumPermisos.calificar.ToString()))
+            {
+                MessageBox.Show("No posees los permisos para calificar", "Error de permisos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (puntuacion != 0)
             {
                 int idMedia =

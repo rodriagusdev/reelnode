@@ -10,7 +10,7 @@ namespace Reelnode
     public static class AdministradorAudiovisual
     {
         /* !--- CARGA DE DATOS AUDIOVISUALES (PELICULAS Y SERIES) ---! */
-        public static List<AudiovisualMiniatura> CargarMiniaturaAudiovisual(string procedimiento, EnumTipoId idTipo)
+        public static List<AudiovisualMiniatura> CargarMiniaturaAudiovisual(string procedimiento, EnumTipoId tipoAudiovisual, bool conParametro, EnumTipoId parametro)
         {
             List<AudiovisualMiniatura> listAudiovisual = new List<AudiovisualMiniatura>();
 
@@ -18,13 +18,19 @@ namespace Reelnode
             {
                 cmd.CommandType = CommandType.StoredProcedure;
 
+                // Con parametro quiere decir que el procedimiento ademas debe enviar un parametro a la base de datos
+                if(conParametro == true)
+                {
+                    cmd.Parameters.AddWithValue(parametro.ToString(), AdministradorUsuarios.usuarioActual.Id);
+                }
+
                 using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         AudiovisualMiniatura preview = new AudiovisualMiniatura
                         (
-                            reader.GetInt32(idTipo.ToString()),
+                            reader.GetInt32(tipoAudiovisual.ToString()),
                             reader.GetString("nombre"),
                             reader.GetString("imagenURL")
                         );

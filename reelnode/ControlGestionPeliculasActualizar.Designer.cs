@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.PanelActualizar = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.ChkListGeneros = new System.Windows.Forms.CheckedListBox();
             this.BtnPrevisualizarTrailer = new System.Windows.Forms.Button();
@@ -73,7 +74,6 @@
             this.BtnBuscarPelicula = new System.Windows.Forms.Button();
             this.PanelBuscarPeliculaNombre = new System.Windows.Forms.Panel();
             this.TxtBuscarNombrePelicula = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.PanelActualizar.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -130,6 +130,18 @@
             this.PanelActualizar.Size = new System.Drawing.Size(1280, 720);
             this.PanelActualizar.TabIndex = 2;
             this.PanelActualizar.Tag = "Default";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
+            this.label11.Location = new System.Drawing.Point(864, 529);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(131, 17);
+            this.label11.TabIndex = 556;
+            this.label11.Text = "Valido solo de Youtube";
             // 
             // label19
             // 
@@ -619,18 +631,6 @@
             this.TxtBuscarNombrePelicula.Name = "TxtBuscarNombrePelicula";
             this.TxtBuscarNombrePelicula.Size = new System.Drawing.Size(195, 22);
             this.TxtBuscarNombrePelicula.TabIndex = 1;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label11.Location = new System.Drawing.Point(864, 529);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(131, 17);
-            this.label11.TabIndex = 556;
-            this.label11.Text = "Valido solo de Youtube";
             // 
             // ControlGestionPeliculasActualizar
             // 

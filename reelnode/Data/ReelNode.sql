@@ -911,7 +911,7 @@ DELIMITER ;
 
 
  -- ------------------------------------------ Vistas --------------------
-create or replace view vw_historial_total as -- historial de cada usuario tambien para reportes avnzados
+create or replace view vw_historial_total as 
 select 
     u.id_usuario,
     u.nombre_usuario,
@@ -1472,6 +1472,44 @@ BEGIN
 END //
 DELIMITER ;
 
+-- USAR ESTO PARA RELLENAR EL HISTORIAL -> CONVERTIR A PROCEDIMIENTO
+DELIMITER //
+create procedure sp_obtener_visualizaciones_peliculas_usuario(in p_id_usuario int)
+begin
+	select 
+		distinct
+		vp.id_pelicula, 
+		vp.id_usuario,
+        p.imagenURL,
+        p.nombre
+	from 
+		visualizaciones_pelicula vp
+	inner join
+		peliculas p on p.id_pelicula = vp.id_pelicula
+	where 
+		vp.id_usuario = p_id_usuario;
+end //
+DELIMITER ;
+
+DELIMITER //
+create procedure sp_obtener_visualizaciones_series_usuario(in p_id_usuario int)
+begin
+	select 
+		distinct
+		vs.id_serie, 
+		vs.id_usuario,
+        s.imagenURL,
+        s.nombre
+	from 
+		visualizaciones_serie vs
+	inner join
+		serie s on s.id_serie = vs.id_serie
+	where 
+		vs.id_usuario = 2;
+end //
+DELIMITER ;
+select distinct id_pelicula, id_usuario from visualizaciones_pelicula;
+select distinct id_serie, id_usuario from visualizaciones_serie;
 
 /* IMPLEMENTAR LOGIN A TRAVES D EBASE DATOS ANTES DE CREAR ESTE PROCEDIMIENTO
 DELIMITER //
@@ -1508,7 +1546,3 @@ select * from network;
 select * from vw_historial_total;
 select * from permisos;
 select * from permisos_usuarios;
-
--- USAR ESTO PARA RELLENAR EL HISTORIAL -> CONVERTIR A PROCEDIMIENTO
-select distinct id_pelicula, id_usuario from visualizaciones_pelicula;
-select distinct id_serie, id_usuario from visualizaciones_serie;

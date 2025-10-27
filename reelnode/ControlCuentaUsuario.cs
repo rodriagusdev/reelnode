@@ -7,6 +7,8 @@ namespace Reelnode
     public partial class ControlCuentaUsuario : UserControl
     {
         private PanelGradiente PanelMain;
+        List <AudiovisualMiniatura> pelisVistas = new List<AudiovisualMiniatura> ();
+        List<AudiovisualMiniatura> seriesVistas = new List<AudiovisualMiniatura>();
 
         /* !--- Acciones para abrir pelicula o serie ---! */
 
@@ -58,10 +60,21 @@ namespace Reelnode
         private void MostrarCalificaciones()
         {
             CreadorUI.MostrarGaleriaMedia(FlowPanelPeliculas,
-                AdministradorCalificaciones.CargarCalificacionesUsuarioPeliculas(), AbrirPelicula);
+                AdministradorCalificaciones.CargarCalificacionesUsuarioPeliculas(), AbrirPelicula, 200, 200);
 
             CreadorUI.MostrarGaleriaMedia(FlowPanelSeries,
-                AdministradorCalificaciones.CargarCalificacionesUsuarioSeries(), AbrirSerie);
+                AdministradorCalificaciones.CargarCalificacionesUsuarioSeries(), AbrirSerie, 200, 200);
+
+            pelisVistas.Clear();
+
+            pelisVistas = AdministradorVisualizaciones.CargarPeliculasVistas();
+
+            CreadorUI.MostrarGaleriaMedia(FlowPelisVistas, pelisVistas, AbrirPelicula, 200, 200);
+
+            seriesVistas.Clear();
+
+            seriesVistas = AdministradorVisualizaciones.CargarSeriesVistas();
+            CreadorUI.MostrarGaleriaMedia(FlowSeriesVistas, seriesVistas, AbrirSerie, 200, 200);
         }
 
         /* !--- EVENTOS DE BOTONES ---! */

@@ -17,7 +17,7 @@ namespace Reelnode
         /* !--- OPERACIONES CRUD PELICULAS ---! */
         public static List<AudiovisualMiniatura> CargarPeliculasPreview()
         {
-            return AdministradorAudiovisual.CargarMiniaturaAudiovisual("sp_listar_peliculas_preview", EnumTipoId.id_pelicula);
+            return AdministradorAudiovisual.CargarMiniaturaAudiovisual("sp_listar_peliculas_preview", EnumTipoId.id_pelicula, false , EnumTipoId.null_param);
         }
         public static void CargarPeliculas()
         {

@@ -126,6 +126,7 @@
     <Compile Include="AdministradorCalificaciones.cs" />
     <Compile Include="AdministradorComentarios.cs" />
     <Compile Include="AdministradorJSON.cs" />
+    <Compile Include="AdministradorPDF.cs" />
     <Compile Include="AdministradorPeliculas.cs" />
     <Compile Include="AdministradorPermisos.cs" />
     <Compile Include="AdministradorReportesAvanzados.cs" />

@@ -285,7 +285,6 @@ D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\ProjectoNuevo.pdb
 D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlGestionSeriesActualizar.resources
 D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlGestionSeriesCargar.resources
 D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlGestionSeriesListarSeries.resources
-D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\ProjectoNuevo.FormPassword.resources
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\Reelnode.ControlGestionSeriesActualizar.resources
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\Reelnode.ControlGestionSeriesCargar.resources
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\Reelnode.ControlGestionSeriesListarSeries.resources
@@ -407,3 +406,4 @@ D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlComentarios.r
 D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlGestionDashboard.resources
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.ControlGestionDashboard.resources
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.FormPassword.resources
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.FormPassword.resources

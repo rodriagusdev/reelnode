@@ -162,13 +162,13 @@ namespace Reelnode
             documentoPDF.Filter = "Archivos PDF (*.pdf |* .pdf)";
             documentoPDF.FileName = "Reportes Metricas.pdf";
 
-            if (documentoPDF.ShowDialog() == DialogResult.OK) 
-            { 
+            if (documentoPDF.ShowDialog() == DialogResult.OK)
+            {
                 AdministradorPDF.ExportadorDashboard(documentoPDF.FileName);
                 MessageBox.Show("Reporte PDF generado correctamente", "Exito al generar el documento", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
-
+        }
         /* !--- FIN DE FILTROS DE REPORTES AVANZADOS ---! */
 
         /* !--- VISIBILIDAD DE PANELES ---! */

@@ -114,6 +114,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label28 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.PanelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicAvatar)).BeginInit();
             this.PanelDashboardMain.SuspendLayout();
@@ -138,6 +139,7 @@
             // 
             // PanelMenu
             // 
+            this.PanelMenu.Controls.Add(this.button3);
             this.PanelMenu.Controls.Add(this.BtnReportesAvanzados);
             this.PanelMenu.Controls.Add(this.BtnVerMetricasGenerales);
             this.PanelMenu.Controls.Add(this.label10);
@@ -1139,6 +1141,17 @@
             this.label28.Text = "Desde";
             this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // button3
+            // 
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(41, 590);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(171, 44);
+            this.button3.TabIndex = 21;
+            this.button3.Text = "Reportes Avanzados";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
             // ControlGestionDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1265,5 +1278,6 @@
         private System.Windows.Forms.ComboBox CboNetwork;
         private System.Windows.Forms.NumericUpDown NumUpDuracion;
         private System.Windows.Forms.CheckBox ChkDuracion;
+        private System.Windows.Forms.Button button3;
     }
 }

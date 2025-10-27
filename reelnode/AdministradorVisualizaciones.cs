@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 
@@ -53,6 +54,19 @@ namespace Reelnode
             {
                 MessageBox.Show("Error al visualizar la " + tipo == "Pelicula" ? "pelicula" : "serie" + ex.Message);
             }
+        }
+
+        public static List<AudiovisualMiniatura> CargarPeliculasVistas()
+        {
+
+            return AdministradorAudiovisual
+                .CargarMiniaturaAudiovisual("sp_obtener_visualizaciones_peliculas_usuario", EnumTipoId.id_pelicula, true, EnumTipoId.p_id_usuario);
+        }
+
+        public static List<AudiovisualMiniatura> CargarSeriesVistas()
+        {
+            return AdministradorAudiovisual
+                .CargarMiniaturaAudiovisual("sp_obtener_visualizaciones_series_usuario", EnumTipoId.id_serie, true, EnumTipoId.p_id_usuario);
         }
     }
 }

@@ -11,7 +11,7 @@ using iTextSharp.text.pdf;
 using Org.BouncyCastle.Tls.Crypto.Impl;
 using Reelnode;
 
-namespace ProjectoNuevo
+namespace Reelnode
 {
     public static class AdministradorPDF
     {
@@ -40,10 +40,10 @@ namespace ProjectoNuevo
             //FECHA DE GENERACION DE DOCUMENTO
             documento.Add(new Paragraph("\n Fecha de Generacion: " + DateTime.Now.ToString("dd/MM/yyyy/ HH:mm:ss")));
             documento.Add(new Paragraph("\n------------------------------------------------------------\n"));
-
+            /*
             //METRICAS GENERALES
-            int totalPelis = UtilsBD.peliculasCargadas.Count;
-            int totalSeries = UtilsBD.seriesCargadas.Count;
+            int totalPelis = AdministradorPeliculas.peliculasCargadas.Count;
+            int totalSeries = AdministradorSeries.seriesCargadas.Count;
             int totalGeneros = UtilsBD.generosCargados.Count;
             int totalNetworks = UtilsBD.networksCargadas.Count;
 
@@ -102,7 +102,7 @@ namespace ProjectoNuevo
             }
 
             documento.Add(new Paragraph("\n------------------------------------------------------------\n"));
-
+            */
             //TABLAS DE CONTENIDO CARGADO (SERIES Y PELICULAS)
             documento.Add(new Paragraph("📊 INFORME DE CONTENIDOS CARGADOS"));
             documento.Add(new Paragraph(""));
@@ -121,7 +121,7 @@ namespace ProjectoNuevo
             tablaPelis.AddCell("Trailer URL: ");
             tablaPelis.AddCell("Genero: ");
             tablaPelis.AddCell("Duracion: ");
-
+            /*
             foreach (var pelis in UtilsBD.peliculasCargadas) 
             {
                 tablaPelis.AddCell(pelis.Id.ToString());
@@ -186,9 +186,9 @@ namespace ProjectoNuevo
                 tablaSeries.AddCell(listGenerosSeries);
                 tablaSeries.AddCell(series.Temporadas.ToString());
             }
-
+            
             documento.Add(new Paragraph("📺 Series Cargadas"));
-            documento.Add(tablaSeries);
+            documento.Add(tablaSeries);*/
             documento.Close();
         }
     }

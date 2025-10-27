@@ -18,7 +18,7 @@ namespace Reelnode
 
         public static List<AudiovisualMiniatura> CargarSeriesPreview()
         {
-            return AdministradorAudiovisual.CargarMiniaturaAudiovisual("sp_listar_series_preview", EnumTipoId.id_serie);
+            return AdministradorAudiovisual.CargarMiniaturaAudiovisual("sp_listar_series_preview", EnumTipoId.id_serie, false, EnumTipoId.null_param);
         }
         public static void CargarSeries()
         {

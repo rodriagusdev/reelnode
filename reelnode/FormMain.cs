@@ -72,12 +72,16 @@ namespace Reelnode
             CreadorUI.MostrarGaleriaMedia(
                 FlowPanelPeliculas,
                 AdministradorPeliculas.CargarPeliculasPreview(),
-                AbrirPestanaPelicula
+                AbrirPestanaPelicula,
+                190,
+                220
             );
             CreadorUI.MostrarGaleriaMedia(
                 FlowPanelSeries,
                 AdministradorSeries.CargarSeriesPreview(),
-                AbrirPestanaSerie
+                AbrirPestanaSerie,
+                190,
+                220
             );
 
             /* !--- CARGA DE PERMISOS ---! */

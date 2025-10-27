@@ -35,6 +35,12 @@ namespace Reelnode
 
         private void BtnEnviarComentario_Click(object sender, EventArgs e)
         {
+            if (!AdministradorPermisos.permisosUsuarioActual.Contains(EnumPermisos.comentar.ToString()))
+            {
+                MessageBox.Show("No posees los permisos para comentar", "Error de permisos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             AdministradorComentarios.Comentar(
                 AdministradorAudiovisual.ObtenerIdAudiovisual(),
                 TxtComentario.Text,

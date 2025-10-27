@@ -13,6 +13,7 @@ namespace Reelnode
     {
         public static Usuario usuarioActual = new Usuario();
         public static List<Usuario> usuariosRegistrados = new List<Usuario>();
+        public static List<AudiovisualMiniatura> pelisVistas = new List<AudiovisualMiniatura>();
 
         /* !--- OPERACIONES CRUD USUARIO ---! */
         public static bool RegistrarUsuarioBD(Usuario nuevoUsuario)

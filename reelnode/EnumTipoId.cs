@@ -2,10 +2,12 @@
 {
     public enum EnumTipoId 
     {
+        null_param,
         id_pelicula, 
         id_serie,
         p_id_pelicula,
         p_id_serie,
+        p_id_usuario
     }
 
     /*
