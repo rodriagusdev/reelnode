@@ -191,5 +191,20 @@ namespace Reelnode
             ChkDuracion.Checked = false;
             ChkFiltroCalif.Checked = false;
         }
+
+        private void BtnExportarPDF_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog documentoPDF = new SaveFileDialog();
+            documentoPDF.Filter = "Archivos PDF (*.pdf |* .pdf)";
+            documentoPDF.FileName = "Reportes Metricas.pdf";
+
+            if (documentoPDF.ShowDialog() == DialogResult.OK) 
+            { 
+                AdministradorPDF.ExportadorDashboard(documentoPDF.FileName);
+                MessageBox.Show("Reporte PDF generado correctamente", "Exito al generar el documento", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+
+        }
     }
 }
