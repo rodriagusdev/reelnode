@@ -1,7 +1,6 @@
 # Reelnode
 
 # Todo List
-❌Implementar permisos en: calificacion, comentar.
 
 ❌Implementar login desde la base de datos
 
