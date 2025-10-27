@@ -69,14 +69,14 @@ namespace Reelnode
             Panel.BackColor = Color.Transparent;
 
             // Relleno los flow panels de la UI principal con las peliculas y series cargadas en la base de datos
-            CreadorUI.MostrarGaleriaMedia(
+            CreadorUI.MostrarGaleriaAudiovisual(
                 FlowPanelPeliculas,
                 AdministradorPeliculas.CargarPeliculasPreview(),
                 AbrirPestanaPelicula,
                 190,
                 220
             );
-            CreadorUI.MostrarGaleriaMedia(
+            CreadorUI.MostrarGaleriaAudiovisual(
                 FlowPanelSeries,
                 AdministradorSeries.CargarSeriesPreview(),
                 AbrirPestanaSerie,
@@ -134,6 +134,26 @@ namespace Reelnode
         }
 
         /* !--- EVENTOS DE CLICK SOBRE CONTENIDO AUDIOVISUAL ---! */
+
+        public string EnviarCalificacionAFormateo(int idAudiovisual, EnumTipoId tipo)
+        {
+            double califPromedio = 0;
+            string procedimiento = "";
+
+            if (tipo == EnumTipoId.p_id_serie)
+                procedimiento = "sp_obtener_serie_calificacion_promedio";
+            if (tipo == EnumTipoId.p_id_pelicula)
+                procedimiento = "sp_obtener_pelicula_calificacion_promedio";
+
+            califPromedio = AdministradorCalificaciones.ObtenerCalificacionPromedio(
+                procedimiento,
+                idAudiovisual,
+                tipo
+            );
+
+            return Utils.FormatearPuntoPromedio(califPromedio);
+        }
+
         public void AbrirPestanaSerie(int idAudiovisualClick)
         {
             AdministradorPeliculas.peliculaSeleccionada = null;
@@ -142,7 +162,11 @@ namespace Reelnode
                 idAudiovisualClick - 1
             ];
 
+            controlVisualizacionSerie.LblCalificacion.Text =
+                $"{EnviarCalificacionAFormateo(idAudiovisualClick, EnumTipoId.p_id_serie):F1}";
+
             controlVisualizacionSerie.CargarSerie(AdministradorSeries.serieSeleccionada);
+
             AdministradorVisualizaciones.RegistrarVisualizacion(
                 AdministradorSeries.serieSeleccionada.Id,
                 "Serie"
@@ -159,9 +183,11 @@ namespace Reelnode
                 idAudiovisualClick - 1
             ];
 
-            controlVisualizacionPeliculas.CargarPelicula(
-                AdministradorPeliculas.peliculaSeleccionada
-            );
+            controlVisualizacionPeliculas.LblCalificacion.Text =
+                $"{EnviarCalificacionAFormateo(idAudiovisualClick, EnumTipoId.p_id_pelicula):F1}";
+
+            controlVisualizacionPeliculas.CargarPelicula(AdministradorPeliculas.peliculaSeleccionada);
+
             AdministradorVisualizaciones.RegistrarVisualizacion(
                 AdministradorPeliculas.peliculaSeleccionada.Id,
                 "Pelicula"

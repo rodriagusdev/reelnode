@@ -32,11 +32,10 @@ namespace Reelnode
                     cmd.Parameters.AddWithValue("p_nombre", nuevoUsuario.NombreUsuario);
                     cmd.Parameters.AddWithValue("p_password", nuevoUsuario.Password);
                     cmd.Parameters.AddWithValue(
-                     "p_id_rol",
-                    ObtenerRolUsuario(nuevoUsuario.RolUsuario)
+                        "p_id_rol",
+                        ObtenerRolUsuario(nuevoUsuario.RolUsuario)
                     );
                     cmd.Parameters.AddWithValue("p_email", nuevoUsuario.Email);
-  
 
                     cmd.ExecuteNonQuery();
 
@@ -280,6 +279,8 @@ namespace Reelnode
         /* !--- DATOS PARA METRICAS ---! */
         public static MetricaUsuario CargarUltimoUsuarioRegistrado()
         {
+            MetricaUsuario ultimoRegistrado = new MetricaUsuario();
+
             using (
                 MySqlCommand cmd = new MySqlCommand(
                     "sp_obtener_ultimo_usuario_registrado",
@@ -293,10 +294,12 @@ namespace Reelnode
                 {
                     while (reader.Read())
                     {
-                        MetricaUsuario ultimoRegistrado = new MetricaUsuario(
+                        ultimoRegistrado = new MetricaUsuario(
                             reader.GetString("nombre_usuario"),
                             reader.GetDateTime("fecha_registro").ToString("dd/MM/yyyy"),
-                            reader.GetString("avatar")
+                            reader.IsDBNull(reader.GetOrdinal("avatar"))
+                                ? null
+                                : reader.GetString(reader.GetOrdinal("avatar"))
                         );
 
                         return ultimoRegistrado;
@@ -304,8 +307,8 @@ namespace Reelnode
                 }
             }
 
-            return null;
-        } // ToString("dd/MM/yyyy")
+            return ultimoRegistrado;
+        }
 
         public static int CargarUsuariosRegistradosUltimoMes()
         {

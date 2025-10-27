@@ -407,3 +407,9 @@ D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlGestionDashbo
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.ControlGestionDashboard.resources
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.FormPassword.resources
 D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.FormPassword.resources
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\vocab.txt
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\config.json
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\model_optimized_quantized.onnx
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\tokenizer.json
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Newtonsoft.Json.dll
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Newtonsoft.Json.xml

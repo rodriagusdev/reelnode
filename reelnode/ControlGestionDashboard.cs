@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -93,8 +92,6 @@ namespace Reelnode
             }
 
             CboTipoReporte.SelectedIndex = 0;
-            CboNetwork.SelectedIndex = 0;
-            CboGeneros.SelectedIndex = 0;
         }
 
         /* !--- FILTROS DE REPORTES AVANZADOS ---! */
@@ -165,10 +162,15 @@ namespace Reelnode
             if (documentoPDF.ShowDialog() == DialogResult.OK)
             {
                 AdministradorPDF.ExportadorDashboard(documentoPDF.FileName);
-                MessageBox.Show("Reporte PDF generado correctamente", "Exito al generar el documento", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                MessageBox.Show(
+                    "Reporte PDF generado correctamente",
+                    "Exito al generar el documento",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
             }
         }
+
         /* !--- FIN DE FILTROS DE REPORTES AVANZADOS ---! */
 
         /* !--- VISIBILIDAD DE PANELES ---! */
@@ -223,6 +225,30 @@ namespace Reelnode
         private void ControlGestionDashboard_VisibleChanged(object sender, EventArgs e)
         {
             CargarDatosUsuario();
+        }
+
+        private void BtnExportarTodoPDF_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFile = new SaveFileDialog();
+            saveFile.Filter = "PDF (*.pdf)|*.pdf";
+            saveFile.FileName = "ReporteGeneral.pdf";
+
+            if (saveFile.ShowDialog() == DialogResult.OK)
+            {
+                AdministradorPDF.ExportadorDashboard(saveFile.FileName);
+            }
+        }
+
+        private void BtnExportarGrilla_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFile = new SaveFileDialog();
+            saveFile.Filter = "PDF (*.pdf)|*.pdf";
+            saveFile.FileName = $"ReporteGrilla{CboTipoReporte.Text.ToUpper()}.pdf";
+
+            if (saveFile.ShowDialog() == DialogResult.OK)
+            {
+                AdministradorPDF.ExportarDataGridToPDF(DataGridReportes, saveFile.FileName);
+            }
         }
     }
 }

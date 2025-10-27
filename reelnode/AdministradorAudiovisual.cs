@@ -1,53 +1,83 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace Reelnode
 {
     public static class AdministradorAudiovisual
     {
         /* !--- CARGA DE DATOS AUDIOVISUALES (PELICULAS Y SERIES) ---! */
-        public static List<AudiovisualMiniatura> CargarMiniaturaAudiovisual(string procedimiento, EnumTipoId tipoAudiovisual, bool conParametro, EnumTipoId parametro)
+        public static List<AudiovisualMiniatura> CargarMiniaturaAudiovisual(
+            string procedimiento,
+            EnumTipoId tipoAudiovisual,
+            bool conParametro,
+            EnumTipoId parametro
+        )
         {
             List<AudiovisualMiniatura> listAudiovisual = new List<AudiovisualMiniatura>();
 
-            using (MySqlCommand cmd = new MySqlCommand(procedimiento, UtilsBD.Conexion.GetConnection()))
+            try
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                // Con parametro quiere decir que el procedimiento ademas debe enviar un parametro a la base de datos
-                if(conParametro == true)
+                using (
+                    MySqlCommand cmd = new MySqlCommand(
+                        procedimiento,
+                        UtilsBD.Conexion.GetConnection()
+                    )
+                )
                 {
-                    cmd.Parameters.AddWithValue(parametro.ToString(), AdministradorUsuarios.usuarioActual.Id);
-                }
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                using (MySqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
+                    // Con parametro quiere decir que el procedimiento ademas debe recibir un parametro en la base de datos
+                    // En este caso es el id del usuario
+                    if (conParametro == true)
                     {
-                        AudiovisualMiniatura preview = new AudiovisualMiniatura
-                        (
-                            reader.GetInt32(tipoAudiovisual.ToString()),
-                            reader.GetString("nombre"),
-                            reader.GetString("imagenURL")
+                        cmd.Parameters.AddWithValue(
+                            parametro.ToString(),
+                            AdministradorUsuarios.usuarioActual.Id
                         );
+                    }
 
-                        listAudiovisual.Add(preview);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            AudiovisualMiniatura preview = new AudiovisualMiniatura(
+                                reader.GetInt32(tipoAudiovisual.ToString()),
+                                reader.GetString("nombre"),
+                                reader.GetString("imagenURL")
+                            );
+
+                            listAudiovisual.Add(preview);
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.Message,
+                    "Error en carga",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
 
             return listAudiovisual;
         }
 
-        public static List<Audiovisual> CargarAudiovisualCompleto(string procedimiento, EnumTipoId idTipo)
+        public static List<Audiovisual> CargarAudiovisualCompleto(
+            string procedimiento,
+            EnumTipoId idTipo
+        )
         {
             List<Audiovisual> listAudiovisual = new List<Audiovisual>();
 
-            using (MySqlCommand cmd = new MySqlCommand(procedimiento, UtilsBD.Conexion.GetConnection()))
+            using (
+                MySqlCommand cmd = new MySqlCommand(procedimiento, UtilsBD.Conexion.GetConnection())
+            )
             {
                 cmd.CommandType = CommandType.StoredProcedure;
 
@@ -60,10 +90,7 @@ namespace Reelnode
                         /* DATOS PROPIOS (Depende del tipo segun el enumerado) */
                         if (idTipo == EnumTipoId.id_pelicula)
                         {
-                            contenido = new Pelicula
-                            {
-                                Duracion = reader.GetInt32("duracion")
-                            };
+                            contenido = new Pelicula { Duracion = reader.GetInt32("duracion") };
                         }
                         else
                         {
@@ -75,7 +102,6 @@ namespace Reelnode
                         }
 
                         /* FIN DATOS PROPIOS */
-
 
                         /* DATOS COMPARTIDOS */
 
@@ -89,7 +115,9 @@ namespace Reelnode
                         contenido.Network = reader.GetInt32("id_network");
                         contenido.Generos = reader.IsDBNull(reader.GetOrdinal("generos"))
                             ? new List<int>()
-                            : reader.GetString("generos").Split(',')
+                            : reader
+                                .GetString("generos")
+                                .Split(',')
                                 .Select(s => int.Parse(s))
                                 .ToList();
 
@@ -105,11 +133,13 @@ namespace Reelnode
 
         /* !--- FIN CARGA DE DATOS AUDIOVISUALES (PELICULAS Y SERIES) ---! */
 
-
         /* !--- INSERTS Y UPDATES DE DATOS AUDIOVISUALES (PELICULAS Y SERIES) ---! */
 
-
-        public static void EnviarDatosAudiovisual(MySqlCommand cmd, Audiovisual audiovisual, EnumTipoId tipoId)
+        public static void EnviarDatosAudiovisual(
+            MySqlCommand cmd,
+            Audiovisual audiovisual,
+            EnumTipoId tipoId
+        )
         {
             if (audiovisual is Pelicula pelicula)
             {
@@ -125,14 +155,38 @@ namespace Reelnode
             cmd.Parameters.AddWithValue("p_id_usuario", AdministradorUsuarios.usuarioActual.Id);
             cmd.Parameters.AddWithValue("p_nombre", audiovisual.Nombre);
             cmd.Parameters.AddWithValue("p_fecha_estreno", audiovisual.FechaEstreno);
-            cmd.Parameters.AddWithValue("p_descripcion", string.IsNullOrEmpty(audiovisual.Descripcion) ? (object)DBNull.Value : audiovisual.Descripcion);
-            cmd.Parameters.AddWithValue("p_director", string.IsNullOrEmpty(audiovisual.Director) ? (object)DBNull.Value : audiovisual.Director);
-            cmd.Parameters.AddWithValue("p_imagenURL", string.IsNullOrEmpty(audiovisual.ImagenURL) ? (object)DBNull.Value : audiovisual.ImagenURL);
+            cmd.Parameters.AddWithValue(
+                "p_descripcion",
+                string.IsNullOrEmpty(audiovisual.Descripcion)
+                    ? (object)DBNull.Value
+                    : audiovisual.Descripcion
+            );
+            cmd.Parameters.AddWithValue(
+                "p_director",
+                string.IsNullOrEmpty(audiovisual.Director)
+                    ? (object)DBNull.Value
+                    : audiovisual.Director
+            );
+            cmd.Parameters.AddWithValue(
+                "p_imagenURL",
+                string.IsNullOrEmpty(audiovisual.ImagenURL)
+                    ? (object)DBNull.Value
+                    : audiovisual.ImagenURL
+            );
             cmd.Parameters.AddWithValue("p_id_network", audiovisual.Network);
-            cmd.Parameters.AddWithValue("p_trailerURL", string.IsNullOrEmpty(audiovisual.TrailerURL) ? (object)DBNull.Value : audiovisual.TrailerURL);
+            cmd.Parameters.AddWithValue(
+                "p_trailerURL",
+                string.IsNullOrEmpty(audiovisual.TrailerURL)
+                    ? (object)DBNull.Value
+                    : audiovisual.TrailerURL
+            );
         }
 
-        public static void EnviarGenerosAudiovisual(Audiovisual audiovisual, EnumTipoId tipoId, int id)
+        public static void EnviarGenerosAudiovisual(
+            Audiovisual audiovisual,
+            EnumTipoId tipoId,
+            int id
+        )
         {
             string procedimientoGeneros = "";
             string mensajeExito = "";
@@ -153,11 +207,19 @@ namespace Reelnode
             {
                 try
                 {
-                    using (MySqlCommand cmdGenero = new MySqlCommand(procedimientoGeneros, UtilsBD.Conexion.GetConnection()))
+                    using (
+                        MySqlCommand cmdGenero = new MySqlCommand(
+                            procedimientoGeneros,
+                            UtilsBD.Conexion.GetConnection()
+                        )
+                    )
                     {
                         cmdGenero.CommandType = CommandType.StoredProcedure;
 
-                        cmdGenero.Parameters.AddWithValue(tipoId.ToString(), id == 0 ? audiovisual.Id : id);
+                        cmdGenero.Parameters.AddWithValue(
+                            tipoId.ToString(),
+                            id == 0 ? audiovisual.Id : id
+                        );
                         cmdGenero.Parameters.AddWithValue("p_id_genero", idGenero);
                         cmdGenero.ExecuteNonQuery();
                     }
@@ -168,15 +230,28 @@ namespace Reelnode
                 }
             }
 
-            MessageBox.Show(mensajeExito, "Operación Exitosa",
-               MessageBoxButtons.OK,
-               MessageBoxIcon.Information);
+            MessageBox.Show(
+                mensajeExito,
+                "Operación Exitosa",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
         }
-        public static bool InsertarAudiovisual(Audiovisual audiovisual, string procedimiento, EnumTipoId tipoId)
+
+        public static bool InsertarAudiovisual(
+            Audiovisual audiovisual,
+            string procedimiento,
+            EnumTipoId tipoId
+        )
         {
             try
             {
-                using (MySqlCommand cmd = new MySqlCommand(procedimiento, UtilsBD.Conexion.GetConnection()))
+                using (
+                    MySqlCommand cmd = new MySqlCommand(
+                        procedimiento,
+                        UtilsBD.Conexion.GetConnection()
+                    )
+                )
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -185,7 +260,7 @@ namespace Reelnode
                     /* OBTENCION PARAMETRO OUT */
 
                     // Parámetro OUT que devuelve sp_insertar_pelicula
-                    // para obtener el ID utilizando LastInsertId() 
+                    // para obtener el ID utilizando LastInsertId()
 
                     var obtenerUltimoId = new MySqlParameter(tipoId.ToString(), MySqlDbType.Int32);
                     obtenerUltimoId.Direction = ParameterDirection.Output;
@@ -208,11 +283,21 @@ namespace Reelnode
                 return false;
             }
         }
-        public static bool ActualizarAudiovisual(Audiovisual audiovisual, string procedimiento, EnumTipoId tipoId)
+
+        public static bool ActualizarAudiovisual(
+            Audiovisual audiovisual,
+            string procedimiento,
+            EnumTipoId tipoId
+        )
         {
             try
             {
-                using (MySqlCommand cmd = new MySqlCommand(procedimiento, UtilsBD.Conexion.GetConnection()))
+                using (
+                    MySqlCommand cmd = new MySqlCommand(
+                        procedimiento,
+                        UtilsBD.Conexion.GetConnection()
+                    )
+                )
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -241,24 +326,40 @@ namespace Reelnode
         {
             try
             {
-                using (MySqlCommand cmd = new MySqlCommand(procedimiento, UtilsBD.Conexion.GetConnection()))
+                using (
+                    MySqlCommand cmd = new MySqlCommand(
+                        procedimiento,
+                        UtilsBD.Conexion.GetConnection()
+                    )
+                )
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("p_id_usuario", AdministradorUsuarios.usuarioActual.Id);
+                    cmd.Parameters.AddWithValue(
+                        "p_id_usuario",
+                        AdministradorUsuarios.usuarioActual.Id
+                    );
                     cmd.Parameters.AddWithValue("p_id", id);
 
                     cmd.ExecuteNonQuery();
 
-                    MessageBox.Show(mensaje, "Eliminación Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(
+                        mensaje,
+                        "Eliminación Exitosa",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
 
                     return true;
                 }
             }
             catch (Exception e)
             {
-                MessageBox.Show("Error: " + e.Message, "Excepción",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "Error: " + e.Message,
+                    "Excepción",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
                 return false;
             }
         }
@@ -266,11 +367,11 @@ namespace Reelnode
         /* !--- OTRAS FUNCIONES ---! */
         public static int ObtenerIdAudiovisual()
         {
-            if (AdministradorPeliculas.peliculaSeleccionada != null) return AdministradorPeliculas.peliculaSeleccionada.Id;
+            if (AdministradorPeliculas.peliculaSeleccionada != null)
+                return AdministradorPeliculas.peliculaSeleccionada.Id;
 
             // Si es null se selecciono una serie, entonces devuelvo un Id de serie
             return AdministradorSeries.serieSeleccionada.Id;
         }
-
     }
 }

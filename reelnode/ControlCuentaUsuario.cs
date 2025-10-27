@@ -7,8 +7,6 @@ namespace Reelnode
     public partial class ControlCuentaUsuario : UserControl
     {
         private PanelGradiente PanelMain;
-        List <AudiovisualMiniatura> pelisVistas = new List<AudiovisualMiniatura> ();
-        List<AudiovisualMiniatura> seriesVistas = new List<AudiovisualMiniatura>();
 
         /* !--- Acciones para abrir pelicula o serie ---! */
 
@@ -24,10 +22,7 @@ namespace Reelnode
 
             /* Necesario para que funcione el panel con gradiente de fondo */
             // ESPECIFICO DE ESTE USERCONTROL
-            PanelMain = new PanelGradiente
-            {
-                Dock = DockStyle.Fill
-            };
+            PanelMain = new PanelGradiente { Dock = DockStyle.Fill };
 
             while (this.Controls.Count > 0)
             {
@@ -44,7 +39,9 @@ namespace Reelnode
             AdministradorCalificaciones.OnCalificacionActualizada += MostrarCalificaciones;
             /* !--- CARGAR DATOS DE USUARIO ---! */
 
-            PicAvatar.Image = Utils.DescargarImagenDesdeURL(AdministradorUsuarios.usuarioActual.Avatar);
+            PicAvatar.Image = Utils.DescargarImagenDesdeURL(
+                AdministradorUsuarios.usuarioActual.Avatar
+            );
             LblEmail.Text = AdministradorUsuarios.usuarioActual.Email;
             LblUsuario.Text = AdministradorUsuarios.usuarioActual.NombreUsuario;
 
@@ -59,22 +56,37 @@ namespace Reelnode
 
         private void MostrarCalificaciones()
         {
-            CreadorUI.MostrarGaleriaMedia(FlowPanelPeliculas,
-                AdministradorCalificaciones.CargarCalificacionesUsuarioPeliculas(), AbrirPelicula, 200, 200);
+            CreadorUI.MostrarGaleriaAudiovisual(
+                FlowPeliculasCalificadas,
+                AdministradorCalificaciones.CargarCalificacionesUsuarioPeliculas(),
+                AbrirPelicula,
+                220,
+                220
+            );
 
-            CreadorUI.MostrarGaleriaMedia(FlowPanelSeries,
-                AdministradorCalificaciones.CargarCalificacionesUsuarioSeries(), AbrirSerie, 200, 200);
+            CreadorUI.MostrarGaleriaAudiovisual(
+                FlowSeriesCalificadas,
+                AdministradorCalificaciones.CargarCalificacionesUsuarioSeries(),
+                AbrirSerie,
+                220,
+                220
+            );
 
-            pelisVistas.Clear();
+            CreadorUI.MostrarGaleriaAudiovisual(
+                FlowPelisVistas,
+                AdministradorVisualizaciones.CargarPeliculasVistas(),
+                AbrirPelicula,
+                200,
+                200
+            );
 
-            pelisVistas = AdministradorVisualizaciones.CargarPeliculasVistas();
-
-            CreadorUI.MostrarGaleriaMedia(FlowPelisVistas, pelisVistas, AbrirPelicula, 200, 200);
-
-            seriesVistas.Clear();
-
-            seriesVistas = AdministradorVisualizaciones.CargarSeriesVistas();
-            CreadorUI.MostrarGaleriaMedia(FlowSeriesVistas, seriesVistas, AbrirSerie, 200, 200);
+            CreadorUI.MostrarGaleriaAudiovisual(
+                FlowSeriesVistas,
+                AdministradorVisualizaciones.CargarSeriesVistas(),
+                AbrirSerie,
+                200,
+                200
+            );
         }
 
         /* !--- EVENTOS DE BOTONES ---! */
@@ -83,20 +95,28 @@ namespace Reelnode
         {
             BtnConfirmarAvatar.Visible = false;
             PanelURL.Visible = false;
+            LblURL.Visible = false;
 
-            AdministradorUsuarios.CambiarAvatarUsuario(AdministradorUsuarios.usuarioActual.Id, TxtURLImagen.Text, PicAvatar);
+            AdministradorUsuarios.CambiarAvatarUsuario(
+                AdministradorUsuarios.usuarioActual.Id,
+                TxtURLImagen.Text,
+                PicAvatar
+            );
         }
 
         private void BtnAvatar_Click_1(object sender, EventArgs e)
         {
             BtnConfirmarAvatar.Visible = true;
             PanelURL.Visible = true;
+            LblURL.Visible = true;
         }
 
         private void ControlCuentaUsuario_Load(object sender, EventArgs e)
         {
             ConfiguracionCuentaUsuario();
         }
+
+        private void PanelCuenta_Paint(object sender, PaintEventArgs e) { }
 
         /* !--- FIN DE EVENTOS DE BOTONES ---! */
     }

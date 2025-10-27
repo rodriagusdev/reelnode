@@ -231,6 +231,18 @@ namespace Reelnode
             }
         }
 
+        private void BtnExportar_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFile = new SaveFileDialog();
+            saveFile.Filter = "PDF (*.pdf)|*.pdf";
+            saveFile.FileName = "ReporteUsuarios.pdf";
+
+            if (saveFile.ShowDialog() == DialogResult.OK)
+            {
+                AdministradorPDF.ExportarDataGridToPDF(DataGridUsuarios, saveFile.FileName);
+            }
+        }
+
         /* !--- FIN HABILITACION CONTEXT MENUS ---! */
     }
 }

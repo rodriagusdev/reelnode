@@ -15,6 +15,7 @@ namespace Reelnode
 
         public string Avatar { get; set; }
 
+        public MetricaUsuario() { }
         public MetricaUsuario(string usuario)
         {
             NombreUsuario = usuario;

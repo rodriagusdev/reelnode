@@ -6,6 +6,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Org.BouncyCastle.Tls.Crypto.Impl;
@@ -15,181 +17,481 @@ namespace Reelnode
 {
     public static class AdministradorPDF
     {
-        public static void ExportadorDashboard(string rutaPDF) 
-        { 
-            //CREACION DEL DOCUMENTO PDF
+        // === COLORES DEL TEMA CYBERPUNK ===
+        private static BaseColor azulOscuro = new BaseColor(
+            AdministradorTema.AzulOscuroNeon.R,
+            AdministradorTema.AzulOscuroNeon.G,
+            AdministradorTema.AzulOscuroNeon.B
+        );
+        private static BaseColor verdeNeon = new BaseColor(
+            AdministradorTema.VerdeClaroNeon.R,
+            AdministradorTema.VerdeClaroNeon.G,
+            AdministradorTema.VerdeClaroNeon.B
+        );
+        private static BaseColor rosaNeon = new BaseColor(
+            AdministradorTema.RosaNeon.R,
+            AdministradorTema.RosaNeon.G,
+            AdministradorTema.RosaNeon.B
+        );
+        private static BaseColor cyanNeon = new BaseColor(
+            AdministradorTema.CyanNeon.R,
+            AdministradorTema.CyanNeon.G,
+            AdministradorTema.CyanNeon.B
+        );
+        private static BaseColor fondoTabla = new BaseColor(20, 20, 30);
+
+        // En el PDF pinto las paginas, pero sin esta funcion, solo se pinta la primera.
+        // Es necesaria para pitnar todas las paginas que existan
+        class FondoPaginaEvento : PdfPageEventHelper
+        {
+            private BaseColor _fondo;
+
+            public FondoPaginaEvento(BaseColor fondo)
+            {
+                _fondo = fondo;
+            }
+
+            public override void OnEndPage(PdfWriter writer, Document document)
+            {
+                PdfContentByte cb = writer.DirectContentUnder;
+                cb.SetColorFill(_fondo);
+                cb.Rectangle(0, 0, document.PageSize.Width, document.PageSize.Height);
+                cb.Fill();
+            }
+        }
+
+        public static void ExportarDataGridToPDF(DataGridView dgv, string rutaPDF)
+        {
             Document documento = new Document(PageSize.A4, 40, 40, 40, 40);
 
-            /*PdfWriter: es una clase de la librería iTextSharp que se encarga de escribir 
-             *los datos del documento en un destino (generalmente un archivo o un flujo de memoria).
-         
-            FileStream: es una clase de .NET que representa un flujo de bytes hacia un archivo físico.
-            Se usa para escribir o leer archivos en disco.
-
-            “Crea un escritor de PDF que tome todo lo que agregue al documento documento,
-             y lo guarde en el archivo ubicado en rutaArchivo.”
-             */
-
-            PdfWriter.GetInstance(documento, new FileStream(rutaPDF, FileMode.Create));
-
-            //TITULO DEL DOCUMENTO
-            var titulo = new Paragraph("Reporte de metricas del Dashboard", new Font(Font.FontFamily.COURIER, 20, Font.BOLD));
-            titulo.Alignment = Element.ALIGN_CENTER;
-            documento.Add(titulo);
-
-            //FECHA DE GENERACION DE DOCUMENTO
-            documento.Add(new Paragraph("\n Fecha de Generacion: " + DateTime.Now.ToString("dd/MM/yyyy/ HH:mm:ss")));
-            documento.Add(new Paragraph("\n------------------------------------------------------------\n"));
-            /*
-            //METRICAS GENERALES
-            int totalPelis = AdministradorPeliculas.peliculasCargadas.Count;
-            int totalSeries = AdministradorSeries.seriesCargadas.Count;
-            int totalGeneros = UtilsBD.generosCargados.Count;
-            int totalNetworks = UtilsBD.networksCargadas.Count;
-
-            //VISUALIZACION METRICAS GENERALES
-            documento.Add(new Paragraph("🎬 Total de Peliculas: " + totalPelis));
-            documento.Add(new Paragraph("📺 Total de Series: " + totalSeries));
-            documento.Add(new Paragraph("🏷️ Total de Generos: " + totalGeneros));
-            documento.Add(new Paragraph("🌐 Total de Networks: " + totalNetworks));
-            documento.Add(new Paragraph("\n------------------------------------------------------------\n"));
-
-            //METRICAS DESTACADAS
-
-            //PELICULA MAS VISTA
-            if (UtilsBD.pelisMasVistas.Any()) 
+            using (FileStream fs = new FileStream(rutaPDF, FileMode.Create))
             {
-                documento.Add(new Paragraph("⭐ Pelicula mas vista: " + UtilsBD.pelisMasVistas.First().Nombre));
-            }
+                PdfWriter writer = PdfWriter.GetInstance(documento, fs);
 
-            //PROMEDIO CALIFICACION PELI MAS VISTA
-            if (UtilsBD.pelisMasVistas.Any()) 
+                // Fondo en todas las páginas
+                writer.PageEvent = new FondoPaginaEvento(
+                    new BaseColor(
+                        AdministradorTema.AzulOscuroNeon.R,
+                        AdministradorTema.AzulOscuroNeon.G,
+                        AdministradorTema.AzulOscuroNeon.B
+                    )
+                );
+
+                documento.Open();
+
+                // Título
+                var titulo = new Paragraph(
+                    "📊 Exportación de datos",
+                    new Font(Font.FontFamily.COURIER, 18, Font.BOLD, new BaseColor(0, 255, 180))
+                )
+                { Alignment = Element.ALIGN_CENTER };
+                documento.Add(titulo);
+                documento.Add(new Paragraph("\n"));
+
+                // Configuración de colores y fuentes
+                BaseColor neonHeader = new BaseColor(
+                    AdministradorTema.CyanNeon.R,
+                    AdministradorTema.CyanNeon.G,
+                    AdministradorTema.CyanNeon.B
+                );
+                BaseColor fondoTabla = new BaseColor(20, 20, 30);
+                Font fuenteEncabezado = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD, neonHeader);
+                Font fuenteCuerpo = new Font(Font.FontFamily.HELVETICA, 9, Font.NORMAL, BaseColor.WHITE);
+
+                // Filtrar columnas visibles. No quier mostrar ni Password ni Avatar ya uqe es una URL
+                var columnasVisibles = dgv.Columns
+                    .Cast<DataGridViewColumn>()
+                    .Where(c => c.Name != "Password" && c.Name != "Avatar")
+                    .ToList();
+
+                PdfPTable tabla = new PdfPTable(columnasVisibles.Count) { WidthPercentage = 100 };
+
+                // Cargo encabezados
+                foreach (var col in columnasVisibles)
+                {
+                    PdfPCell celda = new PdfPCell(new Phrase(col.HeaderText, fuenteEncabezado))
+                    {
+                        BackgroundColor = new BaseColor(30, 30, 50),
+                        HorizontalAlignment = Element.ALIGN_CENTER,
+                        Padding = 5
+                    };
+                    tabla.AddCell(celda);
+                }
+
+                // Cargo filas
+                foreach (DataGridViewRow row in dgv.Rows)
+                {
+                    if (row.IsNewRow) continue;
+
+                    foreach (var col in columnasVisibles)
+                    {
+                        var valor = row.Cells[col.Index].Value?.ToString() ?? "";
+                        PdfPCell celda = new PdfPCell(new Phrase(valor, fuenteCuerpo))
+                        {
+                            BackgroundColor = fondoTabla,
+                            BorderColor = neonHeader,
+                            Padding = 4,
+                            HorizontalAlignment = Element.ALIGN_CENTER
+                        };
+                        tabla.AddCell(celda);
+                    }
+                }
+
+                documento.Add(tabla);
+                documento.Close();
+            }
+        }
+
+        public static void ExportadorDashboard(string rutaPDF)
+        {
+            Document documento = new Document(PageSize.A4, 40, 40, 40, 40);
+
+            using (FileStream fs = new FileStream(rutaPDF, FileMode.Create))
             {
-                documento.Add(new Paragraph("⭐ Promedio de calificacion de la pelicula mas vista: " + UtilsBD.pelisMasVistas.First().CalificacionPromedio));
+                PdfWriter writer = PdfWriter.GetInstance(documento, fs);
+
+                // Agrego el evento para pintar fondo en todas las páginas
+                writer.PageEvent = new FondoPaginaEvento(azulOscuro);
+
+                documento.Open();
+
+                // === FONDO DE PÁGINA ===
+                PdfContentByte fondo = writer.DirectContentUnder;
+                fondo.SetColorFill(azulOscuro);
+                fondo.Rectangle(0, 0, documento.PageSize.Width, documento.PageSize.Height);
+                fondo.Fill();
+
+                // ===== TÍTULO =====
+                var titulo = new Paragraph(
+                    "📊 REPORTE DE MÉTRICAS DEL DASHBOARD",
+                    new Font(Font.FontFamily.COURIER, 20, Font.BOLD, verdeNeon)
+                )
+                {
+                    Alignment = Element.ALIGN_CENTER,
+                };
+                documento.Add(titulo);
+
+                documento.Add(
+                    new Paragraph(
+                        "\nFecha de generación: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"),
+                        new Font(Font.FontFamily.HELVETICA, 10, Font.NORMAL, BaseColor.LIGHT_GRAY)
+                    )
+                );
+                documento.Add(new Paragraph("\n──────────────────────────────────────────────\n"));
+
+                // ===== MÉTRICAS GENERALES =====
+                var peliculas = AdministradorPeliculas.peliculasCargadas ?? new List<Pelicula>();
+                var series = AdministradorSeries.seriesCargadas ?? new List<Serie>();
+                List<Genero> generos = UtilsBD.CargarGeneros() ?? new List<Genero>();
+                List<Network> networks = UtilsBD.CargarNetworks() ?? new List<Network>();
+
+                documento.Add(
+                    new Paragraph(
+                        "🎬 Total de películas: " + peliculas.Count,
+                        new Font(Font.FontFamily.HELVETICA, 11, Font.NORMAL, BaseColor.WHITE)
+                    )
+                );
+                documento.Add(
+                    new Paragraph(
+                        "📺 Total de series: " + series.Count,
+                        new Font(Font.FontFamily.HELVETICA, 11, Font.NORMAL, BaseColor.WHITE)
+                    )
+                );
+                documento.Add(
+                    new Paragraph(
+                        "🏷️ Total de géneros: " + generos.Count,
+                        new Font(Font.FontFamily.HELVETICA, 11, Font.NORMAL, BaseColor.WHITE)
+                    )
+                );
+                documento.Add(
+                    new Paragraph(
+                        "🌐 Total de networks: " + networks.Count,
+                        new Font(Font.FontFamily.HELVETICA, 11, Font.NORMAL, BaseColor.WHITE)
+                    )
+                );
+
+                // ===== NUEVAS MÉTRICAS DE USUARIO =====
+                var ultimoUsuario = AdministradorUsuarios.CargarUltimoUsuarioRegistrado();
+                var usuariosTotales = AdministradorUsuarios.CargarUsuariosRegistrados();
+                var usuariosUltimoMes = AdministradorUsuarios.CargarUsuariosRegistradosUltimoMes();
+                var usuarioMasCalificador = AdministradorUsuarios.CargarUsuarioMasCalificador();
+                var usuarioMasComentador = AdministradorUsuarios.CargarUsuarioMasComentador();
+                var usuariosMasActivos = AdministradorUsuarios.CargarUsuariosMasActivos(5);
+
+                documento.Add(new Paragraph("\n──────────────────────────────────────────────\n"));
+                documento.Add(
+                    new Paragraph(
+                        "👥 MÉTRICAS DE USUARIOS",
+                        new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD, verdeNeon)
+                    )
+                );
+                documento.Add(
+                    new Paragraph(
+                        $"👤 Total de usuarios registrados: {usuariosTotales}",
+                        new Font(Font.FontFamily.HELVETICA, 11, Font.NORMAL, BaseColor.WHITE)
+                    )
+                );
+                documento.Add(
+                    new Paragraph(
+                        $"🗓️ Usuarios registrados en el último mes: {usuariosUltimoMes}",
+                        new Font(Font.FontFamily.HELVETICA, 11, Font.NORMAL, BaseColor.WHITE)
+                    )
+                );
+
+                if (ultimoUsuario != null)
+                    documento.Add(
+                        new Paragraph(
+                            $"🆕 Último usuario registrado: {ultimoUsuario.NombreUsuario} ({ultimoUsuario.FechaRegistro})",
+                            new Font(Font.FontFamily.HELVETICA, 11, Font.NORMAL, BaseColor.WHITE)
+                        )
+                    );
+
+                if (usuarioMasCalificador != null)
+                    documento.Add(
+                        new Paragraph(
+                            $"⭐ Usuario más calificador: {usuarioMasCalificador.NombreUsuario} ({usuarioMasCalificador.Cantidad} calificaciones)",
+                            new Font(Font.FontFamily.HELVETICA, 11, Font.NORMAL, BaseColor.WHITE)
+                        )
+                    );
+
+                if (usuarioMasComentador != null)
+                    documento.Add(
+                        new Paragraph(
+                            $"💬 Usuario más comentador: {usuarioMasComentador.NombreUsuario} ({usuarioMasComentador.Cantidad} comentarios)",
+                            new Font(Font.FontFamily.HELVETICA, 11, Font.NORMAL, BaseColor.WHITE)
+                        )
+                    );
+
+                if (usuariosMasActivos != null)
+                {
+                    documento.Add(
+                        new Paragraph(
+                            "\n🔥 Usuarios más activos (Top 5):",
+                            new Font(Font.FontFamily.HELVETICA, 11, Font.NORMAL, BaseColor.WHITE)
+                        )
+                    );
+                    int rank = 1;
+                    foreach (var kvp in usuariosMasActivos)
+                    {
+                        documento.Add(
+                            new Paragraph(
+                                $"{rank}. {kvp.Key} – {kvp.Value} visualizaciones",
+                                new Font(
+                                    Font.FontFamily.HELVETICA,
+                                    11,
+                                    Font.NORMAL,
+                                    BaseColor.WHITE
+                                )
+                            )
+                        );
+                        rank++;
+                    }
+                }
+
+                // ===== MÉTRICAS DESTACADAS =====
+                documento.Add(new Paragraph("\n──────────────────────────────────────────────\n"));
+                documento.Add(
+                    new Paragraph(
+                        "🏆 CONTENIDO DESTACADO",
+                        new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD, verdeNeon)
+                    )
+                );
+
+                var pelisMasVistas = AdministradorPeliculas.CargarPeliculasMasVistas(50);
+                var seriesMasVistas = AdministradorSeries.CargarSeriesMasVistas(50);
+
+                if (pelisMasVistas.Any())
+                {
+                    double califPromedio = AdministradorCalificaciones.ObtenerCalificacionPromedio(
+                        "sp_obtener_pelicula_calificacion_promedio",
+                        pelisMasVistas.First().Id,
+                        EnumTipoId.p_id_pelicula
+                    );
+
+                    documento.Add(
+                        new Paragraph(
+                            $"🎞️ Película más vista: {pelisMasVistas.First().Nombre}",
+                            new Font(Font.FontFamily.HELVETICA, 11, Font.NORMAL, BaseColor.WHITE)
+                        )
+                    );
+                    documento.Add(
+                        new Paragraph(
+                            $"⭐ Promedio de calificación: {califPromedio:F1}/5",
+                            new Font(Font.FontFamily.HELVETICA, 11, Font.NORMAL, rosaNeon)
+                        )
+                    );
+                }
+
+                if (seriesMasVistas.Any())
+                {
+                    double califPromedio = AdministradorCalificaciones.ObtenerCalificacionPromedio(
+                        "sp_obtener_serie_calificacion_promedio",
+                        seriesMasVistas.First().Id,
+                        EnumTipoId.p_id_serie
+                    );
+
+                    documento.Add(
+                        new Paragraph(
+                            $"📺 Serie más vista: {seriesMasVistas.First().Nombre}",
+                            new Font(Font.FontFamily.HELVETICA, 11, Font.NORMAL, BaseColor.WHITE)
+                        )
+                    );
+                    documento.Add(
+                        new Paragraph(
+                            $"⭐ Promedio de calificación: {califPromedio:F1}/5",
+                            new Font(Font.FontFamily.HELVETICA, 11, Font.NORMAL, rosaNeon)
+                        )
+                    );
+                }
+
+                // ===== TABLAS CYBERPUNK =====
+                Font fuenteEncabezado = new Font(
+                    Font.FontFamily.HELVETICA,
+                    10,
+                    Font.BOLD,
+                    cyanNeon
+                );
+                Font fuenteCuerpo = new Font(
+                    Font.FontFamily.HELVETICA,
+                    9,
+                    Font.NORMAL,
+                    BaseColor.WHITE
+                );
+
+                // === TABLA PELÍCULAS ===
+                documento.Add(
+                    new Paragraph(
+                        "\n🎬 Películas Cargadas\n\n",
+                        new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD, verdeNeon)
+                    )
+                );
+
+                string[] encabezadosPelis =
+                {
+                    "Título",
+                    "Fecha Estreno",
+                    "Director",
+                    "Network",
+                    "Géneros",
+                    "Duración",
+                };
+                PdfPTable tablaPelis = new PdfPTable(encabezadosPelis.Length)
+                {
+                    WidthPercentage = 100,
+                };
+
+                foreach (var enc in encabezadosPelis)
+                {
+                    var cell = new PdfPCell(new Phrase(enc, fuenteEncabezado))
+                    {
+                        BackgroundColor = new BaseColor(30, 30, 50),
+                        HorizontalAlignment = Element.ALIGN_CENTER,
+                        Padding = 5,
+                    };
+                    tablaPelis.AddCell(cell);
+                }
+
+                foreach (var pelisItem in peliculas)
+                {
+                    var network = networks.FirstOrDefault(n => n.Id == pelisItem.Network);
+                    var listGenerosPelis = string.Join(
+                        ", ",
+                        generos.Where(g => pelisItem.Generos.Contains(g.Id)).Select(g => g.Nombre)
+                    );
+
+                    string[] valores =
+                    {
+                        pelisItem.Nombre,
+                        pelisItem.FechaEstreno.ToString("dd/MM/yyyy"),
+                        pelisItem.Director,
+                        network?.Nombre ?? "Sin nombre",
+                        listGenerosPelis,
+                        pelisItem.Duracion.ToString(),
+                    };
+
+                    foreach (var val in valores)
+                    {
+                        PdfPCell celda = new PdfPCell(new Phrase(val, fuenteCuerpo))
+                        {
+                            BackgroundColor = fondoTabla,
+                            BorderColor = verdeNeon,
+                            Padding = 4,
+                            HorizontalAlignment = Element.ALIGN_CENTER,
+                        };
+                        tablaPelis.AddCell(celda);
+                    }
+                }
+                documento.Add(tablaPelis);
+
+                // === TABLA SERIES ===
+                documento.Add(
+                    new Paragraph(
+                        "\n📺 Series Cargadas\n\n",
+                        new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD, cyanNeon)
+                    )
+                );
+
+                string[] encabezadosSeries =
+                {
+                    "Título",
+                    "Fecha Estreno",
+                    "Fecha Fin",
+                    "Director",
+                    "Network",
+                    "Géneros",
+                    "Temps",
+                };
+                PdfPTable tablaSeries = new PdfPTable(encabezadosSeries.Length)
+                {
+                    WidthPercentage = 100,
+                };
+
+                foreach (var enc in encabezadosSeries)
+                {
+                    var cell = new PdfPCell(new Phrase(enc, fuenteEncabezado))
+                    {
+                        BackgroundColor = new BaseColor(30, 30, 50),
+                        HorizontalAlignment = Element.ALIGN_CENTER,
+                        Padding = 5,
+                    };
+                    tablaSeries.AddCell(cell);
+                }
+
+                foreach (var serieItem in series)
+                {
+                    var networkSerie = networks.FirstOrDefault(n => n.Id == serieItem.Network);
+                    var listGenerosSeries = string.Join(
+                        ", ",
+                        generos.Where(g => serieItem.Generos.Contains(g.Id)).Select(g => g.Nombre)
+                    );
+
+                    string[] valores =
+                    {
+                        serieItem.Nombre,
+                        serieItem.FechaEstreno.ToString("dd/MM/yyyy"),
+                        serieItem.FechaFin.ToString("dd/MM/yyyy"),
+                        serieItem.Director,
+                        networkSerie?.Nombre ?? "Sin nombre",
+                        listGenerosSeries,
+                        serieItem.Temporadas.ToString(),
+                    };
+
+                    foreach (var val in valores)
+                    {
+                        PdfPCell celda = new PdfPCell(new Phrase(val, fuenteCuerpo))
+                        {
+                            BackgroundColor = fondoTabla,
+                            BorderColor = cyanNeon,
+                            Padding = 4,
+                            HorizontalAlignment = Element.ALIGN_CENTER,
+                        };
+                        tablaSeries.AddCell(celda);
+                    }
+                }
+
+                documento.Add(tablaSeries);
+                documento.Close();
             }
-
-            //SERIE MAS VISTA
-            if (UtilsBD.seriesMasVistas.Any()) 
-            {
-                documento.Add(new Paragraph("🔥 Serie mas vista: " + UtilsBD.seriesMasVistas.First().Nombre));
-            }
-
-            //PROMEDIO CALIFICACION SERIE MAS VISTA
-            if (UtilsBD.seriesMasVistas.Any()) 
-            {
-                documento.Add(new Paragraph("⭐ Promedio calificacion de la serie mas vista: " + UtilsBD.seriesMasVistas.First().CalificacionPromedio));
-            }
-            documento.Add(new Paragraph("\n------------------------------------------------------------\n"));
-
-            //TOP 5 PELICULAS MAS VISTAS
-            documento.Add(new Paragraph("🎥 Top 5 Películas más vistas:\n"));
-            int topPelis = Math.Min(5, UtilsBD.pelisMasVistas.Count);
-
-            for (int i = 0; i < topPelis; i ++) 
-            { 
-                var peli = UtilsBD.pelisMasVistas[i];
-                documento.Add(new Paragraph($"{i + 1}. {peli.Nombre} - {peli.CalificacionPromedio: F1/5}"));
-            }
-
-            //TOP 5 SERIES MAS VISTAS
-            documento.Add(new Paragraph("\n📺 Top 5 Series más vistas:\n"));
-            int topSeries = Math.Min(5, UtilsBD.seriesMasVistas.Count);
-
-            for (int i = 0; i < topSeries; i ++) 
-            { 
-                var serie = UtilsBD.seriesMasVistas[i];
-                documento.Add(new Paragraph($"{i + i}. {serie.Nombre} - {serie.CalificacionPromedio: F1/5}"));
-            }
-
-            documento.Add(new Paragraph("\n------------------------------------------------------------\n"));
-            */
-            //TABLAS DE CONTENIDO CARGADO (SERIES Y PELICULAS)
-            documento.Add(new Paragraph("📊 INFORME DE CONTENIDOS CARGADOS"));
-            documento.Add(new Paragraph(""));
-
-            //TABLA DE PELICULAS CARGADAS
-            PdfPTable tablaPelis = new PdfPTable(11);
-            tablaPelis.WidthPercentage = 100;
-            tablaPelis.AddCell("ID: ");
-            tablaPelis.AddCell("Titulo: ");
-            tablaPelis.AddCell("Fecha Estreno: ");
-            tablaPelis.AddCell("Descripcion: ");
-            tablaPelis.AddCell("Director: ");
-            tablaPelis.AddCell("Imagen URL: ");
-            tablaPelis.AddCell("Network: ");
-            tablaPelis.AddCell("Tipo: ");
-            tablaPelis.AddCell("Trailer URL: ");
-            tablaPelis.AddCell("Genero: ");
-            tablaPelis.AddCell("Duracion: ");
-            /*
-            foreach (var pelis in UtilsBD.peliculasCargadas) 
-            {
-                tablaPelis.AddCell(pelis.Id.ToString());
-                tablaPelis.AddCell(pelis.Nombre);
-                tablaPelis.AddCell(pelis.FechaEstreno.ToString("dd/MM/yyyy"));
-                tablaPelis.AddCell(pelis.Descripcion);
-                tablaPelis.AddCell(pelis.ImagenURL);
-
-                // Obtener el nombre del Network usando el ID (para evitar el error)
-                var network = UtilsBD.networksCargadas.FirstOrDefault(n => n.Id == pelis.Network);
-
-                tablaPelis.AddCell(network != null ? network.Nombre: "Sin nombre");
-                tablaPelis.AddCell(pelis.Tipo);
-                tablaPelis.AddCell(pelis.TrailerURL);
-                
-                //Obtener los generos de la lista
-                var listGenerosPelis = string.Join(",", UtilsBD.generosCargados.Where(gp => pelis.Generos.Contains(gp.Id)).Select(g => g.Nombre));
-
-                tablaPelis.AddCell(listGenerosPelis);
-                tablaPelis.AddCell(pelis.Duracion.ToString());
-            }
-
-            documento.Add(new Paragraph("🎬 Películas Cargadas"));
-            documento.Add(tablaPelis);
-            documento.Add(new Paragraph("\n"));
-
-            //TABLA DE SERIES AGREGADAS
-            PdfPTable tablaSeries = new PdfPTable(12);
-            tablaSeries.WidthPercentage = 100;
-            tablaSeries.AddCell("ID: ");
-            tablaSeries.AddCell("Titulo: ");
-            tablaSeries.AddCell("Fecha Estreno: ");
-            tablaSeries.AddCell("Fecha Fin: ");
-            tablaSeries.AddCell("Descripcion: ");
-            tablaSeries.AddCell("Director: ");
-            tablaSeries.AddCell("Imagen URL: ");
-            tablaSeries.AddCell("Network: ");
-            tablaSeries.AddCell("Tipo: ");
-            tablaSeries.AddCell("Trailer URL: ");
-            tablaSeries.AddCell("Genero: ");
-            tablaSeries.AddCell("Temporadas: ");
-
-            foreach (var series in UtilsBD.seriesCargadas) 
-            {
-                tablaSeries.AddCell(series.Id.ToString());
-                tablaSeries.AddCell(series.Nombre);
-                tablaSeries.AddCell(series.FechaEstreno.ToString("dd/MM/yyyy"));
-                tablaSeries.AddCell(series.FechaFin.ToString("dd/MM/yyyy"));
-                tablaSeries.AddCell(series.Descripcion);
-                tablaSeries.AddCell(series.Director);
-                tablaSeries.AddCell(series.ImagenURL);
-
-                //Obtener el Network de la Serie usando el ID
-                var networkSerie = UtilsBD.networksCargadas.FirstOrDefault(s => s.Id == series.Network);
-                tablaSeries.AddCell(networkSerie != null ? networkSerie.Nombre: "Sin nombre");
-                tablaSeries.AddCell(series.Tipo);
-                tablaSeries.AddCell(series.TrailerURL);
-
-                //Obtener los generos de la lista
-                var listGenerosSeries = string.Join(",", UtilsBD.generosCargados.Where(gs => series.Generos.Contains(gs.Id)).Select(g => g.Nombre));
-
-                tablaSeries.AddCell(listGenerosSeries);
-                tablaSeries.AddCell(series.Temporadas.ToString());
-            }
-            
-            documento.Add(new Paragraph("📺 Series Cargadas"));
-            documento.Add(tablaSeries);*/
-            documento.Close();
         }
     }
 }

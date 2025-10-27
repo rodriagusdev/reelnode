@@ -188,6 +188,7 @@
             this.BtnExportar.TabIndex = 8;
             this.BtnExportar.Text = "Exportar a PDF";
             this.BtnExportar.UseVisualStyleBackColor = true;
+            this.BtnExportar.Click += new System.EventHandler(this.BtnExportar_Click);
             // 
             // PanelGestionUsuarios
             // 

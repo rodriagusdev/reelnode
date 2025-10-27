@@ -43,6 +43,8 @@
             this.BtnCalificar = new System.Windows.Forms.Button();
             this.PanelImagenPeli = new System.Windows.Forms.Panel();
             this.PicSerie = new System.Windows.Forms.PictureBox();
+            this.LblCalificacion = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.PanelVisualizar.SuspendLayout();
             this.PanelDescripcion.SuspendLayout();
             this.PanelImagenPeli.SuspendLayout();
@@ -52,6 +54,8 @@
             // PanelVisualizar
             // 
             this.PanelVisualizar.BackColor = System.Drawing.Color.Transparent;
+            this.PanelVisualizar.Controls.Add(this.label3);
+            this.PanelVisualizar.Controls.Add(this.LblCalificacion);
             this.PanelVisualizar.Controls.Add(this.LblGeneros);
             this.PanelVisualizar.Controls.Add(this.panel2);
             this.PanelVisualizar.Controls.Add(this.LblTitulo);
@@ -260,6 +264,26 @@
             this.PicSerie.TabIndex = 0;
             this.PicSerie.TabStop = false;
             // 
+            // LblCalificacion
+            // 
+            this.LblCalificacion.AutoSize = true;
+            this.LblCalificacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblCalificacion.Location = new System.Drawing.Point(125, 26);
+            this.LblCalificacion.Name = "LblCalificacion";
+            this.LblCalificacion.Size = new System.Drawing.Size(52, 20);
+            this.LblCalificacion.TabIndex = 50;
+            this.LblCalificacion.Text = "lblcalif";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(88, 17);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(34, 33);
+            this.label3.TabIndex = 51;
+            this.label3.Text = "★";
+            // 
             // ControlVisualizacionSerie
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -295,5 +319,7 @@
         private System.Windows.Forms.Button BtnCalificar;
         private System.Windows.Forms.Panel PanelImagenPeli;
         private System.Windows.Forms.PictureBox PicSerie;
+        public System.Windows.Forms.Label LblCalificacion;
+        public System.Windows.Forms.Label label3;
     }
 }

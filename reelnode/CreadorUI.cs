@@ -254,7 +254,7 @@ namespace Reelnode
             }
         }
         
-        public static void MostrarGaleriaMedia<T>(FlowLayoutPanel flowPnl, List<T> list, Action<int> abrirPestana, int ancho, int alto) where T : AudiovisualMiniatura
+        public static void MostrarGaleriaAudiovisual<T>(FlowLayoutPanel flowPnl, List<T> list, Action<int> abrirPestana, int ancho, int alto) where T : AudiovisualMiniatura
         {
             flowPnl.Controls.Clear();
 

@@ -1472,7 +1472,6 @@ BEGIN
 END //
 DELIMITER ;
 
--- USAR ESTO PARA RELLENAR EL HISTORIAL -> CONVERTIR A PROCEDIMIENTO
 DELIMITER //
 create procedure sp_obtener_visualizaciones_peliculas_usuario(in p_id_usuario int)
 begin
@@ -1508,8 +1507,28 @@ begin
 		vs.id_usuario = 2;
 end //
 DELIMITER ;
-select distinct id_pelicula, id_usuario from visualizaciones_pelicula;
-select distinct id_serie, id_usuario from visualizaciones_serie;
+
+DELIMITER //
+create procedure sp_pelicula_calificacion_promedio(in p_id_pelicula int)
+begin 
+	select 
+		promedio_calificacion 
+	from 
+		vw_calificaciones_peliculas
+	where id_pelicula = p_id_pelicula;
+end //
+DELIMITER ;
+
+DELIMITER //
+create procedure sp_serie_calificacion_promedio(in p_id_serie int)
+begin 
+	select 
+		promedio_calificacion 
+	from 
+		vw_calificaciones_series
+	where id_serie = p_id_serie;
+end //
+DELIMITER ;
 
 /* IMPLEMENTAR LOGIN A TRAVES D EBASE DATOS ANTES DE CREAR ESTE PROCEDIMIENTO
 DELIMITER //
@@ -1527,6 +1546,8 @@ end //
 DELIMITER ;
 */
 
+call sp_obtener_calificaciones_x_usuario_serie(2);
+call sp_obtener_calificaciones_x_usuario_pelis(2);
 call sp_asignar_permiso_usuario_superadmin(1);
 call sp_asignar_permiso_usuario_admin(2);
 call sp_asignar_permiso_usuario_admin(3);
@@ -1535,6 +1556,8 @@ call sp_asignar_permiso_usuario_comun(5);
 -- ----------------------- Pruebas
 
 SET SQL_SAFE_UPDATES = 0;
+select * from visualizaciones_serie;
+select * from visualizaciones_pelicula;
 select * from genero_x_pelicula;
 select * from calificaciones_peliculas;
 select * from comentarios_peli;

@@ -9,14 +9,14 @@ namespace Reelnode
     {
         /* !--- DEFINICION DE COLORES DEL TEMA CYBERPUNK ---! */
 
-        private static Color AzulOscuroNeon = Color.FromArgb(42, 47, 79);
+        public static Color AzulOscuroNeon = Color.FromArgb(42, 47, 79);
         public static Color VerdeClaroNeon = Color.FromArgb(0, 230, 118);
         public static Color RosaNeon = Color.FromArgb(255, 0, 127);
         public static Color CyanNeon = Color.FromArgb(0, 255, 255);
-        private static Color GradienteAzulOscuroPrimero = Color.FromArgb(27, 38, 59);
-        private static Color GradienteAzulOscuroSegundo = Color.FromArgb(13, 17, 23);
+        public static Color GradienteAzulOscuroPrimero = Color.FromArgb(27, 38, 59);
+        public static Color GradienteAzulOscuroSegundo = Color.FromArgb(13, 17, 23);
         public static Color MoradoNeonBoton = Color.FromArgb(123, 44, 191);
-        private static Color AzulNeonBorde = Color.FromArgb(0, 183, 235);
+        public static Color AzulNeonBorde = Color.FromArgb(0, 183, 235);
 
         /* !--- FIN DE DEFINICION DE COLORES DEL TEMA CYBERPUNK ---! */
 

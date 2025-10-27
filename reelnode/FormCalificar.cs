@@ -41,11 +41,21 @@ namespace Reelnode
 
         private void BtnConfirmar_Click(object sender, EventArgs e)
         {
-            if (!AdministradorPermisos.permisosUsuarioActual.Contains(EnumPermisos.calificar.ToString()))
+            if (
+                !AdministradorPermisos.permisosUsuarioActual.Contains(
+                    EnumPermisos.calificar.ToString()
+                )
+            )
             {
-                MessageBox.Show("No posees los permisos para calificar", "Error de permisos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "No posees los permisos para calificar",
+                    "Error de permisos",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
                 return;
             }
+
             if (puntuacion != 0)
             {
                 int idMedia =
@@ -57,7 +67,9 @@ namespace Reelnode
                 AdministradorCalificaciones.Calificar(
                     idMedia,
                     puntuacion,
-                    AdministradorPeliculas.peliculaSeleccionada != null ? "Pelicula" : "Serie"
+                    AdministradorPeliculas.peliculaSeleccionada != null
+                        ? EnumTipoId.p_id_pelicula
+                        : EnumTipoId.p_id_serie
                 );
                 this.Close();
             }

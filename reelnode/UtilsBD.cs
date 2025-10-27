@@ -36,7 +36,7 @@ namespace Reelnode
                 MessageBox.Show(ex.Message);            
             }
 
-            return networks.Count > 0 ? networks : null;
+            return networks;
            
         }
         public static List<Genero> CargarGeneros()
@@ -61,7 +61,7 @@ namespace Reelnode
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }           
 
-            return generos.Count > 0 ? generos : null;
+            return generos;
         }
 
         public static int ObtenerNetworkId(string nombreNet)
@@ -80,7 +80,7 @@ namespace Reelnode
 
             foreach (var id in generosId)
             {
-                var genero = UtilsBD.CargarGeneros().FirstOrDefault(g => g.Id == id);
+                var genero = CargarGeneros().FirstOrDefault(g => g.Id == id);
 
                 if (genero != null)
                 {
@@ -100,7 +100,7 @@ namespace Reelnode
 
             foreach (var gen in generos.CheckedItems)
             {
-                int obtenerId = UtilsBD.CargarGeneros().First(g => g.Nombre == gen.ToString()).Id;
+                int obtenerId = CargarGeneros().First(g => g.Nombre == gen.ToString()).Id;
 
                 generosSeleccionados.Add(obtenerId);
             }

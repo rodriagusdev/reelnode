@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlGestionDashboard));
             this.PanelMenu = new System.Windows.Forms.Panel();
+            this.BtnExportarTodoPDF = new System.Windows.Forms.Button();
             this.BtnReportesAvanzados = new System.Windows.Forms.Button();
             this.BtnVerMetricasGenerales = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
@@ -112,9 +113,8 @@
             this.DtpHasta = new System.Windows.Forms.DateTimePicker();
             this.ChkFiltroCalif = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BtnExportarGrilla = new System.Windows.Forms.Button();
             this.label28 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
             this.PanelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicAvatar)).BeginInit();
             this.PanelDashboardMain.SuspendLayout();
@@ -139,7 +139,7 @@
             // 
             // PanelMenu
             // 
-            this.PanelMenu.Controls.Add(this.button3);
+            this.PanelMenu.Controls.Add(this.BtnExportarTodoPDF);
             this.PanelMenu.Controls.Add(this.BtnReportesAvanzados);
             this.PanelMenu.Controls.Add(this.BtnVerMetricasGenerales);
             this.PanelMenu.Controls.Add(this.label10);
@@ -153,11 +153,23 @@
             this.PanelMenu.TabIndex = 18;
             this.PanelMenu.Tag = "Default";
             // 
+            // BtnExportarTodoPDF
+            // 
+            this.BtnExportarTodoPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnExportarTodoPDF.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnExportarTodoPDF.Location = new System.Drawing.Point(41, 572);
+            this.BtnExportarTodoPDF.Name = "BtnExportarTodoPDF";
+            this.BtnExportarTodoPDF.Size = new System.Drawing.Size(171, 44);
+            this.BtnExportarTodoPDF.TabIndex = 21;
+            this.BtnExportarTodoPDF.Text = "Exportar todo a PDF";
+            this.BtnExportarTodoPDF.UseVisualStyleBackColor = true;
+            this.BtnExportarTodoPDF.Click += new System.EventHandler(this.BtnExportarTodoPDF_Click);
+            // 
             // BtnReportesAvanzados
             // 
             this.BtnReportesAvanzados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnReportesAvanzados.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnReportesAvanzados.Location = new System.Drawing.Point(41, 522);
+            this.BtnReportesAvanzados.Location = new System.Drawing.Point(41, 488);
             this.BtnReportesAvanzados.Name = "BtnReportesAvanzados";
             this.BtnReportesAvanzados.Size = new System.Drawing.Size(171, 44);
             this.BtnReportesAvanzados.TabIndex = 3;
@@ -169,7 +181,7 @@
             // 
             this.BtnVerMetricasGenerales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnVerMetricasGenerales.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnVerMetricasGenerales.Location = new System.Drawing.Point(41, 333);
+            this.BtnVerMetricasGenerales.Location = new System.Drawing.Point(41, 324);
             this.BtnVerMetricasGenerales.Name = "BtnVerMetricasGenerales";
             this.BtnVerMetricasGenerales.Size = new System.Drawing.Size(171, 44);
             this.BtnVerMetricasGenerales.TabIndex = 1;
@@ -215,7 +227,7 @@
             // 
             this.BtnVerMetricasUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnVerMetricasUsuarios.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnVerMetricasUsuarios.Location = new System.Drawing.Point(41, 427);
+            this.BtnVerMetricasUsuarios.Location = new System.Drawing.Point(41, 404);
             this.BtnVerMetricasUsuarios.Name = "BtnVerMetricasUsuarios";
             this.BtnVerMetricasUsuarios.Size = new System.Drawing.Size(171, 44);
             this.BtnVerMetricasUsuarios.TabIndex = 2;
@@ -953,7 +965,7 @@
             this.PanelReportesAvanzados.Controls.Add(this.DtpHasta);
             this.PanelReportesAvanzados.Controls.Add(this.ChkFiltroCalif);
             this.PanelReportesAvanzados.Controls.Add(this.button2);
-            this.PanelReportesAvanzados.Controls.Add(this.button1);
+            this.PanelReportesAvanzados.Controls.Add(this.BtnExportarGrilla);
             this.PanelReportesAvanzados.Controls.Add(this.label28);
             this.PanelReportesAvanzados.Controls.Add(this.DataGridReportes);
             this.PanelReportesAvanzados.Controls.Add(this.DtpDesde);
@@ -966,9 +978,9 @@
             this.PanelReportesAvanzados.Controls.Add(this.BtnAplicarFiltrosConsultar);
             this.PanelReportesAvanzados.Controls.Add(this.label18);
             this.PanelReportesAvanzados.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PanelReportesAvanzados.Location = new System.Drawing.Point(1182, 0);
+            this.PanelReportesAvanzados.Location = new System.Drawing.Point(412, 0);
             this.PanelReportesAvanzados.Name = "PanelReportesAvanzados";
-            this.PanelReportesAvanzados.Size = new System.Drawing.Size(34, 720);
+            this.PanelReportesAvanzados.Size = new System.Drawing.Size(804, 720);
             this.PanelReportesAvanzados.TabIndex = 22;
             this.PanelReportesAvanzados.Tag = "Default";
             this.PanelReportesAvanzados.Visible = false;
@@ -1118,16 +1130,17 @@
             this.button2.Text = "Exportar JSON";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // BtnExportarGrilla
             // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(44, 584);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(326, 38);
-            this.button1.TabIndex = 17;
-            this.button1.Text = "Exportar PDF";
-            this.button1.UseVisualStyleBackColor = true;
+            this.BtnExportarGrilla.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnExportarGrilla.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnExportarGrilla.Location = new System.Drawing.Point(44, 584);
+            this.BtnExportarGrilla.Name = "BtnExportarGrilla";
+            this.BtnExportarGrilla.Size = new System.Drawing.Size(326, 38);
+            this.BtnExportarGrilla.TabIndex = 17;
+            this.BtnExportarGrilla.Text = "Exportar grilla a PDF";
+            this.BtnExportarGrilla.UseVisualStyleBackColor = true;
+            this.BtnExportarGrilla.Click += new System.EventHandler(this.BtnExportarGrilla_Click);
             // 
             // label28
             // 
@@ -1140,17 +1153,6 @@
             this.label28.Tag = "Titulo";
             this.label28.Text = "Desde";
             this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // button3
-            // 
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(41, 590);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(171, 44);
-            this.button3.TabIndex = 21;
-            this.button3.Text = "Reportes Avanzados";
-            this.button3.UseVisualStyleBackColor = true;
             // 
             // ControlGestionDashboard
             // 
@@ -1265,7 +1267,7 @@
         private System.Windows.Forms.DataGridView DataGridReportes;
         private System.Windows.Forms.Panel PanelReportesAvanzados;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BtnExportarGrilla;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.CheckBox ChkFiltroCalif;
         private System.Windows.Forms.Label label22;
@@ -1278,6 +1280,6 @@
         private System.Windows.Forms.ComboBox CboNetwork;
         private System.Windows.Forms.NumericUpDown NumUpDuracion;
         private System.Windows.Forms.CheckBox ChkDuracion;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button BtnExportarTodoPDF;
     }
 }

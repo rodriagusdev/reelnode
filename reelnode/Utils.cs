@@ -186,6 +186,18 @@ namespace Reelnode
             return embedUrl;
         }
 
+        public static string FormatearPuntoPromedio(double n)
+        {
+            string formatear =
+                n > 0
+                    ? n.ToString(
+                        "F1",
+                        System.Globalization.CultureInfo.InvariantCulture
+                    ) 
+                    : "";
+            return formatear;
+        }
+
         public static void LimpiarCampos(Control parent)
         {
             foreach (Control c in parent.Controls)

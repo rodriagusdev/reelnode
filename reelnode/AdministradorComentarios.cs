@@ -91,7 +91,7 @@ namespace Reelnode
             catch (Exception ex)
             {
                 MessageBox.Show(
-                    "Error al recuperar los comentarios!",
+                    ex.Message,
                     "Error de pedido",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error

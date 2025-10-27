@@ -1,107 +1,119 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace Reelnode
 {
     public static class AdministradorCalificaciones
     {
         public static event Action OnCalificacionActualizada;
+
         public static List<AudiovisualMiniatura> CargarCalificacionesUsuarioPeliculas()
         {
-            List<AudiovisualMiniatura> peliculasCalificadasUsuario = new List<AudiovisualMiniatura>();
-
-            using (MySqlCommand cmd = new MySqlCommand("sp_obtener_calificaciones_x_usuario_pelis", UtilsBD.Conexion.GetConnection()))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("p_id_usuario", AdministradorUsuarios.usuarioActual.Id);
-
-                using (MySqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        AudiovisualMiniatura pelicula = new AudiovisualMiniatura
-                        {
-                            Id = reader.GetInt32("id_pelicula"),
-                            Nombre = reader.GetString("nombre"),
-                            ImagenURL = reader.GetString("imagenURL"),
-                        };
-
-                        peliculasCalificadasUsuario.Add(pelicula);
-                    }
-                }
-            }
-
-            return peliculasCalificadasUsuario;
+            return AdministradorAudiovisual.CargarMiniaturaAudiovisual(
+                "sp_obtener_calificaciones_x_usuario_pelis",
+                EnumTipoId.id_pelicula,
+                true,
+                EnumTipoId.p_id_usuario
+            );
         }
 
         public static List<AudiovisualMiniatura> CargarCalificacionesUsuarioSeries()
         {
-            List<AudiovisualMiniatura> seriesCalificadasUsuario = new List<AudiovisualMiniatura>();
+            return AdministradorAudiovisual.CargarMiniaturaAudiovisual(
+                "sp_obtener_calificaciones_x_usuario_serie",
+                EnumTipoId.id_serie,
+                true,
+                EnumTipoId.p_id_usuario
+            );
+        }
 
-            using (MySqlCommand cmd = new MySqlCommand("sp_obtener_calificaciones_x_usuario_serie", UtilsBD.Conexion.GetConnection()))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("p_id_usuario", AdministradorUsuarios.usuarioActual.Id);
+        public static double ObtenerCalificacionPromedio(string procedimiento, int id, EnumTipoId p_id)
+        {
+            double calificacionPromedio = 0;
 
-                using (MySqlDataReader reader = cmd.ExecuteReader())
+            try {
+                using (
+                    MySqlCommand cmd = new MySqlCommand(
+                        procedimiento,
+                        UtilsBD.Conexion.GetConnection()
+                    )
+                )
                 {
-                    while (reader.Read())
-                    {
-                        AudiovisualMiniatura serie = new AudiovisualMiniatura
-                        {
-                            Id = reader.GetInt32("id_serie"),
-                            Nombre = reader.GetString("nombre"),
-                            ImagenURL = reader.GetString("imagenURL"),
-                        };
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue(p_id.ToString(), id);
 
-                        seriesCalificadasUsuario.Add(serie);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            calificacionPromedio = reader.IsDBNull(reader.GetOrdinal("promedio_calificacion"))
+                            ? 0
+                            : reader.GetDouble(reader.GetOrdinal("promedio_calificacion"));
+
+                            return calificacionPromedio;
+                        }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.Message,
+                    "Error al obtener promedio de calificacion",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
 
-            return seriesCalificadasUsuario;
+            return calificacionPromedio;
         }
-        public static void Calificar(int idMedia, int puntuacion, string tipo)
+
+        public static void Calificar(int idMedia, int puntuacion, EnumTipoId p_id)
         {
-            string procedure = tipo == "Pelicula" ? "sp_calificar_pelicula" : "sp_calificar_serie";
+            string procedure =
+                p_id == EnumTipoId.p_id_pelicula ? "sp_calificar_pelicula" : "sp_calificar_serie";
 
             try
             {
-                using (MySqlCommand cmd = new MySqlCommand(procedure, UtilsBD.Conexion.GetConnection()))
+                using (
+                    MySqlCommand cmd = new MySqlCommand(procedure, UtilsBD.Conexion.GetConnection())
+                )
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue(tipo == "Pelicula" ? "p_id_pelicula" : "p_id_serie", idMedia);
+                    cmd.Parameters.AddWithValue(p_id.ToString(), idMedia);
                     cmd.Parameters.AddWithValue("p_calificacion", puntuacion);
-                    cmd.Parameters.AddWithValue("p_id_usuario", AdministradorUsuarios.usuarioActual.Id);
+                    cmd.Parameters.AddWithValue(
+                        "p_id_usuario",
+                        AdministradorUsuarios.usuarioActual.Id
+                    );
 
                     cmd.ExecuteNonQuery();
 
-                    MessageBox.Show("Calificacion enviada", "Actualización Exitosa",
+                    MessageBox.Show(
+                        "Calificacion enviada",
+                        "Calificación Exitosa",
                         MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-
-                    if(tipo == "Pelicula")
-                    {
-                        CargarCalificacionesUsuarioPeliculas();
-                    }
-                    else 
-                    {
-                        CargarCalificacionesUsuarioSeries();
-                    }
+                        MessageBoxIcon.Information
+                    );
 
                     OnCalificacionActualizada?.Invoke();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al calificar la " + tipo == "Pelicula" ? "pelicula" : "serie" + ex.Message);
+                MessageBox.Show(
+                    "Error al calificar",
+                    ex.Message,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
         }
     }

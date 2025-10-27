@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.PanelVisualizar = new System.Windows.Forms.Panel();
+            this.LblGeneros = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.LblTitulo = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -43,7 +44,8 @@
             this.BtnCalificar = new System.Windows.Forms.Button();
             this.PanelImagenPeli = new System.Windows.Forms.Panel();
             this.PicPeli = new System.Windows.Forms.PictureBox();
-            this.LblGeneros = new System.Windows.Forms.Label();
+            this.LblCalificacion = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.PanelVisualizar.SuspendLayout();
             this.PanelDescripcion.SuspendLayout();
             this.PanelImagenPeli.SuspendLayout();
@@ -53,6 +55,8 @@
             // PanelVisualizar
             // 
             this.PanelVisualizar.BackColor = System.Drawing.Color.Transparent;
+            this.PanelVisualizar.Controls.Add(this.label3);
+            this.PanelVisualizar.Controls.Add(this.LblCalificacion);
             this.PanelVisualizar.Controls.Add(this.LblGeneros);
             this.PanelVisualizar.Controls.Add(this.panel2);
             this.PanelVisualizar.Controls.Add(this.LblTitulo);
@@ -73,6 +77,19 @@
             this.PanelVisualizar.Size = new System.Drawing.Size(1280, 720);
             this.PanelVisualizar.TabIndex = 0;
             this.PanelVisualizar.Tag = "Default";
+            // 
+            // LblGeneros
+            // 
+            this.LblGeneros.BackColor = System.Drawing.Color.Transparent;
+            this.LblGeneros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LblGeneros.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblGeneros.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
+            this.LblGeneros.Location = new System.Drawing.Point(520, 456);
+            this.LblGeneros.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblGeneros.Name = "LblGeneros";
+            this.LblGeneros.Size = new System.Drawing.Size(396, 24);
+            this.LblGeneros.TabIndex = 48;
+            this.LblGeneros.Text = "lblGeneros";
             // 
             // panel2
             // 
@@ -246,18 +263,25 @@
             this.PicPeli.TabIndex = 0;
             this.PicPeli.TabStop = false;
             // 
-            // LblGeneros
+            // LblCalificacion
             // 
-            this.LblGeneros.BackColor = System.Drawing.Color.Transparent;
-            this.LblGeneros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LblGeneros.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblGeneros.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.LblGeneros.Location = new System.Drawing.Point(520, 456);
-            this.LblGeneros.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LblGeneros.Name = "LblGeneros";
-            this.LblGeneros.Size = new System.Drawing.Size(396, 24);
-            this.LblGeneros.TabIndex = 48;
-            this.LblGeneros.Text = "lblGeneros";
+            this.LblCalificacion.AutoSize = true;
+            this.LblCalificacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblCalificacion.Location = new System.Drawing.Point(125, 26);
+            this.LblCalificacion.Name = "LblCalificacion";
+            this.LblCalificacion.Size = new System.Drawing.Size(52, 20);
+            this.LblCalificacion.TabIndex = 49;
+            this.LblCalificacion.Text = "lblcalif";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(88, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(34, 33);
+            this.label3.TabIndex = 50;
+            this.label3.Text = "★";
             // 
             // ControlVisualizacionPeliculas
             // 
@@ -296,5 +320,7 @@
         private System.Windows.Forms.Panel PanelDescripcion;
         private System.Windows.Forms.Label LblDescripcionPeli;
         private System.Windows.Forms.Label LblGeneros;
+        public System.Windows.Forms.Label LblCalificacion;
+        public System.Windows.Forms.Label label3;
     }
 }
