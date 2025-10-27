@@ -1509,7 +1509,7 @@ end //
 DELIMITER ;
 
 DELIMITER //
-create procedure sp_pelicula_calificacion_promedio(in p_id_pelicula int)
+create procedure sp_obtener_pelicula_calificacion_promedio(in p_id_pelicula int)
 begin 
 	select 
 		promedio_calificacion 
@@ -1520,7 +1520,7 @@ end //
 DELIMITER ;
 
 DELIMITER //
-create procedure sp_serie_calificacion_promedio(in p_id_serie int)
+create procedure sp_obtener_serie_calificacion_promedio(in p_id_serie int)
 begin 
 	select 
 		promedio_calificacion 
