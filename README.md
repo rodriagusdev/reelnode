@@ -6,8 +6,6 @@
 
 ❌Moderar comentarios (VER IA o simplemente hacerlo)
 
-❌Ver historial
-
 ❌Exportar historial
 
 
