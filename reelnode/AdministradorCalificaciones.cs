@@ -11,12 +11,11 @@ namespace Reelnode
 {
     public static class AdministradorCalificaciones
     {
-        public static List<MediaMiniatura> seriesCalificadasUsuario = new List<MediaMiniatura>();
-        public static List<MediaMiniatura> peliculasCalificadasUsuario = new List<MediaMiniatura>();
-
         public static event Action OnCalificacionActualizada;
-        public static void CargarCalificacionesUsuarioPeliculas()
+        public static List<AudiovisualMiniatura> CargarCalificacionesUsuarioPeliculas()
         {
+            List<AudiovisualMiniatura> peliculasCalificadasUsuario = new List<AudiovisualMiniatura>();
+
             using (MySqlCommand cmd = new MySqlCommand("sp_obtener_calificaciones_x_usuario_pelis", UtilsBD.Conexion.GetConnection()))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -26,7 +25,7 @@ namespace Reelnode
                 {
                     while (reader.Read())
                     {
-                        MediaMiniatura pelicula = new MediaMiniatura
+                        AudiovisualMiniatura pelicula = new AudiovisualMiniatura
                         {
                             Id = reader.GetInt32("id_pelicula"),
                             Nombre = reader.GetString("nombre"),
@@ -37,10 +36,14 @@ namespace Reelnode
                     }
                 }
             }
+
+            return peliculasCalificadasUsuario;
         }
 
-        public static void CargarCalificacionesUsuarioSeries()
+        public static List<AudiovisualMiniatura> CargarCalificacionesUsuarioSeries()
         {
+            List<AudiovisualMiniatura> seriesCalificadasUsuario = new List<AudiovisualMiniatura>();
+
             using (MySqlCommand cmd = new MySqlCommand("sp_obtener_calificaciones_x_usuario_serie", UtilsBD.Conexion.GetConnection()))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -50,7 +53,7 @@ namespace Reelnode
                 {
                     while (reader.Read())
                     {
-                        MediaMiniatura serie = new MediaMiniatura
+                        AudiovisualMiniatura serie = new AudiovisualMiniatura
                         {
                             Id = reader.GetInt32("id_serie"),
                             Nombre = reader.GetString("nombre"),
@@ -61,6 +64,8 @@ namespace Reelnode
                     }
                 }
             }
+
+            return seriesCalificadasUsuario;
         }
         public static void Calificar(int idMedia, int puntuacion, string tipo)
         {
@@ -84,12 +89,10 @@ namespace Reelnode
 
                     if(tipo == "Pelicula")
                     {
-                        peliculasCalificadasUsuario.Clear();
                         CargarCalificacionesUsuarioPeliculas();
                     }
                     else 
                     {
-                        seriesCalificadasUsuario.Clear();
                         CargarCalificacionesUsuarioSeries();
                     }
 

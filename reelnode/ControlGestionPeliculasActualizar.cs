@@ -1,15 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Reelnode
@@ -31,11 +23,18 @@ namespace Reelnode
             this.Controls.Add(PanelMain);
         }
 
+        private void ControlGestionPeliculasActualizar_Load(object sender, EventArgs e)
+        {
+            CreadorUI.CargarNetwork(CboNetwork);
+            CreadorUI.CargarGeneros(ChkListGeneros);
+        }
+
+        /* !--- EVENTOS BOTONES ---! */
         private void BtnBuscarPelicula_Click(object sender, EventArgs e)
         {
             string textoBuscador = TxtBuscarNombrePelicula.Text;
 
-            List<Pelicula> peliculasEncontradas = UtilsBD.peliculasCargadas
+            List<Pelicula> peliculasEncontradas = AdministradorPeliculas.peliculasCargadas
                 .Where(p => p.Nombre.ToLower().Contains(textoBuscador.ToLower()))
                 .ToList();
 
@@ -45,7 +44,7 @@ namespace Reelnode
                 return;
             }
 
-            Utils.ActualizarListaGrid(DataGridPeliculas, UtilsBD.peliculasCargadas, "Id", "Tipo");
+            Utils.ActualizarListaGrid(DataGridPeliculas, AdministradorPeliculas.peliculasCargadas, "Id", "Tipo");
         }
 
         private void BtnActualizar_Click(object sender, EventArgs e)
@@ -86,15 +85,21 @@ namespace Reelnode
                     actualizarPelicula.Duracion = int.Parse(TxtDuracion.Text);
                     actualizarPelicula.Descripcion = TxtDescripcion.Text;
                     actualizarPelicula.ImagenURL = TxtURLImagen.Text;
-                    actualizarPelicula.Network = Utils.ObtenerNetworkId(CboNetwork.Text);
+                    actualizarPelicula.Network = UtilsBD.ObtenerNetworkId(CboNetwork.Text);
                     actualizarPelicula.TrailerURL = TxtURLTrailer.Text;
-                    actualizarPelicula.Generos = Utils.ObtenerIdGeneros(ChkListGeneros);
+                    actualizarPelicula.Generos = UtilsBD.ObtenerIdGeneros(ChkListGeneros);
                 }
 
-                filaSeleccionada = null;
-                UtilsBD.ActualizarPelicula(actualizarPelicula);
-                DataGridPeliculas.DataSource = null;
-                LimpiarCampos();
+                bool operacionExitosa = AdministradorPeliculas.ActualizarPelicula(actualizarPelicula);
+
+                if (operacionExitosa)
+                {
+                    filaSeleccionada = null;
+                    trailerFinalURL = null;
+                    DataGridPeliculas.DataSource = null;
+                    Utils.LimpiarCampos(this);
+                }
+               
             }         
             else
             {
@@ -102,21 +107,33 @@ namespace Reelnode
             }
         }
 
-        private void LimpiarCampos()
+        private void BtnPrevisualizar_Click(object sender, EventArgs e)
         {
-            TxtNombre.Text = "";
-            TxtDirector.Text = "";
-            TxtDuracion.Text = "";
-            TxtDescripcion.Text = "";
-            DtpFechaEstreno.Value = DateTime.Now;
-            TxtURLImagen.Text = "";
-            PicPelicula.Image = null;
-            TxtURLTrailer.Text = "";
-            PanelTrailer.Controls.Clear();
-            trailerFinalURL = null;
-            foreach (int i in ChkListGeneros.CheckedIndices) ChkListGeneros.SetItemChecked(i, false);
-            CboNetwork.SelectedIndex = -1;
+            Utils.CargarImagenDesdeURL(PicPelicula, TxtURLImagen.Text);
         }
+
+        private async void BtnPrevisualizarTrailer_Click(object sender, EventArgs e)
+        {
+            trailerFinalURL = null;
+            trailerFinalURL = await Utils.VerificarTrailer(PanelTrailer, TxtURLTrailer.Text);
+        }
+
+        /* !--- FIN EVENTOS BOTONES ---! */
+
+        private void DataGridPeliculas_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (e.RowIndex >= 0)
+                {
+                    DataGridPeliculas.ClearSelection();
+                    DataGridPeliculas.Rows[e.RowIndex].Selected = true;
+                    filaSeleccionada = DataGridPeliculas.Rows[e.RowIndex];
+                }
+            }
+        }
+
+        /* !--- EVENTOS CONTEXT MENU ---! */
 
         private async void CtxMenuSubModificar_Click(object sender, EventArgs e)
         {
@@ -139,45 +156,17 @@ namespace Reelnode
             }
         }
 
-        private void DataGridPeliculas_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-            {
-                if (e.RowIndex >= 0)
-                {
-                    DataGridPeliculas.ClearSelection();
-                    DataGridPeliculas.Rows[e.RowIndex].Selected = true;
-                    filaSeleccionada = DataGridPeliculas.Rows[e.RowIndex];
-                }
-            }
-        }
-
         private void CtxMenuSubEliminar_Click(object sender, EventArgs e)
         {
             if (filaSeleccionada != null) 
             {
                 int id = int.Parse(filaSeleccionada.Cells["Id"].Value.ToString());
 
-                UtilsBD.EliminarPelicula(id);
+                AdministradorPeliculas.EliminarPelicula(id);
 
+                filaSeleccionada = null;
+                Utils.ActualizarListaGrid(DataGridPeliculas, AdministradorPeliculas.peliculasCargadas, "Id", "Tipo");
             } else MessageBox.Show("No se ha seleccionado ninguna fila.");
-        }
-
-        private void BtnPrevisualizar_Click(object sender, EventArgs e)
-        {
-            Utils.CargarImagenDesdeURL(PicPelicula, TxtURLImagen.Text);
-        }
-
-        private void ControlGestionPeliculasActualizar_Load(object sender, EventArgs e)
-        {
-            Utils.CargarNetwork(CboNetwork);
-            Utils.CargarGeneros(ChkListGeneros);
-        }
-
-        private async void BtnPrevisualizarTrailer_Click(object sender, EventArgs e)
-        {
-            trailerFinalURL = null;
-            trailerFinalURL = await Utils.VerificarTrailer(PanelTrailer, TxtURLTrailer.Text);
         }
     }
 }

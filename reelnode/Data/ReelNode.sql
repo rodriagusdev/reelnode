@@ -89,38 +89,38 @@ CREATE TABLE genero (
 );
 
 INSERT INTO genero (nombre) VALUES
-('Action'),
-('Adventure'),
-('Comedy'),
+('Acción'),
+('Aventura'),
+('Comedia'),
 ('Drama'),
-('Horror'),
-('Science Fiction'),
-('Fantasy'),
-('Thriller'),
+('Terror'),
+('Ciencia Ficción'),
+('Fantasía'),
+('Suspenso'),
 ('Romance'),
-('Mystery'),
-('Crime'),
-('Animation'),
-('Documentary'),
-('Family'),
+('Misterio'),
+('Crimen'),
+('Animación'),
+('Documental'),
+('Familiar'),
 ('Musical'),
-('Western'),
-('War'),
-('Biography'),
-('History'),
-('Sport'),
-('Superhero'),
-('Fantasy Comedy'),
-('Romantic Comedy'),
-('Sci-Fi Horror'),
-('Psychological Thriller');
+('Occidental'),
+('Bélica'),
+('Biografía'),
+('Historia'),
+('Deportes'),
+('Superhéroes'),
+('Comedia Fantástica'),
+('Comedia Romántica'),
+('Terror de Ciencia Ficción'),
+('Thriller Psicológico');
 
 CREATE TABLE genero_x_serie (
     id_gxs INT PRIMARY KEY AUTO_INCREMENT,
     id_genero INT,
     id_serie INT,
-    FOREIGN KEY (id_genero) REFERENCES genero(id_genero),
-    FOREIGN KEY (id_serie) REFERENCES serie(id_serie)
+    FOREIGN KEY (id_genero) REFERENCES genero(id_genero) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (id_serie) REFERENCES serie(id_serie) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- Breaking Bad
@@ -157,8 +157,8 @@ CREATE TABLE genero_x_pelicula (
     id_gxp INT PRIMARY KEY AUTO_INCREMENT,
     id_genero INT,
     id_pelicula INT,
-    FOREIGN KEY (id_genero) REFERENCES genero(id_genero),
-    FOREIGN KEY (id_pelicula) REFERENCES peliculas(id_pelicula)
+    FOREIGN KEY (id_genero) REFERENCES genero(id_genero) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (id_pelicula) REFERENCES peliculas(id_pelicula) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- Robot Salvaje
@@ -197,7 +197,7 @@ CREATE TABLE rol (
 );
 
 insert into rol (tipo_rol)
-values ("Admin"), ("Usuario");
+values ("Superadmin"), ("Admin"), ("Usuario");
 
 CREATE TABLE usuario (
     id_usuario INT PRIMARY KEY AUTO_INCREMENT,
@@ -210,12 +210,15 @@ CREATE TABLE usuario (
     FOREIGN KEY (id_rol) REFERENCES rol(id_rol)
 );
 
-select* from usuario;
+select * from usuario;
 
 insert into usuario (nombre_usuario, email_usuario, password_usuario, avatar, fecha_registro, id_rol)
-values("rodri", "rodri@gmail.com", "1", 'https://wallpapercave.com/wp/wp5273986.jpg', "2025-08-1", 1),
-("san", "san@gmail.com", "2", "https://i.pinimg.com/originals/ce/66/2b/ce662b67df27a2c003ba567ad01c5fb0.jpg", "2025-08-1", 1),
-("agus", "agus@gmail.com", "3", "https://i.ytimg.com/vi/aaHoHQXFSjk/maxresdefault.jpg", "2025-08-1", 1);
+values
+("superadmin", "super@gmail.com", "admin", 'https://i.pinimg.com/originals/dd/c2/f9/ddc2f91225f7070a0519d50e20ac1a74.jpg', "2025-06-1", 1),
+("rodri", "rodri@gmail.com", "1", 'https://wallpapercave.com/wp/wp5273986.jpg', "2025-08-2", 2),
+("san", "san@gmail.com", "2", "https://i.pinimg.com/originals/ce/66/2b/ce662b67df27a2c003ba567ad01c5fb0.jpg", "2025-08-1", 2),
+("agus", "agus@gmail.com", "3", "https://i.ytimg.com/vi/aaHoHQXFSjk/maxresdefault.jpg", "2025-08-1", 2),
+("willy123", "comun@gmail.com", "3", null, "2025-08-1", 3);
 
 CREATE TABLE visualizaciones_serie (
     id_visualizacion INT PRIMARY KEY AUTO_INCREMENT,
@@ -301,10 +304,15 @@ CREATE TABLE permisos_usuarios (
 );
 
 INSERT INTO permisos(tipo_permiso) VALUES
+-- Supra --
+('eliminar_usuario'),
 ('administrar_roles'),
 ('administrar_permisos'),
+-- Admin --
 ('administrar_media'),
 ('moderar_comentarios'),
+-- Comun --
+('comentar'),
 ('calificar'),
 ("loguear");
 
@@ -370,10 +378,12 @@ CREATE PROCEDURE sp_insertar_usuario(
     in p_email varchar(255)
 )
 BEGIN 
-    INSERT INTO usuario(nombre_usuario, password_usuario, email_usuario, fecha_registro, id_rol)
-    VALUES(p_nombre, p_password, p_email, CURDATE(), p_id_rol);
-    
-    call sp_asignar_permiso_usuario_comun(LAST_INSERT_ID());
+	START TRANSACTION;
+		INSERT INTO usuario(nombre_usuario, password_usuario, email_usuario, fecha_registro, avatar, id_rol)
+		VALUES(p_nombre, p_password, p_email, CURDATE(), null, p_id_rol);
+		
+		call sp_asignar_permiso_usuario_comun(LAST_INSERT_ID());
+    COMMIT;
 END //
 DELIMITER ;
 
@@ -439,7 +449,7 @@ DELIMITER //
 CREATE PROCEDURE sp_insertar_pelicula(
     IN p_id_usuario INT,
     IN p_nombre VARCHAR(255),
-    IN p_fecha DATE,
+    IN p_fecha_estreno DATE,
     IN p_descripcion VARCHAR(255),
     IN p_director VARCHAR(255),
     IN p_duracion int,
@@ -452,14 +462,14 @@ BEGIN
     START TRANSACTION;
 
     INSERT INTO peliculas(nombre, fecha_estreno, descripcion, director, duracion, imagenURL, trailerURL, id_network)
-    VALUES(p_nombre, p_fecha, p_descripcion, p_director, p_duracion, p_imagenURL, p_trailerURL, p_id_network);
+    VALUES(p_nombre, p_fecha_estreno, p_descripcion, p_director, p_duracion, p_imagenURL, p_trailerURL, p_id_network);
+    
+	-- Necesito obtener el ultimo ID para referirme a la pelicula y poder ingresar multiples generos
+    SET p_id_pelicula = LAST_INSERT_ID();
     
     INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, id_usuario)
     VALUES ('peliculas', 'INSERT', LAST_INSERT_ID(), NOW(), p_id_usuario);
-	
-    
-    -- Necesito obtener el ultimo ID para referirme a la pelicula y poder ingresar multiples generos
-    SET p_id_pelicula = LAST_INSERT_ID();
+
     
     COMMIT;
 END //
@@ -469,7 +479,7 @@ DELIMITER ;
 
 DELIMITER //
 CREATE PROCEDURE sp_actualizar_pelicula(
-    IN p_id INT,
+    IN p_id_pelicula INT,
     in p_id_usuario int,
     IN p_nombre VARCHAR(255),
     IN p_fecha_estreno DATE,
@@ -492,11 +502,11 @@ BEGIN
         duracion = p_duracion,
         trailerURL = p_trailerURL,
         id_network =  p_id_network
-    WHERE id_pelicula = p_id;
+    WHERE id_pelicula = p_id_pelicula;
 
 	
     INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, id_usuario)
-    VALUES ('peliculas', 'UPDATE', p_id, NOW(), p_id_usuario);
+    VALUES ('peliculas', 'UPDATE', p_id_pelicula, NOW(), p_id_usuario);
 	
 
     COMMIT;
@@ -506,7 +516,8 @@ DELIMITER ;
 -- Eliminar película con transacción
 DELIMITER //
 create procedure sp_eliminar_pelicula(
-  IN p_id INT
+	IN p_id_usuario INT,
+	IN p_id INT
 )
 BEGIN
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -518,33 +529,21 @@ BEGIN
     START TRANSACTION;
 
     DELETE FROM peliculas WHERE id_pelicula = p_id;
+    
+    INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, id_usuario)
+    VALUES ('peliculas', 'DELETE', p_id, NOW(), p_id_usuario);
  
     COMMIT;
+    
     SELECT 'Película eliminada correctamente' AS mensaje;
 end //
 DELIMITER ;
-
--- Procedimiento almacenado
-
-/* DELIMITER // -- esperar que hacer con los comentarios en visual
-create procedure sp_usuario_consultar_comentarios(in p_id_usuario int)
-begin
-    select 'PELICULAS' as tipo, c.texto, c.fecha_comentario, c.id_comentario
-    from comentarios_peli c
-    where c.id_usuario = p_id_usuario
-    union all
-    select 'SERIES' as tipo, c.texto, c.fecha_comentario, c.id_comentario
-    from comentarios_serie c
-    where c.id_usuario = p_id_usuario
-    order by fecha_comentario desc;
-end //
-DELIMITER ; */
-
 
 DELIMITER //
 CREATE PROCEDURE sp_listar_usuarios() -- procedimiento para traer todos los usuarios con su rol
 BEGIN
     SELECT 
+		u.id_rol,
 		u.id_usuario,
         u.nombre_usuario, 
         u.password_usuario, 
@@ -578,6 +577,17 @@ END //
 DELIMITER ;
 
 DELIMITER //
+CREATE PROCEDURE sp_listar_peliculas_preview()
+BEGIN
+    SELECT 
+        p.id_pelicula,
+        p.nombre,
+        p.imagenURL
+    FROM peliculas p;
+END //
+DELIMITER ;
+
+DELIMITER //
 CREATE PROCEDURE sp_actualizar_password(
     IN p_nombre_usuario VARCHAR(255),
     IN p_email VARCHAR(255),
@@ -602,18 +612,20 @@ CREATE PROCEDURE sp_insertar_serie (
     IN p_imagenURL VARCHAR(255),
     IN p_cant_temporadas INT,
     IN p_id_network INT,
-    IN p_trailerURL VARCHAR(255)
+    IN p_trailerURL VARCHAR(255),
+    OUT p_id_serie int
 )
 BEGIN
     START TRANSACTION;
 
     INSERT INTO serie(nombre, fecha_estreno, fecha_fin, descripcion, director, imagenURL, cant_temporadas, id_network, trailerURL)
     VALUES(p_nombre, p_fecha_estreno, p_fecha_fin, p_descripcion, p_director, p_imagenURL, p_cant_temporadas, p_id_network, p_trailerURL);
-
 	
+    
+	SET p_id_serie = LAST_INSERT_ID();
+    
     INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, id_usuario)
     VALUES ('serie', 'INSERT', LAST_INSERT_ID(), NOW(), p_id_usuario);
-    
     COMMIT;
 END //
 DELIMITER ;
@@ -677,9 +689,20 @@ END //
 DELIMITER ;
 
 DELIMITER //
+CREATE PROCEDURE sp_listar_series_preview()
+BEGIN
+    SELECT 
+        s.id_serie,
+        s.nombre,
+        s.imagenURL
+    FROM serie s;
+END //
+DELIMITER ;
+
+DELIMITER //
 CREATE PROCEDURE sp_eliminar_serie(
     IN p_id_usuario INT,
-    IN p_id_serie INT
+    IN p_id INT
 )
 BEGIN
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -690,11 +713,10 @@ BEGIN
 
     START TRANSACTION;
 
-    DELETE FROM serie WHERE id_serie = p_id_serie;
+    DELETE FROM serie WHERE id_serie = p_id;
 	
-   
     INSERT INTO auditoria_peliculas_serie(tabla_afectada, accion, id_registro, fecha_hora, id_usuario)
-    VALUES ('serie', 'DELETE', p_id_serie, NOW(), p_id_usuario);
+    VALUES ('serie', 'DELETE', p_id, NOW(), p_id_usuario);
     
     COMMIT;
     SELECT 'Serie eliminada correctamente' AS mensaje;
@@ -765,6 +787,14 @@ end //
 DELIMITER ;
 
 DELIMITER //
+CREATE PROCEDURE sp_insertar_genero_por_serie(in p_id_serie int, in p_id_genero int)
+begin
+	INSERT INTO genero_x_serie (id_serie, id_genero) 
+    VALUES (p_id_serie, p_id_genero);
+end //
+DELIMITER ;
+
+DELIMITER //
 CREATE PROCEDURE sp_asignar_permiso(
     IN p_id_usuario INT,
     IN p_tipo_permiso VARCHAR(255)
@@ -793,16 +823,41 @@ END //
 DELIMITER ;
 
 DELIMITER //
-create procedure sp_borrar_todos_permisos_usuario(in p_id_usuario int)
+create procedure sp_borrar_todos_permisos_usuario(in p_id_usuario int, out p_exito int)
 begin
-	delete from permisos_usuarios where id_usuario = p_id_usuario;
+	declare rol_del_usuario_a_eliminar int;
+    
+	select id_rol 
+    into rol_del_usuario_a_eliminar 
+    from usuario 
+    where id_usuario = p_id_usuario;
+    
+	START TRANSACTION;
+    
+	IF rol_del_usuario_a_eliminar = 1 THEN
+    -- Es superadmin, anular borrado
+    SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'No se pueden borrar los permisos de un superadministrador';
+        SET p_exito = 0;
+	ELSE
+		DELETE FROM permisos_usuarios WHERE id_usuario = p_id_usuario;
+        SET p_exito = 1;
+	END IF;
+    
+    COMMIT;
 end //
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE sp_asignar_permiso_usuario_comun(IN p_id_usuario INT)
+CREATE PROCEDURE sp_asignar_permiso_usuario_superadmin(IN p_id_usuario INT)
 BEGIN
-	call sp_asignar_permiso(p_id_usuario, "logear");
+	call sp_asignar_permiso(p_id_usuario, "eliminar_usuario");
+    call sp_asignar_permiso(p_id_usuario, "administrar_roles");
+    
+	call sp_asignar_permiso(p_id_usuario, "administrar_media");
+	call sp_asignar_permiso(p_id_usuario, "administrar_permisos");
+	call sp_asignar_permiso(p_id_usuario, "moderar_comentarios");
+	call sp_asignar_permiso(p_id_usuario, "loguear");
     call sp_asignar_permiso(p_id_usuario, "calificar");
     call sp_asignar_permiso(p_id_usuario, "comentar");
 END //
@@ -811,13 +866,21 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE sp_asignar_permiso_usuario_admin(IN p_id_usuario INT)
 BEGIN
-	call sp_asignar_permiso(p_id_usuario, "logear");
-    call sp_asignar_permiso(p_id_usuario, "calificar");
-    call sp_asignar_permiso(p_id_usuario, "comentar");
-    call sp_asignar_permiso(p_id_usuario, "administrar_roles");
 	call sp_asignar_permiso(p_id_usuario, "administrar_media");
 	call sp_asignar_permiso(p_id_usuario, "administrar_permisos");
 	call sp_asignar_permiso(p_id_usuario, "moderar_comentarios");
+	call sp_asignar_permiso(p_id_usuario, "loguear");
+    call sp_asignar_permiso(p_id_usuario, "calificar");
+    call sp_asignar_permiso(p_id_usuario, "comentar");
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE sp_asignar_permiso_usuario_comun(IN p_id_usuario INT)
+BEGIN
+	call sp_asignar_permiso(p_id_usuario, "loguear");
+    call sp_asignar_permiso(p_id_usuario, "calificar");
+    call sp_asignar_permiso(p_id_usuario, "comentar");
 END //
 DELIMITER ;
 
@@ -1277,17 +1340,6 @@ end //
 
 DELIMITER ;
 
-     /*
-     
-     Procedimientos Almacenados normales tienen una limitación: 
-     no pueden cambiar su estructura SQL en tiempo de ejecución.
-     Con lo @sql puedo lograr crear una consulta dinámica que
-     voy a utilizar en los procesos de 
-     sp_reporte_avanzado_peliculas
-     sp_reporte_avanzado_series
-     
-     */
-
 DELIMITER //
 CREATE PROCEDURE sp_reporte_avanzado_peliculas(
     IN p_nombre VARCHAR(255),
@@ -1298,16 +1350,24 @@ CREATE PROCEDURE sp_reporte_avanzado_peliculas(
     IN p_fecha_hasta DATE
 )
 BEGIN
-    
+	 /*	
+     Procedimientos Almacenados normales tienen una limitación: 
+     no pueden cambiar su estructura SQL en tiempo de ejecución.
+     Con @sql puedo lograr crear una CONSULTA DINÁMICA que
+     voy a utilizar en los procesos de 
+     sp_reporte_avanzado_peliculas
+     sp_reporte_avanzado_series
+     */
+     
     SET @sql = '
         SELECT DISTINCT
-            p.nombre,
-            p.fecha_estreno,
-            p.descripcion,
-            p.director,
-            p.duracion,
-            n.nombre,
-            g.nombre
+            p.nombre as Nombre,
+            p.fecha_estreno as Fecha_Estreno,
+            p.descripcion as Descripcion,
+            p.director as Director,
+            p.duracion Duracion,
+            n.nombre as Network,
+            g.nombre as Genero
         FROM peliculas p
         LEFT JOIN network n ON p.id_network = n.id_network
         LEFT JOIN genero_x_pelicula gxp ON p.id_pelicula = gxp.id_pelicula
@@ -1429,15 +1489,18 @@ end //
 DELIMITER ;
 */
 
-call sp_asignar_permiso_usuario_admin(1);
+call sp_asignar_permiso_usuario_superadmin(1);
 call sp_asignar_permiso_usuario_admin(2);
 call sp_asignar_permiso_usuario_admin(3);
+call sp_asignar_permiso_usuario_admin(4);
+call sp_asignar_permiso_usuario_comun(5);
 -- ----------------------- Pruebas
 
 SET SQL_SAFE_UPDATES = 0;
 select * from genero_x_pelicula;
 select * from calificaciones_peliculas;
 select * from comentarios_peli;
+select * from comentarios_serie;
 select * from peliculas;
 select * from serie;
 select * from usuario;
@@ -1445,3 +1508,7 @@ select * from network;
 select * from vw_historial_total;
 select * from permisos;
 select * from permisos_usuarios;
+
+-- USAR ESTO PARA RELLENAR EL HISTORIAL -> CONVERTIR A PROCEDIMIENTO
+select distinct id_pelicula, id_usuario from visualizaciones_pelicula;
+select distinct id_serie, id_usuario from visualizaciones_serie;

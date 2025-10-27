@@ -12,17 +12,17 @@ using System.Windows.Forms;
 
 namespace Reelnode
 {
-    public partial class FormCalificar: Form, ITemaPersonalizable
+    public partial class FormCalificar : Form, ITemaPersonalizable
     {
         private Color _c1 = Color.FromArgb(20, 30, 48);
         private Color _c2 = Color.FromArgb(36, 59, 85);
         private LinearGradientMode _modo = LinearGradientMode.Vertical;
 
         private int puntuacion = 0;
+
         public FormCalificar()
         {
             InitializeComponent();
-
 
             // Con esto se maneja a traves del Tag la puntuacion que representa
             // cada RadioButton unido al evento RadioButton_CheckedChanged
@@ -37,6 +37,32 @@ namespace Reelnode
             RbtPunt3.CheckedChanged += RadioButton_CheckedChanged;
             RbtPunt4.CheckedChanged += RadioButton_CheckedChanged;
             RbtPunt5.CheckedChanged += RadioButton_CheckedChanged;
+        }
+
+        private void BtnConfirmar_Click(object sender, EventArgs e)
+        {
+            if (puntuacion != 0)
+            {
+                int idMedia =
+                    AdministradorPeliculas.peliculaSeleccionada != null
+                        ? AdministradorPeliculas.peliculaSeleccionada.Id
+                        : AdministradorSeries.serieSeleccionada.Id;
+
+                // Si peliculaSeleccionada es null, entonces se clickeó una serie
+                AdministradorCalificaciones.Calificar(
+                    idMedia,
+                    puntuacion,
+                    AdministradorPeliculas.peliculaSeleccionada != null ? "Pelicula" : "Serie"
+                );
+                this.Close();
+            }
+            else
+                MessageBox.Show(
+                    "Debe elegir una puntuacion",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
         }
 
         public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)
@@ -58,24 +84,13 @@ namespace Reelnode
         private void RadioButton_CheckedChanged(object sender, EventArgs e)
         {
             RadioButton rb = sender as RadioButton;
-            if (rb != null && rb.Checked) puntuacion = (int)rb.Tag;
+            if (rb != null && rb.Checked)
+                puntuacion = (int)rb.Tag;
         }
 
         private void BtnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void BtnConfirmar_Click(object sender, EventArgs e)
-        {
-            if (puntuacion != 0)
-            {
-                int idMedia = Utils.peliculaSeleccionada != null ? Utils.peliculaSeleccionada.Id: Utils.serieSeleccionada.Id;
-                // Si peliculaSeleccionada es null, entonces se clickeó una serie
-                AdministradorCalificaciones.Calificar(idMedia, puntuacion, Utils.peliculaSeleccionada != null ? "Pelicula" : "Serie");
-                this.Close();
-            }
-            else MessageBox.Show("Debe elegir una puntuacion", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);            
         }
     }
 }

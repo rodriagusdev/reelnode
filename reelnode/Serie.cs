@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Reelnode
 {
-    public class Serie: Media
+    public class Serie: Audiovisual
     {
         public override int Id { get; set; }
         public override string Nombre { get; set; }
@@ -27,8 +27,11 @@ namespace Reelnode
 
         public Serie() { }
 
-        public Serie(int id, string nombre, DateTime fecha, DateTime fechaFin, string descripcion, 
-            string director, string img, byte temporadas, int network, string trailerURL, List<int> generos)
+        public Serie
+            (
+            int id, string nombre, DateTime fecha, DateTime fechaFin, string descripcion, 
+            string director, string img, byte temporadas, int network, string trailerURL, List<int> generos
+            )
         {
             this.Id = id;
             this.Nombre = nombre;

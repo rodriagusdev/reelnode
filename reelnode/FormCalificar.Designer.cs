@@ -150,7 +150,7 @@
             this.BtnConfirmar.Location = new System.Drawing.Point(58, 122);
             this.BtnConfirmar.Name = "BtnConfirmar";
             this.BtnConfirmar.Size = new System.Drawing.Size(205, 35);
-            this.BtnConfirmar.TabIndex = 34;
+            this.BtnConfirmar.TabIndex = 40;
             this.BtnConfirmar.Text = "Confirmar";
             this.BtnConfirmar.UseVisualStyleBackColor = false;
             this.BtnConfirmar.Click += new System.EventHandler(this.BtnConfirmar_Click);

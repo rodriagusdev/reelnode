@@ -12,6 +12,7 @@ namespace Reelnode
         public string NombreUsuario { get; set; }
         public string Password { get; set; }
 
+        public int IdRol {  get; set; }
         public string RolUsuario { get; set; }
         public string Email { get; set; }
 
@@ -20,7 +21,7 @@ namespace Reelnode
 
 
         public Usuario() { }
-        public Usuario(int id, string nombreUsuario, string password, string email, string avatar, string rolUsuario)
+        public Usuario(int id, string nombreUsuario, string password, string email, string avatar, string rolUsuario, int idRol)
         {
             Id = id;
             NombreUsuario = nombreUsuario;
@@ -29,6 +30,7 @@ namespace Reelnode
             Email = email;
             Avatar = avatar;
             FechaRegistro = DateTime.Now;
+            IdRol = idRol;
         }
 
         public Usuario(string v1, string v2, string v3, string v4)

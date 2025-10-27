@@ -1,5 +1,4 @@
-﻿using ProjectoNuevo;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +11,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProjectoNuevo;
 
 namespace Reelnode
 {
@@ -20,6 +20,7 @@ namespace Reelnode
         private Color _c1 = Color.FromArgb(20, 30, 48);
         private Color _c2 = Color.FromArgb(36, 59, 85);
         private LinearGradientMode _modo = LinearGradientMode.Vertical;
+
         public FormLogin()
         {
             InitializeComponent();
@@ -54,36 +55,53 @@ namespace Reelnode
             BtnSalir.FlatAppearance.BorderColor = Color.FromArgb(0, 29, 35);
         }
 
-
         private void BtnIngresar_Click_1(object sender, EventArgs e)
         {
             bool usuarioEncontrado = false;
 
-            foreach(Usuario u in AdministradorUsuarios.usuariosRegistrados)
+            foreach (Usuario u in AdministradorUsuarios.usuariosRegistrados)
             {
                 if (TxtUsuario.Text == u.NombreUsuario && TxtPassword.Text == u.Password)
                 {
-                    AdministradorUsuarios.usuarioActual.Id = u.Id;
-                    AdministradorUsuarios.usuarioActual.NombreUsuario = u.NombreUsuario;
-                    AdministradorUsuarios.usuarioActual.Password = u.Password;
-                    AdministradorUsuarios.usuarioActual.RolUsuario = u.RolUsuario;
-                    AdministradorUsuarios.usuarioActual.Email = u.Email;
-                    AdministradorUsuarios.usuarioActual.Avatar = u.Avatar;
+                    /* Cargo los permisos y chequeo si el usuario puede loguear */
+                    List<string> permisos = AdministradorPermisos.ObtenerPermisosUsuario(u.Id);
 
-                    AdministradorPermisos.CargarPermisosIniciales(u.Id);
+                    if (permisos.Contains(EnumPermisos.loguear.ToString()))
+                    {
+                        AdministradorUsuarios.usuarioActual.Id = u.Id;
+                        AdministradorUsuarios.usuarioActual.NombreUsuario = u.NombreUsuario;
+                        AdministradorUsuarios.usuarioActual.Password = u.Password;
+                        AdministradorUsuarios.usuarioActual.RolUsuario = u.RolUsuario;
+                        AdministradorUsuarios.usuarioActual.Email = u.Email;
+                        AdministradorUsuarios.usuarioActual.Avatar = u.Avatar;
+                        AdministradorUsuarios.usuarioActual.IdRol = u.IdRol;
 
-                    usuarioEncontrado = true;
-                    this.Close();
-                    break;
+                        usuarioEncontrado = true;
+                        this.Close();
+                        break;
+                    }
+
+                    MessageBox.Show(
+                        "No tienes permisos para ingresar en la aplicación",
+                        "Error de permisos",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+
+                    return;
                 }
             }
 
             if (!usuarioEncontrado)
             {
                 errorProvider.SetError(PanelUsuario, "Usuario incorrecto");
-                MessageBox.Show("Usuario o Contraseña Incorrecta", "Error de Autenticación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "Usuario o Contraseña Incorrecta",
+                    "Error de Autenticación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
-
         }
 
         private void TxtUsuario_TextChanged(object sender, EventArgs e)
@@ -120,6 +138,7 @@ namespace Reelnode
 
             registro.ShowDialog();
         }
+
         private void BtnSalir_Click_1(object sender, EventArgs e)
         {
             Application.Exit();

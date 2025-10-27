@@ -79,7 +79,7 @@
             this.BtnVerComentarios.Margin = new System.Windows.Forms.Padding(2);
             this.BtnVerComentarios.Name = "BtnVerComentarios";
             this.BtnVerComentarios.Size = new System.Drawing.Size(205, 35);
-            this.BtnVerComentarios.TabIndex = 56;
+            this.BtnVerComentarios.TabIndex = 1;
             this.BtnVerComentarios.Text = "Ver comentarios";
             this.BtnVerComentarios.UseVisualStyleBackColor = false;
             this.BtnVerComentarios.Click += new System.EventHandler(this.BtnVerComentarios_Click);
@@ -113,7 +113,7 @@
             this.BtnEnviarComentario.Margin = new System.Windows.Forms.Padding(2);
             this.BtnEnviarComentario.Name = "BtnEnviarComentario";
             this.BtnEnviarComentario.Size = new System.Drawing.Size(205, 35);
-            this.BtnEnviarComentario.TabIndex = 53;
+            this.BtnEnviarComentario.TabIndex = 2;
             this.BtnEnviarComentario.Text = "Enviar comentario";
             this.BtnEnviarComentario.UseVisualStyleBackColor = false;
             this.BtnEnviarComentario.Click += new System.EventHandler(this.BtnEnviarComentario_Click);

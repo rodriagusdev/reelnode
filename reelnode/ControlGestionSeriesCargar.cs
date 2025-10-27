@@ -28,6 +28,12 @@ namespace Reelnode
             this.Controls.Add(PanelMain);
         }
 
+        private void ControlGestionSeriesCargar_Load(object sender, EventArgs e)
+        {
+            CreadorUI.CargarNetwork(CboNetwork);
+            CreadorUI.CargarGeneros(ChkListGeneros);
+        }
+
         private void BtnCargar_Click(object sender, EventArgs e)
         {
             /* !--- INICIO VALIDACIONES --- ! */
@@ -44,9 +50,22 @@ namespace Reelnode
                 return;
             }
 
-            if(TxtNombre.Text == "" || TxtNombre.Text == null)
+            if (TxtNombre.Text == "" || TxtNombre.Text == null)
             {
                 MessageBox.Show("La serie no tiene titulo.", "Error al cargar serie", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (TxtDirector.Text == "" || TxtDirector.Text == null)
+            {
+                MessageBox.Show("No se especificó nombre del director.", "Error al cargar serie", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (DtpFechaEstreno.Value > DtpFechaFin.Value)
+            {
+                MessageBox.Show("La fecha de estreno no puede ser mayor que la de fin.", "Error al cargar serie",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -69,19 +88,23 @@ namespace Reelnode
                 ImagenURL = TxtURLImagen.Text,
                 TrailerURL = TxtURLTrailer.Text,
                 Temporadas = cantTemporadas,
-                Network = Utils.ObtenerNetworkId(CboNetwork.Text),
-                Generos = Utils.ObtenerIdGeneros(ChkListGeneros)
+                Network = UtilsBD.ObtenerNetworkId(CboNetwork.Text),
+                Generos = UtilsBD.ObtenerIdGeneros(ChkListGeneros)
             };
 
-            UtilsBD.InsertarSerieBD(nuevaSerie);
+            bool operacionExitosa = AdministradorSeries.InsertarSerieBD(nuevaSerie);
+
+            if (operacionExitosa)
+            {
+                trailerFinalURL = null;
+                Utils.LimpiarCampos(this);
+            }
         }
 
         /* !--- PREVISUALIZACION DE POSTER Y TRAILER ---! */
 
-        /* 
-            SOBRE LA CARGA DE IMAGENES Y TRAILERS:
-            Mi eleccion es la carga a traves de URLs para no sobrecargar la base de datos.     
-        */
+        // SOBRE LA CARGA DE IMAGENES Y TRAILERS:
+        // La eleccion es la carga a traves de URLs para no sobrecargar la base de datos.     
 
         /* 
          * Explicacion sobre funcion asincrona:
@@ -104,11 +127,5 @@ namespace Reelnode
         }
 
         /* !--- FIN DE PREVISUALIZACION DE POSTER Y TRAILER --- ! */
-
-        private void ControlGestionSeriesCargar_Load(object sender, EventArgs e)
-        {
-            Utils.CargarNetwork(CboNetwork);
-            Utils.CargarGeneros(ChkListGeneros);
-        }
     }
 }

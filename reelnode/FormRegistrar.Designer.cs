@@ -68,7 +68,6 @@
             this.PanelMain.Name = "PanelMain";
             this.PanelMain.Size = new System.Drawing.Size(424, 463);
             this.PanelMain.TabIndex = 11;
-            this.PanelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelMain_Paint);
             // 
             // BtnSalir
             // 
@@ -77,10 +76,10 @@
             this.BtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSalir.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnSalir.ForeColor = System.Drawing.Color.White;
-            this.BtnSalir.Location = new System.Drawing.Point(55, 378);
+            this.BtnSalir.Location = new System.Drawing.Point(58, 378);
             this.BtnSalir.Name = "BtnSalir";
             this.BtnSalir.Size = new System.Drawing.Size(307, 36);
-            this.BtnSalir.TabIndex = 24;
+            this.BtnSalir.TabIndex = 5;
             this.BtnSalir.Text = "V   O   L   V   E   R";
             this.BtnSalir.UseVisualStyleBackColor = false;
             this.BtnSalir.Click += new System.EventHandler(this.BtnSalir_Click);
@@ -91,7 +90,7 @@
             this.PanelEmail.Controls.Add(this.LblPanelEmail);
             this.PanelEmail.Controls.Add(this.PanelEmailLinea);
             this.PanelEmail.Controls.Add(this.TxtEmail);
-            this.PanelEmail.Location = new System.Drawing.Point(56, 206);
+            this.PanelEmail.Location = new System.Drawing.Point(59, 206);
             this.PanelEmail.Name = "PanelEmail";
             this.PanelEmail.Padding = new System.Windows.Forms.Padding(5);
             this.PanelEmail.Size = new System.Drawing.Size(306, 35);
@@ -128,7 +127,7 @@
             this.TxtEmail.Location = new System.Drawing.Point(5, 5);
             this.TxtEmail.Name = "TxtEmail";
             this.TxtEmail.Size = new System.Drawing.Size(296, 22);
-            this.TxtEmail.TabIndex = 12;
+            this.TxtEmail.TabIndex = 2;
             this.TxtEmail.TextChanged += new System.EventHandler(this.TxtEmail_TextChanged);
             // 
             // PanelPassword
@@ -137,7 +136,7 @@
             this.PanelPassword.Controls.Add(this.LblPanelPassword);
             this.PanelPassword.Controls.Add(this.PanelPasswordLinea);
             this.PanelPassword.Controls.Add(this.TxtPassword);
-            this.PanelPassword.Location = new System.Drawing.Point(56, 258);
+            this.PanelPassword.Location = new System.Drawing.Point(59, 258);
             this.PanelPassword.Name = "PanelPassword";
             this.PanelPassword.Padding = new System.Windows.Forms.Padding(5);
             this.PanelPassword.Size = new System.Drawing.Size(306, 35);
@@ -175,7 +174,7 @@
             this.TxtPassword.Name = "TxtPassword";
             this.TxtPassword.PasswordChar = '*';
             this.TxtPassword.Size = new System.Drawing.Size(296, 22);
-            this.TxtPassword.TabIndex = 12;
+            this.TxtPassword.TabIndex = 3;
             this.TxtPassword.TextChanged += new System.EventHandler(this.TxtPassword_TextChanged);
             // 
             // PanelUsuario
@@ -184,7 +183,7 @@
             this.PanelUsuario.Controls.Add(this.LblPanelUsuario);
             this.PanelUsuario.Controls.Add(this.PanelUsuarioLinea);
             this.PanelUsuario.Controls.Add(this.TxtUsuario);
-            this.PanelUsuario.Location = new System.Drawing.Point(56, 156);
+            this.PanelUsuario.Location = new System.Drawing.Point(59, 156);
             this.PanelUsuario.Name = "PanelUsuario";
             this.PanelUsuario.Padding = new System.Windows.Forms.Padding(5);
             this.PanelUsuario.Size = new System.Drawing.Size(306, 35);
@@ -221,7 +220,7 @@
             this.TxtUsuario.Location = new System.Drawing.Point(5, 5);
             this.TxtUsuario.Name = "TxtUsuario";
             this.TxtUsuario.Size = new System.Drawing.Size(296, 22);
-            this.TxtUsuario.TabIndex = 12;
+            this.TxtUsuario.TabIndex = 1;
             this.TxtUsuario.TextChanged += new System.EventHandler(this.TxtUsuario_TextChanged);
             // 
             // BtnIngresar
@@ -231,10 +230,10 @@
             this.BtnIngresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnIngresar.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnIngresar.ForeColor = System.Drawing.Color.White;
-            this.BtnIngresar.Location = new System.Drawing.Point(55, 322);
+            this.BtnIngresar.Location = new System.Drawing.Point(58, 322);
             this.BtnIngresar.Name = "BtnIngresar";
             this.BtnIngresar.Size = new System.Drawing.Size(307, 36);
-            this.BtnIngresar.TabIndex = 13;
+            this.BtnIngresar.TabIndex = 4;
             this.BtnIngresar.Text = "R   E   G   I   S   T   R   A  R";
             this.BtnIngresar.UseVisualStyleBackColor = false;
             this.BtnIngresar.Click += new System.EventHandler(this.BtnIngresar_Click);
@@ -245,7 +244,7 @@
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(15, 10);
+            this.pictureBox1.Location = new System.Drawing.Point(23, 10);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(377, 149);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -269,7 +268,6 @@
             this.Name = "FormRegistrar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormRegistrar";
-            this.Load += new System.EventHandler(this.FormRegistrar_Load);
             this.PanelMain.ResumeLayout(false);
             this.PanelEmail.ResumeLayout(false);
             this.PanelEmail.PerformLayout();

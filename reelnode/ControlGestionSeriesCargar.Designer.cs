@@ -102,7 +102,7 @@
             this.TxtNombre.Location = new System.Drawing.Point(5, 5);
             this.TxtNombre.Name = "TxtNombre";
             this.TxtNombre.Size = new System.Drawing.Size(195, 22);
-            this.TxtNombre.TabIndex = 12;
+            this.TxtNombre.TabIndex = 1;
             // 
             // PanelFecha
             // 
@@ -120,7 +120,7 @@
             this.DtpFechaEstreno.Location = new System.Drawing.Point(5, 7);
             this.DtpFechaEstreno.Name = "DtpFechaEstreno";
             this.DtpFechaEstreno.Size = new System.Drawing.Size(195, 22);
-            this.DtpFechaEstreno.TabIndex = 0;
+            this.DtpFechaEstreno.TabIndex = 3;
             // 
             // PanelDirector
             // 
@@ -142,7 +142,7 @@
             this.TxtDirector.Location = new System.Drawing.Point(5, 5);
             this.TxtDirector.Name = "TxtDirector";
             this.TxtDirector.Size = new System.Drawing.Size(195, 22);
-            this.TxtDirector.TabIndex = 12;
+            this.TxtDirector.TabIndex = 6;
             // 
             // PanelDuracion
             // 
@@ -164,7 +164,7 @@
             this.TxtDuracion.Location = new System.Drawing.Point(5, 5);
             this.TxtDuracion.Name = "TxtDuracion";
             this.TxtDuracion.Size = new System.Drawing.Size(195, 22);
-            this.TxtDuracion.TabIndex = 12;
+            this.TxtDuracion.TabIndex = 7;
             // 
             // PanelImagen
             // 
@@ -208,7 +208,7 @@
             this.TxtDescripcion.Multiline = true;
             this.TxtDescripcion.Name = "TxtDescripcion";
             this.TxtDescripcion.Size = new System.Drawing.Size(568, 79);
-            this.TxtDescripcion.TabIndex = 12;
+            this.TxtDescripcion.TabIndex = 8;
             // 
             // BtnCargar
             // 
@@ -220,7 +220,7 @@
             this.BtnCargar.Location = new System.Drawing.Point(735, 577);
             this.BtnCargar.Name = "BtnCargar";
             this.BtnCargar.Size = new System.Drawing.Size(447, 35);
-            this.BtnCargar.TabIndex = 33;
+            this.BtnCargar.TabIndex = 13;
             this.BtnCargar.Text = "Cargar Serie";
             this.BtnCargar.UseVisualStyleBackColor = false;
             this.BtnCargar.Click += new System.EventHandler(this.BtnCargar_Click);
@@ -243,7 +243,7 @@
             this.DtpFechaFin.Margin = new System.Windows.Forms.Padding(2);
             this.DtpFechaFin.Name = "DtpFechaFin";
             this.DtpFechaFin.Size = new System.Drawing.Size(198, 22);
-            this.DtpFechaFin.TabIndex = 37;
+            this.DtpFechaFin.TabIndex = 4;
             // 
             // textBox1
             // 
@@ -277,7 +277,7 @@
             this.TxtURLImagen.Location = new System.Drawing.Point(5, 5);
             this.TxtURLImagen.Name = "TxtURLImagen";
             this.TxtURLImagen.Size = new System.Drawing.Size(303, 22);
-            this.TxtURLImagen.TabIndex = 12;
+            this.TxtURLImagen.TabIndex = 9;
             // 
             // label9
             // 
@@ -301,7 +301,7 @@
             this.BtnPrevisualizar.Location = new System.Drawing.Point(409, 466);
             this.BtnPrevisualizar.Name = "BtnPrevisualizar";
             this.BtnPrevisualizar.Size = new System.Drawing.Size(313, 35);
-            this.BtnPrevisualizar.TabIndex = 40;
+            this.BtnPrevisualizar.TabIndex = 10;
             this.BtnPrevisualizar.Text = "Previsualizar";
             this.BtnPrevisualizar.UseVisualStyleBackColor = false;
             this.BtnPrevisualizar.Click += new System.EventHandler(this.BtnPrevisualizar_Click);
@@ -370,11 +370,13 @@
             // 
             // ChkListGeneros
             // 
+            this.ChkListGeneros.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ChkListGeneros.CheckOnClick = true;
             this.ChkListGeneros.FormattingEnabled = true;
             this.ChkListGeneros.Location = new System.Drawing.Point(144, 307);
             this.ChkListGeneros.Name = "ChkListGeneros";
-            this.ChkListGeneros.Size = new System.Drawing.Size(205, 79);
-            this.ChkListGeneros.TabIndex = 80;
+            this.ChkListGeneros.Size = new System.Drawing.Size(205, 75);
+            this.ChkListGeneros.TabIndex = 5;
             // 
             // label13
             // 
@@ -407,7 +409,7 @@
             this.CboNetwork.Location = new System.Drawing.Point(5, 5);
             this.CboNetwork.Name = "CboNetwork";
             this.CboNetwork.Size = new System.Drawing.Size(195, 21);
-            this.CboNetwork.TabIndex = 0;
+            this.CboNetwork.TabIndex = 2;
             // 
             // label2
             // 
@@ -431,7 +433,7 @@
             this.BtnPrevisualizarTrailer.Location = new System.Drawing.Point(735, 466);
             this.BtnPrevisualizarTrailer.Name = "BtnPrevisualizarTrailer";
             this.BtnPrevisualizarTrailer.Size = new System.Drawing.Size(447, 35);
-            this.BtnPrevisualizarTrailer.TabIndex = 52;
+            this.BtnPrevisualizarTrailer.TabIndex = 12;
             this.BtnPrevisualizarTrailer.Text = "Previsualizar trailer";
             this.BtnPrevisualizarTrailer.UseVisualStyleBackColor = false;
             this.BtnPrevisualizarTrailer.Click += new System.EventHandler(this.BtnPrevisualizarTrailer_Click);
@@ -465,7 +467,7 @@
             this.TxtURLTrailer.Location = new System.Drawing.Point(5, 5);
             this.TxtURLTrailer.Name = "TxtURLTrailer";
             this.TxtURLTrailer.Size = new System.Drawing.Size(437, 22);
-            this.TxtURLTrailer.TabIndex = 12;
+            this.TxtURLTrailer.TabIndex = 11;
             // 
             // label5
             // 

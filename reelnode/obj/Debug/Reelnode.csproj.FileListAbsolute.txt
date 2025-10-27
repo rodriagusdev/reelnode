@@ -339,7 +339,6 @@ C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.ControlVisualizacionSerie
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.FormCalificar.resources
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.FormMain.resources
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.FormLogin.resources
-C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\ProjectoNuevo.FormPassword.resources
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.FormRegistrar.resources
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\ProjectoNuevo.Properties.Resources.resources
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.csproj.GenerateResource.cache
@@ -407,3 +406,4 @@ C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.ControlComentarios.resour
 D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlComentarios.resources
 D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlGestionDashboard.resources
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.ControlGestionDashboard.resources
+C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.FormPassword.resources

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Reelnode
 {
-    public class MediaMiniatura
+    public class AudiovisualMiniatura
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
@@ -16,16 +16,16 @@ namespace Reelnode
         public decimal CalificacionPromedio { get; set; }
         public int CantidadCalificaciones { get; set; }
 
-        public MediaMiniatura() { }
+        public AudiovisualMiniatura() { }
 
-        public MediaMiniatura(int id, string nombre, string imagenURL)
+        public AudiovisualMiniatura(int id, string nombre, string imagenURL)
         {
             Id = id;
             Nombre = nombre;
             ImagenURL = imagenURL;
         }
 
-        public MediaMiniatura(int id, string nombre, string imagenURL, decimal calif)
+        public AudiovisualMiniatura(int id, string nombre, string imagenURL, decimal calif)
         {
             Id = id;
             Nombre = nombre;

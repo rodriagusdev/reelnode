@@ -111,7 +111,7 @@
             this.BtnConfirmarAvatar.Location = new System.Drawing.Point(39, 345);
             this.BtnConfirmarAvatar.Name = "BtnConfirmarAvatar";
             this.BtnConfirmarAvatar.Size = new System.Drawing.Size(195, 23);
-            this.BtnConfirmarAvatar.TabIndex = 55;
+            this.BtnConfirmarAvatar.TabIndex = 3;
             this.BtnConfirmarAvatar.Text = "Confirmar";
             this.BtnConfirmarAvatar.UseVisualStyleBackColor = true;
             this.BtnConfirmarAvatar.Visible = false;
@@ -138,7 +138,7 @@
             this.TxtURLImagen.Location = new System.Drawing.Point(5, 5);
             this.TxtURLImagen.Name = "TxtURLImagen";
             this.TxtURLImagen.Size = new System.Drawing.Size(185, 17);
-            this.TxtURLImagen.TabIndex = 12;
+            this.TxtURLImagen.TabIndex = 2;
             // 
             // BtnAvatar
             // 
@@ -147,7 +147,7 @@
             this.BtnAvatar.Location = new System.Drawing.Point(194, 70);
             this.BtnAvatar.Name = "BtnAvatar";
             this.BtnAvatar.Size = new System.Drawing.Size(40, 34);
-            this.BtnAvatar.TabIndex = 53;
+            this.BtnAvatar.TabIndex = 1;
             this.BtnAvatar.Text = "⏬";
             this.BtnAvatar.UseVisualStyleBackColor = true;
             this.BtnAvatar.Click += new System.EventHandler(this.BtnAvatar_Click_1);

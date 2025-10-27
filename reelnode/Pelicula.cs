@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Reelnode
 {
-    public class Pelicula: Media
+    public class Pelicula: Audiovisual
     {
         public override int Id { get; set; }
         public override string Nombre { get; set; }
@@ -23,7 +23,11 @@ namespace Reelnode
         public int Duracion { get; set; }
 
         public Pelicula() { }
-        public Pelicula(string nombre, DateTime fechaEstreno, string descripcion, string director, string img, int duracion, string trailerURL, int network, List<int> generos)
+        public Pelicula
+            (
+            string nombre, DateTime fechaEstreno, string descripcion, string director, 
+            string img, int duracion, string trailerURL, int network, List<int> generos
+            )
         {
             this.Nombre = nombre;
             this.FechaEstreno = fechaEstreno;

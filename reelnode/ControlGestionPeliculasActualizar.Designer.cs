@@ -73,6 +73,7 @@
             this.BtnBuscarPelicula = new System.Windows.Forms.Button();
             this.PanelBuscarPeliculaNombre = new System.Windows.Forms.Panel();
             this.TxtBuscarNombrePelicula = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.PanelActualizar.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -92,6 +93,7 @@
             // PanelActualizar
             // 
             this.PanelActualizar.BackColor = System.Drawing.Color.Transparent;
+            this.PanelActualizar.Controls.Add(this.label11);
             this.PanelActualizar.Controls.Add(this.label19);
             this.PanelActualizar.Controls.Add(this.ChkListGeneros);
             this.PanelActualizar.Controls.Add(this.BtnPrevisualizarTrailer);
@@ -148,7 +150,7 @@
             this.ChkListGeneros.Location = new System.Drawing.Point(319, 194);
             this.ChkListGeneros.Name = "ChkListGeneros";
             this.ChkListGeneros.Size = new System.Drawing.Size(205, 105);
-            this.ChkListGeneros.TabIndex = 94;
+            this.ChkListGeneros.TabIndex = 4;
             // 
             // BtnPrevisualizarTrailer
             // 
@@ -160,7 +162,7 @@
             this.BtnPrevisualizarTrailer.Location = new System.Drawing.Point(867, 551);
             this.BtnPrevisualizarTrailer.Name = "BtnPrevisualizarTrailer";
             this.BtnPrevisualizarTrailer.Size = new System.Drawing.Size(308, 35);
-            this.BtnPrevisualizarTrailer.TabIndex = 85;
+            this.BtnPrevisualizarTrailer.TabIndex = 13;
             this.BtnPrevisualizarTrailer.Text = "Previsualizar trailer";
             this.BtnPrevisualizarTrailer.UseVisualStyleBackColor = false;
             this.BtnPrevisualizarTrailer.Click += new System.EventHandler(this.BtnPrevisualizarTrailer_Click);
@@ -185,7 +187,7 @@
             this.TxtURLTrailer.Location = new System.Drawing.Point(5, 5);
             this.TxtURLTrailer.Name = "TxtURLTrailer";
             this.TxtURLTrailer.Size = new System.Drawing.Size(298, 22);
-            this.TxtURLTrailer.TabIndex = 12;
+            this.TxtURLTrailer.TabIndex = 11;
             // 
             // label10
             // 
@@ -263,7 +265,7 @@
             this.CboNetwork.Location = new System.Drawing.Point(5, 5);
             this.CboNetwork.Name = "CboNetwork";
             this.CboNetwork.Size = new System.Drawing.Size(195, 21);
-            this.CboNetwork.TabIndex = 0;
+            this.CboNetwork.TabIndex = 8;
             // 
             // BtnPrevisualizar
             // 
@@ -275,7 +277,7 @@
             this.BtnPrevisualizar.Location = new System.Drawing.Point(536, 551);
             this.BtnPrevisualizar.Name = "BtnPrevisualizar";
             this.BtnPrevisualizar.Size = new System.Drawing.Size(308, 35);
-            this.BtnPrevisualizar.TabIndex = 62;
+            this.BtnPrevisualizar.TabIndex = 12;
             this.BtnPrevisualizar.Text = "Previsualizar";
             this.BtnPrevisualizar.UseVisualStyleBackColor = false;
             this.BtnPrevisualizar.Click += new System.EventHandler(this.BtnPrevisualizar_Click);
@@ -324,7 +326,7 @@
             this.TxtURLImagen.Location = new System.Drawing.Point(5, 5);
             this.TxtURLImagen.Name = "TxtURLImagen";
             this.TxtURLImagen.Size = new System.Drawing.Size(298, 22);
-            this.TxtURLImagen.TabIndex = 12;
+            this.TxtURLImagen.TabIndex = 10;
             // 
             // label5
             // 
@@ -396,7 +398,7 @@
             this.BtnActualizar.Location = new System.Drawing.Point(536, 618);
             this.BtnActualizar.Name = "BtnActualizar";
             this.BtnActualizar.Size = new System.Drawing.Size(639, 35);
-            this.BtnActualizar.TabIndex = 54;
+            this.BtnActualizar.TabIndex = 14;
             this.BtnActualizar.Text = "Actualizar Pelicula";
             this.BtnActualizar.UseVisualStyleBackColor = false;
             this.BtnActualizar.Click += new System.EventHandler(this.BtnActualizar_Click);
@@ -422,7 +424,7 @@
             this.TxtDescripcion.Multiline = true;
             this.TxtDescripcion.Name = "TxtDescripcion";
             this.TxtDescripcion.Size = new System.Drawing.Size(417, 153);
-            this.TxtDescripcion.TabIndex = 12;
+            this.TxtDescripcion.TabIndex = 9;
             // 
             // PanelImagen
             // 
@@ -454,7 +456,7 @@
             this.PanelDuracion.Name = "PanelDuracion";
             this.PanelDuracion.Padding = new System.Windows.Forms.Padding(5);
             this.PanelDuracion.Size = new System.Drawing.Size(205, 35);
-            this.PanelDuracion.TabIndex = 52;
+            this.PanelDuracion.TabIndex = 555;
             // 
             // TxtDuracion
             // 
@@ -466,7 +468,7 @@
             this.TxtDuracion.Location = new System.Drawing.Point(5, 5);
             this.TxtDuracion.Name = "TxtDuracion";
             this.TxtDuracion.Size = new System.Drawing.Size(195, 22);
-            this.TxtDuracion.TabIndex = 12;
+            this.TxtDuracion.TabIndex = 6;
             // 
             // PanelDirector
             // 
@@ -488,7 +490,7 @@
             this.TxtDirector.Location = new System.Drawing.Point(5, 5);
             this.TxtDirector.Name = "TxtDirector";
             this.TxtDirector.Size = new System.Drawing.Size(195, 22);
-            this.TxtDirector.TabIndex = 12;
+            this.TxtDirector.TabIndex = 5;
             // 
             // PanelFecha
             // 
@@ -506,7 +508,7 @@
             this.DtpFechaEstreno.Location = new System.Drawing.Point(5, 6);
             this.DtpFechaEstreno.Name = "DtpFechaEstreno";
             this.DtpFechaEstreno.Size = new System.Drawing.Size(192, 24);
-            this.DtpFechaEstreno.TabIndex = 0;
+            this.DtpFechaEstreno.TabIndex = 7;
             // 
             // PanelUsuario
             // 
@@ -528,7 +530,7 @@
             this.TxtNombre.Location = new System.Drawing.Point(5, 5);
             this.TxtNombre.Name = "TxtNombre";
             this.TxtNombre.Size = new System.Drawing.Size(195, 22);
-            this.TxtNombre.TabIndex = 12;
+            this.TxtNombre.TabIndex = 3;
             // 
             // DataGridPeliculas
             // 
@@ -591,7 +593,7 @@
             this.BtnBuscarPelicula.Location = new System.Drawing.Point(310, 33);
             this.BtnBuscarPelicula.Name = "BtnBuscarPelicula";
             this.BtnBuscarPelicula.Size = new System.Drawing.Size(173, 36);
-            this.BtnBuscarPelicula.TabIndex = 45;
+            this.BtnBuscarPelicula.TabIndex = 2;
             this.BtnBuscarPelicula.Text = "Buscar";
             this.BtnBuscarPelicula.UseVisualStyleBackColor = false;
             this.BtnBuscarPelicula.Click += new System.EventHandler(this.BtnBuscarPelicula_Click);
@@ -616,7 +618,19 @@
             this.TxtBuscarNombrePelicula.Location = new System.Drawing.Point(5, 5);
             this.TxtBuscarNombrePelicula.Name = "TxtBuscarNombrePelicula";
             this.TxtBuscarNombrePelicula.Size = new System.Drawing.Size(195, 22);
-            this.TxtBuscarNombrePelicula.TabIndex = 12;
+            this.TxtBuscarNombrePelicula.TabIndex = 1;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
+            this.label11.Location = new System.Drawing.Point(864, 529);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(131, 17);
+            this.label11.TabIndex = 556;
+            this.label11.Text = "Valido solo de Youtube";
             // 
             // ControlGestionPeliculasActualizar
             // 
@@ -699,5 +713,6 @@
         private System.Windows.Forms.Button BtnPrevisualizarTrailer;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.CheckedListBox ChkListGeneros;
+        private System.Windows.Forms.Label label11;
     }
 }

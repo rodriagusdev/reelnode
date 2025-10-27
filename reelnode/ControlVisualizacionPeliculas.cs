@@ -31,10 +31,11 @@ namespace Reelnode
 
         private void BtnComentar_Click(object sender, EventArgs e)
         {
-            controlComentarios.CargarComentarios();
-            Utils.ShowControl(controlComentarios, PanelVisualizar);
+            controlComentarios.procedimiento = "sp_obtener_comentarios_pelis";
+            controlComentarios.p_id = "p_id_pelicula";
+            controlComentarios.idAudiovisual = AdministradorPeliculas.peliculaSeleccionada.Id;
+            Utils.ShowControl(controlComentarios, PanelMain);
         }
-
         public void DetenerTrailer()
         {
             try
@@ -55,9 +56,9 @@ namespace Reelnode
             PicPeli.Image = Utils.DescargarImagenDesdeURL(pelicula.ImagenURL);
             LblDescripcionPeli.Text = pelicula.Descripcion;
             LblDirector.Text = pelicula.Director;
-            LblDuracion.Text = pelicula.Duracion + "m";
+            LblDuracion.Text = Utils.ConvertirAHoras(pelicula.Duracion);
             LblTitulo.Text = pelicula.Nombre;
-            LblGeneros.Text = Utils.ObtenerNombresGeneros(pelicula.Generos);
+            LblGeneros.Text = UtilsBD.ObtenerNombresGeneros(pelicula.Generos);
 
             if (!string.IsNullOrEmpty(pelicula.TrailerURL))
             {

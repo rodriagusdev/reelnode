@@ -1,18 +1,7 @@
-﻿using iTextSharp.text;
-using iTextSharp.text.pdf;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Reelnode
 {
@@ -22,6 +11,7 @@ namespace Reelnode
 
         private string nombreUsuario = "";
         private int idUsuario = -1;
+
         public ControlGestionUsuarios()
         {
             InitializeComponent();
@@ -34,58 +24,50 @@ namespace Reelnode
 
         private void ControlGestionUsuarios_Load(object sender, EventArgs e)
         {
-            DataGridUsuarios.DataSource = null;
-            DataGridUsuarios.DataSource = AdministradorUsuarios.usuariosRegistrados;
-            // DataGridUsuarios.Columns["Avatar"].Visible = false;
+            ChkListPermisos.Items.Clear();
+
+            AdministradorPermisos.MostrarPermisosEnLista(ChkListPermisos);
+            Utils.ActualizarListaGrid(
+                DataGridUsuarios,
+                AdministradorUsuarios.usuariosRegistrados,
+                "Password"
+            );
         }
 
         /* !--- MODIFICACION DE ROL DE USUARIO ---! */
-        private void RbtAdmin_CheckedChanged(object sender, EventArgs e) => DataGridUsuarios.Tag = "1";
-        private void RbtUsuario_CheckedChanged(object sender, EventArgs e) => DataGridUsuarios.Tag = "2";
 
         private void BtnConfirmar_Click(object sender, EventArgs e)
         {
-            DialogResult resultado = MessageBox.Show("¿Estás seguro de que deseas cambiar el rol del usuario seleccionado?", "Confirmación",
+            DialogResult resultado = MessageBox.Show(
+                "¿Estás seguro de que deseas cambiar el rol del usuario seleccionado?",
+                "Confirmación",
                 MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
+                MessageBoxIcon.Question
+            );
 
             if (resultado == DialogResult.Yes)
             {
-                AdministradorUsuarios.ModificarUsuarioBD(DataGridUsuarios);
-                AdministradorUsuarios.CargarUsuario();
-                DataGridUsuarios.DataSource = null;
-                DataGridUsuarios.DataSource = AdministradorUsuarios.usuariosRegistrados;
+                bool modificacionExitosa = AdministradorUsuarios.ModificarRolUsuario(
+                    DataGridUsuarios
+                );
 
-                PanelCambiarRol.Enabled = false;
+                if (modificacionExitosa)
+                {
+                    AdministradorUsuarios.CargarUsuarios();
+                    Utils.ActualizarListaGrid(
+                        DataGridUsuarios,
+                        AdministradorUsuarios.usuariosRegistrados,
+                        "Password"
+                    );
+
+                    PanelCambiarRol.Enabled = false;
+                }
             }
         }
 
         /* !--- FIN MODIFICACION DE ROL DE USUARIO ---! */
 
-        /* !--- HABILITACION CONTEXT MENUS AL CLICKEAR ---! */
-        private void CtxMenuModificarRol_Click(object sender, EventArgs e)
-        {
-            PanelCambiarRol.Enabled = Enabled;
-            RbtAdmin.Checked = true;
-        }
-
-        private void CtxMenuAsignarPermisos_Click(object sender, EventArgs e)
-        {
-            LblAdvertencia.Visible = true;
-            PanelPermisos.Enabled = true;
-        }
-
-        /* !--- FIN HABILITACION CONTEXT MENUS ---! */
-
-        /* !--- PERMISOS ---! */
-        private void BtnConfirmarPermisos_Click(object sender, EventArgs e)
-        {
-            AdministradorPermisos.AsignarPermisos(idUsuario, ChkListPermisos);
-
-            PanelPermisos.Enabled = false;
-            LblAdvertencia.Visible = false;
-        }
-
+        /* !--- ASIGNACION PERMISOS ---! */
         private void BtnSeleccionarTodos_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < ChkListPermisos.Items.Count; i++)
@@ -94,19 +76,20 @@ namespace Reelnode
             }
         }
 
-        private void CtxMenuVerPermisos_Click(object sender, EventArgs e)
+        private void BtnConfirmarPermisos_Click(object sender, EventArgs e)
         {
-            List<string> obtenerPermisos = AdministradorPermisos.ObtenerPermisosUsuario(idUsuario);
+            AdministradorPermisos.AsignarPermisos(idUsuario, ChkListPermisos);
 
-            if (obtenerPermisos != null)
+            for (int i = 0; i < ChkListPermisos.Items.Count; i++)
             {
-                string textoPermisos = string.Join(" | ", obtenerPermisos);
-                LblPermisosUsuario.Text = textoPermisos;
-                LblPermisosNombre.Text = $"Permisos de {nombreUsuario}:";
+                ChkListPermisos.SetItemChecked(i, false);
             }
+
+            PanelPermisos.Enabled = false;
+            LblAdvertencia.Visible = false;
         }
 
-        /* !--- FIN DE PERMISOS ---! */
+        /* !--- FIN DE ASIGNACION PERMISOS ---! */
 
         /* !--- MANEJO DE CLICK EN DATA GRID ---! */
         private void DataGridUsuarios_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
@@ -116,7 +99,10 @@ namespace Reelnode
                 DataGridUsuarios.CurrentCell = DataGridUsuarios[e.ColumnIndex, e.RowIndex];
 
                 // Dispara el mismo evento que el click izquierdo.
-                DataGridUsuarios_CellClick(sender, new DataGridViewCellEventArgs(e.ColumnIndex, e.RowIndex));
+                DataGridUsuarios_CellClick(
+                    sender,
+                    new DataGridViewCellEventArgs(e.ColumnIndex, e.RowIndex)
+                );
             }
         }
 
@@ -134,7 +120,10 @@ namespace Reelnode
 
         /* !--- FORMATEO DE FILAS ---! */
 
-        private void DataGridUsuarios_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void DataGridUsuarios_CellFormatting(
+            object sender,
+            DataGridViewCellFormattingEventArgs e
+        )
         {
             // Para que las fechas se muestren como, por ejemplo, "2023/11/05" en lugar del formato por defecto.
             if (DataGridUsuarios.Columns[e.ColumnIndex].Name == "FechaRegistro" && e.Value != null)
@@ -147,19 +136,102 @@ namespace Reelnode
             }
 
             // Coloreo los roles de usuario.
-            if (DataGridUsuarios.Columns[e.ColumnIndex].Name == "RolUsuario" &&
-            e.Value != null && e.Value.ToString() == "Admin")
+            if (
+                DataGridUsuarios.Columns[e.ColumnIndex].Name == "RolUsuario"
+                && e.Value != null
+                && e.Value.ToString().ToLower() == "admin"
+            )
             {
-                e.CellStyle.ForeColor = Color.Green;
+                e.CellStyle.ForeColor = AdministradorTema.MoradoNeonBoton;
             }
-            else if (DataGridUsuarios.Columns[e.ColumnIndex].Name == "RolUsuario" &&
-            e.Value != null && e.Value.ToString() == "Moderador")
+            else if (
+                DataGridUsuarios.Columns[e.ColumnIndex].Name == "RolUsuario"
+                && e.Value != null
+                && e.Value.ToString().ToLower() == "superadmin"
+            )
             {
-                e.CellStyle.ForeColor = Color.Purple;
+                e.CellStyle.ForeColor = AdministradorTema.VerdeClaroNeon;
+            }
+            else if (
+                DataGridUsuarios.Columns[e.ColumnIndex].Name == "RolUsuario"
+                && e.Value != null
+                && e.Value.ToString().ToLower() == "usuario"
+            )
+            {
+                e.CellStyle.ForeColor = AdministradorTema.RosaNeon;
             }
         }
 
         /* !--- FIN FORMATEO DE FILAS ---! */
+
+        /* !--- EVENTOS MENU CONTEXTUAL Y RBTBUTTONS ---! */
+
+        private void RbtAdmin_CheckedChanged(object sender, EventArgs e) =>
+            DataGridUsuarios.Tag = "2";
+
+        private void RbtUsuario_CheckedChanged(object sender, EventArgs e) =>
+            DataGridUsuarios.Tag = "3";
+
+        private void CtxMenuModificarRol_Click(object sender, EventArgs e)
+        {
+            PanelCambiarRol.Enabled = true;
+        }
+
+        private void CtxMenuAsignarPermisos_Click(object sender, EventArgs e)
+        {
+            List<string> listPermisosUsuarioSeleccionado =
+                AdministradorPermisos.ObtenerPermisosUsuario(idUsuario);
+
+            for (int i = 0; i < ChkListPermisos.Items.Count; i++)
+            {
+                if (listPermisosUsuarioSeleccionado.Contains(ChkListPermisos.Items[i]))
+                {
+                    ChkListPermisos.SetItemChecked(i, true);
+                }
+            }
+
+            LblAdvertencia.Visible = true;
+            PanelPermisos.Enabled = true;
+        }
+
+        private void CtxMenuVerPermisos_Click(object sender, EventArgs e)
+        {
+            List<string> obtenerPermisos = AdministradorPermisos.ObtenerPermisosUsuario(idUsuario);
+
+            if (obtenerPermisos != null)
+            {
+                string textoPermisos = string.Join(" | ", obtenerPermisos);
+                LblPermisosUsuario.Text = textoPermisos;
+                LblPermisosNombre.Text = $"Permisos de {nombreUsuario}:";
+            }
+        }
+
+        private void CtxMenuEliminarUsuario_Click(object sender, EventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show(
+                "¿Estás seguro de que deseas eliminar al usuario seleccionado?",
+                "Confirmación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (resultado == DialogResult.Yes)
+            {
+                bool eliminacionExitosa = AdministradorUsuarios.EliminarUsuario(idUsuario);
+
+                if (eliminacionExitosa)
+                {
+                    AdministradorUsuarios.CargarUsuarios();
+                    Utils.ActualizarListaGrid(
+                        DataGridUsuarios,
+                        AdministradorUsuarios.usuariosRegistrados,
+                        "Password"
+                    );
+                }
+            }
+        }
+
+        /* !--- FIN HABILITACION CONTEXT MENUS ---! */
     }
 }
 /*        private void BtnExportar_Click(object sender, EventArgs e)
@@ -181,7 +253,7 @@ namespace Reelnode
                     pdfDoc.Add(titulo);
                     pdfDoc.Add(new Paragraph(" "));
 
-                    PdfPTable tabla = new PdfPTable(4); 
+                    PdfPTable tabla = new PdfPTable(4);
                     tabla.WidthPercentage = 100;
                     tabla.AddCell("Nombre");
                     tabla.AddCell("Email");

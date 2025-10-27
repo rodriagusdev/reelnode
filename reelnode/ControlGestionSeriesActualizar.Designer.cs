@@ -213,7 +213,7 @@
             this.label19.BackColor = System.Drawing.Color.Transparent;
             this.label19.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label19.Location = new System.Drawing.Point(311, 166);
+            this.label19.Location = new System.Drawing.Point(311, 180);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(93, 17);
             this.label19.TabIndex = 93;
@@ -222,10 +222,10 @@
             // ChkListGeneros
             // 
             this.ChkListGeneros.FormattingEnabled = true;
-            this.ChkListGeneros.Location = new System.Drawing.Point(314, 186);
+            this.ChkListGeneros.Location = new System.Drawing.Point(314, 200);
             this.ChkListGeneros.Name = "ChkListGeneros";
             this.ChkListGeneros.Size = new System.Drawing.Size(205, 94);
-            this.ChkListGeneros.TabIndex = 92;
+            this.ChkListGeneros.TabIndex = 4;
             // 
             // BtnPrevisualizarTrailer
             // 
@@ -234,10 +234,10 @@
             this.BtnPrevisualizarTrailer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnPrevisualizarTrailer.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnPrevisualizarTrailer.ForeColor = System.Drawing.Color.Black;
-            this.BtnPrevisualizarTrailer.Location = new System.Drawing.Point(867, 548);
+            this.BtnPrevisualizarTrailer.Location = new System.Drawing.Point(867, 562);
             this.BtnPrevisualizarTrailer.Name = "BtnPrevisualizarTrailer";
             this.BtnPrevisualizarTrailer.Size = new System.Drawing.Size(308, 35);
-            this.BtnPrevisualizarTrailer.TabIndex = 88;
+            this.BtnPrevisualizarTrailer.TabIndex = 14;
             this.BtnPrevisualizarTrailer.Text = "Previsualizar trailer";
             this.BtnPrevisualizarTrailer.UseVisualStyleBackColor = false;
             // 
@@ -245,7 +245,7 @@
             // 
             this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.panel11.Controls.Add(this.TxtURLTrailer);
-            this.panel11.Location = new System.Drawing.Point(867, 489);
+            this.panel11.Location = new System.Drawing.Point(867, 503);
             this.panel11.Name = "panel11";
             this.panel11.Padding = new System.Windows.Forms.Padding(5);
             this.panel11.Size = new System.Drawing.Size(308, 35);
@@ -269,7 +269,7 @@
             this.label18.BackColor = System.Drawing.Color.Transparent;
             this.label18.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label18.Location = new System.Drawing.Point(864, 469);
+            this.label18.Location = new System.Drawing.Point(864, 483);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(88, 17);
             this.label18.TabIndex = 87;
@@ -281,7 +281,7 @@
             this.label17.BackColor = System.Drawing.Color.Transparent;
             this.label17.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label17.Location = new System.Drawing.Point(864, 169);
+            this.label17.Location = new System.Drawing.Point(864, 183);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(45, 17);
             this.label17.TabIndex = 83;
@@ -290,7 +290,7 @@
             // PanelTrailer
             // 
             this.PanelTrailer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
-            this.PanelTrailer.Location = new System.Drawing.Point(867, 186);
+            this.PanelTrailer.Location = new System.Drawing.Point(867, 200);
             this.PanelTrailer.Margin = new System.Windows.Forms.Padding(2);
             this.PanelTrailer.Name = "PanelTrailer";
             this.PanelTrailer.Size = new System.Drawing.Size(308, 273);
@@ -302,7 +302,7 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label6.Location = new System.Drawing.Point(95, 285);
+            this.label6.Location = new System.Drawing.Point(95, 299);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(56, 17);
             this.label6.TabIndex = 75;
@@ -314,7 +314,7 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label8.Location = new System.Drawing.Point(96, 469);
+            this.label8.Location = new System.Drawing.Point(96, 483);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(71, 17);
             this.label8.TabIndex = 74;
@@ -326,7 +326,7 @@
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label9.Location = new System.Drawing.Point(96, 401);
+            this.label9.Location = new System.Drawing.Point(96, 415);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(140, 17);
             this.label9.TabIndex = 73;
@@ -338,7 +338,7 @@
             this.label16.BackColor = System.Drawing.Color.Transparent;
             this.label16.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label16.Location = new System.Drawing.Point(95, 224);
+            this.label16.Location = new System.Drawing.Point(95, 238);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(53, 17);
             this.label16.TabIndex = 72;
@@ -350,7 +350,7 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label7.Location = new System.Drawing.Point(525, 169);
+            this.label7.Location = new System.Drawing.Point(525, 183);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(50, 17);
             this.label7.TabIndex = 71;
@@ -362,7 +362,7 @@
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label10.Location = new System.Drawing.Point(311, 343);
+            this.label10.Location = new System.Drawing.Point(311, 357);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(118, 17);
             this.label10.TabIndex = 70;
@@ -374,7 +374,7 @@
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label12.Location = new System.Drawing.Point(95, 343);
+            this.label12.Location = new System.Drawing.Point(95, 357);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(98, 17);
             this.label12.TabIndex = 69;
@@ -386,7 +386,7 @@
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label11.Location = new System.Drawing.Point(96, 1);
+            this.label11.Location = new System.Drawing.Point(96, 15);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(151, 17);
             this.label11.TabIndex = 68;
@@ -398,7 +398,7 @@
             this.label15.BackColor = System.Drawing.Color.Transparent;
             this.label15.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label15.Location = new System.Drawing.Point(95, 166);
+            this.label15.Location = new System.Drawing.Point(95, 180);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(97, 17);
             this.label15.TabIndex = 67;
@@ -408,7 +408,7 @@
             // 
             this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.panel10.Controls.Add(this.CboNetwork);
-            this.panel10.Location = new System.Drawing.Point(98, 305);
+            this.panel10.Location = new System.Drawing.Point(98, 319);
             this.panel10.Name = "panel10";
             this.panel10.Padding = new System.Windows.Forms.Padding(5);
             this.panel10.Size = new System.Drawing.Size(206, 35);
@@ -423,13 +423,13 @@
             this.CboNetwork.Location = new System.Drawing.Point(5, 5);
             this.CboNetwork.Name = "CboNetwork";
             this.CboNetwork.Size = new System.Drawing.Size(196, 21);
-            this.CboNetwork.TabIndex = 0;
+            this.CboNetwork.TabIndex = 6;
             // 
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.panel9.Controls.Add(this.DtpFechaFin);
-            this.panel9.Location = new System.Drawing.Point(314, 363);
+            this.panel9.Location = new System.Drawing.Point(314, 377);
             this.panel9.Name = "panel9";
             this.panel9.Padding = new System.Windows.Forms.Padding(5);
             this.panel9.Size = new System.Drawing.Size(205, 35);
@@ -441,7 +441,7 @@
             this.DtpFechaFin.Location = new System.Drawing.Point(8, 8);
             this.DtpFechaFin.Name = "DtpFechaFin";
             this.DtpFechaFin.Size = new System.Drawing.Size(192, 22);
-            this.DtpFechaFin.TabIndex = 0;
+            this.DtpFechaFin.TabIndex = 8;
             // 
             // label13
             // 
@@ -449,7 +449,7 @@
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label13.Location = new System.Drawing.Point(525, 469);
+            this.label13.Location = new System.Drawing.Point(525, 483);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(105, 17);
             this.label13.TabIndex = 64;
@@ -461,7 +461,7 @@
             this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label14.Location = new System.Drawing.Point(525, 525);
+            this.label14.Location = new System.Drawing.Point(525, 539);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(212, 17);
             this.label14.TabIndex = 63;
@@ -471,7 +471,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.panel1.Controls.Add(this.TxtURLImagen);
-            this.panel1.Location = new System.Drawing.Point(528, 489);
+            this.panel1.Location = new System.Drawing.Point(528, 503);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(5);
             this.panel1.Size = new System.Drawing.Size(308, 35);
@@ -487,7 +487,7 @@
             this.TxtURLImagen.Location = new System.Drawing.Point(5, 5);
             this.TxtURLImagen.Name = "TxtURLImagen";
             this.TxtURLImagen.Size = new System.Drawing.Size(298, 22);
-            this.TxtURLImagen.TabIndex = 12;
+            this.TxtURLImagen.TabIndex = 11;
             // 
             // BtnBuscar
             // 
@@ -496,10 +496,10 @@
             this.BtnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnBuscar.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnBuscar.ForeColor = System.Drawing.Color.Black;
-            this.BtnBuscar.Location = new System.Drawing.Point(310, 20);
+            this.BtnBuscar.Location = new System.Drawing.Point(310, 34);
             this.BtnBuscar.Name = "BtnBuscar";
             this.BtnBuscar.Size = new System.Drawing.Size(172, 35);
-            this.BtnBuscar.TabIndex = 59;
+            this.BtnBuscar.TabIndex = 2;
             this.BtnBuscar.Text = "Buscar";
             this.BtnBuscar.UseVisualStyleBackColor = false;
             this.BtnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
@@ -511,10 +511,10 @@
             this.BtnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnActualizar.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnActualizar.ForeColor = System.Drawing.Color.Black;
-            this.BtnActualizar.Location = new System.Drawing.Point(528, 595);
+            this.BtnActualizar.Location = new System.Drawing.Point(528, 609);
             this.BtnActualizar.Name = "BtnActualizar";
             this.BtnActualizar.Size = new System.Drawing.Size(647, 35);
-            this.BtnActualizar.TabIndex = 54;
+            this.BtnActualizar.TabIndex = 15;
             this.BtnActualizar.Text = "Actualizar Serie";
             this.BtnActualizar.UseVisualStyleBackColor = false;
             this.BtnActualizar.Click += new System.EventHandler(this.BtnActualizar_Click);
@@ -523,7 +523,7 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.panel2.Controls.Add(this.TxtDescripcion);
-            this.panel2.Location = new System.Drawing.Point(98, 489);
+            this.panel2.Location = new System.Drawing.Point(98, 503);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(5);
             this.panel2.Size = new System.Drawing.Size(421, 138);
@@ -540,13 +540,13 @@
             this.TxtDescripcion.Multiline = true;
             this.TxtDescripcion.Name = "TxtDescripcion";
             this.TxtDescripcion.Size = new System.Drawing.Size(411, 128);
-            this.TxtDescripcion.TabIndex = 12;
+            this.TxtDescripcion.TabIndex = 10;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.panel3.Controls.Add(this.PicSerie);
-            this.panel3.Location = new System.Drawing.Point(528, 186);
+            this.panel3.Location = new System.Drawing.Point(528, 200);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(5);
             this.panel3.Size = new System.Drawing.Size(308, 273);
@@ -568,7 +568,7 @@
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.panel4.Controls.Add(this.TxtCantTemporadas);
-            this.panel4.Location = new System.Drawing.Point(98, 421);
+            this.panel4.Location = new System.Drawing.Point(98, 435);
             this.panel4.Name = "panel4";
             this.panel4.Padding = new System.Windows.Forms.Padding(5);
             this.panel4.Size = new System.Drawing.Size(205, 35);
@@ -584,13 +584,13 @@
             this.TxtCantTemporadas.Location = new System.Drawing.Point(5, 5);
             this.TxtCantTemporadas.Name = "TxtCantTemporadas";
             this.TxtCantTemporadas.Size = new System.Drawing.Size(195, 22);
-            this.TxtCantTemporadas.TabIndex = 12;
+            this.TxtCantTemporadas.TabIndex = 9;
             // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.panel5.Controls.Add(this.TxtDirector);
-            this.panel5.Location = new System.Drawing.Point(99, 244);
+            this.panel5.Location = new System.Drawing.Point(99, 258);
             this.panel5.Name = "panel5";
             this.panel5.Padding = new System.Windows.Forms.Padding(5);
             this.panel5.Size = new System.Drawing.Size(205, 35);
@@ -606,13 +606,13 @@
             this.TxtDirector.Location = new System.Drawing.Point(5, 5);
             this.TxtDirector.Name = "TxtDirector";
             this.TxtDirector.Size = new System.Drawing.Size(195, 22);
-            this.TxtDirector.TabIndex = 12;
+            this.TxtDirector.TabIndex = 5;
             // 
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.panel6.Controls.Add(this.DtpFechaEstreno);
-            this.panel6.Location = new System.Drawing.Point(98, 363);
+            this.panel6.Location = new System.Drawing.Point(98, 377);
             this.panel6.Name = "panel6";
             this.panel6.Padding = new System.Windows.Forms.Padding(5);
             this.panel6.Size = new System.Drawing.Size(205, 35);
@@ -624,13 +624,13 @@
             this.DtpFechaEstreno.Location = new System.Drawing.Point(8, 8);
             this.DtpFechaEstreno.Name = "DtpFechaEstreno";
             this.DtpFechaEstreno.Size = new System.Drawing.Size(192, 22);
-            this.DtpFechaEstreno.TabIndex = 0;
+            this.DtpFechaEstreno.TabIndex = 7;
             // 
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.panel7.Controls.Add(this.TxtNombre);
-            this.panel7.Location = new System.Drawing.Point(98, 186);
+            this.panel7.Location = new System.Drawing.Point(98, 200);
             this.panel7.Name = "panel7";
             this.panel7.Padding = new System.Windows.Forms.Padding(5);
             this.panel7.Size = new System.Drawing.Size(205, 35);
@@ -646,7 +646,7 @@
             this.TxtNombre.Location = new System.Drawing.Point(5, 5);
             this.TxtNombre.Name = "TxtNombre";
             this.TxtNombre.Size = new System.Drawing.Size(195, 22);
-            this.TxtNombre.TabIndex = 12;
+            this.TxtNombre.TabIndex = 3;
             // 
             // DataGridActualizarSerie
             // 
@@ -657,7 +657,7 @@
             this.DataGridActualizarSerie.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DataGridActualizarSerie.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridActualizarSerie.ContextMenuStrip = this.CtxMenu;
-            this.DataGridActualizarSerie.Location = new System.Drawing.Point(98, 59);
+            this.DataGridActualizarSerie.Location = new System.Drawing.Point(98, 73);
             this.DataGridActualizarSerie.Name = "DataGridActualizarSerie";
             this.DataGridActualizarSerie.ReadOnly = true;
             this.DataGridActualizarSerie.RowHeadersWidth = 51;
@@ -695,10 +695,10 @@
             this.BtnPrevisualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnPrevisualizar.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnPrevisualizar.ForeColor = System.Drawing.Color.Black;
-            this.BtnPrevisualizar.Location = new System.Drawing.Point(528, 549);
+            this.BtnPrevisualizar.Location = new System.Drawing.Point(528, 563);
             this.BtnPrevisualizar.Name = "BtnPrevisualizar";
             this.BtnPrevisualizar.Size = new System.Drawing.Size(308, 35);
-            this.BtnPrevisualizar.TabIndex = 45;
+            this.BtnPrevisualizar.TabIndex = 13;
             this.BtnPrevisualizar.Text = "Previsualizar";
             this.BtnPrevisualizar.UseVisualStyleBackColor = false;
             // 
@@ -706,7 +706,7 @@
             // 
             this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.panel8.Controls.Add(this.TxtBuscarSerie);
-            this.panel8.Location = new System.Drawing.Point(99, 21);
+            this.panel8.Location = new System.Drawing.Point(99, 35);
             this.panel8.Name = "panel8";
             this.panel8.Padding = new System.Windows.Forms.Padding(5);
             this.panel8.Size = new System.Drawing.Size(205, 34);
@@ -722,7 +722,7 @@
             this.TxtBuscarSerie.Location = new System.Drawing.Point(5, 5);
             this.TxtBuscarSerie.Name = "TxtBuscarSerie";
             this.TxtBuscarSerie.Size = new System.Drawing.Size(195, 22);
-            this.TxtBuscarSerie.TabIndex = 12;
+            this.TxtBuscarSerie.TabIndex = 1;
             // 
             // PanelRand
             // 

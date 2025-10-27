@@ -10,12 +10,12 @@ namespace Reelnode
         /* !--- DEFINICION DE COLORES DEL TEMA CYBERPUNK ---! */
 
         private static Color AzulOscuroNeon = Color.FromArgb(42, 47, 79);
-        private static Color VerdeClaroNeon = Color.FromArgb(0, 230, 118);
-        private static Color RosaNeon = Color.FromArgb(255, 0, 127);
-        private static Color CyanNeon = Color.FromArgb(0, 255, 255);
+        public static Color VerdeClaroNeon = Color.FromArgb(0, 230, 118);
+        public static Color RosaNeon = Color.FromArgb(255, 0, 127);
+        public static Color CyanNeon = Color.FromArgb(0, 255, 255);
         private static Color GradienteAzulOscuroPrimero = Color.FromArgb(27, 38, 59);
         private static Color GradienteAzulOscuroSegundo = Color.FromArgb(13, 17, 23);
-        private static Color MoradoNeonBoton = Color.FromArgb(123, 44, 191);
+        public static Color MoradoNeonBoton = Color.FromArgb(123, 44, 191);
         private static Color AzulNeonBorde = Color.FromArgb(0, 183, 235);
 
         /* !--- FIN DE DEFINICION DE COLORES DEL TEMA CYBERPUNK ---! */
@@ -30,6 +30,7 @@ namespace Reelnode
                     yield return child;
             }
         }
+
         public static void AplicarTema(Control parent)
         {
             foreach (Control ctrl in GetAllControls(parent))
@@ -42,29 +43,29 @@ namespace Reelnode
                     controlTematico.EstablecerGradiente(
                         GradienteAzulOscuroPrimero,
                         GradienteAzulOscuroSegundo,
-                        LinearGradientMode.Vertical);
+                        LinearGradientMode.Vertical
+                    );
                 }
-
-                /* !--- TEMA GRADIENTE USANDO INTERFAA ---! */
+                /* !--- FIN TEMA GRADIENTE USANDO INTERFAZ ---! */
 
                 else if (ctrl is System.Windows.Forms.Panel pnl)
                 {
-                    if(pnl.Tag == "Default") pnl.BackColor = Color.Transparent;
-                    if (pnl.Tag == null || pnl.Tag == "") pnl.BackColor = AzulOscuroNeon;
-                    if (pnl.Tag == "Barra") pnl.BackColor = VerdeClaroNeon;
-
+                    if (pnl.Tag == "Default")
+                        pnl.BackColor = Color.Transparent;
+                    if (pnl.Tag == null || pnl.Tag == "")
+                        pnl.BackColor = AzulOscuroNeon;
+                    if (pnl.Tag == "Barra")
+                        pnl.BackColor = VerdeClaroNeon;
                 }
                 else if (ctrl is System.Windows.Forms.CheckedListBox chkList)
                 {
                     chkList.BackColor = AzulOscuroNeon;
                     chkList.ForeColor = VerdeClaroNeon;
-
                 }
                 else if (ctrl is System.Windows.Forms.ListView listView)
                 {
                     listView.BackColor = AzulOscuroNeon;
                     listView.ForeColor = VerdeClaroNeon;
-
                 }
                 else if (ctrl is System.Windows.Forms.TextBox txt)
                 {
@@ -72,17 +73,21 @@ namespace Reelnode
                     txt.ForeColor = CyanNeon;
                     txt.Font = new Font("Consolas", txt.Font.Size, FontStyle.Bold);
                 }
-
-                else if (ctrl is System.Windows.Forms.Label lbl)
+                else if (ctrl is Label lbl)
                 {
-                    if (lbl.Tag == "Titulo") lbl.ForeColor = VerdeClaroNeon;
-                    if (lbl.Tag == "Default") lbl.ForeColor = Color.White;
-                    if (lbl.Tag == null) lbl.ForeColor = RosaNeon;
+                    if (lbl.Tag == "Titulo")
+                    {
+                        lbl.Font = new Font("Consolas", lbl.Font.Size, FontStyle.Bold);
+                        lbl.ForeColor = VerdeClaroNeon;
+                    }
+                    if (lbl.Tag == "Default")
+                        lbl.ForeColor = Color.White;
+                    if (lbl.Tag == null)
+                        lbl.ForeColor = RosaNeon;
 
                     lbl.Font = new Font("Courier New", lbl.Font.Size, FontStyle.Bold);
                     lbl.BackColor = Color.Transparent;
                 }
-
                 else if (ctrl is System.Windows.Forms.Button btn)
                 {
                     btn.BackColor = MoradoNeonBoton;
@@ -126,7 +131,6 @@ namespace Reelnode
                 {
                     chk.ForeColor = RosaNeon;
                     chk.Font = new Font("Courier New", chk.Font.Size, FontStyle.Bold);
-
                 }
                 else if (ctrl is RadioButton rbt)
                 {

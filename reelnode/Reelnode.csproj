@@ -122,14 +122,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdministradorAudiovisual.cs" />
     <Compile Include="AdministradorCalificaciones.cs" />
-    <Compile Include="AdministradorDashboard.cs" />
+    <Compile Include="AdministradorComentarios.cs" />
     <Compile Include="AdministradorJSON.cs" />
+    <Compile Include="AdministradorPeliculas.cs" />
     <Compile Include="AdministradorPermisos.cs" />
     <Compile Include="AdministradorReportesAvanzados.cs" />
+    <Compile Include="AdministradorSeries.cs" />
     <Compile Include="AdministradorUsuarios.cs" />
+    <Compile Include="AdministradorVisualizaciones.cs" />
     <Compile Include="Comentario.cs" />
-    <Compile Include="ComentarioHelper.cs" />
     <Compile Include="ControlComentarios.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -210,8 +213,9 @@
       <DependentUpon>ControlVisualizacionSerie.cs</DependentUpon>
     </Compile>
     <Compile Include="CorreoHelper.cs" />
-    <Compile Include="CreadorPanel.cs" />
     <Compile Include="CreadorUI.cs" />
+    <Compile Include="EnumPermisos.cs" />
+    <Compile Include="EnumTipoId.cs" />
     <Compile Include="FormCalificar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,13 +248,14 @@
     </Compile>
     <Compile Include="Genero.cs" />
     <Compile Include="ITemaPersonalizable.cs" />
-    <Compile Include="Media.cs" />
+    <Compile Include="Audiovisual.cs" />
+    <Compile Include="MetricaAudiovisual.cs" />
     <Compile Include="Network.cs" />
     <Compile Include="PanelGradiente.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Pelicula.cs" />
-    <Compile Include="MediaMiniatura.cs" />
+    <Compile Include="AudiovisualMiniatura.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -261,6 +266,7 @@
     <Compile Include="Rol.cs" />
     <Compile Include="Serie.cs" />
     <Compile Include="Usuario.cs" />
+    <Compile Include="MetricaUsuario.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="UtilsBD.cs" />
     <Compile Include="AdministradorTema.cs" />

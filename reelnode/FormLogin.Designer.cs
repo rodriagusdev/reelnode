@@ -59,10 +59,10 @@
             this.BtnIngresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnIngresar.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnIngresar.ForeColor = System.Drawing.Color.White;
-            this.BtnIngresar.Location = new System.Drawing.Point(55, 322);
+            this.BtnIngresar.Location = new System.Drawing.Point(61, 327);
             this.BtnIngresar.Name = "BtnIngresar";
             this.BtnIngresar.Size = new System.Drawing.Size(307, 36);
-            this.BtnIngresar.TabIndex = 13;
+            this.BtnIngresar.TabIndex = 14;
             this.BtnIngresar.Text = "I  N  G  R  E  S  A  R";
             this.BtnIngresar.UseVisualStyleBackColor = false;
             this.BtnIngresar.Click += new System.EventHandler(this.BtnIngresar_Click_1);
@@ -74,7 +74,7 @@
             this.PanelUsuario.Controls.Add(this.PanelUsuarioLinea);
             this.PanelUsuario.Controls.Add(this.TxtUsuario);
             this.PanelUsuario.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
-            this.PanelUsuario.Location = new System.Drawing.Point(55, 165);
+            this.PanelUsuario.Location = new System.Drawing.Point(61, 165);
             this.PanelUsuario.Name = "PanelUsuario";
             this.PanelUsuario.Padding = new System.Windows.Forms.Padding(5);
             this.PanelUsuario.Size = new System.Drawing.Size(306, 35);
@@ -137,10 +137,10 @@
             this.LblOlvidarPassword.Cursor = System.Windows.Forms.Cursors.Hand;
             this.LblOlvidarPassword.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
             this.LblOlvidarPassword.ForeColor = System.Drawing.Color.Turquoise;
-            this.LblOlvidarPassword.Location = new System.Drawing.Point(84, 295);
+            this.LblOlvidarPassword.Location = new System.Drawing.Point(81, 295);
             this.LblOlvidarPassword.Name = "LblOlvidarPassword";
             this.LblOlvidarPassword.Size = new System.Drawing.Size(266, 14);
-            this.LblOlvidarPassword.TabIndex = 26;
+            this.LblOlvidarPassword.TabIndex = 17;
             this.LblOlvidarPassword.Text = "¿Olvido la contraseña? Recuperar aquí";
             this.LblOlvidarPassword.Click += new System.EventHandler(this.LblOlvidarPassword_Click);
             // 
@@ -151,10 +151,10 @@
             this.BtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSalir.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnSalir.ForeColor = System.Drawing.Color.White;
-            this.BtnSalir.Location = new System.Drawing.Point(55, 376);
+            this.BtnSalir.Location = new System.Drawing.Point(61, 383);
             this.BtnSalir.Name = "BtnSalir";
             this.BtnSalir.Size = new System.Drawing.Size(307, 36);
-            this.BtnSalir.TabIndex = 25;
+            this.BtnSalir.TabIndex = 15;
             this.BtnSalir.Text = "S   A   L   I   R";
             this.BtnSalir.UseVisualStyleBackColor = false;
             this.BtnSalir.Click += new System.EventHandler(this.BtnSalir_Click_1);
@@ -166,10 +166,10 @@
             this.LblRegistrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.LblRegistrar.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
             this.LblRegistrar.ForeColor = System.Drawing.Color.Turquoise;
-            this.LblRegistrar.Location = new System.Drawing.Point(97, 268);
+            this.LblRegistrar.Location = new System.Drawing.Point(94, 268);
             this.LblRegistrar.Name = "LblRegistrar";
             this.LblRegistrar.Size = new System.Drawing.Size(231, 14);
-            this.LblRegistrar.TabIndex = 24;
+            this.LblRegistrar.TabIndex = 16;
             this.LblRegistrar.Text = "¿Usuario nuevo? Registrarse aquí";
             this.LblRegistrar.Click += new System.EventHandler(this.LblRegistrar_Click);
             // 
@@ -179,7 +179,7 @@
             this.PanelPassword.Controls.Add(this.LblPanelPassword);
             this.PanelPassword.Controls.Add(this.PanelPasswordLinea);
             this.PanelPassword.Controls.Add(this.TxtPassword);
-            this.PanelPassword.Location = new System.Drawing.Point(56, 227);
+            this.PanelPassword.Location = new System.Drawing.Point(61, 227);
             this.PanelPassword.Name = "PanelPassword";
             this.PanelPassword.Padding = new System.Windows.Forms.Padding(5);
             this.PanelPassword.Size = new System.Drawing.Size(306, 35);
@@ -217,7 +217,7 @@
             this.TxtPassword.Name = "TxtPassword";
             this.TxtPassword.PasswordChar = '*';
             this.TxtPassword.Size = new System.Drawing.Size(296, 15);
-            this.TxtPassword.TabIndex = 12;
+            this.TxtPassword.TabIndex = 13;
             this.TxtPassword.TextChanged += new System.EventHandler(this.TxtPassword_TextChanged);
             // 
             // PicReelnode
@@ -226,7 +226,7 @@
             this.PicReelnode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.PicReelnode.Image = ((System.Drawing.Image)(resources.GetObject("PicReelnode.Image")));
             this.PicReelnode.InitialImage = null;
-            this.PicReelnode.Location = new System.Drawing.Point(15, 10);
+            this.PicReelnode.Location = new System.Drawing.Point(25, 10);
             this.PicReelnode.Name = "PicReelnode";
             this.PicReelnode.Size = new System.Drawing.Size(377, 149);
             this.PicReelnode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

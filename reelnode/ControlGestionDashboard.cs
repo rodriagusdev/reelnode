@@ -1,14 +1,12 @@
-﻿using MySql.Data.MySqlClient;
-using ProjectoNuevo;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data;
+
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace Reelnode
 {
-    public partial class ControlGestionDashboard: UserControl
+    public partial class ControlGestionDashboard : UserControl
     {
         private PanelGradiente PanelMain;
         bool usarCalificacionMinima = false;
@@ -20,11 +18,13 @@ namespace Reelnode
 
             PanelMain = new PanelGradiente();
             PanelMain.Tag = "Default";
-            PanelMain.Dock = DockStyle.Fill; 
+            PanelMain.Dock = DockStyle.Fill;
+
             PanelMain.Controls.Add(PanelMenu);
             PanelMain.Controls.Add(PanelDashboardMain);
             PanelMain.Controls.Add(PanelReportesAvanzados);
             PanelMain.Controls.Add(PanelDashboardMetricasUsuario);
+
             this.Controls.Add(PanelMain);
 
             FlowPanelMasActivos.HorizontalScroll.Visible = false;
@@ -32,7 +32,6 @@ namespace Reelnode
 
         private void ControlGestionDashboard_Load(object sender, EventArgs e)
         {
-
             CargarDatosUsuario();
             CargarDatosDashboard();
 
@@ -41,91 +40,62 @@ namespace Reelnode
 
         private void CargarDatosDashboard()
         {
-            /* !--- CARGA DE DATOS ---! */
-
-            AdministradorDashboard.CargarTopVistas(5, "peliculas", UtilsBD.pelisMasVistas);
-            AdministradorDashboard.CargarTopVistas(5, "series", UtilsBD.seriesMasVistas);
-            AdministradorDashboard.CargarTopCalificaciones(5, "peliculas", AdministradorCalificaciones.peliculasCalificadasUsuario);
-            AdministradorDashboard.CargarTopCalificaciones(5, "series", AdministradorCalificaciones.seriesCalificadasUsuario);
-            AdministradorDashboard.CargarUltimoUsuarioRegistrado(LblUsuarioNombreUltimo, LblFechaRegistroUltimo, PicUltimo);
-            AdministradorDashboard.CargarUsuariosMasActivos(3);
-
-            /* !--- FIN CARGA DE DATOS ---! */
-
-
             /* !--- MOSTRAR DATOS EN UI ---! */
 
-            // De los datos de visualizaciones y calificaciones creo los paneles de barra correspondientes
-         
-            CreadorUI.ReporteCrearPanelesBarra(flowPanelPelisMasVistas, UtilsBD.pelisMasVistas, "cantidad_vistas");
-            CreadorUI.ReporteCrearPanelesBarra(flowPanelSeriesMasVistas, UtilsBD.seriesMasVistas, "cantidad_vistas");
-            CreadorUI.ReporteCrearPanelesBarra(flowPanelPeliculasMejorCalificadas, AdministradorCalificaciones.peliculasCalificadasUsuario, "calificaciones");
-            CreadorUI.ReporteCrearPanelesBarra(flowPanelSeriesMejorCalificadas, AdministradorCalificaciones.seriesCalificadasUsuario, "calificaciones");
-            CreadorUI.PintarRankingUsuarios(FlowPanelMasActivos);
+            /* !--- MOSTRAR METRICAS GENERALES EN UI ---! */
+            CreadorUI.MostrarTotalVisualizacionesUltimoMes(LblVisualizacionesUltimoMes);
 
-            foreach (Genero gen in UtilsBD.generosCargados)
+            CreadorUI.MostrarUltimaSerieRegistrada(LblUltimaSerie, PicUltimaSerie);
+            CreadorUI.MostrarUltimaPeliculaRegistrada(LblUltimaPeli, PicUltimaPelicula);
+
+            CreadorUI.MostrarAudiovisualMasVistos(
+                flowPanelSeriesMasVistas,
+                AdministradorSeries.CargarSeriesMasVistas(5)
+            );
+            CreadorUI.MostrarAudiovisualMasVistos(
+                flowPanelPelisMasVistas,
+                AdministradorPeliculas.CargarPeliculasMasVistas(5)
+            );
+
+            CreadorUI.MostrarAudiovisualMejorCalificados(
+                flowPanelSeriesMejorCalificadas,
+                AdministradorSeries.CargarSeriesMejorCalificadas(5)
+            );
+            CreadorUI.MostrarAudiovisualMejorCalificados(
+                flowPanelPeliculasMejorCalificadas,
+                AdministradorPeliculas.CargarPeliculasMejorCalificadas(5)
+            );
+            /* !--- FIN DE METRICAS GENERALES ---! */
+
+            /* !--- MOSTRAR METRICAS DE USUARIO EN UI ---! */
+
+            CreadorUI.MostrarRankingUsuarios(FlowPanelMasActivos, 5);
+            CreadorUI.MostrarUsuariosRegistrados(LblUsuariosRegistrados);
+            CreadorUI.MostrarUsuariosRegistradosUltimoMes(LblUsuariosRegistradosUltimoMes);
+            CreadorUI.MostrarUsuarioMasCalificador(LblUsuarioMasCalificador, LblCantidadCalif);
+            CreadorUI.MostrarUsuarioMasComentador(LblUsuarioMasComentador, LblCantidadComentario);
+            CreadorUI.MostrarUltimoUsuarioRegistrado(
+                LblUsuarioNombreUltimo,
+                LblFechaRegistroUltimo,
+                PicUltimo
+            );
+
+            /* !--- FIN DE METRICAS DE USUARIO ---! */
+
+            foreach (Genero gen in UtilsBD.CargarGeneros())
             {
                 CboGeneros.Items.Add(gen.Nombre);
             }
 
-            foreach (string network in UtilsBD.networksCargadas.ConvertAll(n => n.Nombre))
+            foreach (Network network in UtilsBD.CargarNetworks())
             {
-                CboNetwork.Items.Add(network);
-            }
-            // Estos datos se cargan y se muestran directamente
-
-            AdministradorDashboard.CargarVisualizacionesUltimoMes(LblVisualizacionesUltimoMes);
-            AdministradorDashboard.CargarUsuariosRegistrados(LblUsuariosRegistrados);
-            AdministradorDashboard.CargarUsuariosRegistradosUltimoMes(LblUsuariosRegistradosUltimoMes);
-            AdministradorDashboard.CargarUsuarioMasCalificador(LblUsuarioMasCalificador, LblCantidadCalif);
-            AdministradorDashboard.CargarUsuarioMasComentador(LblUsuarioMasComentador, LblCantidadComentario);
-            AdministradorDashboard.CargarUltimaPelicula(LblUltimaPeli, PicUltimaPelicula);
-            AdministradorDashboard.CargarUltimaSerie(LblUltimaSerie, PicUltimaSerie);
-            /* !--- FIN DE MUESTRA DE DATOS ---! */
-        }
-
-        private void CargarDatosUsuario()
-        {
-            if(AdministradorUsuarios.usuarioActual.Avatar != null) 
-            {
-                PicAvatar.Image = Utils.DescargarImagenDesdeURL(AdministradorUsuarios.usuarioActual.Avatar);
+                CboNetwork.Items.Add(network.Nombre);
             }
 
-            LblUsuario.Text = AdministradorUsuarios.usuarioActual.NombreUsuario;
+            CboTipoReporte.SelectedIndex = 0;
+            CboNetwork.SelectedIndex = 0;
+            CboGeneros.SelectedIndex = 0;
         }
-
-        /* !--- VISIBILIDAD DE PANELES ---! */
-        private void MostrarPanel(Panel panelMostrar)
-        {
-            List<Panel> allPanels = new List<Panel> { PanelDashboardMain, PanelDashboardMetricasUsuario, PanelReportesAvanzados };
-
-            foreach (Panel panel in allPanels)
-            {
-                panel.Visible = false;
-            }
-
-            panelMostrar.Visible = true;
-            panelMostrar.Dock = DockStyle.Right;
-            panelMostrar.Size = new Size(1028, 720);
-        }
-
-        private void BtnVerMetricasUsuarios_Click(object sender, EventArgs e)
-        {
-            MostrarPanel(PanelDashboardMetricasUsuario);
-        }
-
-        private void BtnVerMetricasGenerales_Click(object sender, EventArgs e)
-        {
-            MostrarPanel(PanelDashboardMain);
-        }
-
-        private void BtnReportesAvanzados_Click(object sender, EventArgs e)
-        {
-            MostrarPanel(PanelReportesAvanzados);
-        }
-
-        /* !--- FIN DE VISIBILIDAD DE PANELES ---! */
-
 
         /* !--- FILTROS DE REPORTES AVANZADOS ---! */
         private void ChkFiltroCalif_CheckedChanged(object sender, EventArgs e)
@@ -133,7 +103,6 @@ namespace Reelnode
             NumUpCalificacionMinima.Enabled = ChkFiltroCalif.Checked;
             usarCalificacionMinima = ChkFiltroCalif.Checked;
         }
-
 
         private void ChkDuracion_CheckedChanged(object sender, EventArgs e)
         {
@@ -145,7 +114,7 @@ namespace Reelnode
         {
             switch (CboTipoReporte.Text)
             {
-                case "Películas":
+                case "Peliculas":
                     AdministradorReportesAvanzados.ObtenerReporteAvanzadoPeliculas(
                         TxtPalabrasTitulo.Text,
                         CboGeneros.SelectedItem?.ToString(),
@@ -171,11 +140,6 @@ namespace Reelnode
                     MessageBox.Show("Seleccioná un tipo de reporte válido (Películas o Series).");
                     break;
             }
-        }
-
-        private void ControlGestionDashboard_VisibleChanged(object sender, EventArgs e)
-        {
-            CargarDatosUsuario();
         }
 
         private void BtnBorrarFiltros_Click(object sender, EventArgs e)
@@ -205,6 +169,60 @@ namespace Reelnode
 
             }
 
+        /* !--- FIN DE FILTROS DE REPORTES AVANZADOS ---! */
+
+        /* !--- VISIBILIDAD DE PANELES ---! */
+        private void MostrarPanel(Panel panelMostrar)
+        {
+            List<Panel> allPanels = new List<Panel>
+            {
+                PanelDashboardMain,
+                PanelDashboardMetricasUsuario,
+                PanelReportesAvanzados,
+            };
+
+            foreach (Panel panel in allPanels)
+            {
+                panel.Visible = false;
+            }
+
+            panelMostrar.Visible = true;
+            panelMostrar.Dock = DockStyle.Right;
+            panelMostrar.Size = new Size(1028, 720);
+        }
+
+        private void BtnVerMetricasUsuarios_Click(object sender, EventArgs e)
+        {
+            MostrarPanel(PanelDashboardMetricasUsuario);
+        }
+
+        private void BtnVerMetricasGenerales_Click(object sender, EventArgs e)
+        {
+            MostrarPanel(PanelDashboardMain);
+        }
+
+        private void BtnReportesAvanzados_Click(object sender, EventArgs e)
+        {
+            MostrarPanel(PanelReportesAvanzados);
+        }
+
+        /* !--- FIN DE VISIBILIDAD DE PANELES ---! */
+
+        private void CargarDatosUsuario()
+        {
+            if (AdministradorUsuarios.usuarioActual.Avatar != null)
+            {
+                PicAvatar.Image = Utils.DescargarImagenDesdeURL(
+                    AdministradorUsuarios.usuarioActual.Avatar
+                );
+            }
+
+            LblUsuario.Text = AdministradorUsuarios.usuarioActual.NombreUsuario;
+        }
+
+        private void ControlGestionDashboard_VisibleChanged(object sender, EventArgs e)
+        {
+            CargarDatosUsuario();
         }
     }
 }
