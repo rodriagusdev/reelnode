@@ -296,6 +296,26 @@ namespace Reelnode
             }
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "Archivos JSON (*.json)|*.json";
+                saveFileDialog.Title = "Guardar exportación en JSON";
+                saveFileDialog.FileName = "peliculas.json"; // nombre por defecto
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string rutaArchivo = saveFileDialog.FileName;
+
+                    // Llamás al método exportador
+                    AdministradorJSON.ExportarDataGridViewJSON(DataGridReportes, rutaArchivo);
+
+                    MessageBox.Show("Películas exportadas correctamente en: " + rutaArchivo);
+                }
+            }
+        }
+
 
 
         /* !--- FIN EXPORTACION PDF ---! */
