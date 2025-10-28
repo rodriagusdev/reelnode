@@ -202,8 +202,9 @@
             this.PanelActualizar.Controls.Add(this.panel8);
             this.PanelActualizar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelActualizar.Location = new System.Drawing.Point(0, 0);
+            this.PanelActualizar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PanelActualizar.Name = "PanelActualizar";
-            this.PanelActualizar.Size = new System.Drawing.Size(1280, 720);
+            this.PanelActualizar.Size = new System.Drawing.Size(1707, 886);
             this.PanelActualizar.TabIndex = 59;
             this.PanelActualizar.Tag = "Default";
             // 
@@ -213,18 +214,20 @@
             this.label19.BackColor = System.Drawing.Color.Transparent;
             this.label19.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label19.Location = new System.Drawing.Point(311, 180);
+            this.label19.Location = new System.Drawing.Point(415, 222);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(93, 17);
+            this.label19.Size = new System.Drawing.Size(120, 21);
             this.label19.TabIndex = 93;
             this.label19.Text = "Marcar generos";
             // 
             // ChkListGeneros
             // 
             this.ChkListGeneros.FormattingEnabled = true;
-            this.ChkListGeneros.Location = new System.Drawing.Point(314, 200);
+            this.ChkListGeneros.Location = new System.Drawing.Point(419, 246);
+            this.ChkListGeneros.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ChkListGeneros.Name = "ChkListGeneros";
-            this.ChkListGeneros.Size = new System.Drawing.Size(205, 94);
+            this.ChkListGeneros.Size = new System.Drawing.Size(272, 106);
             this.ChkListGeneros.TabIndex = 4;
             // 
             // BtnPrevisualizarTrailer
@@ -234,9 +237,10 @@
             this.BtnPrevisualizarTrailer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnPrevisualizarTrailer.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnPrevisualizarTrailer.ForeColor = System.Drawing.Color.Black;
-            this.BtnPrevisualizarTrailer.Location = new System.Drawing.Point(867, 562);
+            this.BtnPrevisualizarTrailer.Location = new System.Drawing.Point(1156, 692);
+            this.BtnPrevisualizarTrailer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnPrevisualizarTrailer.Name = "BtnPrevisualizarTrailer";
-            this.BtnPrevisualizarTrailer.Size = new System.Drawing.Size(308, 35);
+            this.BtnPrevisualizarTrailer.Size = new System.Drawing.Size(411, 43);
             this.BtnPrevisualizarTrailer.TabIndex = 14;
             this.BtnPrevisualizarTrailer.Text = "Previsualizar trailer";
             this.BtnPrevisualizarTrailer.UseVisualStyleBackColor = false;
@@ -245,10 +249,11 @@
             // 
             this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.panel11.Controls.Add(this.TxtURLTrailer);
-            this.panel11.Location = new System.Drawing.Point(867, 503);
+            this.panel11.Location = new System.Drawing.Point(1156, 619);
+            this.panel11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel11.Name = "panel11";
-            this.panel11.Padding = new System.Windows.Forms.Padding(5);
-            this.panel11.Size = new System.Drawing.Size(308, 35);
+            this.panel11.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.panel11.Size = new System.Drawing.Size(411, 43);
             this.panel11.TabIndex = 86;
             // 
             // TxtURLTrailer
@@ -258,9 +263,10 @@
             this.TxtURLTrailer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtURLTrailer.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtURLTrailer.ForeColor = System.Drawing.Color.White;
-            this.TxtURLTrailer.Location = new System.Drawing.Point(5, 5);
+            this.TxtURLTrailer.Location = new System.Drawing.Point(7, 6);
+            this.TxtURLTrailer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TxtURLTrailer.Name = "TxtURLTrailer";
-            this.TxtURLTrailer.Size = new System.Drawing.Size(298, 22);
+            this.TxtURLTrailer.Size = new System.Drawing.Size(397, 27);
             this.TxtURLTrailer.TabIndex = 12;
             // 
             // label18
@@ -269,9 +275,10 @@
             this.label18.BackColor = System.Drawing.Color.Transparent;
             this.label18.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label18.Location = new System.Drawing.Point(864, 483);
+            this.label18.Location = new System.Drawing.Point(1152, 594);
+            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(88, 17);
+            this.label18.Size = new System.Drawing.Size(115, 21);
             this.label18.TabIndex = 87;
             this.label18.Text = "URL del trailer";
             // 
@@ -281,19 +288,20 @@
             this.label17.BackColor = System.Drawing.Color.Transparent;
             this.label17.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label17.Location = new System.Drawing.Point(864, 183);
+            this.label17.Location = new System.Drawing.Point(1152, 225);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(45, 17);
+            this.label17.Size = new System.Drawing.Size(59, 21);
             this.label17.TabIndex = 83;
             this.label17.Text = "Trailer";
             // 
             // PanelTrailer
             // 
             this.PanelTrailer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
-            this.PanelTrailer.Location = new System.Drawing.Point(867, 200);
-            this.PanelTrailer.Margin = new System.Windows.Forms.Padding(2);
+            this.PanelTrailer.Location = new System.Drawing.Point(1156, 246);
+            this.PanelTrailer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PanelTrailer.Name = "PanelTrailer";
-            this.PanelTrailer.Size = new System.Drawing.Size(308, 273);
+            this.PanelTrailer.Size = new System.Drawing.Size(411, 336);
             this.PanelTrailer.TabIndex = 82;
             // 
             // label6
@@ -302,9 +310,10 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label6.Location = new System.Drawing.Point(95, 299);
+            this.label6.Location = new System.Drawing.Point(127, 368);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 17);
+            this.label6.Size = new System.Drawing.Size(73, 21);
             this.label6.TabIndex = 75;
             this.label6.Text = "Network";
             // 
@@ -314,9 +323,10 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label8.Location = new System.Drawing.Point(96, 483);
+            this.label8.Location = new System.Drawing.Point(128, 594);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(71, 17);
+            this.label8.Size = new System.Drawing.Size(94, 21);
             this.label8.TabIndex = 74;
             this.label8.Text = "Descripción";
             // 
@@ -326,9 +336,10 @@
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label9.Location = new System.Drawing.Point(96, 415);
+            this.label9.Location = new System.Drawing.Point(128, 511);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(140, 17);
+            this.label9.Size = new System.Drawing.Size(180, 21);
             this.label9.TabIndex = 73;
             this.label9.Text = "Cantidad de temporadas";
             // 
@@ -338,9 +349,10 @@
             this.label16.BackColor = System.Drawing.Color.Transparent;
             this.label16.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label16.Location = new System.Drawing.Point(95, 238);
+            this.label16.Location = new System.Drawing.Point(127, 293);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(53, 17);
+            this.label16.Size = new System.Drawing.Size(68, 21);
             this.label16.TabIndex = 72;
             this.label16.Text = "Director";
             // 
@@ -350,9 +362,10 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label7.Location = new System.Drawing.Point(525, 183);
+            this.label7.Location = new System.Drawing.Point(700, 225);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(50, 17);
+            this.label7.Size = new System.Drawing.Size(62, 21);
             this.label7.TabIndex = 71;
             this.label7.Text = "Imagen";
             // 
@@ -362,9 +375,10 @@
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label10.Location = new System.Drawing.Point(311, 357);
+            this.label10.Location = new System.Drawing.Point(415, 439);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(118, 17);
+            this.label10.Size = new System.Drawing.Size(158, 21);
             this.label10.TabIndex = 70;
             this.label10.Text = "Fecha de finalización";
             // 
@@ -374,9 +388,10 @@
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label12.Location = new System.Drawing.Point(95, 357);
+            this.label12.Location = new System.Drawing.Point(127, 439);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(98, 17);
+            this.label12.Size = new System.Drawing.Size(126, 21);
             this.label12.TabIndex = 69;
             this.label12.Text = "Fecha de estreno";
             // 
@@ -386,9 +401,10 @@
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label11.Location = new System.Drawing.Point(96, 15);
+            this.label11.Location = new System.Drawing.Point(128, 18);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(151, 17);
+            this.label11.Size = new System.Drawing.Size(194, 21);
             this.label11.TabIndex = 68;
             this.label11.Text = "Ingrese nombre de la serie";
             // 
@@ -398,9 +414,10 @@
             this.label15.BackColor = System.Drawing.Color.Transparent;
             this.label15.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label15.Location = new System.Drawing.Point(95, 180);
+            this.label15.Location = new System.Drawing.Point(127, 222);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(97, 17);
+            this.label15.Size = new System.Drawing.Size(127, 21);
             this.label15.TabIndex = 67;
             this.label15.Text = "Título de la serie";
             // 
@@ -408,10 +425,11 @@
             // 
             this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.panel10.Controls.Add(this.CboNetwork);
-            this.panel10.Location = new System.Drawing.Point(98, 319);
+            this.panel10.Location = new System.Drawing.Point(131, 393);
+            this.panel10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel10.Name = "panel10";
-            this.panel10.Padding = new System.Windows.Forms.Padding(5);
-            this.panel10.Size = new System.Drawing.Size(206, 35);
+            this.panel10.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.panel10.Size = new System.Drawing.Size(275, 43);
             this.panel10.TabIndex = 49;
             // 
             // CboNetwork
@@ -420,27 +438,30 @@
             this.CboNetwork.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CboNetwork.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboNetwork.FormattingEnabled = true;
-            this.CboNetwork.Location = new System.Drawing.Point(5, 5);
+            this.CboNetwork.Location = new System.Drawing.Point(7, 6);
+            this.CboNetwork.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CboNetwork.Name = "CboNetwork";
-            this.CboNetwork.Size = new System.Drawing.Size(196, 21);
+            this.CboNetwork.Size = new System.Drawing.Size(261, 24);
             this.CboNetwork.TabIndex = 6;
             // 
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.panel9.Controls.Add(this.DtpFechaFin);
-            this.panel9.Location = new System.Drawing.Point(314, 377);
+            this.panel9.Location = new System.Drawing.Point(419, 464);
+            this.panel9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel9.Name = "panel9";
-            this.panel9.Padding = new System.Windows.Forms.Padding(5);
-            this.panel9.Size = new System.Drawing.Size(205, 35);
+            this.panel9.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.panel9.Size = new System.Drawing.Size(273, 43);
             this.panel9.TabIndex = 65;
             // 
             // DtpFechaFin
             // 
             this.DtpFechaFin.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DtpFechaFin.Location = new System.Drawing.Point(8, 8);
+            this.DtpFechaFin.Location = new System.Drawing.Point(11, 10);
+            this.DtpFechaFin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DtpFechaFin.Name = "DtpFechaFin";
-            this.DtpFechaFin.Size = new System.Drawing.Size(192, 22);
+            this.DtpFechaFin.Size = new System.Drawing.Size(255, 26);
             this.DtpFechaFin.TabIndex = 8;
             // 
             // label13
@@ -449,9 +470,10 @@
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label13.Location = new System.Drawing.Point(525, 483);
+            this.label13.Location = new System.Drawing.Point(700, 594);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(105, 17);
+            this.label13.Size = new System.Drawing.Size(134, 21);
             this.label13.TabIndex = 64;
             this.label13.Text = "URL de la imagen";
             // 
@@ -461,9 +483,10 @@
             this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(233)))), ((int)(((byte)(239)))));
-            this.label14.Location = new System.Drawing.Point(525, 539);
+            this.label14.Location = new System.Drawing.Point(700, 663);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(212, 17);
+            this.label14.Size = new System.Drawing.Size(268, 21);
             this.label14.TabIndex = 63;
             this.label14.Text = "e.g. \"https://sitio/content//imagen.jpg\"";
             // 
@@ -471,10 +494,11 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.panel1.Controls.Add(this.TxtURLImagen);
-            this.panel1.Location = new System.Drawing.Point(528, 503);
+            this.panel1.Location = new System.Drawing.Point(704, 619);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(5);
-            this.panel1.Size = new System.Drawing.Size(308, 35);
+            this.panel1.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.panel1.Size = new System.Drawing.Size(411, 43);
             this.panel1.TabIndex = 62;
             // 
             // TxtURLImagen
@@ -484,9 +508,10 @@
             this.TxtURLImagen.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtURLImagen.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtURLImagen.ForeColor = System.Drawing.Color.White;
-            this.TxtURLImagen.Location = new System.Drawing.Point(5, 5);
+            this.TxtURLImagen.Location = new System.Drawing.Point(7, 6);
+            this.TxtURLImagen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TxtURLImagen.Name = "TxtURLImagen";
-            this.TxtURLImagen.Size = new System.Drawing.Size(298, 22);
+            this.TxtURLImagen.Size = new System.Drawing.Size(397, 27);
             this.TxtURLImagen.TabIndex = 11;
             // 
             // BtnBuscar
@@ -496,9 +521,10 @@
             this.BtnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnBuscar.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnBuscar.ForeColor = System.Drawing.Color.Black;
-            this.BtnBuscar.Location = new System.Drawing.Point(310, 34);
+            this.BtnBuscar.Location = new System.Drawing.Point(413, 42);
+            this.BtnBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnBuscar.Name = "BtnBuscar";
-            this.BtnBuscar.Size = new System.Drawing.Size(172, 35);
+            this.BtnBuscar.Size = new System.Drawing.Size(229, 43);
             this.BtnBuscar.TabIndex = 2;
             this.BtnBuscar.Text = "Buscar";
             this.BtnBuscar.UseVisualStyleBackColor = false;
@@ -511,9 +537,10 @@
             this.BtnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnActualizar.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnActualizar.ForeColor = System.Drawing.Color.Black;
-            this.BtnActualizar.Location = new System.Drawing.Point(528, 609);
+            this.BtnActualizar.Location = new System.Drawing.Point(704, 750);
+            this.BtnActualizar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnActualizar.Name = "BtnActualizar";
-            this.BtnActualizar.Size = new System.Drawing.Size(647, 35);
+            this.BtnActualizar.Size = new System.Drawing.Size(863, 43);
             this.BtnActualizar.TabIndex = 15;
             this.BtnActualizar.Text = "Actualizar Serie";
             this.BtnActualizar.UseVisualStyleBackColor = false;
@@ -523,10 +550,11 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.panel2.Controls.Add(this.TxtDescripcion);
-            this.panel2.Location = new System.Drawing.Point(98, 503);
+            this.panel2.Location = new System.Drawing.Point(131, 619);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(5);
-            this.panel2.Size = new System.Drawing.Size(421, 138);
+            this.panel2.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.panel2.Size = new System.Drawing.Size(561, 170);
             this.panel2.TabIndex = 49;
             // 
             // TxtDescripcion
@@ -536,20 +564,22 @@
             this.TxtDescripcion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtDescripcion.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtDescripcion.ForeColor = System.Drawing.Color.White;
-            this.TxtDescripcion.Location = new System.Drawing.Point(5, 5);
+            this.TxtDescripcion.Location = new System.Drawing.Point(7, 6);
+            this.TxtDescripcion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TxtDescripcion.Multiline = true;
             this.TxtDescripcion.Name = "TxtDescripcion";
-            this.TxtDescripcion.Size = new System.Drawing.Size(411, 128);
+            this.TxtDescripcion.Size = new System.Drawing.Size(547, 158);
             this.TxtDescripcion.TabIndex = 10;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.panel3.Controls.Add(this.PicSerie);
-            this.panel3.Location = new System.Drawing.Point(528, 200);
+            this.panel3.Location = new System.Drawing.Point(704, 246);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(5);
-            this.panel3.Size = new System.Drawing.Size(308, 273);
+            this.panel3.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.panel3.Size = new System.Drawing.Size(411, 336);
             this.panel3.TabIndex = 53;
             // 
             // PicSerie
@@ -557,9 +587,10 @@
             this.PicSerie.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.PicSerie.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.PicSerie.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PicSerie.Location = new System.Drawing.Point(5, 5);
+            this.PicSerie.Location = new System.Drawing.Point(7, 6);
+            this.PicSerie.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PicSerie.Name = "PicSerie";
-            this.PicSerie.Size = new System.Drawing.Size(298, 263);
+            this.PicSerie.Size = new System.Drawing.Size(397, 324);
             this.PicSerie.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PicSerie.TabIndex = 0;
             this.PicSerie.TabStop = false;
@@ -568,10 +599,11 @@
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.panel4.Controls.Add(this.TxtCantTemporadas);
-            this.panel4.Location = new System.Drawing.Point(98, 435);
+            this.panel4.Location = new System.Drawing.Point(131, 535);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel4.Name = "panel4";
-            this.panel4.Padding = new System.Windows.Forms.Padding(5);
-            this.panel4.Size = new System.Drawing.Size(205, 35);
+            this.panel4.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.panel4.Size = new System.Drawing.Size(273, 43);
             this.panel4.TabIndex = 52;
             // 
             // TxtCantTemporadas
@@ -581,19 +613,21 @@
             this.TxtCantTemporadas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtCantTemporadas.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtCantTemporadas.ForeColor = System.Drawing.Color.White;
-            this.TxtCantTemporadas.Location = new System.Drawing.Point(5, 5);
+            this.TxtCantTemporadas.Location = new System.Drawing.Point(7, 6);
+            this.TxtCantTemporadas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TxtCantTemporadas.Name = "TxtCantTemporadas";
-            this.TxtCantTemporadas.Size = new System.Drawing.Size(195, 22);
+            this.TxtCantTemporadas.Size = new System.Drawing.Size(259, 27);
             this.TxtCantTemporadas.TabIndex = 9;
             // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.panel5.Controls.Add(this.TxtDirector);
-            this.panel5.Location = new System.Drawing.Point(99, 258);
+            this.panel5.Location = new System.Drawing.Point(132, 318);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel5.Name = "panel5";
-            this.panel5.Padding = new System.Windows.Forms.Padding(5);
-            this.panel5.Size = new System.Drawing.Size(205, 35);
+            this.panel5.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.panel5.Size = new System.Drawing.Size(273, 43);
             this.panel5.TabIndex = 50;
             // 
             // TxtDirector
@@ -603,37 +637,41 @@
             this.TxtDirector.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtDirector.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtDirector.ForeColor = System.Drawing.Color.White;
-            this.TxtDirector.Location = new System.Drawing.Point(5, 5);
+            this.TxtDirector.Location = new System.Drawing.Point(7, 6);
+            this.TxtDirector.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TxtDirector.Name = "TxtDirector";
-            this.TxtDirector.Size = new System.Drawing.Size(195, 22);
+            this.TxtDirector.Size = new System.Drawing.Size(259, 27);
             this.TxtDirector.TabIndex = 5;
             // 
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.panel6.Controls.Add(this.DtpFechaEstreno);
-            this.panel6.Location = new System.Drawing.Point(98, 377);
+            this.panel6.Location = new System.Drawing.Point(131, 464);
+            this.panel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel6.Name = "panel6";
-            this.panel6.Padding = new System.Windows.Forms.Padding(5);
-            this.panel6.Size = new System.Drawing.Size(205, 35);
+            this.panel6.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.panel6.Size = new System.Drawing.Size(273, 43);
             this.panel6.TabIndex = 51;
             // 
             // DtpFechaEstreno
             // 
             this.DtpFechaEstreno.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DtpFechaEstreno.Location = new System.Drawing.Point(8, 8);
+            this.DtpFechaEstreno.Location = new System.Drawing.Point(11, 10);
+            this.DtpFechaEstreno.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DtpFechaEstreno.Name = "DtpFechaEstreno";
-            this.DtpFechaEstreno.Size = new System.Drawing.Size(192, 22);
+            this.DtpFechaEstreno.Size = new System.Drawing.Size(255, 26);
             this.DtpFechaEstreno.TabIndex = 7;
             // 
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.panel7.Controls.Add(this.TxtNombre);
-            this.panel7.Location = new System.Drawing.Point(98, 200);
+            this.panel7.Location = new System.Drawing.Point(131, 246);
+            this.panel7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel7.Name = "panel7";
-            this.panel7.Padding = new System.Windows.Forms.Padding(5);
-            this.panel7.Size = new System.Drawing.Size(205, 35);
+            this.panel7.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.panel7.Size = new System.Drawing.Size(273, 43);
             this.panel7.TabIndex = 48;
             // 
             // TxtNombre
@@ -643,9 +681,10 @@
             this.TxtNombre.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtNombre.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtNombre.ForeColor = System.Drawing.Color.White;
-            this.TxtNombre.Location = new System.Drawing.Point(5, 5);
+            this.TxtNombre.Location = new System.Drawing.Point(7, 6);
+            this.TxtNombre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TxtNombre.Name = "TxtNombre";
-            this.TxtNombre.Size = new System.Drawing.Size(195, 22);
+            this.TxtNombre.Size = new System.Drawing.Size(259, 27);
             this.TxtNombre.TabIndex = 3;
             // 
             // DataGridActualizarSerie
@@ -657,34 +696,36 @@
             this.DataGridActualizarSerie.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DataGridActualizarSerie.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridActualizarSerie.ContextMenuStrip = this.CtxMenu;
-            this.DataGridActualizarSerie.Location = new System.Drawing.Point(98, 73);
+            this.DataGridActualizarSerie.Location = new System.Drawing.Point(131, 90);
+            this.DataGridActualizarSerie.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DataGridActualizarSerie.Name = "DataGridActualizarSerie";
             this.DataGridActualizarSerie.ReadOnly = true;
             this.DataGridActualizarSerie.RowHeadersWidth = 51;
-            this.DataGridActualizarSerie.Size = new System.Drawing.Size(1077, 104);
+            this.DataGridActualizarSerie.Size = new System.Drawing.Size(1436, 128);
             this.DataGridActualizarSerie.TabIndex = 47;
             this.DataGridActualizarSerie.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridActualizarSerie_CellMouseDown);
             // 
             // CtxMenu
             // 
             this.CtxMenu.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CtxMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.CtxMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStpSubMenuModificar,
             this.ToolStpSubMenuEliminar});
             this.CtxMenu.Name = "CtxMenu";
-            this.CtxMenu.Size = new System.Drawing.Size(138, 48);
+            this.CtxMenu.Size = new System.Drawing.Size(158, 48);
             // 
             // ToolStpSubMenuModificar
             // 
             this.ToolStpSubMenuModificar.Name = "ToolStpSubMenuModificar";
-            this.ToolStpSubMenuModificar.Size = new System.Drawing.Size(137, 22);
+            this.ToolStpSubMenuModificar.Size = new System.Drawing.Size(157, 22);
             this.ToolStpSubMenuModificar.Text = "Modificar";
             this.ToolStpSubMenuModificar.Click += new System.EventHandler(this.ToolStpSubMenuModificar_Click);
             // 
             // ToolStpSubMenuEliminar
             // 
             this.ToolStpSubMenuEliminar.Name = "ToolStpSubMenuEliminar";
-            this.ToolStpSubMenuEliminar.Size = new System.Drawing.Size(137, 22);
+            this.ToolStpSubMenuEliminar.Size = new System.Drawing.Size(157, 22);
             this.ToolStpSubMenuEliminar.Text = "Eliminar";
             this.ToolStpSubMenuEliminar.Click += new System.EventHandler(this.ToolStpSubMenuEliminar_Click);
             // 
@@ -695,9 +736,10 @@
             this.BtnPrevisualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnPrevisualizar.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnPrevisualizar.ForeColor = System.Drawing.Color.Black;
-            this.BtnPrevisualizar.Location = new System.Drawing.Point(528, 563);
+            this.BtnPrevisualizar.Location = new System.Drawing.Point(704, 693);
+            this.BtnPrevisualizar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnPrevisualizar.Name = "BtnPrevisualizar";
-            this.BtnPrevisualizar.Size = new System.Drawing.Size(308, 35);
+            this.BtnPrevisualizar.Size = new System.Drawing.Size(411, 43);
             this.BtnPrevisualizar.TabIndex = 13;
             this.BtnPrevisualizar.Text = "Previsualizar";
             this.BtnPrevisualizar.UseVisualStyleBackColor = false;
@@ -706,10 +748,11 @@
             // 
             this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(74)))), ((int)(((byte)(106)))));
             this.panel8.Controls.Add(this.TxtBuscarSerie);
-            this.panel8.Location = new System.Drawing.Point(99, 35);
+            this.panel8.Location = new System.Drawing.Point(132, 43);
+            this.panel8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel8.Name = "panel8";
-            this.panel8.Padding = new System.Windows.Forms.Padding(5);
-            this.panel8.Size = new System.Drawing.Size(205, 34);
+            this.panel8.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.panel8.Size = new System.Drawing.Size(273, 42);
             this.panel8.TabIndex = 44;
             // 
             // TxtBuscarSerie
@@ -719,9 +762,10 @@
             this.TxtBuscarSerie.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TxtBuscarSerie.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtBuscarSerie.ForeColor = System.Drawing.Color.White;
-            this.TxtBuscarSerie.Location = new System.Drawing.Point(5, 5);
+            this.TxtBuscarSerie.Location = new System.Drawing.Point(7, 6);
+            this.TxtBuscarSerie.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TxtBuscarSerie.Name = "TxtBuscarSerie";
-            this.TxtBuscarSerie.Size = new System.Drawing.Size(195, 22);
+            this.TxtBuscarSerie.Size = new System.Drawing.Size(259, 27);
             this.TxtBuscarSerie.TabIndex = 1;
             // 
             // PanelRand
@@ -729,20 +773,21 @@
             this.PanelRand.Controls.Add(this.PanelActualizar);
             this.PanelRand.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelRand.Location = new System.Drawing.Point(0, 0);
+            this.PanelRand.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PanelRand.Name = "PanelRand";
-            this.PanelRand.Size = new System.Drawing.Size(1280, 720);
+            this.PanelRand.Size = new System.Drawing.Size(1707, 886);
             this.PanelRand.TabIndex = 3;
             this.PanelRand.Tag = "Default";
             // 
             // ControlGestionSeriesActualizar
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.PanelRand);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ControlGestionSeriesActualizar";
-            this.Size = new System.Drawing.Size(1280, 720);
+            this.Size = new System.Drawing.Size(1707, 886);
             this.Load += new System.EventHandler(this.ControlGestionSeriesActualizar_Load);
             this.PanelActualizar.ResumeLayout(false);
             this.PanelActualizar.PerformLayout();

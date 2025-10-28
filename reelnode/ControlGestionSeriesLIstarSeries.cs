@@ -29,5 +29,47 @@ namespace Reelnode
         {
             Utils.ActualizarListaGrid(DataGridSeries, AdministradorSeries.seriesCargadas, "Id", "Tipo");
         }
+
+        //IMPORTAR SERIES JSON
+        private void BtnImportarSeriesJSON_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.Filter = "Archivos JSON (*.json)|*.json";
+            openFileDialog.Title = "Importar series desde JSON";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    var seriesImportadas = AdministradorJSON.ImportarSeriesJSON(openFileDialog.FileName);
+
+                    // Guardar en la lista principal
+                    AdministradorSeries.seriesCargadas = seriesImportadas;
+
+                    MessageBox.Show("Series importadas correctamente.", "Importación exitosa",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al importar series: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        //EXPORTAR SERIES JSON
+        private void BtnExportarJSON_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+            saveFileDialog.Filter = "Archivos JSON (*.json)| *.json";
+            saveFileDialog.Title = "Exportar series JSON";
+            saveFileDialog.FileName = "series.json";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                AdministradorJSON.ExportarSeriesJSON(AdministradorSeries.seriesCargadas, saveFileDialog.FileName);
+            }
+        }
     }
 }

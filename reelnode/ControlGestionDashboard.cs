@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
+using System.Text.Json;
 using System.Windows.Forms;
 
 namespace Reelnode
@@ -315,9 +317,8 @@ namespace Reelnode
                 }
             }
         }
-
-
-
         /* !--- FIN EXPORTACION PDF ---! */
+
+    
     }
 }
