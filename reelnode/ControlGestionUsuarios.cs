@@ -11,6 +11,8 @@ namespace Reelnode
 
         private string nombreUsuario = "";
         private int idUsuario = -1;
+        private string ADMIN_TAG = "2";
+        private string USUARIO_TAG = "3";
 
         public ControlGestionUsuarios()
         {
@@ -78,7 +80,7 @@ namespace Reelnode
 
         private void BtnConfirmarPermisos_Click(object sender, EventArgs e)
         {
-            AdministradorPermisos.AsignarPermisos(idUsuario, ChkListPermisos);
+            AdministradorPermisos.AsignarNuevosPermisos(idUsuario, ChkListPermisos);
 
             for (int i = 0; i < ChkListPermisos.Items.Count; i++)
             {
@@ -167,10 +169,10 @@ namespace Reelnode
         /* !--- EVENTOS MENU CONTEXTUAL Y RBTBUTTONS ---! */
 
         private void RbtAdmin_CheckedChanged(object sender, EventArgs e) =>
-            DataGridUsuarios.Tag = "2";
+            DataGridUsuarios.Tag = ADMIN_TAG;
 
         private void RbtUsuario_CheckedChanged(object sender, EventArgs e) =>
-            DataGridUsuarios.Tag = "3";
+            DataGridUsuarios.Tag = USUARIO_TAG;
 
         private void CtxMenuModificarRol_Click(object sender, EventArgs e)
         {
@@ -184,6 +186,7 @@ namespace Reelnode
 
             for (int i = 0; i < ChkListPermisos.Items.Count; i++)
             {
+                ChkListPermisos.SetItemChecked(i, false);
                 if (listPermisosUsuarioSeleccionado.Contains(ChkListPermisos.Items[i]))
                 {
                     ChkListPermisos.SetItemChecked(i, true);
@@ -246,45 +249,3 @@ namespace Reelnode
         /* !--- FIN HABILITACION CONTEXT MENUS ---! */
     }
 }
-/*        private void BtnExportar_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog saveFile = new SaveFileDialog();
-            saveFile.Filter = "PDF (*.pdf)|*.pdf";
-            saveFile.FileName = "Personas.pdf";
-
-            if (saveFile.ShowDialog() == DialogResult.OK)
-            {
-                using (FileStream stream = new FileStream(saveFile.FileName, FileMode.Create))
-                {
-                    Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 20f, 20f);
-                    PdfWriter.GetInstance(pdfDoc, stream);
-                    pdfDoc.Open();
-
-                    Paragraph titulo = new Paragraph("Listado de Personas");
-                    titulo.Alignment = Element.ALIGN_CENTER;
-                    pdfDoc.Add(titulo);
-                    pdfDoc.Add(new Paragraph(" "));
-
-                    PdfPTable tabla = new PdfPTable(4);
-                    tabla.WidthPercentage = 100;
-                    tabla.AddCell("Nombre");
-                    tabla.AddCell("Email");
-                    tabla.AddCell("Fecha Registro");
-                    tabla.AddCell("Rol");
-
-                    foreach (var p in UtilsBD.usuariosRegistrados)
-                    {
-                        tabla.AddCell(p.NombreUsuario);
-                        tabla.AddCell(p.Email);
-                        tabla.AddCell(p.FechaRegistro.ToString());
-                        tabla.AddCell(p.RolUsuario);
-                    }
-
-                    pdfDoc.Add(tabla);
-                    pdfDoc.Close();
-                    stream.Close();
-                }
-
-                MessageBox.Show("PDF exportado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }*/

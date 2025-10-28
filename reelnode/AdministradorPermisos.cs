@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Runtime.Remoting.Messaging;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -11,7 +10,7 @@ namespace Reelnode
     {
         public static List<string> permisosUsuarioActual = new List<string>();
 
-        public static void AsignarPermisos(int idUsuarioAsignacion, CheckedListBox ChkListPermisos)
+        public static void AsignarNuevosPermisos(int idUsuarioAsignacion, CheckedListBox ChkListPermisos)
         {
             int posUsuarioAsignacion = idUsuarioAsignacion - 1;
 
@@ -120,6 +119,16 @@ namespace Reelnode
             catch (Exception ex)
             {
                 MessageBox.Show("Error al asignar permisos" + ex.Message);
+            }
+        }
+
+        public static void AsignarPermisosUsuario(string procedimiento, int idUsuario)
+        {
+            using (MySqlCommand cmd = new MySqlCommand(procedimiento, UtilsBD.Conexion.GetConnection()))
+            {
+                cmd.CommandType= CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue(EnumTipoId.p_id_usuario.ToString(), idUsuario);
+                cmd.ExecuteNonQuery();
             }
         }
 

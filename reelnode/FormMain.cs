@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace Reelnode
@@ -106,9 +105,6 @@ namespace Reelnode
             /* !--- LOGIN ---! */
 
             UtilsBD.Conexion.AbrirBD();
-
-            // Necesario para poder usar los usuarios en el login.
-            AdministradorUsuarios.CargarUsuarios();
 
             FormLogin login = new FormLogin();
 

@@ -210,14 +210,14 @@ CREATE TABLE usuario (
     FOREIGN KEY (id_rol) REFERENCES rol(id_rol)
 );
 
-select * from usuario;
+
 
 insert into usuario (nombre_usuario, email_usuario, password_usuario, avatar, fecha_registro, id_rol)
 values
 ("superadmin", "super@gmail.com", "admin", 'https://i.pinimg.com/originals/dd/c2/f9/ddc2f91225f7070a0519d50e20ac1a74.jpg', "2025-06-1", 1),
 ("rodri", "rodri@gmail.com", "1", 'https://wallpapercave.com/wp/wp5273986.jpg', "2025-08-2", 2),
 ("san", "san@gmail.com", "2", "https://i.pinimg.com/originals/ce/66/2b/ce662b67df27a2c003ba567ad01c5fb0.jpg", "2025-08-1", 2),
-("agus", "agus@gmail.com", "3", "https://i.ytimg.com/vi/aaHoHQXFSjk/maxresdefault.jpg", "2025-08-1", 2),
+("agus", "agus@gmail.com", "3", "https://media.mdzol.com/adjuntos/373/migration/u/fotografias/m/2024/5/27/f768x768-1600669_1684947_5050.png", "2025-08-1", 2),
 ("willy123", "comun@gmail.com", "3", null, "2025-08-1", 3);
 
 CREATE TABLE visualizaciones_serie (
@@ -390,16 +390,40 @@ DELIMITER ;
 -- 1. Login inicial con validación de credenciales y carga de rol.
 
 DELIMITER //
-create procedure login_user(
-	in p_email varchar(255),
-    in p_password varchar(255)
+
+CREATE PROCEDURE sp_login_usuario(
+    IN p_data_usuario VARCHAR(255),
+    IN p_password VARCHAR(255),
+    OUT p_validacion_completada INT
 )
-begin
-	select u.id_usuario, u.nombre_usuario, r.tipo_rol
-    from usuario u
-    join rol r on u.id_rol = r.id_rol
-    where u.email_usuario = p_email and u.password_usuario =md5(p_password); -- compara con hash
-end //
+BEGIN
+    DECLARE existeUsuario INT;
+
+    START TRANSACTION;
+
+    SELECT 
+        u.id_usuario 
+    INTO 
+        existeUsuario
+    FROM 
+        usuario u
+        INNER JOIN rol r ON u.id_rol = r.id_rol
+    WHERE 
+        (u.email_usuario = p_data_usuario OR u.nombre_usuario = p_data_usuario)
+        AND u.password_usuario = p_password
+    LIMIT 1;
+
+    IF existeUsuario IS NULL THEN
+        SELECT 'Usuario o contraseña incorrectos' AS mensaje;
+    ELSE
+        SELECT 'Inicio de sesión exitoso' AS mensaje;
+    END IF;
+
+    SET p_validacion_completada = existeUsuario;
+
+    COMMIT;
+END //
+
 DELIMITER ;
 
 -- actualizar usuario
@@ -818,7 +842,7 @@ BEGIN
     -- Asignar permiso al usuario, evitando duplicados
     INSERT INTO permisos_usuarios(id_usuario, id_permiso)
     VALUES(p_id_usuario, v_id_permiso)
-    ON DUPLICATE KEY UPDATE id_permiso = id_permiso; -- no hace nada, pero evita error
+    ON DUPLICATE KEY UPDATE id_permiso = id_permiso;
 END //
 DELIMITER ;
 
@@ -866,21 +890,52 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE sp_asignar_permiso_usuario_admin(IN p_id_usuario INT)
 BEGIN
-	call sp_asignar_permiso(p_id_usuario, "administrar_media");
-	call sp_asignar_permiso(p_id_usuario, "administrar_permisos");
-	call sp_asignar_permiso(p_id_usuario, "moderar_comentarios");
-	call sp_asignar_permiso(p_id_usuario, "loguear");
-    call sp_asignar_permiso(p_id_usuario, "calificar");
-    call sp_asignar_permiso(p_id_usuario, "comentar");
+    DECLARE v_resultado INT DEFAULT 0;  -- Variable local
+
+    START TRANSACTION;
+
+    -- Borro los permisos existentes para luego asignar los nuevos
+    CALL sp_borrar_todos_permisos_usuario(p_id_usuario, v_resultado);
+
+    SELECT v_resultado AS exito;
+
+    -- Si se borraron exitosamente, se asignan permisos. alter
+    -- v_resultado es 0 si fallo
+    IF v_resultado > 0 THEN
+        CALL sp_asignar_permiso(p_id_usuario, 'administrar_media');
+        CALL sp_asignar_permiso(p_id_usuario, 'administrar_permisos');
+        CALL sp_asignar_permiso(p_id_usuario, 'moderar_comentarios');
+        CALL sp_asignar_permiso(p_id_usuario, 'loguear');
+        CALL sp_asignar_permiso(p_id_usuario, 'calificar');
+        CALL sp_asignar_permiso(p_id_usuario, 'comentar');
+    END IF;
+
+    COMMIT;
 END //
+
 DELIMITER ;
 
 DELIMITER //
 CREATE PROCEDURE sp_asignar_permiso_usuario_comun(IN p_id_usuario INT)
 BEGIN
-	call sp_asignar_permiso(p_id_usuario, "loguear");
-    call sp_asignar_permiso(p_id_usuario, "calificar");
-    call sp_asignar_permiso(p_id_usuario, "comentar");
+DECLARE v_resultado INT DEFAULT 0; 
+
+    START TRANSACTION;
+
+	-- Borro los permisos existentes para luego asignar los nuevos
+    CALL sp_borrar_todos_permisos_usuario(p_id_usuario, v_resultado);
+
+    SELECT v_resultado AS exito;
+	
+    -- Si se borraron exitosamente, se asignan permisos. alter
+    -- v_resultado es 0 si fallo
+    IF v_resultado > 0 THEN
+        CALL sp_asignar_permiso(p_id_usuario, 'loguear');
+        CALL sp_asignar_permiso(p_id_usuario, 'calificar');
+        CALL sp_asignar_permiso(p_id_usuario, 'comentar');
+    END IF;
+
+    COMMIT; 
 END //
 DELIMITER ;
 
@@ -1352,6 +1407,9 @@ CREATE PROCEDURE sp_reporte_avanzado_peliculas(
     IN p_duracion_minima int
 )
 BEGIN 
+		-- Al igual que en la funcion sp_reporte_avanzado_series, @sql marca que es una consulta dinamica
+        -- es decir que se va a ir creando segun los filtros existentes.
+        
 		SET @sql = '
         SELECT
             p.nombre as Titulo,
@@ -1538,7 +1596,7 @@ begin
 	inner join
 		serie s on s.id_serie = vs.id_serie
 	where 
-		vs.id_usuario = 2;
+		vs.id_usuario = p_id_usuario;
 end //
 DELIMITER ;
 
@@ -1563,22 +1621,6 @@ begin
 	where id_serie = p_id_serie;
 end //
 DELIMITER ;
-
-/* IMPLEMENTAR LOGIN A TRAVES D EBASE DATOS ANTES DE CREAR ESTE PROCEDIMIENTO
-DELIMITER //
-
-CREATE PROCEDURE sp_ultimo_login_usuario(in p_limit int)
-begin
-	select 
-		nombre_usuario, 
-        total_visualizaciones 
-	from 
-		vw_ranking_usuarios
-	limit p_limit;
-end //
-
-DELIMITER ;
-*/
 
 call sp_obtener_calificaciones_x_usuario_serie(2);
 call sp_obtener_calificaciones_x_usuario_pelis(2);

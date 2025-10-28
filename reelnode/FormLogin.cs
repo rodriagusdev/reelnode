@@ -1,15 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.IO;
-using System.Linq;
-using System.Resources;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Reelnode
@@ -56,42 +47,19 @@ namespace Reelnode
 
         private void BtnIngresar_Click_1(object sender, EventArgs e)
         {
-            bool usuarioEncontrado = false;
+            // Login exitoso devuelve 0 si hay error, o un ID mayor a 0 si encontro al usuario
+            int loginExitoso = AdministradorUsuarios.Login(TxtUsuario.Text, TxtPassword.Text);
 
-            foreach (Usuario u in AdministradorUsuarios.usuariosRegistrados)
+            if (loginExitoso > 0)
             {
-                if (TxtUsuario.Text == u.NombreUsuario && TxtPassword.Text == u.Password)
-                {
-                    /* Cargo los permisos y chequeo si el usuario puede loguear */
-                    List<string> permisos = AdministradorPermisos.ObtenerPermisosUsuario(u.Id);
+                AdministradorUsuarios.CargarUsuarios();
+                int posicionIdLista = loginExitoso - 1;
+                Usuario logeado = AdministradorUsuarios.usuariosRegistrados[posicionIdLista];
 
-                    if (permisos.Contains(EnumPermisos.loguear.ToString()))
-                    {
-                        AdministradorUsuarios.usuarioActual.Id = u.Id;
-                        AdministradorUsuarios.usuarioActual.NombreUsuario = u.NombreUsuario;
-                        AdministradorUsuarios.usuarioActual.Password = u.Password;
-                        AdministradorUsuarios.usuarioActual.RolUsuario = u.RolUsuario;
-                        AdministradorUsuarios.usuarioActual.Email = u.Email;
-                        AdministradorUsuarios.usuarioActual.Avatar = u.Avatar;
-                        AdministradorUsuarios.usuarioActual.IdRol = u.IdRol;
-
-                        usuarioEncontrado = true;
-                        this.Close();
-                        break;
-                    }
-
-                    MessageBox.Show(
-                        "No tienes permisos para ingresar en la aplicación",
-                        "Error de permisos",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error
-                    );
-
-                    return;
-                }
+                AdministradorUsuarios.usuarioActual = logeado;
+                this.Close();
             }
-
-            if (!usuarioEncontrado)
+            else
             {
                 errorProvider.SetError(PanelUsuario, "Usuario incorrecto");
                 MessageBox.Show(

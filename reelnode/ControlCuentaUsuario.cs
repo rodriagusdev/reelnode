@@ -37,6 +37,7 @@ namespace Reelnode
         private void ConfiguracionCuentaUsuario()
         {
             AdministradorCalificaciones.OnCalificacionActualizada += MostrarCalificaciones;
+            AdministradorVisualizaciones.onVisualizacionRegistrada += MostrarVisualizaciones;
             /* !--- CARGAR DATOS DE USUARIO ---! */
 
             PicAvatar.Image = Utils.DescargarImagenDesdeURL(
@@ -50,6 +51,7 @@ namespace Reelnode
             /* !--- RELLENAR FLOW PANELS CON CONTENIDO AUDIOVISUAL ---! */
 
             MostrarCalificaciones();
+            MostrarVisualizaciones();
 
             /* !--- FIN DE RELLENO ---! */
         }
@@ -71,6 +73,10 @@ namespace Reelnode
                 220,
                 220
             );
+        }
+
+        private void MostrarVisualizaciones()
+        {
 
             CreadorUI.MostrarGaleriaAudiovisual(
                 FlowPelisVistas,
@@ -115,8 +121,6 @@ namespace Reelnode
         {
             ConfiguracionCuentaUsuario();
         }
-
-        private void PanelCuenta_Paint(object sender, PaintEventArgs e) { }
 
         /* !--- FIN DE EVENTOS DE BOTONES ---! */
     }

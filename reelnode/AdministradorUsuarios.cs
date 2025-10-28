@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -161,6 +159,14 @@ namespace Reelnode
                 )
             )
             {
+                // Un cambio de rol implica tambien un cambio en los permisos
+                string procedimiento_nuevo_rol =
+                data.Tag.ToString() == "2"
+                    ? "sp_asignar_permiso_usuario_admin"
+                    : "sp_asignar_permiso_usuario_comun";
+                MessageBox.Show(data.Tag.ToString() + " " + procedimiento_nuevo_rol);
+                AdministradorPermisos.AsignarPermisosUsuario(procedimiento_nuevo_rol, usuarioModificado.Id);
+
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("p_nombre_usuario", nombreUsuario);
                 cmd.Parameters.AddWithValue("p_id_rol", data.Tag.ToString());
@@ -176,6 +182,56 @@ namespace Reelnode
 
                 return true;
             }
+        }
+
+        public static int Login(string dataUsuario, string password)
+        {
+            try
+            {
+                using (
+                    MySqlCommand cmd = new MySqlCommand(
+                        "sp_login_usuario",
+                        UtilsBD.Conexion.GetConnection()
+                    )
+                )
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("p_data_usuario", dataUsuario);
+                    cmd.Parameters.AddWithValue("p_password", password);
+
+                    /* OBTENCION PARAMETRO OUT */
+
+                    // Parámetro OUT que devuelvo un ID, o 0, dependiendo de los resultados de la query.
+
+                    var idValido = new MySqlParameter("p_validacion_completada", MySqlDbType.Int32);
+                    idValido.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(idValido);
+
+                    cmd.ExecuteNonQuery();
+
+                    int id = idValido.Value == DBNull.Value ? 0 : Convert.ToInt32(idValido.Value);
+
+                    if (id > 0)
+                    {
+                        return id;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.Message,
+                    "Error de login",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+
+            return 0;
         }
 
         public static bool CambiarPasswordUsuario(
@@ -263,7 +319,7 @@ namespace Reelnode
                         MessageBoxIcon.Information
                     );
 
-                    AdministradorUsuarios.usuarioActual.Avatar = URL;
+                    usuarioActual.Avatar = URL;
                     pnl.Image = Utils.DescargarImagenDesdeURL(URL);
                     pnl.Invalidate();
                 }

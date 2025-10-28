@@ -8,6 +8,7 @@ namespace Reelnode
 {
     public static class AdministradorVisualizaciones
     {
+        public static event Action onVisualizacionRegistrada;
         public static int CargarVisualizacionesUltimoMes()
         {
             int total = 0;
@@ -48,6 +49,8 @@ namespace Reelnode
                     cmd.Parameters.AddWithValue("p_id_usuario", AdministradorUsuarios.usuarioActual.Id);
 
                     cmd.ExecuteNonQuery();
+
+                    onVisualizacionRegistrada?.Invoke();
                 }
             }
             catch (Exception ex)
@@ -58,7 +61,6 @@ namespace Reelnode
 
         public static List<AudiovisualMiniatura> CargarPeliculasVistas()
         {
-
             return AdministradorAudiovisual
                 .CargarMiniaturaAudiovisual("sp_obtener_visualizaciones_peliculas_usuario", EnumTipoId.id_pelicula, true, EnumTipoId.p_id_usuario);
         }
