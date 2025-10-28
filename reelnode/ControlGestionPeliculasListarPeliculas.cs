@@ -40,7 +40,7 @@ namespace Reelnode
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                AdministradorJSON.ExportarPeliculasJSON(AdministradorPeliculas.peliculasCargadas, saveFileDialog.FileName);
+                AdministradorJSON.ExportarAudiovisualJSON(AdministradorPeliculas.peliculasCargadas, saveFileDialog.FileName);
             }
         }
     }

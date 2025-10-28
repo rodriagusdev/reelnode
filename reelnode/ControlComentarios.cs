@@ -111,7 +111,7 @@ namespace Reelnode
                 else
                 {
                     MessageBox.Show(
-                        "Comentario tóxico detectado y bloqueado",
+                        "😱😱😖 Mala persona! 👎👎\nComentario bloqueado! 😜",
                         "Moderación",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning

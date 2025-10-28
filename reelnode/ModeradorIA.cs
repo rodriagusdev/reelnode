@@ -12,7 +12,7 @@ namespace Reelnode
 
         public Moderador(string modelDirectory)
         {
-            string badWordsPath = Path.Combine(modelDirectory, "badwords.txt");
+            string badWordsPath = Path.Combine(modelDirectory, "malaspalabras.txt");
             _malasPalabras = new HashSet<string>(File.Exists(badWordsPath)
                 ? File.ReadAllLines(badWordsPath).Select(w => w.Trim().ToLower())
                 : new[] { "" });
@@ -29,7 +29,7 @@ namespace Reelnode
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error en comentario", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ex.Message", "Error en comentario", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw new Exception($"Error al procesar comentario: {ex.Message}");
             }
         }

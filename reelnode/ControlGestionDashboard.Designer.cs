@@ -100,6 +100,8 @@
             this.DtpDesde = new System.Windows.Forms.DateTimePicker();
             this.DataGridReportes = new System.Windows.Forms.DataGridView();
             this.PanelReportesAvanzados = new System.Windows.Forms.Panel();
+            this.ChkFiltroCantTemporadas = new System.Windows.Forms.CheckBox();
+            this.NumUpCantTemporadas = new System.Windows.Forms.NumericUpDown();
             this.ChkFiltroNetwork = new System.Windows.Forms.CheckBox();
             this.ChkFiltroGenero = new System.Windows.Forms.CheckBox();
             this.ChkDuracion = new System.Windows.Forms.CheckBox();
@@ -112,11 +114,9 @@
             this.label22 = new System.Windows.Forms.Label();
             this.DtpHasta = new System.Windows.Forms.DateTimePicker();
             this.ChkFiltroCalif = new System.Windows.Forms.CheckBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.BtnExportarJSON = new System.Windows.Forms.Button();
             this.BtnExportarGrilla = new System.Windows.Forms.Button();
             this.label28 = new System.Windows.Forms.Label();
-            this.ChkFiltroCantTemporadas = new System.Windows.Forms.CheckBox();
-            this.NumUpCantTemporadas = new System.Windows.Forms.NumericUpDown();
             this.PanelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicAvatar)).BeginInit();
             this.PanelDashboardMain.SuspendLayout();
@@ -136,8 +136,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.NumUpCalificacionMinima)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridReportes)).BeginInit();
             this.PanelReportesAvanzados.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NumUpDuracion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumUpCantTemporadas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumUpDuracion)).BeginInit();
             this.SuspendLayout();
             // 
             // PanelMenu
@@ -959,7 +959,7 @@
             this.PanelReportesAvanzados.Controls.Add(this.label22);
             this.PanelReportesAvanzados.Controls.Add(this.DtpHasta);
             this.PanelReportesAvanzados.Controls.Add(this.ChkFiltroCalif);
-            this.PanelReportesAvanzados.Controls.Add(this.button2);
+            this.PanelReportesAvanzados.Controls.Add(this.BtnExportarJSON);
             this.PanelReportesAvanzados.Controls.Add(this.BtnExportarGrilla);
             this.PanelReportesAvanzados.Controls.Add(this.label28);
             this.PanelReportesAvanzados.Controls.Add(this.DataGridReportes);
@@ -978,6 +978,44 @@
             this.PanelReportesAvanzados.TabIndex = 22;
             this.PanelReportesAvanzados.Tag = "Default";
             this.PanelReportesAvanzados.Visible = false;
+            // 
+            // ChkFiltroCantTemporadas
+            // 
+            this.ChkFiltroCantTemporadas.AutoSize = true;
+            this.ChkFiltroCantTemporadas.Location = new System.Drawing.Point(746, 243);
+            this.ChkFiltroCantTemporadas.Name = "ChkFiltroCantTemporadas";
+            this.ChkFiltroCantTemporadas.Size = new System.Drawing.Size(139, 17);
+            this.ChkFiltroCantTemporadas.TabIndex = 63;
+            this.ChkFiltroCantTemporadas.Text = "Utilizar cant temporadas";
+            this.ChkFiltroCantTemporadas.UseVisualStyleBackColor = true;
+            this.ChkFiltroCantTemporadas.Visible = false;
+            this.ChkFiltroCantTemporadas.CheckedChanged += new System.EventHandler(this.ChkFiltroCantTemporadas_CheckedChanged);
+            // 
+            // NumUpCantTemporadas
+            // 
+            this.NumUpCantTemporadas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.NumUpCantTemporadas.Enabled = false;
+            this.NumUpCantTemporadas.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NumUpCantTemporadas.Location = new System.Drawing.Point(746, 281);
+            this.NumUpCantTemporadas.Maximum = new decimal(new int[] {
+            700,
+            0,
+            0,
+            0});
+            this.NumUpCantTemporadas.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NumUpCantTemporadas.Name = "NumUpCantTemporadas";
+            this.NumUpCantTemporadas.Size = new System.Drawing.Size(48, 24);
+            this.NumUpCantTemporadas.TabIndex = 64;
+            this.NumUpCantTemporadas.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NumUpCantTemporadas.Visible = false;
             // 
             // ChkFiltroNetwork
             // 
@@ -1124,16 +1162,17 @@
             this.ChkFiltroCalif.UseVisualStyleBackColor = true;
             this.ChkFiltroCalif.CheckedChanged += new System.EventHandler(this.ChkFiltroCalif_CheckedChanged);
             // 
-            // button2
+            // BtnExportarJSON
             // 
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(585, 588);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(326, 38);
-            this.button2.TabIndex = 18;
-            this.button2.Text = "Exportar JSON";
-            this.button2.UseVisualStyleBackColor = true;
+            this.BtnExportarJSON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnExportarJSON.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnExportarJSON.Location = new System.Drawing.Point(585, 588);
+            this.BtnExportarJSON.Name = "BtnExportarJSON";
+            this.BtnExportarJSON.Size = new System.Drawing.Size(326, 38);
+            this.BtnExportarJSON.TabIndex = 18;
+            this.BtnExportarJSON.Text = "Exportar grilla a JSON";
+            this.BtnExportarJSON.UseVisualStyleBackColor = true;
+            this.BtnExportarJSON.Click += new System.EventHandler(this.BtnExportarJSON_Click);
             // 
             // BtnExportarGrilla
             // 
@@ -1158,44 +1197,6 @@
             this.label28.Tag = "Titulo";
             this.label28.Text = "Desde";
             this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // ChkFiltroCantTemporadas
-            // 
-            this.ChkFiltroCantTemporadas.AutoSize = true;
-            this.ChkFiltroCantTemporadas.Location = new System.Drawing.Point(746, 243);
-            this.ChkFiltroCantTemporadas.Name = "ChkFiltroCantTemporadas";
-            this.ChkFiltroCantTemporadas.Size = new System.Drawing.Size(139, 17);
-            this.ChkFiltroCantTemporadas.TabIndex = 63;
-            this.ChkFiltroCantTemporadas.Text = "Utilizar cant temporadas";
-            this.ChkFiltroCantTemporadas.UseVisualStyleBackColor = true;
-            this.ChkFiltroCantTemporadas.Visible = false;
-            this.ChkFiltroCantTemporadas.CheckedChanged += new System.EventHandler(this.ChkFiltroCantTemporadas_CheckedChanged);
-            // 
-            // NumUpCantTemporadas
-            // 
-            this.NumUpCantTemporadas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.NumUpCantTemporadas.Enabled = false;
-            this.NumUpCantTemporadas.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NumUpCantTemporadas.Location = new System.Drawing.Point(746, 281);
-            this.NumUpCantTemporadas.Maximum = new decimal(new int[] {
-            700,
-            0,
-            0,
-            0});
-            this.NumUpCantTemporadas.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.NumUpCantTemporadas.Name = "NumUpCantTemporadas";
-            this.NumUpCantTemporadas.Size = new System.Drawing.Size(48, 24);
-            this.NumUpCantTemporadas.TabIndex = 64;
-            this.NumUpCantTemporadas.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.NumUpCantTemporadas.Visible = false;
             // 
             // ControlGestionDashboard
             // 
@@ -1232,8 +1233,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.DataGridReportes)).EndInit();
             this.PanelReportesAvanzados.ResumeLayout(false);
             this.PanelReportesAvanzados.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NumUpDuracion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumUpCantTemporadas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumUpDuracion)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1309,7 +1310,7 @@
         private System.Windows.Forms.DateTimePicker DtpDesde;
         private System.Windows.Forms.DataGridView DataGridReportes;
         private System.Windows.Forms.Panel PanelReportesAvanzados;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button BtnExportarJSON;
         private System.Windows.Forms.Button BtnExportarGrilla;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.CheckBox ChkFiltroCalif;
