@@ -94,16 +94,16 @@
             this.BtnAplicarFiltrosConsultar = new System.Windows.Forms.Button();
             this.BtnBorrarFiltros = new System.Windows.Forms.Button();
             this.CboGeneros = new System.Windows.Forms.ComboBox();
-            this.label24 = new System.Windows.Forms.Label();
             this.NumUpCalificacionMinima = new System.Windows.Forms.NumericUpDown();
             this.CboTipoReporte = new System.Windows.Forms.ComboBox();
             this.label25 = new System.Windows.Forms.Label();
             this.DtpDesde = new System.Windows.Forms.DateTimePicker();
             this.DataGridReportes = new System.Windows.Forms.DataGridView();
             this.PanelReportesAvanzados = new System.Windows.Forms.Panel();
+            this.ChkFiltroNetwork = new System.Windows.Forms.CheckBox();
+            this.ChkFiltroGenero = new System.Windows.Forms.CheckBox();
             this.ChkDuracion = new System.Windows.Forms.CheckBox();
             this.NumUpDuracion = new System.Windows.Forms.NumericUpDown();
-            this.label31 = new System.Windows.Forms.Label();
             this.CboNetwork = new System.Windows.Forms.ComboBox();
             this.label30 = new System.Windows.Forms.Label();
             this.TxtDirector = new System.Windows.Forms.TextBox();
@@ -115,6 +115,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.BtnExportarGrilla = new System.Windows.Forms.Button();
             this.label28 = new System.Windows.Forms.Label();
+            this.ChkFiltroCantTemporadas = new System.Windows.Forms.CheckBox();
+            this.NumUpCantTemporadas = new System.Windows.Forms.NumericUpDown();
             this.PanelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicAvatar)).BeginInit();
             this.PanelDashboardMain.SuspendLayout();
@@ -135,6 +137,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DataGridReportes)).BeginInit();
             this.PanelReportesAvanzados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumUpDuracion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumUpCantTemporadas)).BeginInit();
             this.SuspendLayout();
             // 
             // PanelMenu
@@ -259,7 +262,7 @@
             this.PanelDashboardMain.Controls.Add(this.flowPanelPelisMasVistas);
             this.PanelDashboardMain.Location = new System.Drawing.Point(252, 0);
             this.PanelDashboardMain.Name = "PanelDashboardMain";
-            this.PanelDashboardMain.Size = new System.Drawing.Size(1028, 720);
+            this.PanelDashboardMain.Size = new System.Drawing.Size(1012, 720);
             this.PanelDashboardMain.TabIndex = 20;
             this.PanelDashboardMain.Tag = "Default";
             // 
@@ -524,9 +527,9 @@
             this.PanelDashboardMetricasUsuario.Controls.Add(this.FlowPanelMasActivos);
             this.PanelDashboardMetricasUsuario.Controls.Add(this.panel8);
             this.PanelDashboardMetricasUsuario.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PanelDashboardMetricasUsuario.Location = new System.Drawing.Point(1216, 0);
+            this.PanelDashboardMetricasUsuario.Location = new System.Drawing.Point(1270, 0);
             this.PanelDashboardMetricasUsuario.Name = "PanelDashboardMetricasUsuario";
-            this.PanelDashboardMetricasUsuario.Size = new System.Drawing.Size(64, 720);
+            this.PanelDashboardMetricasUsuario.Size = new System.Drawing.Size(10, 720);
             this.PanelDashboardMetricasUsuario.TabIndex = 21;
             this.PanelDashboardMetricasUsuario.Tag = "Default";
             this.PanelDashboardMetricasUsuario.Visible = false;
@@ -766,7 +769,7 @@
             this.FlowPanelMasActivos.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.FlowPanelMasActivos.Location = new System.Drawing.Point(724, 160);
             this.FlowPanelMasActivos.Name = "FlowPanelMasActivos";
-            this.FlowPanelMasActivos.Size = new System.Drawing.Size(222, 230);
+            this.FlowPanelMasActivos.Size = new System.Drawing.Size(259, 230);
             this.FlowPanelMasActivos.TabIndex = 33;
             this.FlowPanelMasActivos.WrapContents = false;
             // 
@@ -861,24 +864,13 @@
             // CboGeneros
             // 
             this.CboGeneros.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboGeneros.Enabled = false;
             this.CboGeneros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CboGeneros.FormattingEnabled = true;
             this.CboGeneros.Location = new System.Drawing.Point(291, 148);
             this.CboGeneros.Name = "CboGeneros";
             this.CboGeneros.Size = new System.Drawing.Size(226, 21);
             this.CboGeneros.TabIndex = 5;
-            // 
-            // label24
-            // 
-            this.label24.BackColor = System.Drawing.Color.Transparent;
-            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(288, 116);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(229, 21);
-            this.label24.TabIndex = 43;
-            this.label24.Tag = "Titulo";
-            this.label24.Text = "Tipo de género";
-            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // NumUpCalificacionMinima
             // 
@@ -912,13 +904,13 @@
             this.CboTipoReporte.FormattingEnabled = true;
             this.CboTipoReporte.Items.AddRange(new object[] {
             "Peliculas",
-            "Series",
-            "Usuarios"});
+            "Series"});
             this.CboTipoReporte.Location = new System.Drawing.Point(44, 149);
             this.CboTipoReporte.Name = "CboTipoReporte";
             this.CboTipoReporte.Size = new System.Drawing.Size(226, 21);
             this.CboTipoReporte.TabIndex = 4;
             this.CboTipoReporte.Tag = "";
+            this.CboTipoReporte.SelectedIndexChanged += new System.EventHandler(this.CboTipoReporte_SelectedIndexChanged);
             // 
             // label25
             // 
@@ -953,9 +945,12 @@
             // PanelReportesAvanzados
             // 
             this.PanelReportesAvanzados.AutoScroll = true;
+            this.PanelReportesAvanzados.Controls.Add(this.ChkFiltroCantTemporadas);
+            this.PanelReportesAvanzados.Controls.Add(this.NumUpCantTemporadas);
+            this.PanelReportesAvanzados.Controls.Add(this.ChkFiltroNetwork);
+            this.PanelReportesAvanzados.Controls.Add(this.ChkFiltroGenero);
             this.PanelReportesAvanzados.Controls.Add(this.ChkDuracion);
             this.PanelReportesAvanzados.Controls.Add(this.NumUpDuracion);
-            this.PanelReportesAvanzados.Controls.Add(this.label31);
             this.PanelReportesAvanzados.Controls.Add(this.CboNetwork);
             this.PanelReportesAvanzados.Controls.Add(this.label30);
             this.PanelReportesAvanzados.Controls.Add(this.TxtDirector);
@@ -972,18 +967,39 @@
             this.PanelReportesAvanzados.Controls.Add(this.label25);
             this.PanelReportesAvanzados.Controls.Add(this.CboTipoReporte);
             this.PanelReportesAvanzados.Controls.Add(this.NumUpCalificacionMinima);
-            this.PanelReportesAvanzados.Controls.Add(this.label24);
             this.PanelReportesAvanzados.Controls.Add(this.CboGeneros);
             this.PanelReportesAvanzados.Controls.Add(this.BtnBorrarFiltros);
             this.PanelReportesAvanzados.Controls.Add(this.BtnAplicarFiltrosConsultar);
             this.PanelReportesAvanzados.Controls.Add(this.label18);
             this.PanelReportesAvanzados.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PanelReportesAvanzados.Location = new System.Drawing.Point(412, 0);
+            this.PanelReportesAvanzados.Location = new System.Drawing.Point(286, 0);
             this.PanelReportesAvanzados.Name = "PanelReportesAvanzados";
-            this.PanelReportesAvanzados.Size = new System.Drawing.Size(804, 720);
+            this.PanelReportesAvanzados.Size = new System.Drawing.Size(984, 720);
             this.PanelReportesAvanzados.TabIndex = 22;
             this.PanelReportesAvanzados.Tag = "Default";
             this.PanelReportesAvanzados.Visible = false;
+            // 
+            // ChkFiltroNetwork
+            // 
+            this.ChkFiltroNetwork.AutoSize = true;
+            this.ChkFiltroNetwork.Location = new System.Drawing.Point(549, 122);
+            this.ChkFiltroNetwork.Name = "ChkFiltroNetwork";
+            this.ChkFiltroNetwork.Size = new System.Drawing.Size(135, 17);
+            this.ChkFiltroNetwork.TabIndex = 62;
+            this.ChkFiltroNetwork.Text = "Utilizar filtro de network";
+            this.ChkFiltroNetwork.UseVisualStyleBackColor = true;
+            this.ChkFiltroNetwork.CheckedChanged += new System.EventHandler(this.ChkFiltroNetwork_CheckedChanged);
+            // 
+            // ChkFiltroGenero
+            // 
+            this.ChkFiltroGenero.AutoSize = true;
+            this.ChkFiltroGenero.Location = new System.Drawing.Point(290, 121);
+            this.ChkFiltroGenero.Name = "ChkFiltroGenero";
+            this.ChkFiltroGenero.Size = new System.Drawing.Size(130, 17);
+            this.ChkFiltroGenero.TabIndex = 61;
+            this.ChkFiltroGenero.Text = "Utilizar filtro de genero";
+            this.ChkFiltroGenero.UseVisualStyleBackColor = true;
+            this.ChkFiltroGenero.CheckedChanged += new System.EventHandler(this.ChkFiltroGenero_CheckedChanged);
             // 
             // ChkDuracion
             // 
@@ -1021,21 +1037,10 @@
             0,
             0});
             // 
-            // label31
-            // 
-            this.label31.BackColor = System.Drawing.Color.Transparent;
-            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(546, 118);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(104, 21);
-            this.label31.TabIndex = 60;
-            this.label31.Tag = "Titulo";
-            this.label31.Text = "Network";
-            this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // CboNetwork
             // 
             this.CboNetwork.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboNetwork.Enabled = false;
             this.CboNetwork.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CboNetwork.FormattingEnabled = true;
             this.CboNetwork.Location = new System.Drawing.Point(549, 148);
@@ -1154,6 +1159,44 @@
             this.label28.Text = "Desde";
             this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // ChkFiltroCantTemporadas
+            // 
+            this.ChkFiltroCantTemporadas.AutoSize = true;
+            this.ChkFiltroCantTemporadas.Location = new System.Drawing.Point(746, 243);
+            this.ChkFiltroCantTemporadas.Name = "ChkFiltroCantTemporadas";
+            this.ChkFiltroCantTemporadas.Size = new System.Drawing.Size(139, 17);
+            this.ChkFiltroCantTemporadas.TabIndex = 63;
+            this.ChkFiltroCantTemporadas.Text = "Utilizar cant temporadas";
+            this.ChkFiltroCantTemporadas.UseVisualStyleBackColor = true;
+            this.ChkFiltroCantTemporadas.Visible = false;
+            this.ChkFiltroCantTemporadas.CheckedChanged += new System.EventHandler(this.ChkFiltroCantTemporadas_CheckedChanged);
+            // 
+            // NumUpCantTemporadas
+            // 
+            this.NumUpCantTemporadas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.NumUpCantTemporadas.Enabled = false;
+            this.NumUpCantTemporadas.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NumUpCantTemporadas.Location = new System.Drawing.Point(746, 281);
+            this.NumUpCantTemporadas.Maximum = new decimal(new int[] {
+            700,
+            0,
+            0,
+            0});
+            this.NumUpCantTemporadas.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NumUpCantTemporadas.Name = "NumUpCantTemporadas";
+            this.NumUpCantTemporadas.Size = new System.Drawing.Size(48, 24);
+            this.NumUpCantTemporadas.TabIndex = 64;
+            this.NumUpCantTemporadas.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NumUpCantTemporadas.Visible = false;
+            // 
             // ControlGestionDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1190,6 +1233,7 @@
             this.PanelReportesAvanzados.ResumeLayout(false);
             this.PanelReportesAvanzados.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumUpDuracion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumUpCantTemporadas)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1259,7 +1303,6 @@
         private System.Windows.Forms.Button BtnAplicarFiltrosConsultar;
         private System.Windows.Forms.Button BtnBorrarFiltros;
         private System.Windows.Forms.ComboBox CboGeneros;
-        private System.Windows.Forms.Label label24;
         private System.Windows.Forms.NumericUpDown NumUpCalificacionMinima;
         private System.Windows.Forms.ComboBox CboTipoReporte;
         private System.Windows.Forms.Label label25;
@@ -1276,10 +1319,13 @@
         private System.Windows.Forms.TextBox TxtDirector;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.TextBox TxtPalabrasTitulo;
-        private System.Windows.Forms.Label label31;
         private System.Windows.Forms.ComboBox CboNetwork;
         private System.Windows.Forms.NumericUpDown NumUpDuracion;
         private System.Windows.Forms.CheckBox ChkDuracion;
         private System.Windows.Forms.Button BtnExportarTodoPDF;
+        private System.Windows.Forms.CheckBox ChkFiltroNetwork;
+        private System.Windows.Forms.CheckBox ChkFiltroGenero;
+        private System.Windows.Forms.CheckBox ChkFiltroCantTemporadas;
+        private System.Windows.Forms.NumericUpDown NumUpCantTemporadas;
     }
 }

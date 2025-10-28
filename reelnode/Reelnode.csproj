@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{7B0D18C3-C234-48CE-BF1A-67EFD3E7B3FD}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>ProjectoNuevo</RootNamespace>
-    <AssemblyName>ProjectoNuevo</AssemblyName>
+    <RootNamespace>Reelnode</RootNamespace>
+    <AssemblyName>Reelnode</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

@@ -18,6 +18,8 @@ namespace Reelnode
             string network,
             DateTime fechaDesde,
             DateTime fechaHasta,
+            int duracionMinima,
+            int calificacionMinima,
             DataGridView dataGridReportes)
         {
             UtilsBD.Conexion.AbrirBD();
@@ -44,6 +46,9 @@ namespace Reelnode
                     cmd.Parameters.AddWithValue("p_fecha_hasta", (object)DBNull.Value);
                 }
 
+                cmd.Parameters.AddWithValue("p_calificacion_minima", calificacionMinima > 0 ? calificacionMinima : (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("p_duracion_minima", duracionMinima > 0 ? duracionMinima : (object)DBNull.Value);
+
                 // MySqlDataAdapter es una herramienta llenar DataTables.
                 using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd))
                 {
@@ -65,6 +70,8 @@ namespace Reelnode
            string network,
            DateTime fechaDesde,
            DateTime fechaHasta,
+           int cantTemporadas,
+           int calificacionMinima,
            DataGridView dataGridReportes)
         {
             UtilsBD.Conexion.AbrirBD();
@@ -90,6 +97,9 @@ namespace Reelnode
                     cmd.Parameters.AddWithValue("p_fecha_desde", (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("p_fecha_hasta", (object)DBNull.Value);
                 }
+
+                cmd.Parameters.AddWithValue("p_temporadas_minimas", cantTemporadas > 0 ? cantTemporadas : (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("p_calificacion_minima", calificacionMinima > 0 ? calificacionMinima : (object)DBNull.Value);
 
                 // MySqlDataAdapter es una herramienta llenar DataTables.
                 using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd))

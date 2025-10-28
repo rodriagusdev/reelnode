@@ -10,6 +10,9 @@ namespace Reelnode
         private PanelGradiente PanelMain;
         bool usarCalificacionMinima = false;
         bool usarDuracionMinima = false;
+        bool usarCantTemporadas = false;
+        bool usarNetwork = false;
+        bool usarGeneros = false;
 
         public ControlGestionDashboard()
         {
@@ -94,7 +97,7 @@ namespace Reelnode
             CboTipoReporte.SelectedIndex = 0;
         }
 
-        /* !--- FILTROS DE REPORTES AVANZADOS ---! */
+        /* !--- FILTROS DE REPORTES AVANZADOS Y VISIBILIDAD DE COMPONENTES ---! */
         private void ChkFiltroCalif_CheckedChanged(object sender, EventArgs e)
         {
             NumUpCalificacionMinima.Enabled = ChkFiltroCalif.Checked;
@@ -104,7 +107,57 @@ namespace Reelnode
         private void ChkDuracion_CheckedChanged(object sender, EventArgs e)
         {
             NumUpDuracion.Enabled = ChkDuracion.Checked;
-            usarDuracionMinima = ChkFiltroCalif.Checked;
+            usarDuracionMinima = ChkDuracion.Checked;
+        }
+
+        private void ChkFiltroCantTemporadas_CheckedChanged(object sender, EventArgs e)
+        {
+            usarCantTemporadas = ChkFiltroCantTemporadas.Checked;
+            NumUpCantTemporadas.Enabled = ChkFiltroCantTemporadas.Checked;
+        }
+
+        private void ChkFiltroGenero_CheckedChanged(object sender, EventArgs e)
+        {
+            CboGeneros.Enabled = ChkFiltroGenero.Checked;
+            usarGeneros = ChkFiltroGenero.Checked;
+        }
+
+        private void ChkFiltroNetwork_CheckedChanged(object sender, EventArgs e)
+        {
+            CboNetwork.Enabled = ChkFiltroNetwork.Checked;
+            usarNetwork = ChkFiltroNetwork.Checked;
+        }
+
+        private void CboTipoReporte_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CboTipoReporte.Text == "Peliculas")
+            {
+
+                ChkFiltroCantTemporadas.Visible = false;
+                ChkFiltroCantTemporadas.Enabled = false;
+
+                NumUpCantTemporadas.Visible = false;
+                NumUpCantTemporadas.Enabled = false;
+
+                ChkDuracion.Visible = true;
+                ChkDuracion.Enabled = true;
+
+                NumUpDuracion.Visible = true;
+                NumUpDuracion.Enabled = true;
+            }
+            else
+            {
+                ChkDuracion.Visible = false;
+                ChkDuracion.Enabled = false;
+                NumUpDuracion.Visible = false;
+                NumUpDuracion.Enabled = false;
+
+                ChkFiltroCantTemporadas.Visible = true;
+                ChkFiltroCantTemporadas.Enabled = true;
+
+                NumUpCantTemporadas.Visible = true;
+                NumUpCantTemporadas.Enabled = true;
+            }
         }
 
         private void BtnAplicarFiltrosConsultar_Click(object sender, EventArgs e)
@@ -114,22 +167,31 @@ namespace Reelnode
                 case "Peliculas":
                     AdministradorReportesAvanzados.ObtenerReporteAvanzadoPeliculas(
                         TxtPalabrasTitulo.Text,
-                        CboGeneros.SelectedItem?.ToString(),
+                        usarGeneros == true ? CboGeneros.SelectedItem?.ToString() : "",
                         TxtDirector.Text,
-                        CboNetwork.SelectedItem?.ToString(),
+                        usarNetwork == true ? CboNetwork.SelectedItem?.ToString() : "",
                         DtpDesde.Value,
                         DtpHasta.Value,
+                        usarDuracionMinima == true ? Convert.ToInt32(NumUpDuracion.Value) : 0,
+                        usarCalificacionMinima == true
+                            ? Convert.ToInt32(NumUpCalificacionMinima.Value)
+                            : 0,
                         DataGridReportes
                     );
                     break;
                 case "Series":
                     AdministradorReportesAvanzados.ObtenerReporteAvanzadoSeries(
                         TxtPalabrasTitulo.Text,
-                        CboGeneros.SelectedItem?.ToString(),
+                        usarGeneros == true ? CboGeneros.SelectedItem?.ToString() : "",
                         TxtDirector.Text,
-                        CboNetwork.SelectedItem?.ToString(),
+                        usarNetwork == true ? CboNetwork.SelectedItem?.ToString() : "",
                         DtpDesde.Value,
                         DtpHasta.Value,
+                        usarCantTemporadas == true ?  Convert.ToInt32(NumUpCantTemporadas.Value)
+                            : 0,
+                        usarCalificacionMinima == true
+                            ? Convert.ToInt32(NumUpCalificacionMinima.Value)
+                            : 0,
                         DataGridReportes
                     );
                     break;
@@ -151,24 +213,6 @@ namespace Reelnode
             NumUpDuracion.Value = 1;
             ChkDuracion.Checked = false;
             ChkFiltroCalif.Checked = false;
-        }
-
-        private void BtnExportarPDF_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog documentoPDF = new SaveFileDialog();
-            documentoPDF.Filter = "Archivos PDF (*.pdf |* .pdf)";
-            documentoPDF.FileName = "Reportes Metricas.pdf";
-
-            if (documentoPDF.ShowDialog() == DialogResult.OK)
-            {
-                AdministradorPDF.ExportadorDashboard(documentoPDF.FileName);
-                MessageBox.Show(
-                    "Reporte PDF generado correctamente",
-                    "Exito al generar el documento",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
-            }
         }
 
         /* !--- FIN DE FILTROS DE REPORTES AVANZADOS ---! */
@@ -227,6 +271,7 @@ namespace Reelnode
             CargarDatosUsuario();
         }
 
+        /* !--- EXPORTACION PDF ---! */
         private void BtnExportarTodoPDF_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFile = new SaveFileDialog();
@@ -250,5 +295,9 @@ namespace Reelnode
                 AdministradorPDF.ExportarDataGridToPDF(DataGridReportes, saveFile.FileName);
             }
         }
+
+
+
+        /* !--- FIN EXPORTACION PDF ---! */
     }
 }

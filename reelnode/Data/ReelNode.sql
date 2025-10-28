@@ -1347,33 +1347,39 @@ CREATE PROCEDURE sp_reporte_avanzado_peliculas(
     IN p_director VARCHAR(255),
     IN p_network_nombre VARCHAR(255),
     IN p_fecha_desde DATE,
-    IN p_fecha_hasta DATE
+    IN p_fecha_hasta DATE,
+    IN p_calificacion_minima TINYINT,
+    IN p_duracion_minima int
 )
-BEGIN
-	 /*	
-     Procedimientos Almacenados normales tienen una limitación: 
-     no pueden cambiar su estructura SQL en tiempo de ejecución.
-     Con @sql puedo lograr crear una CONSULTA DINÁMICA que
-     voy a utilizar en los procesos de 
-     sp_reporte_avanzado_peliculas
-     sp_reporte_avanzado_series
-     */
-     
-    SET @sql = '
-        SELECT DISTINCT
-            p.nombre as Nombre,
+BEGIN 
+		SET @sql = '
+        SELECT
+            p.nombre as Titulo,
             p.fecha_estreno as Fecha_Estreno,
             p.descripcion as Descripcion,
             p.director as Director,
             p.duracion Duracion,
             n.nombre as Network,
-            g.nombre as Genero
+            -- Agregamos los géneros en una sola columna
+            GROUP_CONCAT(DISTINCT g.nombre SEPARATOR '', '') as Generos, 
+            -- Calculamos la calificación promedio
+            ROUND(AVG(cp.calificacion), 1) AS Calificacion_Promedio
         FROM peliculas p
         LEFT JOIN network n ON p.id_network = n.id_network
         LEFT JOIN genero_x_pelicula gxp ON p.id_pelicula = gxp.id_pelicula
         LEFT JOIN genero g ON gxp.id_genero = g.id_genero
+        -- Nueva JOIN para calificaciones
+        LEFT JOIN calificaciones_peliculas cp ON p.id_pelicula = cp.id_pelicula 
         WHERE 1=1';
-
+        
+        -- WHERE 1=1 es necesario para que el motor pueda concatenar el AND sin preocuparse por donde empzar
+        -- del o contrario puede tirar error
+        
+	IF p_duracion_minima IS NOT NULL AND p_duracion_minima > 0 THEN
+        SET @sql = CONCAT(@sql, ' AND p.duracion >= ', p_duracion_minima);
+    END IF;
+        
+    -- Filtro de Network
     IF p_network_nombre IS NOT NULL AND p_network_nombre != '' THEN
         SET @sql = CONCAT(@sql, ' AND n.nombre = ''', p_network_nombre, '''');
     END IF;
@@ -1393,12 +1399,21 @@ BEGIN
         SET @sql = CONCAT(@sql, ' AND g.nombre = ''', p_genero_nombre, '''');
     END IF;
 
-    -- Filtro de Fechas (CORREGIDO)
+    -- Filtro de Fechas
     IF p_fecha_desde IS NOT NULL AND p_fecha_hasta IS NOT NULL AND p_fecha_desde <= p_fecha_hasta THEN
-        -- Añadimos las comillas simples (''') alrededor de las variables de fecha
         SET @sql = CONCAT(@sql, ' AND p.fecha_estreno BETWEEN ''', p_fecha_desde, ''' AND ''', p_fecha_hasta, '''');
     END IF;
 
+    
+    -- PASO 1: Agregamos el GROUP BY por la clave primaria
+    SET @sql = CONCAT(@sql, ' GROUP BY p.id_pelicula'); 
+
+    -- PASO 2: Agregamos el HAVING para la calificación mínima (maneja NULL con IFNULL)
+    IF p_calificacion_minima IS NOT NULL AND p_calificacion_minima > 0 THEN
+        SET @sql = CONCAT(@sql, ' HAVING IFNULL(AVG(cp.calificacion), 0) >= ', p_calificacion_minima);
+    END IF;
+    
+    -- PASO 3: Agregamos el ORDER BY
     SET @sql = CONCAT(@sql, ' ORDER BY p.fecha_estreno DESC');
 
     PREPARE query_con_filtros FROM @sql;
@@ -1410,42 +1425,52 @@ DELIMITER ;
 
 DELIMITER //
 CREATE PROCEDURE sp_reporte_avanzado_series(
-	IN p_nombre VARCHAR(255),
+    IN p_nombre VARCHAR(255),
     IN p_genero_nombre VARCHAR(50),
     IN p_director VARCHAR(255),
     IN p_network_nombre VARCHAR(255),
     IN p_fecha_desde DATE,
-    IN p_fecha_hasta DATE
+    IN p_fecha_hasta DATE,
+    IN p_calificacion_minima TINYINT,
+    IN p_temporadas_minimas SMALLINT
 )
 BEGIN
-	
+    
     SET @sql = '
         SELECT
-            DISTINCT s.nombre as Titulo,
-            s.fecha_estreno as Fecha_Estreno,
-            s.fecha_fin as Fecha_Fin,
-            s.descripcion as Descripcion,
-            s.director as Director,
-            s.cant_temporadas as Temporadas,
-            n.nombre as Network,
-            g.nombre as Genero
-        FROM serie s
-        LEFT JOIN network n ON s.id_network = n.id_network
-        LEFT JOIN genero_x_serie gxs ON s.id_serie = gxs.id_serie
-        LEFT JOIN genero g ON gxs.id_genero = g.id_genero
-        WHERE 1=1';
+        s.nombre as Titulo,
+        s.fecha_estreno as Fecha_Estreno,
+        s.fecha_fin as Fecha_Fin,
+        s.descripcion as Descripcion,
+        s.director as Director,
+        s.cant_temporadas as Temporadas,
+        n.nombre as Network,
+        GROUP_CONCAT(DISTINCT g.nombre SEPARATOR '', '') as Generos, 
+        ROUND(AVG(cs.calificacion), 1) AS Calificacion_Promedio
+    FROM serie s
+    LEFT JOIN network n ON s.id_network = n.id_network
+    LEFT JOIN genero_x_serie gxs ON s.id_serie = gxs.id_serie
+    LEFT JOIN genero g ON gxs.id_genero = g.id_genero
+    LEFT JOIN calificaciones_serie cs ON s.id_serie = cs.id_serie
+    WHERE 1=1';
 
-	-- WHERE 1=1 es necesario para poder concatenar la logica. De lo contrario, habra error.
+	 -- WHERE 1=1 es necesario para que el motor pueda concatenar el AND sin preocuparse por donde empzar
+        -- del o contrario puede tirar error
+        
 
-   IF p_network_nombre IS NOT NULL AND p_network_nombre != '' THEN
-        -- Como usamos LEFT JOIN, el filtro se agrega con AND
+    -- Filtro de Temporadas Minimas
+    IF p_temporadas_minimas IS NOT NULL AND p_temporadas_minimas > 0 THEN 
+        SET @sql = CONCAT(@sql, ' AND s.cant_temporadas >= ', p_temporadas_minimas);
+    END IF;
+
+    -- Filtro de Network
+    IF p_network_nombre IS NOT NULL AND p_network_nombre != '' THEN
         SET @sql = CONCAT(@sql, ' AND n.nombre = ''', p_network_nombre, '''');
     END IF;
 
-    -- Filtro de Título
+    -- Filtro de Titulo
     IF p_nombre IS NOT NULL AND p_nombre != '' THEN
         SET @sql = CONCAT(@sql, ' AND s.nombre LIKE ''%', p_nombre, '%'''); 
-	-- Si el nombre de la peli es Avatar el CONCAT leera esto como '%Avatar%'
     END IF;
     
     -- Filtro de Director
@@ -1453,7 +1478,7 @@ BEGIN
         SET @sql = CONCAT(@sql, ' AND s.director LIKE ''%', p_director, '%'''); 
     END IF;
 
-    -- Filtro de Género
+    -- Filtro de Genero
     IF p_genero_nombre IS NOT NULL AND p_genero_nombre != '' THEN
         SET @sql = CONCAT(@sql, ' AND g.nombre = ''', p_genero_nombre, '''');
     END IF;
@@ -1463,6 +1488,15 @@ BEGIN
         SET @sql = CONCAT(@sql, ' AND s.fecha_estreno BETWEEN ''', p_fecha_desde, ''' AND ''', p_fecha_hasta, '''');
     END IF;
 
+    -- Clausulas de Agregacion y Orden
+    SET @sql = CONCAT(@sql, ' GROUP BY s.id_serie');
+
+    -- HAVING
+    IF p_calificacion_minima IS NOT NULL AND p_calificacion_minima > 0 THEN
+        SET @sql = CONCAT(@sql, ' HAVING IFNULL(AVG(cs.calificacion), 0) >= ', p_calificacion_minima);
+    END IF;
+
+    -- ORDER BY
     SET @sql = CONCAT(@sql, ' ORDER BY s.fecha_estreno DESC');
 
     PREPARE query_con_filtros FROM @sql;

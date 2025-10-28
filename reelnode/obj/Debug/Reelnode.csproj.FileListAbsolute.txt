@@ -339,7 +339,6 @@ C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.FormCalificar.resources
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.FormMain.resources
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.FormLogin.resources
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.FormRegistrar.resources
-C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\ProjectoNuevo.Properties.Resources.resources
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.csproj.GenerateResource.cache
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.csproj.CoreCompileInputs.cache
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\logo.png
@@ -348,9 +347,6 @@ C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\runtimes\win-x64\native\WebView2Lo
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\runtimes\win-arm64\native\WebView2Loader.dll
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Assets\home.png
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Assets\logo.jpeg
-C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\ProjectoNuevo.exe.config
-C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\ProjectoNuevo.exe
-C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\ProjectoNuevo.pdb
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\BouncyCastle.Cryptography.dll
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Google.Protobuf.dll
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\itextsharp.dll
@@ -398,9 +394,6 @@ C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\System.Text.Json.xml
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\System.ValueTuple.xml
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.csproj.Up2Date
-C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\ProjectoNuevo.exe
-C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\ProjectoNuevo.pdb
-C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\ProjectoNuevo.exe.config
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.ControlComentarios.resources
 D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlComentarios.resources
 D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlGestionDashboard.resources
@@ -413,3 +406,10 @@ C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\model_optimized_quantized.onnx
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\tokenizer.json
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Newtonsoft.Json.dll
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Newtonsoft.Json.xml
+C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.Properties.Resources.resources
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Reelnode.exe.config
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Reelnode.exe
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Reelnode.pdb
+C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.exe
+C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.pdb
+C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.exe.config

@@ -29,6 +29,13 @@
         private void InitializeComponent()
         {
             this.PanelCuenta = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.FlowSeriesCalificadas = new System.Windows.Forms.FlowLayoutPanel();
+            this.LblURL = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
@@ -44,13 +51,6 @@
             this.LblEmail = new System.Windows.Forms.Label();
             this.LblUsuario = new System.Windows.Forms.Label();
             this.PicAvatar = new System.Windows.Forms.PictureBox();
-            this.LblURL = new System.Windows.Forms.Label();
-            this.FlowSeriesCalificadas = new System.Windows.Forms.FlowLayoutPanel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.PanelCuenta.SuspendLayout();
             this.PanelURL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicAvatar)).BeginInit();
@@ -86,6 +86,83 @@
             this.PanelCuenta.TabIndex = 50;
             this.PanelCuenta.Tag = "Default";
             this.PanelCuenta.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelCuenta_Paint);
+            // 
+            // label8
+            // 
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(990, 226);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(34, 37);
+            this.label8.TabIndex = 73;
+            this.label8.Text = "👁";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label7
+            // 
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(668, 10);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(34, 37);
+            this.label7.TabIndex = 72;
+            this.label7.Text = "👁";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(48, 10);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 31);
+            this.label2.TabIndex = 71;
+            this.label2.Tag = "Titulo";
+            this.label2.Text = "★ ";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(88, 21);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(183, 16);
+            this.label6.TabIndex = 70;
+            this.label6.Tag = "Titulo";
+            this.label6.Text = "Series que has calificado";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(48, 336);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(41, 31);
+            this.label5.TabIndex = 69;
+            this.label5.Tag = "Titulo";
+            this.label5.Text = "★ ";
+            // 
+            // FlowSeriesCalificadas
+            // 
+            this.FlowSeriesCalificadas.AutoScroll = true;
+            this.FlowSeriesCalificadas.Location = new System.Drawing.Point(44, 52);
+            this.FlowSeriesCalificadas.Name = "FlowSeriesCalificadas";
+            this.FlowSeriesCalificadas.Size = new System.Drawing.Size(590, 249);
+            this.FlowSeriesCalificadas.TabIndex = 68;
+            this.FlowSeriesCalificadas.Tag = "Default";
+            this.FlowSeriesCalificadas.WrapContents = false;
+            // 
+            // LblURL
+            // 
+            this.LblURL.BackColor = System.Drawing.Color.Transparent;
+            this.LblURL.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LblURL.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblURL.ForeColor = System.Drawing.Color.Black;
+            this.LblURL.Location = new System.Drawing.Point(1113, 125);
+            this.LblURL.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblURL.Name = "LblURL";
+            this.LblURL.Size = new System.Drawing.Size(131, 15);
+            this.LblURL.TabIndex = 67;
+            this.LblURL.Text = "Inserte una URL";
+            this.LblURL.Visible = false;
             // 
             // panel2
             // 
@@ -251,83 +328,6 @@
             this.PicAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PicAvatar.TabIndex = 50;
             this.PicAvatar.TabStop = false;
-            // 
-            // LblURL
-            // 
-            this.LblURL.BackColor = System.Drawing.Color.Transparent;
-            this.LblURL.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LblURL.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblURL.ForeColor = System.Drawing.Color.Black;
-            this.LblURL.Location = new System.Drawing.Point(1113, 125);
-            this.LblURL.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LblURL.Name = "LblURL";
-            this.LblURL.Size = new System.Drawing.Size(131, 15);
-            this.LblURL.TabIndex = 67;
-            this.LblURL.Text = "Inserte una URL";
-            this.LblURL.Visible = false;
-            // 
-            // FlowSeriesCalificadas
-            // 
-            this.FlowSeriesCalificadas.AutoScroll = true;
-            this.FlowSeriesCalificadas.Location = new System.Drawing.Point(44, 52);
-            this.FlowSeriesCalificadas.Name = "FlowSeriesCalificadas";
-            this.FlowSeriesCalificadas.Size = new System.Drawing.Size(590, 249);
-            this.FlowSeriesCalificadas.TabIndex = 68;
-            this.FlowSeriesCalificadas.Tag = "Default";
-            this.FlowSeriesCalificadas.WrapContents = false;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(48, 336);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 31);
-            this.label5.TabIndex = 69;
-            this.label5.Tag = "Titulo";
-            this.label5.Text = "★ ";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(48, 10);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 31);
-            this.label2.TabIndex = 71;
-            this.label2.Tag = "Titulo";
-            this.label2.Text = "★ ";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(88, 21);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(183, 16);
-            this.label6.TabIndex = 70;
-            this.label6.Tag = "Titulo";
-            this.label6.Text = "Series que has calificado";
-            // 
-            // label7
-            // 
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(668, 10);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(34, 37);
-            this.label7.TabIndex = 72;
-            this.label7.Text = "👁";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label8
-            // 
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(990, 226);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(34, 37);
-            this.label8.TabIndex = 73;
-            this.label8.Text = "👁";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ControlCuentaUsuario
             // 
