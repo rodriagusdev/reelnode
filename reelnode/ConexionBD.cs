@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using System.Configuration;
 
 namespace Reelnode
 {
@@ -8,8 +9,8 @@ namespace Reelnode
 
         public ConexionBD()
         {
-            string connectionParams = "Server=localhost;Port=3306;Database=Reelnode;Uid=root;Password=;SslMode=none;";
-            conexion = new MySqlConnection(connectionParams);
+            string connectionString = ConfigurationManager.ConnectionStrings["ConexionReelnode"].ConnectionString;
+            conexion = new MySqlConnection(connectionString);
         }
 
         public MySqlConnection GetConnection()

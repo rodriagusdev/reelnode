@@ -275,9 +275,9 @@
             this.PanelDashboardMain.Controls.Add(this.label1);
             this.PanelDashboardMain.Controls.Add(this.flowPanelSeriesMasVistas);
             this.PanelDashboardMain.Controls.Add(this.flowPanelPelisMasVistas);
-            this.PanelDashboardMain.Location = new System.Drawing.Point(1251, 0);
+            this.PanelDashboardMain.Location = new System.Drawing.Point(252, 0);
             this.PanelDashboardMain.Name = "PanelDashboardMain";
-            this.PanelDashboardMain.Size = new System.Drawing.Size(13, 720);
+            this.PanelDashboardMain.Size = new System.Drawing.Size(1074, 720);
             this.PanelDashboardMain.TabIndex = 20;
             this.PanelDashboardMain.Tag = "Default";
             // 
@@ -542,9 +542,9 @@
             this.PanelDashboardMetricasUsuario.Controls.Add(this.FlowPanelMasActivos);
             this.PanelDashboardMetricasUsuario.Controls.Add(this.panel8);
             this.PanelDashboardMetricasUsuario.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PanelDashboardMetricasUsuario.Location = new System.Drawing.Point(246, 0);
+            this.PanelDashboardMetricasUsuario.Location = new System.Drawing.Point(1313, 0);
             this.PanelDashboardMetricasUsuario.Name = "PanelDashboardMetricasUsuario";
-            this.PanelDashboardMetricasUsuario.Size = new System.Drawing.Size(999, 720);
+            this.PanelDashboardMetricasUsuario.Size = new System.Drawing.Size(10, 720);
             this.PanelDashboardMetricasUsuario.TabIndex = 21;
             this.PanelDashboardMetricasUsuario.Tag = "Default";
             this.PanelDashboardMetricasUsuario.Visible = false;
@@ -989,9 +989,9 @@
             this.PanelReportesAvanzados.Controls.Add(this.BtnAplicarFiltrosConsultar);
             this.PanelReportesAvanzados.Controls.Add(this.label18);
             this.PanelReportesAvanzados.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PanelReportesAvanzados.Location = new System.Drawing.Point(230, 0);
+            this.PanelReportesAvanzados.Location = new System.Drawing.Point(1298, 0);
             this.PanelReportesAvanzados.Name = "PanelReportesAvanzados";
-            this.PanelReportesAvanzados.Size = new System.Drawing.Size(16, 720);
+            this.PanelReportesAvanzados.Size = new System.Drawing.Size(15, 720);
             this.PanelReportesAvanzados.TabIndex = 22;
             this.PanelReportesAvanzados.Tag = "Default";
             this.PanelReportesAvanzados.Visible = false;
@@ -1238,7 +1238,7 @@
             this.Controls.Add(this.PanelMenu);
             this.Controls.Add(this.PanelDashboardMetricasUsuario);
             this.Name = "ControlGestionDashboard";
-            this.Size = new System.Drawing.Size(1245, 720);
+            this.Size = new System.Drawing.Size(1323, 720);
             this.Load += new System.EventHandler(this.ControlGestionDashboard_Load);
             this.VisibleChanged += new System.EventHandler(this.ControlGestionDashboard_VisibleChanged);
             this.PanelMenu.ResumeLayout(false);
