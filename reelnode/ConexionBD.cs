@@ -1,10 +1,4 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Reelnode
 {
@@ -23,17 +17,17 @@ namespace Reelnode
             return conexion;
         }
 
-        public void AbrirBD() 
+        public void AbrirBD()
         {
-            if(conexion.State == System.Data.ConnectionState.Closed)
+            if (conexion.State == System.Data.ConnectionState.Closed)
             {
                 conexion.Open();
-            }   
+            }
         }
 
-        public void CerrarBD() 
+        public void CerrarBD()
         {
-            if(conexion.State == System.Data.ConnectionState.Open)
+            if (conexion.State == System.Data.ConnectionState.Open)
             {
                 conexion.Close();
             }

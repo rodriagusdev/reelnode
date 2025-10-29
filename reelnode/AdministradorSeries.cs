@@ -10,6 +10,7 @@ namespace Reelnode
     {
         public static List<Serie> seriesCargadas = new List<Serie>();
         public static Serie serieSeleccionada = new Serie();
+        public static event Action onSerieCargada;
 
         /* !--- OPERACIONES CRUD SERIES ---! */
 
@@ -21,7 +22,7 @@ namespace Reelnode
         {
             seriesCargadas.Clear();
 
-            var listAudiovisual = 
+            var listAudiovisual =
                 AdministradorAudiovisual.CargarAudiovisualCompleto
                 ("sp_listar_series", EnumTipoId.id_serie);
 
@@ -36,7 +37,7 @@ namespace Reelnode
 
         public static bool InsertarSerieBD(Serie nuevaSerie)
         {
-            bool insertacionExitosa = 
+            bool insertacionExitosa =
                 AdministradorAudiovisual.InsertarAudiovisual
                 (nuevaSerie, "sp_insertar_serie", EnumTipoId.p_id_serie);
 
@@ -50,7 +51,7 @@ namespace Reelnode
 
         public static bool ActualizarSerie(Serie actualizarSerie)
         {
-            bool actualizacionExitosa = 
+            bool actualizacionExitosa =
                 AdministradorAudiovisual.ActualizarAudiovisual
                 (actualizarSerie, "sp_actualizar_serie", EnumTipoId.p_id_serie);
 
@@ -62,7 +63,7 @@ namespace Reelnode
 
         public static void EliminarSerie(int id)
         {
-            bool eliminacionExitosa = 
+            bool eliminacionExitosa =
                 AdministradorAudiovisual.EliminarAudiovisual
                 ("sp_eliminar_serie", id, "Serie eliminada con exito");
 
@@ -76,6 +77,7 @@ namespace Reelnode
         {
             seriesCargadas.Clear();
             CargarSeries();
+            onSerieCargada.Invoke();
         }
 
         /* !--- FIN OPERACIONES CRUD SERIES ---! */

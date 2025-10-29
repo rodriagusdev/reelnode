@@ -219,6 +219,7 @@
             this.TxtPassword.Size = new System.Drawing.Size(296, 15);
             this.TxtPassword.TabIndex = 13;
             this.TxtPassword.TextChanged += new System.EventHandler(this.TxtPassword_TextChanged);
+            this.TxtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPassword_KeyPress);
             // 
             // PicReelnode
             // 

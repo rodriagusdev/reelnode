@@ -1,50 +1,43 @@
-﻿using System;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
-using Org.BouncyCastle.Tls.Crypto.Impl;
-using Reelnode;
 
 namespace Reelnode
 {
     public static class AdministradorPDF
     {
         // === COLORES DEL TEMA CYBERPUNK ===
-        private static BaseColor azulOscuro = new BaseColor(
+        private static readonly BaseColor azulOscuro = new BaseColor(
             AdministradorTema.AzulOscuroNeon.R,
             AdministradorTema.AzulOscuroNeon.G,
             AdministradorTema.AzulOscuroNeon.B
         );
-        private static BaseColor verdeNeon = new BaseColor(
+        private static readonly BaseColor verdeNeon = new BaseColor(
             AdministradorTema.VerdeClaroNeon.R,
             AdministradorTema.VerdeClaroNeon.G,
             AdministradorTema.VerdeClaroNeon.B
         );
-        private static BaseColor rosaNeon = new BaseColor(
+        private static readonly BaseColor rosaNeon = new BaseColor(
             AdministradorTema.RosaNeon.R,
             AdministradorTema.RosaNeon.G,
             AdministradorTema.RosaNeon.B
         );
-        private static BaseColor cyanNeon = new BaseColor(
+        private static readonly BaseColor cyanNeon = new BaseColor(
             AdministradorTema.CyanNeon.R,
             AdministradorTema.CyanNeon.G,
             AdministradorTema.CyanNeon.B
         );
-        private static BaseColor fondoTabla = new BaseColor(20, 20, 30);
+        private static readonly BaseColor fondoTabla = new BaseColor(20, 20, 30);
 
         // En el PDF pinto las paginas, pero sin esta funcion, solo se pinta la primera.
         // Es necesaria para pitnar todas las paginas que existan
         class FondoPaginaEvento : PdfPageEventHelper
         {
-            private BaseColor _fondo;
+            private readonly BaseColor _fondo;
 
             public FondoPaginaEvento(BaseColor fondo)
             {

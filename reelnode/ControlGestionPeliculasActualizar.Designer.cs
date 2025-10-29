@@ -516,10 +516,10 @@
             // 
             // DtpFechaEstreno
             // 
-            this.DtpFechaEstreno.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DtpFechaEstreno.Location = new System.Drawing.Point(5, 6);
+            this.DtpFechaEstreno.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DtpFechaEstreno.Location = new System.Drawing.Point(4, 6);
             this.DtpFechaEstreno.Name = "DtpFechaEstreno";
-            this.DtpFechaEstreno.Size = new System.Drawing.Size(192, 24);
+            this.DtpFechaEstreno.Size = new System.Drawing.Size(197, 20);
             this.DtpFechaEstreno.TabIndex = 7;
             // 
             // PanelUsuario

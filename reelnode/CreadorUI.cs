@@ -1,10 +1,7 @@
-﻿using Reelnode;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Reelnode
@@ -129,7 +126,7 @@ namespace Reelnode
 
             lblNombre.Text = ultimoUsuario.NombreUsuario;
             lblFecha.Text = ultimoUsuario.FechaRegistro;
-            
+
             if (!string.IsNullOrEmpty(ultimoUsuario.Avatar))
             {
                 picAvatar.Image = Utils.DescargarImagenDesdeURL(ultimoUsuario.Avatar);
@@ -245,7 +242,7 @@ namespace Reelnode
         public static void MostrarMetricaAudiovisual(MetricaAudiovisual audiovisual, Label lblNombre, PictureBox pic)
         {
             if (audiovisual == null) return;
-            
+
             lblNombre.Text = audiovisual.NombreMedia;
 
             if (!string.IsNullOrEmpty(audiovisual.ImagenURL))
@@ -253,7 +250,7 @@ namespace Reelnode
                 pic.Image = Utils.DescargarImagenDesdeURL(audiovisual.ImagenURL);
             }
         }
-        
+
         public static void MostrarGaleriaAudiovisual<T>(FlowLayoutPanel flowPnl, List<T> list, Action<int> abrirPestana, int ancho, int alto) where T : AudiovisualMiniatura
         {
             flowPnl.Controls.Clear();
@@ -265,7 +262,7 @@ namespace Reelnode
 
             /* Configuracion del poster */
             int anchoPoster = anchoTarjeta - 10;
-            int altoPoster = altoPanel-40;
+            int altoPoster = altoPanel - 40;
             Point location = new Point(5, 5);
 
             /* Configuracion del titulo */
@@ -283,8 +280,8 @@ namespace Reelnode
                 PictureBox Poster = CrearPictureBox(anchoPoster, altoPoster, location, Utils.DescargarImagenDesdeURL(audiovisual.ImagenURL));
                 // Creo un evento click para abrir la pestana de detalles al hacer click en el poster
                 Poster.Click += (s, e) => abrirPestana(audiovisual.Id);
-
-                Label TituloMedia = CrearLabel(audiovisual.Nombre, posicionTitulo, anchoTitulo, altoTitulo, "Titulo");
+                
+                Label TituloMedia = CrearLabel(audiovisual.Nombre, posicionTitulo, anchoTitulo, altoTitulo, null);
 
                 // Los agrego al panel, el cual agrego al FlowLayoutPanel de la interfaz del formulario principal
                 Tarjeta.Controls.Add(Poster);
@@ -327,7 +324,7 @@ namespace Reelnode
         {
             if (flowPnl == null || listaAudiovisual == null) return;
 
-            if (listaAudiovisual.Count < 1) 
+            if (listaAudiovisual.Count < 1)
             {
                 MostrarSinRegistros(flowPnl, "No hay registros de visualizaciones");
                 return;

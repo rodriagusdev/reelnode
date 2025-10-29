@@ -1,13 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Reelnode
@@ -41,6 +32,30 @@ namespace Reelnode
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 AdministradorJSON.ExportarAudiovisualJSON(AdministradorPeliculas.peliculasCargadas, saveFileDialog.FileName);
+            }
+        }
+
+        private void BtnImportarJSON_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.Filter = "Archivos JSON (*.json)| *.json";
+            openFileDialog.Title = "Importar peliculas JSON";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    AdministradorJSON.ImportarPeliculasJSON(openFileDialog.FileName);
+
+
+                    MessageBox.Show("Películas importadas correctamente.", "Importación exitosa",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al importar películas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

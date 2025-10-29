@@ -10,17 +10,18 @@ namespace Reelnode
     {
         public static List<Pelicula> peliculasCargadas = new List<Pelicula>();
         public static Pelicula peliculaSeleccionada = new Pelicula();
+        public static event Action onPeliculaCargada;
 
         /* !--- OPERACIONES CRUD PELICULAS ---! */
         public static List<AudiovisualMiniatura> CargarPeliculasPreview()
         {
-            return AdministradorAudiovisual.CargarMiniaturaAudiovisual("sp_listar_peliculas_preview", EnumTipoId.id_pelicula, false , EnumTipoId.null_param);
+            return AdministradorAudiovisual.CargarMiniaturaAudiovisual("sp_listar_peliculas_preview", EnumTipoId.id_pelicula, false, EnumTipoId.null_param);
         }
         public static void CargarPeliculas()
         {
             peliculasCargadas.Clear();
 
-            var listAudiovisual = 
+            var listAudiovisual =
                 AdministradorAudiovisual
                 .CargarAudiovisualCompleto
                 ("sp_listar_peliculas", EnumTipoId.id_pelicula);
@@ -36,7 +37,7 @@ namespace Reelnode
 
         public static bool InsertarPeliculaBD(Pelicula nuevaPelicula)
         {
-            bool insertacionExitosa = 
+            bool insertacionExitosa =
                 AdministradorAudiovisual.
                 InsertarAudiovisual
                 (nuevaPelicula, "sp_insertar_pelicula", EnumTipoId.p_id_pelicula);
@@ -51,7 +52,7 @@ namespace Reelnode
 
         public static bool ActualizarPelicula(Pelicula actualizarPelicula)
         {
-            bool actualizacionExitosa = 
+            bool actualizacionExitosa =
                 AdministradorAudiovisual.ActualizarAudiovisual
                 (actualizarPelicula, "sp_actualizar_pelicula", EnumTipoId.p_id_pelicula);
 
@@ -65,7 +66,7 @@ namespace Reelnode
 
         public static void EliminarPelicula(int id)
         {
-            bool eliminacionExitosa = 
+            bool eliminacionExitosa =
                 AdministradorAudiovisual.
                 EliminarAudiovisual
                 ("sp_eliminar_pelicula", id, "Película eliminada con exito");
@@ -80,6 +81,7 @@ namespace Reelnode
         {
             peliculasCargadas.Clear();
             CargarPeliculas();
+            onPeliculaCargada.Invoke();
         }
 
         public static List<Comentario> CargarComentariosPelicula(int idPelicula)
@@ -136,12 +138,12 @@ namespace Reelnode
                         }
                     }
                 }
-            } 
+            }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar la última película: " + ex.Message);
             }
-           
+
             return null;
         }
 

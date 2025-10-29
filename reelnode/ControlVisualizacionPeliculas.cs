@@ -13,7 +13,7 @@ namespace Reelnode
         {
             InitializeComponent();
 
-            PanelMain = new PanelGradiente(); 
+            PanelMain = new PanelGradiente();
             PanelMain.Dock = DockStyle.Fill;
             this.Controls.Add(PanelMain);
 

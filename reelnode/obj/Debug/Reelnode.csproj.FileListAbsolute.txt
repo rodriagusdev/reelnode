@@ -317,8 +317,20 @@ C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\Reelnode.ControlCuentaUsu
 C:\dev\hilet\Algoritmos II\reelnode\Reelnode\obj\Debug\Reelnode.ControlVisualizacionSerie.resources
 D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlCuentaUsuario.resources
 D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlVisualizacionSerie.resources
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlComentarios.resources
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlGestionDashboard.resources
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.FormPassword.resources
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\Reelnode.exe.config
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\Reelnode.exe
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\Reelnode.pdb
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.Properties.Resources.resources
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.exe
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.pdb
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\malaspalabras.txt
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.csproj.AssemblyReference.cache
+C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.ControlComentarios.resources
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.ControlCuentaUsuario.resources
+C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.ControlGestionDashboard.resources
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.ControlGestionPeliculasActualizar.resources
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.ControlAdmin.resources
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.ControlGestionPeliculasCargar.resources
@@ -332,26 +344,41 @@ C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.ControlVisualizacionSerie
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.FormCalificar.resources
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.FormMain.resources
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.FormLogin.resources
+C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.FormPassword.resources
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.FormRegistrar.resources
+C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.Properties.Resources.resources
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.csproj.GenerateResource.cache
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.csproj.CoreCompileInputs.cache
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\logo.png
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\malaspalabras.txt
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\runtimes\win-x86\native\WebView2Loader.dll
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\runtimes\win-x64\native\WebView2Loader.dll
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\runtimes\win-arm64\native\WebView2Loader.dll
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Assets\home.png
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Assets\logo.jpeg
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Reelnode.exe.config
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Reelnode.exe
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Reelnode.pdb
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\BouncyCastle.Cryptography.dll
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\ClosedXML.dll
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\ClosedXML.Parser.dll
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\DocumentFormat.OpenXml.dll
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\DocumentFormat.OpenXml.Framework.dll
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\ExcelNumberFormat.dll
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Google.Protobuf.dll
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\itextsharp.dll
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\K4os.Compression.LZ4.dll
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\K4os.Compression.LZ4.Streams.dll
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\K4os.Hash.xxHash.dll
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Microsoft.Bcl.HashCode.dll
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Microsoft.Web.WebView2.Core.dll
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Microsoft.Web.WebView2.WinForms.dll
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Microsoft.Web.WebView2.Wpf.dll
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\MySql.Data.dll
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Newtonsoft.Json.dll
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\RBush.dll
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\SixLabors.Fonts.dll
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\System.Buffers.dll
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\System.Configuration.ConfigurationManager.dll
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\System.Diagnostics.DiagnosticSource.dll
@@ -365,6 +392,12 @@ C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\System.Threading.Tasks.Extensions.
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\System.ValueTuple.dll
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\ZstdSharp.dll
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\BouncyCastle.Cryptography.xml
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\ClosedXML.pdb
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\ClosedXML.xml
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\ClosedXML.Parser.xml
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\DocumentFormat.OpenXml.xml
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\DocumentFormat.OpenXml.Framework.xml
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\ExcelNumberFormat.xml
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Google.Protobuf.pdb
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Google.Protobuf.xml
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\itextsharp.xml
@@ -372,10 +405,14 @@ C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\K4os.Compression.LZ4.xml
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\K4os.Compression.LZ4.Streams.xml
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\K4os.Hash.xxHash.xml
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Microsoft.Bcl.HashCode.xml
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Microsoft.Web.WebView2.Core.xml
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Microsoft.Web.WebView2.WinForms.xml
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Microsoft.Web.WebView2.Wpf.xml
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\MySql.Data.xml
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Newtonsoft.Json.xml
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\RBush.xml
+C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\SixLabors.Fonts.xml
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\System.Buffers.xml
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\System.Configuration.ConfigurationManager.xml
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\System.Diagnostics.DiagnosticSource.xml
@@ -388,26 +425,6 @@ C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\System.Text.Json.xml
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\System.ValueTuple.xml
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.csproj.Up2Date
-C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.ControlComentarios.resources
-D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlComentarios.resources
-D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.ControlGestionDashboard.resources
-C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.ControlGestionDashboard.resources
-C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.FormPassword.resources
-D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.FormPassword.resources
-C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Newtonsoft.Json.dll
-C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Newtonsoft.Json.xml
-C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.Properties.Resources.resources
-C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Reelnode.exe.config
-C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Reelnode.exe
-C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\Reelnode.pdb
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.exe
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.pdb
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.exe.config
-D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\Reelnode.exe.config
-D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\Reelnode.exe
-D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\Reelnode.pdb
-D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.Properties.Resources.resources
-D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.exe
-D:\Rodrigo\Algoritmos2\reelnode\Reelnode\obj\Debug\Reelnode.pdb
-D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\malaspalabras.txt
-C:\dev\Hilet\Algoritmos II\Reelnode\bin\Debug\malaspalabras.txt

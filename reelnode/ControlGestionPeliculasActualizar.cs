@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Reelnode
 {
-    public partial class ControlGestionPeliculasActualizar: UserControl
+    public partial class ControlGestionPeliculasActualizar : UserControl
     {
         private PanelGradiente PanelMain;
 
@@ -49,7 +49,7 @@ namespace Reelnode
 
         private void BtnActualizar_Click(object sender, EventArgs e)
         {
-            if (filaSeleccionada != null) 
+            if (filaSeleccionada != null)
             {
                 if (PicPelicula.Image == null)
                 {
@@ -99,8 +99,8 @@ namespace Reelnode
                     DataGridPeliculas.DataSource = null;
                     Utils.LimpiarCampos(this);
                 }
-               
-            }         
+
+            }
             else
             {
                 MessageBox.Show("No se ha seleccionado ninguna fila.");
@@ -158,7 +158,7 @@ namespace Reelnode
 
         private void CtxMenuSubEliminar_Click(object sender, EventArgs e)
         {
-            if (filaSeleccionada != null) 
+            if (filaSeleccionada != null)
             {
                 int id = int.Parse(filaSeleccionada.Cells["Id"].Value.ToString());
 
@@ -166,7 +166,8 @@ namespace Reelnode
 
                 filaSeleccionada = null;
                 Utils.ActualizarListaGrid(DataGridPeliculas, AdministradorPeliculas.peliculasCargadas, "Id", "Tipo");
-            } else MessageBox.Show("No se ha seleccionado ninguna fila.");
+            }
+            else MessageBox.Show("No se ha seleccionado ninguna fila.");
         }
     }
 }

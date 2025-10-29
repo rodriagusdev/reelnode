@@ -274,6 +274,13 @@ namespace Reelnode
 
                     EnviarGenerosAudiovisual(audiovisual, tipoId, idAudiovisual);
 
+                    MessageBox.Show(
+                        $"{audiovisual.Nombre} cargado correctamente!",
+                        "Contenido cargado correctamente",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+
                     return true;
                 }
             }
@@ -315,7 +322,12 @@ namespace Reelnode
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al actualizar! " + ex.Message);
+                MessageBox.Show(
+                    $"Error al actualizar {audiovisual.Nombre}! " + ex.Message,
+                    "Error actualizacion",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
 
             return false;

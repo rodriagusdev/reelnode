@@ -37,6 +37,8 @@
             this.Panel = new System.Windows.Forms.Panel();
             this.FlowPanelSeries = new System.Windows.Forms.FlowLayoutPanel();
             this.FlowPanelPeliculas = new System.Windows.Forms.FlowLayoutPanel();
+            this.LblPeliculas = new System.Windows.Forms.Label();
+            this.LblSeries = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.PanelBack.SuspendLayout();
             this.Panel.SuspendLayout();
@@ -55,7 +57,7 @@
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(6);
             this.menuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.menuStrip1.ShowItemToolTips = true;
-            this.menuStrip1.Size = new System.Drawing.Size(1280, 31);
+            this.menuStrip1.Size = new System.Drawing.Size(1280, 30);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -63,7 +65,7 @@
             // 
             this.ToolStpMenuHome.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ToolStpMenuHome.Name = "ToolStpMenuHome";
-            this.ToolStpMenuHome.Size = new System.Drawing.Size(47, 19);
+            this.ToolStpMenuHome.Size = new System.Drawing.Size(47, 18);
             this.ToolStpMenuHome.Text = "Home";
             this.ToolStpMenuHome.Click += new System.EventHandler(this.ToolStpMenuHome_Click);
             // 
@@ -72,7 +74,7 @@
             this.ToolStpMenuAdmin.Font = new System.Drawing.Font("Consolas", 9F);
             this.ToolStpMenuAdmin.Name = "ToolStpMenuAdmin";
             this.ToolStpMenuAdmin.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.ToolStpMenuAdmin.Size = new System.Drawing.Size(96, 19);
+            this.ToolStpMenuAdmin.Size = new System.Drawing.Size(96, 18);
             this.ToolStpMenuAdmin.Text = "Administrar";
             this.ToolStpMenuAdmin.Click += new System.EventHandler(this.ToolStpMenuAdmin_Click_1);
             // 
@@ -80,7 +82,7 @@
             // 
             this.ToolStpMenuCuenta.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ToolStpMenuCuenta.Name = "ToolStpMenuCuenta";
-            this.ToolStpMenuCuenta.Size = new System.Drawing.Size(61, 19);
+            this.ToolStpMenuCuenta.Size = new System.Drawing.Size(61, 18);
             this.ToolStpMenuCuenta.Text = "Cuenta";
             this.ToolStpMenuCuenta.Click += new System.EventHandler(this.ToolStpMenuCuenta_Click);
             // 
@@ -89,7 +91,7 @@
             this.ToolStpMenuSalir.Font = new System.Drawing.Font("Consolas", 9F);
             this.ToolStpMenuSalir.Name = "ToolStpMenuSalir";
             this.ToolStpMenuSalir.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ToolStpMenuSalir.Size = new System.Drawing.Size(54, 19);
+            this.ToolStpMenuSalir.Size = new System.Drawing.Size(54, 18);
             this.ToolStpMenuSalir.Text = "Salir";
             this.ToolStpMenuSalir.Click += new System.EventHandler(this.ToolStpMenuSalir_Click);
             // 
@@ -108,12 +110,14 @@
             // 
             // Panel
             // 
+            this.Panel.Controls.Add(this.LblSeries);
+            this.Panel.Controls.Add(this.LblPeliculas);
             this.Panel.Controls.Add(this.FlowPanelSeries);
             this.Panel.Controls.Add(this.FlowPanelPeliculas);
             this.Panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Panel.Location = new System.Drawing.Point(0, 31);
+            this.Panel.Location = new System.Drawing.Point(0, 30);
             this.Panel.Name = "Panel";
-            this.Panel.Size = new System.Drawing.Size(1280, 689);
+            this.Panel.Size = new System.Drawing.Size(1280, 690);
             this.Panel.TabIndex = 2;
             // 
             // FlowPanelSeries
@@ -132,13 +136,35 @@
             // 
             this.FlowPanelPeliculas.AutoScroll = true;
             this.FlowPanelPeliculas.BackColor = System.Drawing.Color.Transparent;
-            this.FlowPanelPeliculas.Location = new System.Drawing.Point(65, 51);
+            this.FlowPanelPeliculas.Location = new System.Drawing.Point(65, 33);
             this.FlowPanelPeliculas.Name = "FlowPanelPeliculas";
             this.FlowPanelPeliculas.Padding = new System.Windows.Forms.Padding(10);
             this.FlowPanelPeliculas.Size = new System.Drawing.Size(1123, 280);
             this.FlowPanelPeliculas.TabIndex = 0;
             this.FlowPanelPeliculas.Tag = "Default";
             this.FlowPanelPeliculas.WrapContents = false;
+            // 
+            // LblPeliculas
+            // 
+            this.LblPeliculas.AutoSize = true;
+            this.LblPeliculas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblPeliculas.Location = new System.Drawing.Point(61, 10);
+            this.LblPeliculas.Name = "LblPeliculas";
+            this.LblPeliculas.Size = new System.Drawing.Size(80, 20);
+            this.LblPeliculas.TabIndex = 71;
+            this.LblPeliculas.Tag = "Titulo";
+            this.LblPeliculas.Text = "Peliculas";
+            // 
+            // LblSeries
+            // 
+            this.LblSeries.AutoSize = true;
+            this.LblSeries.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblSeries.Location = new System.Drawing.Point(61, 336);
+            this.LblSeries.Name = "LblSeries";
+            this.LblSeries.Size = new System.Drawing.Size(60, 20);
+            this.LblSeries.TabIndex = 73;
+            this.LblSeries.Tag = "Titulo";
+            this.LblSeries.Text = "Series";
             // 
             // FormMain
             // 
@@ -159,6 +185,7 @@
             this.PanelBack.ResumeLayout(false);
             this.PanelBack.PerformLayout();
             this.Panel.ResumeLayout(false);
+            this.Panel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -175,6 +202,8 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStpMenuHome;
         private System.Windows.Forms.FlowLayoutPanel FlowPanelPeliculas;
         private System.Windows.Forms.FlowLayoutPanel FlowPanelSeries;
+        private System.Windows.Forms.Label LblPeliculas;
+        private System.Windows.Forms.Label LblSeries;
     }
 }
 

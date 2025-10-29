@@ -100,6 +100,7 @@
             this.DtpDesde = new System.Windows.Forms.DateTimePicker();
             this.DataGridReportes = new System.Windows.Forms.DataGridView();
             this.PanelReportesAvanzados = new System.Windows.Forms.Panel();
+            this.BtnExportarExcel = new System.Windows.Forms.Button();
             this.ChkFiltroCantTemporadas = new System.Windows.Forms.CheckBox();
             this.NumUpCantTemporadas = new System.Windows.Forms.NumericUpDown();
             this.ChkFiltroNetwork = new System.Windows.Forms.CheckBox();
@@ -117,6 +118,7 @@
             this.BtnExportarJSON = new System.Windows.Forms.Button();
             this.BtnExportarGrilla = new System.Windows.Forms.Button();
             this.label28 = new System.Windows.Forms.Label();
+            this.BtnRefrescar = new System.Windows.Forms.Button();
             this.PanelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicAvatar)).BeginInit();
             this.PanelDashboardMain.SuspendLayout();
@@ -142,6 +144,7 @@
             // 
             // PanelMenu
             // 
+            this.PanelMenu.Controls.Add(this.BtnRefrescar);
             this.PanelMenu.Controls.Add(this.BtnExportarTodoPDF);
             this.PanelMenu.Controls.Add(this.BtnReportesAvanzados);
             this.PanelMenu.Controls.Add(this.BtnVerMetricasGenerales);
@@ -160,7 +163,7 @@
             // 
             this.BtnExportarTodoPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnExportarTodoPDF.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnExportarTodoPDF.Location = new System.Drawing.Point(41, 572);
+            this.BtnExportarTodoPDF.Location = new System.Drawing.Point(41, 511);
             this.BtnExportarTodoPDF.Name = "BtnExportarTodoPDF";
             this.BtnExportarTodoPDF.Size = new System.Drawing.Size(171, 44);
             this.BtnExportarTodoPDF.TabIndex = 21;
@@ -172,11 +175,11 @@
             // 
             this.BtnReportesAvanzados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnReportesAvanzados.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnReportesAvanzados.Location = new System.Drawing.Point(41, 488);
+            this.BtnReportesAvanzados.Location = new System.Drawing.Point(41, 445);
             this.BtnReportesAvanzados.Name = "BtnReportesAvanzados";
             this.BtnReportesAvanzados.Size = new System.Drawing.Size(171, 44);
             this.BtnReportesAvanzados.TabIndex = 3;
-            this.BtnReportesAvanzados.Text = "Reportes Avanzados";
+            this.BtnReportesAvanzados.Text = "Reportes avanzados";
             this.BtnReportesAvanzados.UseVisualStyleBackColor = true;
             this.BtnReportesAvanzados.Click += new System.EventHandler(this.BtnReportesAvanzados_Click);
             // 
@@ -184,7 +187,7 @@
             // 
             this.BtnVerMetricasGenerales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnVerMetricasGenerales.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnVerMetricasGenerales.Location = new System.Drawing.Point(41, 324);
+            this.BtnVerMetricasGenerales.Location = new System.Drawing.Point(41, 312);
             this.BtnVerMetricasGenerales.Name = "BtnVerMetricasGenerales";
             this.BtnVerMetricasGenerales.Size = new System.Drawing.Size(171, 44);
             this.BtnVerMetricasGenerales.TabIndex = 1;
@@ -230,7 +233,7 @@
             // 
             this.BtnVerMetricasUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnVerMetricasUsuarios.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnVerMetricasUsuarios.Location = new System.Drawing.Point(41, 404);
+            this.BtnVerMetricasUsuarios.Location = new System.Drawing.Point(41, 379);
             this.BtnVerMetricasUsuarios.Name = "BtnVerMetricasUsuarios";
             this.BtnVerMetricasUsuarios.Size = new System.Drawing.Size(171, 44);
             this.BtnVerMetricasUsuarios.TabIndex = 2;
@@ -877,7 +880,7 @@
             this.NumUpCalificacionMinima.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NumUpCalificacionMinima.Enabled = false;
             this.NumUpCalificacionMinima.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NumUpCalificacionMinima.Location = new System.Drawing.Point(746, 194);
+            this.NumUpCalificacionMinima.Location = new System.Drawing.Point(746, 201);
             this.NumUpCalificacionMinima.Maximum = new decimal(new int[] {
             5,
             0,
@@ -932,6 +935,7 @@
             this.DtpDesde.Name = "DtpDesde";
             this.DtpDesde.Size = new System.Drawing.Size(226, 21);
             this.DtpDesde.TabIndex = 9;
+            this.DtpDesde.Value = new System.DateTime(2020, 2, 20, 0, 0, 0, 0);
             // 
             // DataGridReportes
             // 
@@ -945,6 +949,7 @@
             // PanelReportesAvanzados
             // 
             this.PanelReportesAvanzados.AutoScroll = true;
+            this.PanelReportesAvanzados.Controls.Add(this.BtnExportarExcel);
             this.PanelReportesAvanzados.Controls.Add(this.ChkFiltroCantTemporadas);
             this.PanelReportesAvanzados.Controls.Add(this.NumUpCantTemporadas);
             this.PanelReportesAvanzados.Controls.Add(this.ChkFiltroNetwork);
@@ -978,6 +983,18 @@
             this.PanelReportesAvanzados.TabIndex = 22;
             this.PanelReportesAvanzados.Tag = "Default";
             this.PanelReportesAvanzados.Visible = false;
+            // 
+            // BtnExportarExcel
+            // 
+            this.BtnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnExportarExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnExportarExcel.Location = new System.Drawing.Point(364, 577);
+            this.BtnExportarExcel.Name = "BtnExportarExcel";
+            this.BtnExportarExcel.Size = new System.Drawing.Size(234, 44);
+            this.BtnExportarExcel.TabIndex = 66;
+            this.BtnExportarExcel.Text = "Exportar grilla a Excel";
+            this.BtnExportarExcel.UseVisualStyleBackColor = true;
+            this.BtnExportarExcel.Click += new System.EventHandler(this.BtnExportarExcel_Click);
             // 
             // ChkFiltroCantTemporadas
             // 
@@ -1154,7 +1171,7 @@
             // ChkFiltroCalif
             // 
             this.ChkFiltroCalif.AutoSize = true;
-            this.ChkFiltroCalif.Location = new System.Drawing.Point(746, 159);
+            this.ChkFiltroCalif.Location = new System.Drawing.Point(746, 153);
             this.ChkFiltroCalif.Name = "ChkFiltroCalif";
             this.ChkFiltroCalif.Size = new System.Drawing.Size(148, 17);
             this.ChkFiltroCalif.TabIndex = 7;
@@ -1166,9 +1183,9 @@
             // 
             this.BtnExportarJSON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnExportarJSON.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnExportarJSON.Location = new System.Drawing.Point(585, 588);
+            this.BtnExportarJSON.Location = new System.Drawing.Point(677, 577);
             this.BtnExportarJSON.Name = "BtnExportarJSON";
-            this.BtnExportarJSON.Size = new System.Drawing.Size(326, 38);
+            this.BtnExportarJSON.Size = new System.Drawing.Size(234, 44);
             this.BtnExportarJSON.TabIndex = 18;
             this.BtnExportarJSON.Text = "Exportar grilla a JSON";
             this.BtnExportarJSON.UseVisualStyleBackColor = true;
@@ -1178,9 +1195,9 @@
             // 
             this.BtnExportarGrilla.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnExportarGrilla.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnExportarGrilla.Location = new System.Drawing.Point(44, 584);
+            this.BtnExportarGrilla.Location = new System.Drawing.Point(44, 577);
             this.BtnExportarGrilla.Name = "BtnExportarGrilla";
-            this.BtnExportarGrilla.Size = new System.Drawing.Size(326, 38);
+            this.BtnExportarGrilla.Size = new System.Drawing.Size(234, 44);
             this.BtnExportarGrilla.TabIndex = 17;
             this.BtnExportarGrilla.Text = "Exportar grilla a PDF";
             this.BtnExportarGrilla.UseVisualStyleBackColor = true;
@@ -1197,6 +1214,18 @@
             this.label28.Tag = "Titulo";
             this.label28.Text = "Desde";
             this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // BtnRefrescar
+            // 
+            this.BtnRefrescar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnRefrescar.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnRefrescar.Location = new System.Drawing.Point(41, 577);
+            this.BtnRefrescar.Name = "BtnRefrescar";
+            this.BtnRefrescar.Size = new System.Drawing.Size(171, 44);
+            this.BtnRefrescar.TabIndex = 22;
+            this.BtnRefrescar.Text = "Refrescar datos";
+            this.BtnRefrescar.UseVisualStyleBackColor = true;
+            this.BtnRefrescar.Click += new System.EventHandler(this.BtnRefrescar_Click);
             // 
             // ControlGestionDashboard
             // 
@@ -1328,5 +1357,7 @@
         private System.Windows.Forms.CheckBox ChkFiltroGenero;
         private System.Windows.Forms.CheckBox ChkFiltroCantTemporadas;
         private System.Windows.Forms.NumericUpDown NumUpCantTemporadas;
+        private System.Windows.Forms.Button BtnExportarExcel;
+        private System.Windows.Forms.Button BtnRefrescar;
     }
 }

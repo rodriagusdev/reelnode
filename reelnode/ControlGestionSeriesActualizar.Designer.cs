@@ -620,10 +620,11 @@
             // 
             // DtpFechaEstreno
             // 
+            this.DtpFechaEstreno.CalendarFont = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DtpFechaEstreno.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DtpFechaEstreno.Location = new System.Drawing.Point(8, 8);
+            this.DtpFechaEstreno.Location = new System.Drawing.Point(2, 8);
             this.DtpFechaEstreno.Name = "DtpFechaEstreno";
-            this.DtpFechaEstreno.Size = new System.Drawing.Size(192, 22);
+            this.DtpFechaEstreno.Size = new System.Drawing.Size(200, 22);
             this.DtpFechaEstreno.TabIndex = 7;
             // 
             // panel7

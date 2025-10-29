@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace Reelnode
@@ -17,7 +15,7 @@ namespace Reelnode
             PanelMain = new PanelGradiente();
             PanelMain.Dock = DockStyle.Fill;
             PanelMain.Controls.Add(PanelPeliculaCreacion);
-            this.Controls.Add(PanelMain);         
+            this.Controls.Add(PanelMain);
         }
 
         private void ControlGestionPeliculasCargar_Load(object sender, EventArgs e)
@@ -73,17 +71,17 @@ namespace Reelnode
                 ImagenURL = TxtURLImagen.Text,
                 TrailerURL = TxtURLTrailer.Text,
                 Network = UtilsBD.ObtenerNetworkId(CboNetwork.Text),
-                Generos = UtilsBD.ObtenerIdGeneros(ChkListGeneros) 
+                Generos = UtilsBD.ObtenerIdGeneros(ChkListGeneros)
             };
 
             bool operacionExitosa = AdministradorPeliculas.InsertarPeliculaBD(nuevaPelicula);
 
-            if (operacionExitosa) 
+            if (operacionExitosa)
             {
                 trailerFinalURL = null;
                 Utils.LimpiarCampos(this);
             }
-            
+
         }
 
         /* !--- PREVISUALIZACION DE POSTER Y TRAILER ---! */

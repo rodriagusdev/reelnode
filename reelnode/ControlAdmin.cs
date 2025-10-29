@@ -19,7 +19,7 @@ namespace Reelnode
         private ControlGestionDashboard controlGestionDashboard;
 
         /* !--- FIN DE CREACION DE USER CONTROLS ---! */
-         
+
         // Evento para volver al home REVEER
         public event EventHandler HomeClicked;
 

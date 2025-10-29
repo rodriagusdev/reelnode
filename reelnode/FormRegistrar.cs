@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Text.Json.Nodes;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 
 namespace Reelnode
 {
@@ -24,6 +14,10 @@ namespace Reelnode
         public FormRegistrar()
         {
             InitializeComponent();
+            PanelMain.Invalidate();
+            PanelMain.Paint += PanelMain_Paint;
+            BtnIngresar.FlatAppearance.BorderColor = Color.FromArgb(0, 29, 35);
+            BtnSalir.FlatAppearance.BorderColor = Color.FromArgb(0, 29, 35);
         }
 
         public void EstablecerGradiente(Color color1, Color color2, LinearGradientMode modo)

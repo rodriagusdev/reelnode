@@ -55,7 +55,7 @@ namespace Reelnode
                     // Ahora relleno el DataGridView que pase por parametro con dataTable.
                     dataGridReportes.DataSource = dataTable;
                 }
-                
+
             }
         }
 

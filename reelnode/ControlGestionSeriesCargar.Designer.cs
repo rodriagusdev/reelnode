@@ -116,10 +116,10 @@
             // 
             // DtpFechaEstreno
             // 
-            this.DtpFechaEstreno.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DtpFechaEstreno.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DtpFechaEstreno.Location = new System.Drawing.Point(5, 7);
             this.DtpFechaEstreno.Name = "DtpFechaEstreno";
-            this.DtpFechaEstreno.Size = new System.Drawing.Size(195, 22);
+            this.DtpFechaEstreno.Size = new System.Drawing.Size(195, 20);
             this.DtpFechaEstreno.TabIndex = 3;
             // 
             // PanelDirector
@@ -238,11 +238,11 @@
             // 
             // DtpFechaFin
             // 
-            this.DtpFechaFin.Font = new System.Drawing.Font("Courier New", 9.75F);
+            this.DtpFechaFin.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DtpFechaFin.Location = new System.Drawing.Point(3, 5);
             this.DtpFechaFin.Margin = new System.Windows.Forms.Padding(2);
             this.DtpFechaFin.Name = "DtpFechaFin";
-            this.DtpFechaFin.Size = new System.Drawing.Size(198, 22);
+            this.DtpFechaFin.Size = new System.Drawing.Size(198, 20);
             this.DtpFechaFin.TabIndex = 4;
             // 
             // textBox1

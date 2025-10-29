@@ -54,7 +54,7 @@ namespace Reelnode
 
         public static List<Comentario> ObtenerComentarios(string procedimiento, string p_id, int idAudiovisual)
         {
-            List <Comentario> comentarios = new List<Comentario>();
+            List<Comentario> comentarios = new List<Comentario>();
 
             try
             {
@@ -74,7 +74,7 @@ namespace Reelnode
                             Comentario c = new Comentario
                             {
                                 UsuarioAvatar = reader.GetString("avatar"),
-                                Usuario =  reader.GetString("nombre_usuario"),
+                                Usuario = reader.GetString("nombre_usuario"),
                                 Texto = reader.GetString("texto"),
                                 Fecha = reader.GetDateTime("fecha_comentario"),
                             };

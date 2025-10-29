@@ -1,15 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Reelnode
@@ -17,6 +9,7 @@ namespace Reelnode
     public partial class ControlGestionSeriesListarSeries : UserControl
     {
         private PanelGradiente PanelMain;
+
         public ControlGestionSeriesListarSeries()
         {
             InitializeComponent();
@@ -29,7 +22,12 @@ namespace Reelnode
 
         private void ControlGestionSeriesListarSeries_Load(object sender, EventArgs e)
         {
-            Utils.ActualizarListaGrid(DataGridSeries, AdministradorSeries.seriesCargadas, "Id", "Tipo");
+            Utils.ActualizarListaGrid(
+                DataGridSeries,
+                AdministradorSeries.seriesCargadas,
+                "Id",
+                "Tipo"
+            );
         }
 
         private void BtnExportarJSON_Click(object sender, EventArgs e)
@@ -42,9 +40,11 @@ namespace Reelnode
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                AdministradorJSON.ExportarAudiovisualJSON(AdministradorSeries.seriesCargadas, saveFileDialog.FileName);
+                AdministradorJSON.ExportarAudiovisualJSON(
+                    AdministradorSeries.seriesCargadas,
+                    saveFileDialog.FileName
+                );
             }
-        
         }
 
         public static void ExportarDataGridViewJSON(DataGridView dgv, string rutaArchivo)
@@ -67,9 +67,52 @@ namespace Reelnode
             }
 
             // Serializar la lista al JSON
-            string jsonString = JsonSerializer.Serialize(listaFilas, new JsonSerializerOptions
-            { WriteIndented = true, Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping });
+            string jsonString = JsonSerializer.Serialize(
+                listaFilas,
+                new JsonSerializerOptions
+                {
+                    WriteIndented = true,
+                    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                }
+            );
             File.WriteAllText(rutaArchivo, jsonString, System.Text.Encoding.UTF8);
+        }
+
+        private void BtnImportarJSON_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.Filter = "Archivos JSON (*.json)| *.json";
+            openFileDialog.Title = "Importar series JSON";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    var peliculasImportadas = AdministradorJSON.ImportarPeliculasJSON(
+                        openFileDialog.FileName
+                    );
+
+                    AdministradorPeliculas.peliculasCargadas = peliculasImportadas;
+
+                    MessageBox.Show(
+                        "Series importadas correctamente.",
+                        "Importación exitosa",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(
+                        "Error al importar películas: " + ex.Message,
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                }
+            }
         }
     }
 }
+

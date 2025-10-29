@@ -1,17 +1,11 @@
 ﻿using Microsoft.Web.WebView2.WinForms;
-using Mysqlx.Datatypes;
-using MySqlX.XDevAPI.Relational;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Text;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Google.Protobuf.Reflection.SourceCodeInfo.Types;
 
 namespace Reelnode
 {
@@ -193,7 +187,7 @@ namespace Reelnode
                     ? n.ToString(
                         "F1",
                         System.Globalization.CultureInfo.InvariantCulture
-                    ) 
+                    )
                     : "";
             return formatear;
         }
@@ -216,13 +210,13 @@ namespace Reelnode
                         break;
                     case PictureBox pic:
                         pic.Image = null;
-                        break;                 
+                        break;
                     case DateTimePicker dtp:
                         dtp.Value = DateTime.Now;
                         break;
                 }
 
-                if(c is WebView2 w) w.Dispose();
+                if (c is WebView2 w) w.Dispose();
 
                 // Si hay subpaneles dentro de subpaneles
                 if (c.HasChildren)

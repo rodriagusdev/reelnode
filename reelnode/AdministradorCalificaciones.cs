@@ -1,11 +1,8 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 
 namespace Reelnode
 {
@@ -37,7 +34,8 @@ namespace Reelnode
         {
             double calificacionPromedio = 0;
 
-            try {
+            try
+            {
                 using (
                     MySqlCommand cmd = new MySqlCommand(
                         procedimiento,

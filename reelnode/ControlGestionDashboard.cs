@@ -40,6 +40,18 @@ namespace Reelnode
             AdministradorTema.AplicarTema(this);
         }
 
+        private void CargarDatosUsuario()
+        {
+            if (AdministradorUsuarios.usuarioActual.Avatar != null)
+            {
+                PicAvatar.Image = Utils.DescargarImagenDesdeURL(
+                    AdministradorUsuarios.usuarioActual.Avatar
+                );
+            }
+
+            LblUsuario.Text = AdministradorUsuarios.usuarioActual.NombreUsuario;
+        }
+
         private void CargarDatosDashboard()
         {
             /* !--- MOSTRAR DATOS EN UI ---! */
@@ -95,6 +107,8 @@ namespace Reelnode
             }
 
             CboTipoReporte.SelectedIndex = 0;
+
+            AdministradorTema.AplicarTema(this);
         }
 
         /* !--- FILTROS DE REPORTES AVANZADOS Y VISIBILIDAD DE COMPONENTES ---! */
@@ -187,7 +201,7 @@ namespace Reelnode
                         usarNetwork == true ? CboNetwork.SelectedItem?.ToString() : "",
                         DtpDesde.Value,
                         DtpHasta.Value,
-                        usarCantTemporadas == true ?  Convert.ToInt32(NumUpCantTemporadas.Value)
+                        usarCantTemporadas == true ? Convert.ToInt32(NumUpCantTemporadas.Value)
                             : 0,
                         usarCalificacionMinima == true
                             ? Convert.ToInt32(NumUpCalificacionMinima.Value)
@@ -254,24 +268,12 @@ namespace Reelnode
 
         /* !--- FIN DE VISIBILIDAD DE PANELES ---! */
 
-        private void CargarDatosUsuario()
-        {
-            if (AdministradorUsuarios.usuarioActual.Avatar != null)
-            {
-                PicAvatar.Image = Utils.DescargarImagenDesdeURL(
-                    AdministradorUsuarios.usuarioActual.Avatar
-                );
-            }
-
-            LblUsuario.Text = AdministradorUsuarios.usuarioActual.NombreUsuario;
-        }
-
         private void ControlGestionDashboard_VisibleChanged(object sender, EventArgs e)
         {
             CargarDatosUsuario();
         }
 
-        /* !--- EXPORTACION PDF ---! */
+        /* !--- EXPORTACION DATOS ---! */
         private void BtnExportarTodoPDF_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFile = new SaveFileDialog();
@@ -317,9 +319,29 @@ namespace Reelnode
         }
 
 
+        private void BtnExportarExcel_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog dialogoGuardar = new SaveFileDialog())
+            {
+                dialogoGuardar.Filter = "Archivos Excel (*.xlsx)|*.xlsx";
+                dialogoGuardar.Title = "Guardar datos como Excel";
+                dialogoGuardar.FileName = "Exportacion.xlsx";
 
+                if (dialogoGuardar.ShowDialog() == DialogResult.OK)
+                {
+                    string rutaArchivo = dialogoGuardar.FileName;
 
+                    // Llamar al método del administrador
+                    AdministradorExcel.ExportarDataGridViewAExcel(DataGridReportes, rutaArchivo);
+                }
+            }
+        }
 
-        /* !--- FIN EXPORTACION PDF ---! */
+        private void BtnRefrescar_Click(object sender, EventArgs e)
+        {
+            CargarDatosDashboard();
+        }
+
+        /* !--- FIN EXPORTACION DATOS ---! */
     }
 }

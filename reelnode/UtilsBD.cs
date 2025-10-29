@@ -10,7 +10,7 @@ namespace Reelnode
     public static class UtilsBD
     {
         public static ConexionBD Conexion = new ConexionBD();
-   
+
         public static List<Network> CargarNetworks()
         {
             List<Network> networks = new List<Network>();
@@ -31,13 +31,13 @@ namespace Reelnode
                     }
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);            
+                MessageBox.Show(ex.Message);
             }
 
             return networks;
-           
+
         }
         public static List<Genero> CargarGeneros()
         {
@@ -59,7 +59,7 @@ namespace Reelnode
                     }
                 }
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }           
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
 
             return generos;
         }

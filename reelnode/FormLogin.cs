@@ -116,5 +116,14 @@ namespace Reelnode
             FormPassword password = new FormPassword();
             password.ShowDialog();
         }
+
+        private void TxtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                BtnIngresar.PerformClick();
+                e.Handled = true; // para que no haga sonido de beep
+            }
+        }
     }
 }

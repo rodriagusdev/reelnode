@@ -22,6 +22,8 @@ namespace Reelnode
             InitializeComponent();
             PanelMain = new PanelGradiente { Dock = DockStyle.Fill };
 
+            PanelMain.Controls.Add(LblSeries);
+            PanelMain.Controls.Add(LblPeliculas);
             PanelMain.Controls.Add(FlowPanelPeliculas);
             PanelMain.Controls.Add(FlowPanelSeries);
             Panel.Controls.Add(PanelMain);
@@ -29,7 +31,8 @@ namespace Reelnode
 
         public void ConfiguracionAPP()
         {
-            // UTILIZAR ESTA FUNCION EN EL LOAD
+            AdministradorPeliculas.onPeliculaCargada += CargarPeliculasSiHayInsercion;
+            AdministradorSeries.onSerieCargada += CargarSeriesSiHayInsercion;
 
             /* !--- ESTABLECIMIENTO Y CONFIGURACION DE USER CONTROLS ---! */
 
@@ -68,21 +71,10 @@ namespace Reelnode
             Panel.BackColor = Color.Transparent;
 
             // Relleno los flow panels de la UI principal con las peliculas y series cargadas en la base de datos
-            CreadorUI.MostrarGaleriaAudiovisual(
-                FlowPanelPeliculas,
-                AdministradorPeliculas.CargarPeliculasPreview(),
-                AbrirPestanaPelicula,
-                190,
-                220
-            );
-            CreadorUI.MostrarGaleriaAudiovisual(
-                FlowPanelSeries,
-                AdministradorSeries.CargarSeriesPreview(),
-                AbrirPestanaSerie,
-                190,
-                220
-            );
+            /*CargarPeliculasSiHayInsercion();
 
+            CargarSeriesSiHayInsercion();
+            */
             /* !--- CARGA DE PERMISOS ---! */
 
             // Aca solo elijo si mostrar o no el menu de Administracion, disponible
@@ -182,7 +174,9 @@ namespace Reelnode
             controlVisualizacionPeliculas.LblCalificacion.Text =
                 $"{EnviarCalificacionAFormateo(idAudiovisualClick, EnumTipoId.p_id_pelicula):F1}";
 
-            controlVisualizacionPeliculas.CargarPelicula(AdministradorPeliculas.peliculaSeleccionada);
+            controlVisualizacionPeliculas.CargarPelicula(
+                AdministradorPeliculas.peliculaSeleccionada
+            );
 
             AdministradorVisualizaciones.RegistrarVisualizacion(
                 AdministradorPeliculas.peliculaSeleccionada.Id,
@@ -190,6 +184,28 @@ namespace Reelnode
             );
 
             Utils.ShowControl(controlVisualizacionPeliculas, Panel);
+        }
+
+        public void CargarPeliculasSiHayInsercion()
+        {
+            CreadorUI.MostrarGaleriaAudiovisual(
+                FlowPanelPeliculas,
+                AdministradorPeliculas.CargarPeliculasPreview(),
+                AbrirPestanaPelicula,
+                190,
+                220
+            );
+        }
+
+        public void CargarSeriesSiHayInsercion()
+        {
+            CreadorUI.MostrarGaleriaAudiovisual(
+                FlowPanelSeries,
+                AdministradorSeries.CargarSeriesPreview(),
+                AbrirPestanaSerie,
+                190,
+                220
+            );
         }
 
         /* !--- FIN DE EVENTOS DE CLICK SOBRE CONTENIDO AUDIOVISUAL ---! */

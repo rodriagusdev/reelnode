@@ -131,6 +131,7 @@
             // 
             // ChkListGeneros
             // 
+            this.ChkListGeneros.CheckOnClick = true;
             this.ChkListGeneros.FormattingEnabled = true;
             this.ChkListGeneros.Location = new System.Drawing.Point(140, 309);
             this.ChkListGeneros.Name = "ChkListGeneros";
@@ -452,10 +453,10 @@
             // 
             // DtpFechaEstreno
             // 
-            this.DtpFechaEstreno.Font = new System.Drawing.Font("Courier New", 9.75F);
-            this.DtpFechaEstreno.Location = new System.Drawing.Point(8, 8);
+            this.DtpFechaEstreno.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DtpFechaEstreno.Location = new System.Drawing.Point(5, 8);
             this.DtpFechaEstreno.Name = "DtpFechaEstreno";
-            this.DtpFechaEstreno.Size = new System.Drawing.Size(192, 22);
+            this.DtpFechaEstreno.Size = new System.Drawing.Size(197, 20);
             this.DtpFechaEstreno.TabIndex = 3;
             // 
             // PanelUsuario

@@ -1,8 +1,8 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 
 namespace Reelnode
 {
@@ -126,7 +126,7 @@ namespace Reelnode
         {
             using (MySqlCommand cmd = new MySqlCommand(procedimiento, UtilsBD.Conexion.GetConnection()))
             {
-                cmd.CommandType= CommandType.StoredProcedure;
+                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue(EnumTipoId.p_id_usuario.ToString(), idUsuario);
                 cmd.ExecuteNonQuery();
             }
