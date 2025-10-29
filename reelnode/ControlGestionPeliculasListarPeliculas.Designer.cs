@@ -29,12 +29,11 @@
         private void InitializeComponent()
         {
             this.PanelListar = new System.Windows.Forms.Panel();
+            this.BtnImportarJSON = new System.Windows.Forms.Button();
             this.BtnExportarJSON = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.DataGridPeliculas = new System.Windows.Forms.DataGridView();
-            this.BtnImportarJSON = new System.Windows.Forms.Button();
-            this.BtnEnviarBaseDatos = new System.Windows.Forms.Button();
             this.PanelListar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridPeliculas)).BeginInit();
             this.SuspendLayout();
@@ -42,7 +41,6 @@
             // PanelListar
             // 
             this.PanelListar.BackColor = System.Drawing.Color.Transparent;
-            this.PanelListar.Controls.Add(this.BtnEnviarBaseDatos);
             this.PanelListar.Controls.Add(this.BtnImportarJSON);
             this.PanelListar.Controls.Add(this.BtnExportarJSON);
             this.PanelListar.Controls.Add(this.panel1);
@@ -54,6 +52,21 @@
             this.PanelListar.Size = new System.Drawing.Size(1280, 720);
             this.PanelListar.TabIndex = 0;
             this.PanelListar.Tag = "Default";
+            // 
+            // BtnImportarJSON
+            // 
+            this.BtnImportarJSON.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(184)))), ((int)(((byte)(193)))));
+            this.BtnImportarJSON.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnImportarJSON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnImportarJSON.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnImportarJSON.ForeColor = System.Drawing.Color.Black;
+            this.BtnImportarJSON.Location = new System.Drawing.Point(232, 484);
+            this.BtnImportarJSON.Name = "BtnImportarJSON";
+            this.BtnImportarJSON.Size = new System.Drawing.Size(221, 35);
+            this.BtnImportarJSON.TabIndex = 53;
+            this.BtnImportarJSON.Text = "Importar desde JSON";
+            this.BtnImportarJSON.UseVisualStyleBackColor = false;
+            this.BtnImportarJSON.Click += new System.EventHandler(this.BtnImportarJSON_Click);
             // 
             // BtnExportarJSON
             // 
@@ -104,35 +117,6 @@
             this.DataGridPeliculas.Size = new System.Drawing.Size(837, 316);
             this.DataGridPeliculas.TabIndex = 2;
             // 
-            // BtnImportarJSON
-            // 
-            this.BtnImportarJSON.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(184)))), ((int)(((byte)(193)))));
-            this.BtnImportarJSON.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnImportarJSON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnImportarJSON.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnImportarJSON.ForeColor = System.Drawing.Color.Black;
-            this.BtnImportarJSON.Location = new System.Drawing.Point(232, 484);
-            this.BtnImportarJSON.Name = "BtnImportarJSON";
-            this.BtnImportarJSON.Size = new System.Drawing.Size(221, 35);
-            this.BtnImportarJSON.TabIndex = 53;
-            this.BtnImportarJSON.Text = "Importar desde JSON";
-            this.BtnImportarJSON.UseVisualStyleBackColor = false;
-            this.BtnImportarJSON.Click += new System.EventHandler(this.BtnImportarJSON_Click);
-            // 
-            // BtnEnviarBaseDatos
-            // 
-            this.BtnEnviarBaseDatos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(184)))), ((int)(((byte)(193)))));
-            this.BtnEnviarBaseDatos.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnEnviarBaseDatos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnEnviarBaseDatos.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnEnviarBaseDatos.ForeColor = System.Drawing.Color.Black;
-            this.BtnEnviarBaseDatos.Location = new System.Drawing.Point(848, 484);
-            this.BtnEnviarBaseDatos.Name = "BtnEnviarBaseDatos";
-            this.BtnEnviarBaseDatos.Size = new System.Drawing.Size(221, 35);
-            this.BtnEnviarBaseDatos.TabIndex = 54;
-            this.BtnEnviarBaseDatos.Text = "Enviar a base de datos";
-            this.BtnEnviarBaseDatos.UseVisualStyleBackColor = false;
-            // 
             // ControlGestionPeliculasListarPeliculas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -156,6 +140,5 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button BtnExportarJSON;
         private System.Windows.Forms.Button BtnImportarJSON;
-        private System.Windows.Forms.Button BtnEnviarBaseDatos;
     }
 }

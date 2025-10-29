@@ -23,25 +23,25 @@ namespace Reelnode
 
         //IMPORTACION A JSON
         // IMPORTAR PELICULAS
-        public static void ImportarPeliculasJSON(string rutaArchivo)
+        public static List<Pelicula> ImportarPeliculasJSON(string rutaArchivo)
         {
             if (!File.Exists(rutaArchivo))
                 throw new FileNotFoundException("No se encontró el archivo JSON especificado.");
 
             string jsonString = File.ReadAllText(rutaArchivo, System.Text.Encoding.UTF8);
 
-            peliculasJSON = JsonSerializer.Deserialize<List<Pelicula>>(jsonString); 
+            return JsonSerializer.Deserialize<List<Pelicula>>(jsonString); 
         }
 
         //IMPORTAR SERIES
-        public static void ImportarSeriesJSON(string rutaArchivo)
+        public static List<Serie> ImportarSeriesJSON(string rutaArchivo)
         {
             if (!File.Exists(rutaArchivo))
                 throw new FileNotFoundException("No se encontró el archivo JSON especificado.");
 
             string jsonString = File.ReadAllText(rutaArchivo, System.Text.Encoding.UTF8);
 
-            seriesJSON = JsonSerializer.Deserialize<List<Serie>>(jsonString);
+            return JsonSerializer.Deserialize<List<Serie>>(jsonString);
         }
 
         // PARA EXPORTAR CUALQUIER DATO DE UN DATA GRID
