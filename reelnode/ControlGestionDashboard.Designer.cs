@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlGestionDashboard));
             this.PanelMenu = new System.Windows.Forms.Panel();
+            this.BtnRefrescar = new System.Windows.Forms.Button();
             this.BtnExportarTodoPDF = new System.Windows.Forms.Button();
             this.BtnReportesAvanzados = new System.Windows.Forms.Button();
             this.BtnVerMetricasGenerales = new System.Windows.Forms.Button();
@@ -118,7 +119,6 @@
             this.BtnExportarJSON = new System.Windows.Forms.Button();
             this.BtnExportarGrilla = new System.Windows.Forms.Button();
             this.label28 = new System.Windows.Forms.Label();
-            this.BtnRefrescar = new System.Windows.Forms.Button();
             this.PanelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicAvatar)).BeginInit();
             this.PanelDashboardMain.SuspendLayout();
@@ -158,6 +158,18 @@
             this.PanelMenu.Size = new System.Drawing.Size(246, 720);
             this.PanelMenu.TabIndex = 18;
             this.PanelMenu.Tag = "Default";
+            // 
+            // BtnRefrescar
+            // 
+            this.BtnRefrescar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnRefrescar.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnRefrescar.Location = new System.Drawing.Point(41, 577);
+            this.BtnRefrescar.Name = "BtnRefrescar";
+            this.BtnRefrescar.Size = new System.Drawing.Size(171, 44);
+            this.BtnRefrescar.TabIndex = 22;
+            this.BtnRefrescar.Text = "Refrescar datos";
+            this.BtnRefrescar.UseVisualStyleBackColor = true;
+            this.BtnRefrescar.Click += new System.EventHandler(this.BtnRefrescar_Click);
             // 
             // BtnExportarTodoPDF
             // 
@@ -263,9 +275,9 @@
             this.PanelDashboardMain.Controls.Add(this.label1);
             this.PanelDashboardMain.Controls.Add(this.flowPanelSeriesMasVistas);
             this.PanelDashboardMain.Controls.Add(this.flowPanelPelisMasVistas);
-            this.PanelDashboardMain.Location = new System.Drawing.Point(252, 0);
+            this.PanelDashboardMain.Location = new System.Drawing.Point(1251, 0);
             this.PanelDashboardMain.Name = "PanelDashboardMain";
-            this.PanelDashboardMain.Size = new System.Drawing.Size(1012, 720);
+            this.PanelDashboardMain.Size = new System.Drawing.Size(13, 720);
             this.PanelDashboardMain.TabIndex = 20;
             this.PanelDashboardMain.Tag = "Default";
             // 
@@ -530,9 +542,9 @@
             this.PanelDashboardMetricasUsuario.Controls.Add(this.FlowPanelMasActivos);
             this.PanelDashboardMetricasUsuario.Controls.Add(this.panel8);
             this.PanelDashboardMetricasUsuario.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PanelDashboardMetricasUsuario.Location = new System.Drawing.Point(1270, 0);
+            this.PanelDashboardMetricasUsuario.Location = new System.Drawing.Point(246, 0);
             this.PanelDashboardMetricasUsuario.Name = "PanelDashboardMetricasUsuario";
-            this.PanelDashboardMetricasUsuario.Size = new System.Drawing.Size(10, 720);
+            this.PanelDashboardMetricasUsuario.Size = new System.Drawing.Size(999, 720);
             this.PanelDashboardMetricasUsuario.TabIndex = 21;
             this.PanelDashboardMetricasUsuario.Tag = "Default";
             this.PanelDashboardMetricasUsuario.Visible = false;
@@ -542,7 +554,7 @@
             this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label27.Location = new System.Drawing.Point(3, 24);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(1005, 43);
+            this.label27.Size = new System.Drawing.Size(986, 43);
             this.label27.TabIndex = 39;
             this.label27.Tag = "Titulo";
             this.label27.Text = "MÉTRICAS DE USUARIOS";
@@ -749,9 +761,9 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.label16);
-            this.panel1.Location = new System.Drawing.Point(724, 106);
+            this.panel1.Location = new System.Drawing.Point(687, 104);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(222, 54);
+            this.panel1.Size = new System.Drawing.Size(259, 54);
             this.panel1.TabIndex = 35;
             // 
             // label16
@@ -760,7 +772,7 @@
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.Location = new System.Drawing.Point(0, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(222, 54);
+            this.label16.Size = new System.Drawing.Size(259, 54);
             this.label16.TabIndex = 35;
             this.label16.Tag = "Titulo";
             this.label16.Text = "Usuarios mas activos";
@@ -770,7 +782,7 @@
             // 
             this.FlowPanelMasActivos.AutoScroll = true;
             this.FlowPanelMasActivos.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.FlowPanelMasActivos.Location = new System.Drawing.Point(724, 160);
+            this.FlowPanelMasActivos.Location = new System.Drawing.Point(687, 160);
             this.FlowPanelMasActivos.Name = "FlowPanelMasActivos";
             this.FlowPanelMasActivos.Size = new System.Drawing.Size(259, 230);
             this.FlowPanelMasActivos.TabIndex = 33;
@@ -977,9 +989,9 @@
             this.PanelReportesAvanzados.Controls.Add(this.BtnAplicarFiltrosConsultar);
             this.PanelReportesAvanzados.Controls.Add(this.label18);
             this.PanelReportesAvanzados.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PanelReportesAvanzados.Location = new System.Drawing.Point(286, 0);
+            this.PanelReportesAvanzados.Location = new System.Drawing.Point(230, 0);
             this.PanelReportesAvanzados.Name = "PanelReportesAvanzados";
-            this.PanelReportesAvanzados.Size = new System.Drawing.Size(984, 720);
+            this.PanelReportesAvanzados.Size = new System.Drawing.Size(16, 720);
             this.PanelReportesAvanzados.TabIndex = 22;
             this.PanelReportesAvanzados.Tag = "Default";
             this.PanelReportesAvanzados.Visible = false;
@@ -1215,18 +1227,6 @@
             this.label28.Text = "Desde";
             this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // BtnRefrescar
-            // 
-            this.BtnRefrescar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnRefrescar.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnRefrescar.Location = new System.Drawing.Point(41, 577);
-            this.BtnRefrescar.Name = "BtnRefrescar";
-            this.BtnRefrescar.Size = new System.Drawing.Size(171, 44);
-            this.BtnRefrescar.TabIndex = 22;
-            this.BtnRefrescar.Text = "Refrescar datos";
-            this.BtnRefrescar.UseVisualStyleBackColor = true;
-            this.BtnRefrescar.Click += new System.EventHandler(this.BtnRefrescar_Click);
-            // 
             // ControlGestionDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1238,7 +1238,7 @@
             this.Controls.Add(this.PanelMenu);
             this.Controls.Add(this.PanelDashboardMetricasUsuario);
             this.Name = "ControlGestionDashboard";
-            this.Size = new System.Drawing.Size(1280, 720);
+            this.Size = new System.Drawing.Size(1245, 720);
             this.Load += new System.EventHandler(this.ControlGestionDashboard_Load);
             this.VisibleChanged += new System.EventHandler(this.ControlGestionDashboard_VisibleChanged);
             this.PanelMenu.ResumeLayout(false);

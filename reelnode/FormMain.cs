@@ -71,10 +71,10 @@ namespace Reelnode
             Panel.BackColor = Color.Transparent;
 
             // Relleno los flow panels de la UI principal con las peliculas y series cargadas en la base de datos
-            /*CargarPeliculasSiHayInsercion();
+            CargarPeliculasSiHayInsercion();
 
             CargarSeriesSiHayInsercion();
-            */
+            
             /* !--- CARGA DE PERMISOS ---! */
 
             // Aca solo elijo si mostrar o no el menu de Administracion, disponible
