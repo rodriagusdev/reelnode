@@ -301,7 +301,6 @@
     <Compile Include="Utils.cs" />
     <Compile Include="UtilsBD.cs" />
     <Compile Include="AdministradorTema.cs" />
-    <Compile Include="XLWorkbook.cs" />
     <EmbeddedResource Include="ControlComentarios.resx">
       <DependentUpon>ControlComentarios.cs</DependentUpon>
     </EmbeddedResource>

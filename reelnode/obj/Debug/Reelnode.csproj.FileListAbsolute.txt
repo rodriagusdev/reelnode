@@ -428,3 +428,9 @@ C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.csproj.Up2Date
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.exe
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.pdb
 C:\dev\Hilet\Algoritmos II\Reelnode\obj\Debug\Reelnode.exe.config
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\ClosedXML.dll
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\ClosedXML.Parser.dll
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\Microsoft.Bcl.HashCode.dll
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\ClosedXML.pdb
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\ClosedXML.xml
+D:\Rodrigo\Algoritmos2\reelnode\Reelnode\bin\Debug\ClosedXML.Parser.xml

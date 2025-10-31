@@ -1622,8 +1622,6 @@ begin
 end //
 DELIMITER ;
 
-call sp_obtener_calificaciones_x_usuario_serie(2);
-call sp_obtener_calificaciones_x_usuario_pelis(2);
 call sp_asignar_permiso_usuario_superadmin(1);
 call sp_asignar_permiso_usuario_admin(2);
 call sp_asignar_permiso_usuario_admin(3);
