@@ -1,9 +1,27 @@
-.vs/
-*.suo
-*.backup.json
+
+# .NET - Ignorar todo lo generado
 bin/
 obj/
-*.cache
-*.pdb
+packages/
 *.dll
 *.exe
+*.pdb
+*.cache
+*.suo
+*.user
+*.log
+*.tmp
+
+# Visual Studio
+.vs/
+*.pubxml
+*.pubxml.user
+
+# NuGet
+*.nupkg
+project.lock.json
+artifacts/
+
+# Publicación
+publish/
+

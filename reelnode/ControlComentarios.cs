@@ -31,7 +31,6 @@ namespace Reelnode
             PanelMain.Controls.Add(Panel);
             this.Controls.Add(PanelMain);
 
-            // INSTANCIO LA IA
             try
             {
                 _moderator = new Moderador(Application.StartupPath);

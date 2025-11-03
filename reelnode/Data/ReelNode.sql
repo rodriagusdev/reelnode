@@ -1248,7 +1248,7 @@ BEGIN
         from visualizaciones_pelicula vp
         where vp.fecha_visualizacion >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
               and vp.fecha_visualizacion < DATE_ADD(CURDATE(), INTERVAL 1 DAY)
-		)+
+		)+ 
 		(
 		select count(vs.id_visualizacion) 
         from visualizaciones_serie vs
@@ -1409,7 +1409,7 @@ CREATE PROCEDURE sp_reporte_avanzado_peliculas(
 BEGIN 
 		-- Al igual que en la funcion sp_reporte_avanzado_series, @sql marca que es una consulta dinamica
         -- es decir que se va a ir creando segun los filtros existentes.
-        
+
 		SET @sql = '
         SELECT
             p.nombre as Titulo,

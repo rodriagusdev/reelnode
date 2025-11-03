@@ -9,6 +9,7 @@ namespace Reelnode
     {
         /* !--- DEFINICION DE COLORES DEL TEMA CYBERPUNK ---! */
 
+        // Propiedades de color: 
         public static Color AzulOscuroNeon = Color.FromArgb(42, 47, 79);
         public static Color VerdeClaroNeon = Color.FromArgb(0, 230, 118);
         public static Color RosaNeon = Color.FromArgb(255, 0, 127);
@@ -21,19 +22,19 @@ namespace Reelnode
         /* !--- FIN DE DEFINICION DE COLORES DEL TEMA CYBERPUNK ---! */
 
         // Esta funcion me permite recuperar todos los controles hijos de un control padre.
-        public static IEnumerable<Control> GetAllControls(Control parent)
+        public static IEnumerable<Control> ObtenerTodosLosControles(Control parent)
         {
             foreach (Control c in parent.Controls)
             {
-                yield return c;
-                foreach (var child in GetAllControls(c))
+                yield return c; 
+                foreach (var child in ObtenerTodosLosControles(c))
                     yield return child;
             }
         }
 
         public static void AplicarTema(Control parent)
         {
-            foreach (Control ctrl in GetAllControls(parent))
+            foreach (Control ctrl in ObtenerTodosLosControles(parent))
             {
                 /* !--- TEMA GRADIENTE USANDO INTERFAZ ---! */
 

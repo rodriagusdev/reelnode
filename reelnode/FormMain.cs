@@ -20,6 +20,9 @@ namespace Reelnode
         public FormMain()
         {
             InitializeComponent();
+
+            // Para poder aplicar el tema a los siguientes componentes (ya existentes)
+            // es necesario que sean agregados al PanelGradiente que se crea dinamicamente.
             PanelMain = new PanelGradiente { Dock = DockStyle.Fill };
 
             PanelMain.Controls.Add(LblSeries);
@@ -31,8 +34,19 @@ namespace Reelnode
 
         public void ConfiguracionAPP()
         {
+            /* !--- CARGA DE EVENTOS ---! */
+
+            // Basicamente, los dos administradores de abajo tienen un evento para registrar
+            // si hubo una insercion de pelicula o serie, y les estoy diciendo que lo que ese evento
+            // hará es CargarPeliculasSiHayInsercion o CargarSeriesSiHayInsercion, que esta definido
+            // mas abajo en el codigo. Ambas recargan en el Panel principal haciendo una peticion a
+            // la base de datos.
+
             AdministradorPeliculas.onPeliculaCargada += CargarPeliculasSiHayInsercion;
             AdministradorSeries.onSerieCargada += CargarSeriesSiHayInsercion;
+
+
+            /* !--- FIN CARGA DE EVENTOS ---! */
 
             /* !--- ESTABLECIMIENTO Y CONFIGURACION DE USER CONTROLS ---! */
 
@@ -74,7 +88,7 @@ namespace Reelnode
             CargarPeliculasSiHayInsercion();
 
             CargarSeriesSiHayInsercion();
-            
+
             /* !--- CARGA DE PERMISOS ---! */
 
             // Aca solo elijo si mostrar o no el menu de Administracion, disponible

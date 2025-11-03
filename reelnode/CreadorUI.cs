@@ -298,6 +298,9 @@ namespace Reelnode
             List<AudiovisualMiniatura> listaAudiovisual)
         {
             if (flowPnl == null || listaAudiovisual == null) return;
+
+            flowPnl.Controls.Clear();
+
             if (listaAudiovisual.Count < 1)
             {
                 MostrarSinRegistros(flowPnl, "No hay registros de calificaciones");
@@ -323,6 +326,8 @@ namespace Reelnode
             )
         {
             if (flowPnl == null || listaAudiovisual == null) return;
+
+            flowPnl.Controls.Clear();
 
             if (listaAudiovisual.Count < 1)
             {

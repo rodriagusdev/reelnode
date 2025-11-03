@@ -277,7 +277,7 @@
             this.PanelDashboardMain.Controls.Add(this.flowPanelPelisMasVistas);
             this.PanelDashboardMain.Location = new System.Drawing.Point(252, 0);
             this.PanelDashboardMain.Name = "PanelDashboardMain";
-            this.PanelDashboardMain.Size = new System.Drawing.Size(1074, 720);
+            this.PanelDashboardMain.Size = new System.Drawing.Size(1061, 720);
             this.PanelDashboardMain.TabIndex = 20;
             this.PanelDashboardMain.Tag = "Default";
             // 
@@ -989,9 +989,9 @@
             this.PanelReportesAvanzados.Controls.Add(this.BtnAplicarFiltrosConsultar);
             this.PanelReportesAvanzados.Controls.Add(this.label18);
             this.PanelReportesAvanzados.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PanelReportesAvanzados.Location = new System.Drawing.Point(1298, 0);
+            this.PanelReportesAvanzados.Location = new System.Drawing.Point(1286, 0);
             this.PanelReportesAvanzados.Name = "PanelReportesAvanzados";
-            this.PanelReportesAvanzados.Size = new System.Drawing.Size(15, 720);
+            this.PanelReportesAvanzados.Size = new System.Drawing.Size(27, 720);
             this.PanelReportesAvanzados.TabIndex = 22;
             this.PanelReportesAvanzados.Tag = "Default";
             this.PanelReportesAvanzados.Visible = false;
