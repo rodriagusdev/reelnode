@@ -1,6 +1,9 @@
-﻿using Microsoft.Web.WebView2.WinForms;
+﻿using Microsoft.Web.WebView2.Core;
+using Microsoft.Web.WebView2.WinForms;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -121,63 +124,164 @@ namespace Reelnode
         // La funcion va a ocultar las columnas que tengan ese nombre.
         public static void ActualizarListaGrid<T>(DataGridView grid, List<T> list, params string[] ocultarColumnas)
         {
+            // === 1. Limpiar y preparar ===
+            grid.ColumnHeaderMouseClick -= Grid_ColumnHeaderMouseClick; // Evitar duplicados
             grid.DataSource = null;
             grid.AutoGenerateColumns = true;
+
+            // === 2. Asignar lista ===
             grid.DataSource = list;
 
+            // === 3. Ocultar columnas especificadas ===
             foreach (var col in ocultarColumnas)
             {
-                // Aca las oculto
-                if (grid.Columns.Contains(col)) grid.Columns[col].Visible = false;
+                if (grid.Columns.Contains(col))
+                    grid.Columns[col].Visible = false;
             }
+
+            // === 4. Guardar nombres de columnas ocultas en Tag (para restaurar) ===
+            var columnasOcultas = ocultarColumnas
+                .Where(c => grid.Columns.Contains(c))
+                .Select(c => c)
+                .ToList();
+
+            // Guardar en Tag del grid (o usa una variable estática si prefieres)
+            grid.Tag = columnasOcultas;
+
+            // === 5. Suscribir evento (solo una vez) ===
+            grid.ColumnHeaderMouseClick += Grid_ColumnHeaderMouseClick;
+        }
+
+        private static void Grid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            var grid = sender as DataGridView;
+            if (grid == null) return;
+
+            var columna = grid.Columns[e.ColumnIndex];
+            if (columna == null || !columna.Visible) return;
+
+            var listaOriginal = grid.DataSource as IList;
+            if (listaOriginal == null || listaOriginal.Count == 0) return;
+
+            var tipo = listaOriginal[0].GetType();
+            var propiedad = tipo.GetProperty(columna.DataPropertyName);
+            if (propiedad == null) return;
+
+            // === Obtener columnas ocultas guardadas ===
+            var columnasOcultas = grid.Tag as List<string> ?? new List<string>();
+
+            // === Determinar dirección ===
+            ListSortDirection direccion = ListSortDirection.Ascending;
+            if (grid.SortedColumn?.Name == columna.Name && grid.SortOrder == SortOrder.Ascending)
+            {
+                direccion = ListSortDirection.Descending;
+            }
+
+            // === Ordenar ===
+            var listaOrdenada = direccion == ListSortDirection.Ascending
+                ? listaOriginal.Cast<object>()
+                    .OrderBy(x => propiedad.GetValue(x) ?? "")
+                    .ToList()
+                : listaOriginal.Cast<object>()
+                    .OrderByDescending(x => propiedad.GetValue(x) ?? "")
+                    .ToList();
+
+            // === Reasignar SIN perder estado ===
+            grid.ColumnHeaderMouseClick -= Grid_ColumnHeaderMouseClick; // Evitar bucle
+            grid.DataSource = null;
+            grid.DataSource = listaOrdenada;
+
+            // === Restaurar columnas ocultas ===
+            foreach (var col in columnasOcultas)
+            {
+                if (grid.Columns.Contains(col))
+                    grid.Columns[col].Visible = false;
+            }
+
+            // === Mostrar flecha de orden ===
+            foreach (DataGridViewColumn col in grid.Columns)
+                col.HeaderCell.SortGlyphDirection = SortOrder.None;
+
+            grid.Columns[columna.Name].HeaderCell.SortGlyphDirection =
+                direccion == ListSortDirection.Ascending ? SortOrder.Ascending : SortOrder.Descending;
+
+            // === Volver a suscribir ===
+            grid.ColumnHeaderMouseClick += Grid_ColumnHeaderMouseClick;
         }
 
         public static async Task<string> VerificarTrailer(Panel pnl, string trailerURL)
         {
             pnl.Controls.Clear();
 
-            WebView2 trailer = new WebView2
+            Label lblCargando = new Label
             {
-                Dock = DockStyle.Fill
+                Text = "Cargando trailer...",
+                Dock = DockStyle.Fill,
+                TextAlign = ContentAlignment.MiddleCenter,
+                Font = new Font("Courier New", 12, FontStyle.Italic),
+                ForeColor = Color.Gray
             };
+            pnl.Controls.Add(lblCargando);
+            pnl.Refresh();
 
-            pnl.Controls.Add(trailer);
-
-            // Aca espero que el WebView2 este listo para cargar contenido web. Await = esperar
-            await trailer.EnsureCoreWebView2Async(null);
-
-            // Es una propiedad del WebView2 que indica si la navegacion fue exitosa o no
-            trailer.NavigationCompleted += (trailerSender, trailerArgs) =>
+            try
             {
-                WebView2 webView = trailerSender as WebView2;
-
-                if (!trailerArgs.IsSuccess)
+                string videoId = ExtraerVideoId(trailerURL);
+                if (string.IsNullOrEmpty(videoId))
                 {
-                    MessageBox.Show($"Error al cargar el trailer: {trailerArgs.WebErrorStatus}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    if (webView != null)
-                        webView.Source = null;
+                    MessageBox.Show("No se pudo extraer el ID del video.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    pnl.Controls.Clear();
+                    return null;
                 }
-            };
 
-            // Con ExtraerVideo saco una URL validad para usarla en el trailer
-            // De no funcionar devuelvo null;
-            string videoId = ExtraerVideoId(trailerURL);
+                string embedUrl = $"https://www.youtube-nocookie.com/embed/{videoId}?rel=0&controls=1&autoplay=1";
 
-            if (string.IsNullOrEmpty(videoId))
+                WebView2 trailer = new WebView2 { Dock = DockStyle.Fill };
+                var env = await CoreWebView2Environment.CreateAsync(null, Path.Combine(Application.StartupPath, "WebView2Cache"));
+                await trailer.EnsureCoreWebView2Async(env);
+
+                bool loaded = false;
+
+                trailer.NavigationCompleted += (sender, args) =>
+                {
+                    if (args.IsSuccess)
+                    {
+                        loaded = true;
+                        pnl.Controls.Clear();
+                        pnl.Controls.Add(trailer);
+                    }
+                };
+
+                trailer.Source = new Uri(embedUrl);
+
+                // 🔸 Esperar hasta 5 segundos a que cargue
+                int waitMs = 0;
+                while (!loaded && waitMs < 5000)
+                {
+                    await Task.Delay(100);
+                    waitMs += 100;
+                }
+
+                // 🔹 Si no cargó (YouTube bloqueado), abrir navegador externo
+                if (!loaded)
+                {
+                    MessageBox.Show("YouTube bloqueó la reproducción del video embebido. Se abrirá en tu navegador.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                    {
+                        FileName = trailerURL,
+                        UseShellExecute = true
+                    });
+                    pnl.Controls.Clear();
+                }
+
+                return embedUrl;
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show("No se pudo extraer el ID del video.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error al cargar el trailer: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                pnl.Controls.Clear();
                 return null;
             }
-
-            //?rel=0&controls=1&autoplay=1 ->
-            //rel=0 evita videos relacionados al finalizar, controls=1 muestra controles, autoplay=1 reproduce automaticamente
-            //Separar con "?"
-
-            string embedUrl = $"https://www.youtube.com/embed/{videoId}?rel=0&controls=1&autoplay=1";
-            trailer.Source = new Uri(embedUrl);
-
-            pnl.Invalidate();
-            return embedUrl;
         }
 
         public static string FormatearPuntoPromedio(double n)

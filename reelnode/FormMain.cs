@@ -116,6 +116,7 @@ namespace Reelnode
 
             login.ShowDialog();
 
+
             /* !--- FIN LOGIN ---! */
 
             /* !--- CARGA DE DATOS ---! */
@@ -127,11 +128,13 @@ namespace Reelnode
             UtilsBD.CargarNetworks();
             UtilsBD.CargarGeneros();
 
+
             /* !--- FIN CARGADO DE DATOS ---! */
 
             ConfiguracionAPP();
 
-            // APLICACION DE TEMA -> F12 para abrir la configuracion de tema
+            // APLICACION DE TEMA
+
             AdministradorTema.AplicarTema(this);
         }
 
@@ -227,32 +230,57 @@ namespace Reelnode
         /* !--- EVENTOS DE BOTONES DEL MENU ---! */
         private void ToolStpMenuAdmin_Click_1(object sender, EventArgs e)
         {
+            if(!controlAdmin.Visible)
             Utils.ShowControl(controlAdmin, Panel);
         }
 
         private void ToolStpMenuCuenta_Click(object sender, EventArgs e)
         {
-            Utils.ShowControl(controlCuentaUsuario, Panel);
+            if (!controlCuentaUsuario.Visible)
+                Utils.ShowControl(controlCuentaUsuario, Panel);
         }
 
         private void ToolStpMenuHome_Click(object sender, EventArgs e)
         {
-            Utils.ShowControl(PanelMain, Panel);
-
-            if (controlVisualizacionPeliculas.trailer != null)
+            if (!PanelMain.Visible)
             {
-                controlVisualizacionPeliculas.DetenerTrailer();
-            }
+                Utils.ShowControl(PanelMain, Panel);
 
-            if (controlVisualizacionSerie.trailer != null)
-            {
-                controlVisualizacionSerie.DetenerTrailer();
+                // Detener trailers solo cuando se muestra el home
+                controlVisualizacionPeliculas?.DetenerTrailer();
+                controlVisualizacionSerie?.DetenerTrailer();
             }
         }
 
         private void ToolStpMenuSalir_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+           this.Close();
+        }
+
+        private void BtnTema_Click(object sender, EventArgs e)
+        {
+            AdministradorTema.CambiarTemaCyberpunk(this);
+
+            // 2. Opcional: Mostrar un mensaje o actualizar el texto del botón.
+            string nombreTema;
+            switch (AdministradorTema.IndiceTemaActual)
+            {
+                case 1:
+                    nombreTema = "Synthwave Default (Azul/Rosa)";
+                    break;
+                case 2:
+                    nombreTema = "Fuego Digital (Naranja/Verde Lima)";
+                    break;
+                case 3:
+                    nombreTema = "Glitch/Alarma (Rojo/Azul)";
+                    break;
+                case 4:
+                    nombreTema = "Holograma Limpio (Blanco/Cian)";
+                    break;
+                default:
+                    nombreTema = "Tema Desconocido";
+                    break;
+            }
         }
 
         /* !--- FIN EVENTOS DE BOTONES DEL MENU ---! */

@@ -58,43 +58,52 @@ namespace Reelnode
         /* !--- Eventos de las opciones de menu ---! */
         private void ToolStpSubMenuCargarPeliculas_Click(object sender, EventArgs e)
         {
-            Utils.ShowControl(controlCargarPelicula, PanelAdmin);
+            if (!controlCargarPelicula.Visible)
+                Utils.ShowControl(controlCargarPelicula, PanelAdmin);
         }
 
         private void ToolStpSubMenuListarPeliculas_Click(object sender, EventArgs e)
         {
-            Utils.ShowControl(controlListarPeliculas, PanelAdmin);
+            if (!controlListarPeliculas.Visible)
+                Utils.ShowControl(controlListarPeliculas, PanelAdmin);
         }
 
         private void ToolStpMenuUsuarios_Click(object sender, EventArgs e)
         {
-            Utils.ShowControl(controlGestionUsuarios, PanelAdmin);
+            if (!controlGestionUsuarios.Visible)
+                Utils.ShowControl(controlGestionUsuarios, PanelAdmin);
         }
 
         private void ToolStpMenuActualizarPelicula_Click(object sender, EventArgs e)
         {
-            Utils.ShowControl(controlActualizarPeliculas, PanelAdmin);
+            if (!controlActualizarPeliculas.Visible)
+                Utils.ShowControl(controlActualizarPeliculas, PanelAdmin);
         }
 
         private void ToolStpMenuCargarSerie_Click(object sender, EventArgs e)
         {
-            Utils.ShowControl(controlSeriesCargar, PanelAdmin);
+            if (!controlSeriesCargar.Visible)
+                Utils.ShowControl(controlSeriesCargar, PanelAdmin);
         }
 
         private void ToolStpMenuListarSerie_Click(object sender, EventArgs e)
         {
-            Utils.ShowControl(controlGestionSeriesListarSeries, PanelAdmin);
+            if (!controlGestionSeriesListarSeries.Visible)
+                Utils.ShowControl(controlGestionSeriesListarSeries, PanelAdmin);
         }
 
         private void ToolStpMenuActualizarSerie_Click(object sender, EventArgs e)
         {
-            Utils.ShowControl(controlSeriesActualizar, PanelAdmin);
+            if (!controlSeriesActualizar.Visible)
+                Utils.ShowControl(controlSeriesActualizar, PanelAdmin);
         }
 
         private void ToolStpMenuDashboard_Click(object sender, EventArgs e)
         {
-            Utils.ShowControl(controlGestionDashboard, PanelAdmin);
+            if (!controlGestionDashboard.Visible)
+                Utils.ShowControl(controlGestionDashboard, PanelAdmin);
         }
+
 
         /* !--- Fin de eventos de los ToolStripMenuItems ---! */
     }

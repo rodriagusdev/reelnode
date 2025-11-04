@@ -102,9 +102,9 @@
             // 
             this.PanelGrid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(47)))), ((int)(((byte)(71)))));
             this.PanelGrid.Controls.Add(this.DataGridUsuarios);
-            this.PanelGrid.Location = new System.Drawing.Point(232, 75);
+            this.PanelGrid.Location = new System.Drawing.Point(144, 75);
             this.PanelGrid.Name = "PanelGrid";
-            this.PanelGrid.Size = new System.Drawing.Size(837, 195);
+            this.PanelGrid.Size = new System.Drawing.Size(949, 195);
             this.PanelGrid.TabIndex = 8;
             // 
             // DataGridUsuarios
@@ -120,7 +120,7 @@
             this.DataGridUsuarios.Name = "DataGridUsuarios";
             this.DataGridUsuarios.ReadOnly = true;
             this.DataGridUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridUsuarios.Size = new System.Drawing.Size(808, 174);
+            this.DataGridUsuarios.Size = new System.Drawing.Size(920, 174);
             this.DataGridUsuarios.TabIndex = 2;
             this.DataGridUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridUsuarios_CellClick);
             this.DataGridUsuarios.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DataGridUsuarios_CellFormatting);
@@ -213,7 +213,7 @@
             this.LblAdvertencia.AutoSize = true;
             this.LblAdvertencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblAdvertencia.ForeColor = System.Drawing.Color.Red;
-            this.LblAdvertencia.Location = new System.Drawing.Point(230, 303);
+            this.LblAdvertencia.Location = new System.Drawing.Point(142, 303);
             this.LblAdvertencia.Name = "LblAdvertencia";
             this.LblAdvertencia.Size = new System.Drawing.Size(421, 15);
             this.LblAdvertencia.TabIndex = 14;
@@ -225,7 +225,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(228, 48);
+            this.label1.Location = new System.Drawing.Point(140, 48);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(329, 24);
             this.label1.TabIndex = 13;
@@ -245,9 +245,9 @@
             // PanelMostrarPermisos
             // 
             this.PanelMostrarPermisos.Controls.Add(this.LblPermisosUsuario);
-            this.PanelMostrarPermisos.Location = new System.Drawing.Point(232, 520);
+            this.PanelMostrarPermisos.Location = new System.Drawing.Point(145, 520);
             this.PanelMostrarPermisos.Name = "PanelMostrarPermisos";
-            this.PanelMostrarPermisos.Size = new System.Drawing.Size(837, 41);
+            this.PanelMostrarPermisos.Size = new System.Drawing.Size(924, 41);
             this.PanelMostrarPermisos.TabIndex = 11;
             // 
             // LblPermisosUsuario
@@ -266,7 +266,7 @@
             this.PanelPermisos.Controls.Add(this.BtnConfirmarPermisos);
             this.PanelPermisos.Controls.Add(this.ChkListPermisos);
             this.PanelPermisos.Enabled = false;
-            this.PanelPermisos.Location = new System.Drawing.Point(232, 327);
+            this.PanelPermisos.Location = new System.Drawing.Point(144, 327);
             this.PanelPermisos.Name = "PanelPermisos";
             this.PanelPermisos.Size = new System.Drawing.Size(419, 143);
             this.PanelPermisos.TabIndex = 10;

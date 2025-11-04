@@ -217,8 +217,7 @@ values
 ("superadmin", "super@gmail.com", "admin", 'https://i.pinimg.com/originals/dd/c2/f9/ddc2f91225f7070a0519d50e20ac1a74.jpg', "2025-06-1", 1),
 ("rodri", "rodri@gmail.com", "1", 'https://wallpapercave.com/wp/wp5273986.jpg', "2025-08-2", 2),
 ("san", "san@gmail.com", "2", "https://i.pinimg.com/originals/ce/66/2b/ce662b67df27a2c003ba567ad01c5fb0.jpg", "2025-08-1", 2),
-("agus", "agus@gmail.com", "3", "https://media.mdzol.com/adjuntos/373/migration/u/fotografias/m/2024/5/27/f768x768-1600669_1684947_5050.png", "2025-08-1", 2),
-("willy123", "comun@gmail.com", "3", null, "2025-08-1", 3);
+("agus", "agus@gmail.com", "3", "https://media.mdzol.com/adjuntos/373/migration/u/fotografias/m/2024/5/27/f768x768-1600669_1684947_5050.png", "2025-08-1", 2);
 
 CREATE TABLE visualizaciones_serie (
     id_visualizacion INT PRIMARY KEY AUTO_INCREMENT,
@@ -375,12 +374,13 @@ CREATE PROCEDURE sp_insertar_usuario(
     IN p_nombre VARCHAR(255),
     IN p_password VARCHAR(255),  
     IN p_id_rol INT,
-    in p_email varchar(255)
+    in p_email varchar(255),
+    in p_avatar varchar(255)
 )
 BEGIN 
 	START TRANSACTION;
-		INSERT INTO usuario(nombre_usuario, password_usuario, email_usuario, fecha_registro, avatar, id_rol)
-		VALUES(p_nombre, p_password, p_email, CURDATE(), null, p_id_rol);
+		INSERT INTO usuario(nombre_usuario, password_usuario, email_usuario, fecha_registro, id_rol, avatar)
+		VALUES(p_nombre, p_password, p_email, CURDATE(), p_id_rol, p_avatar);
 		
 		call sp_asignar_permiso_usuario_comun(LAST_INSERT_ID());
     COMMIT;
@@ -1158,6 +1158,7 @@ DELIMITER //
 CREATE PROCEDURE sp_obtener_comentarios_pelis(in p_id_pelicula int)
 begin
 	select 
+		c.id_comentario,
 		c.fecha_comentario, 
         c.texto,
         u.nombre_usuario,
@@ -1174,6 +1175,7 @@ DELIMITER //
 CREATE PROCEDURE sp_obtener_comentarios_serie(in p_id_serie int)
 begin
 	select 
+		c.id_comentario,
 		c.fecha_comentario, 
         c.texto,
         u.nombre_usuario,
@@ -1622,13 +1624,88 @@ begin
 end //
 DELIMITER ;
 
+DELIMITER //
+
+CREATE PROCEDURE sp_eliminar_comentario_serie(
+    IN p_usuario_id INT,
+    IN p_comentario_id INT
+)
+BEGIN
+    DECLARE comentario_propietario_id INT DEFAULT 0;
+    DECLARE mensaje VARCHAR(255);
+
+    -- Obtenemos el ID del usuario que creó el comentario
+    SELECT id_usuario 
+    INTO comentario_propietario_id
+    FROM comentarios_serie
+    WHERE id_comentario = p_comentario_id
+    LIMIT 1;
+
+    -- Verificamos si el comentario existe
+    IF comentario_propietario_id IS NULL THEN
+        SET mensaje = 'El comentario no existe.';
+        SELECT mensaje AS resultado;
+    END IF;
+
+    -- Verificamos si el comentario pertenece al usuario
+    IF comentario_propietario_id = p_usuario_id THEN
+        DELETE FROM comentarios_serie
+        WHERE id_comentario = p_comentario_id;
+        SET mensaje = 'Comentario eliminado correctamente.';
+    ELSE
+        SET mensaje = 'No tienes permisos para eliminar este comentario.';
+    END IF;
+
+    -- devolver un mensaje de resultado
+    SELECT mensaje AS resultado;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_eliminar_comentario_pelicula(
+    IN p_usuario_id INT,
+    IN p_comentario_id INT
+)
+BEGIN
+    DECLARE comentario_propietario_id INT DEFAULT 0;
+    DECLARE mensaje VARCHAR(255);
+
+    -- Obtenemos el ID del usuario que creó el comentario
+    SELECT id_usuario 
+    INTO comentario_propietario_id
+    FROM comentarios_peli
+    WHERE id_comentario = p_comentario_id
+    LIMIT 1;
+
+    -- Verificamos si el comentario existe
+    IF comentario_propietario_id IS NULL THEN
+        SET mensaje = 'El comentario no existe.';
+        SELECT mensaje AS resultado;
+    END IF;
+
+    -- Verificamos si el comentario pertenece al usuario
+    IF comentario_propietario_id = p_usuario_id THEN
+        DELETE FROM comentarios_peli
+        WHERE id_comentario = p_comentario_id;
+        SET mensaje = 'Comentario eliminado correctamente.';
+    ELSE
+        SET mensaje = 'No tienes permisos para eliminar este comentario.';
+    END IF;
+
+    -- devolver un mensaje de resultado
+    SELECT mensaje AS resultado;
+END //
+
+DELIMITER ;
+
 call sp_obtener_calificaciones_x_usuario_serie(2);
 call sp_obtener_calificaciones_x_usuario_pelis(2);
 call sp_asignar_permiso_usuario_superadmin(1);
 call sp_asignar_permiso_usuario_admin(2);
 call sp_asignar_permiso_usuario_admin(3);
 call sp_asignar_permiso_usuario_admin(4);
-call sp_asignar_permiso_usuario_comun(5);
 -- ----------------------- Pruebas
 
 SET SQL_SAFE_UPDATES = 0;

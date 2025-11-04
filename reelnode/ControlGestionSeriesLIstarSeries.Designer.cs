@@ -34,6 +34,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.DataGridSeries = new System.Windows.Forms.DataGridView();
+            this.LblPeliculas = new System.Windows.Forms.Label();
             this.PanelListar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridSeries)).BeginInit();
             this.SuspendLayout();
@@ -41,6 +42,7 @@
             // PanelListar
             // 
             this.PanelListar.BackColor = System.Drawing.Color.Transparent;
+            this.PanelListar.Controls.Add(this.LblPeliculas);
             this.PanelListar.Controls.Add(this.BtnImportarJSON);
             this.PanelListar.Controls.Add(this.BtnExportarJSON);
             this.PanelListar.Controls.Add(this.panel1);
@@ -60,7 +62,7 @@
             this.BtnImportarJSON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnImportarJSON.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnImportarJSON.ForeColor = System.Drawing.Color.Black;
-            this.BtnImportarJSON.Location = new System.Drawing.Point(232, 478);
+            this.BtnImportarJSON.Location = new System.Drawing.Point(117, 489);
             this.BtnImportarJSON.Name = "BtnImportarJSON";
             this.BtnImportarJSON.Size = new System.Drawing.Size(221, 35);
             this.BtnImportarJSON.TabIndex = 51;
@@ -75,7 +77,7 @@
             this.BtnExportarJSON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnExportarJSON.Font = new System.Drawing.Font("Palatino Linotype", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnExportarJSON.ForeColor = System.Drawing.Color.Black;
-            this.BtnExportarJSON.Location = new System.Drawing.Point(494, 478);
+            this.BtnExportarJSON.Location = new System.Drawing.Point(358, 489);
             this.BtnExportarJSON.Name = "BtnExportarJSON";
             this.BtnExportarJSON.Size = new System.Drawing.Size(221, 35);
             this.BtnExportarJSON.TabIndex = 1;
@@ -108,14 +110,25 @@
             this.DataGridSeries.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DataGridSeries.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(27)))), ((int)(((byte)(43)))));
             this.DataGridSeries.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridSeries.Location = new System.Drawing.Point(232, 118);
+            this.DataGridSeries.Location = new System.Drawing.Point(117, 145);
             this.DataGridSeries.Name = "DataGridSeries";
             this.DataGridSeries.ReadOnly = true;
             this.DataGridSeries.RowHeadersVisible = false;
             this.DataGridSeries.RowHeadersWidth = 51;
             this.DataGridSeries.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridSeries.Size = new System.Drawing.Size(837, 316);
+            this.DataGridSeries.Size = new System.Drawing.Size(1081, 316);
             this.DataGridSeries.TabIndex = 2;
+            // 
+            // LblPeliculas
+            // 
+            this.LblPeliculas.AutoSize = true;
+            this.LblPeliculas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblPeliculas.Location = new System.Drawing.Point(113, 98);
+            this.LblPeliculas.Name = "LblPeliculas";
+            this.LblPeliculas.Size = new System.Drawing.Size(250, 20);
+            this.LblPeliculas.TabIndex = 72;
+            this.LblPeliculas.Tag = "Titulo";
+            this.LblPeliculas.Text = "Series cargadas en el sistema";
             // 
             // ControlGestionSeriesListarSeries
             // 
@@ -128,6 +141,7 @@
             this.Size = new System.Drawing.Size(1280, 720);
             this.Load += new System.EventHandler(this.ControlGestionSeriesListarSeries_Load);
             this.PanelListar.ResumeLayout(false);
+            this.PanelListar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridSeries)).EndInit();
             this.ResumeLayout(false);
 
@@ -141,5 +155,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button BtnExportarJSON;
         private System.Windows.Forms.Button BtnImportarJSON;
+        private System.Windows.Forms.Label LblPeliculas;
     }
 }

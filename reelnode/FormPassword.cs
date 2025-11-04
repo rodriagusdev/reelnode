@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace Reelnode
 {
@@ -20,46 +21,89 @@ namespace Reelnode
 
         private void BtnCambiar_Click(object sender, EventArgs e)
         {
+            errorProvider.Clear(); // Limpia todos los errores previos
+            bool registracionValida = true;
+
             string usuario = TxtUsuario.Text.Trim();
             string email = TxtEmail.Text.Trim();
             string nuevaPassword = TxtCambiarPassword.Text;
             string confirmarPassword = TxtConfirmarPassword.Text;
 
-            if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(email) ||
-                string.IsNullOrEmpty(nuevaPassword) || string.IsNullOrEmpty(confirmarPassword))
+            // Patrón de email simplificado para validación
+            const string emailPattern = @"^.+@.+\..+$";
+
+            // --- 1. VALIDACIÓN DE CAMPOS NO VACÍOS Y FORMATO DE EMAIL ---
+
+            // Validar Usuario
+            if (string.IsNullOrWhiteSpace(usuario))
             {
-                MessageBox.Show("Todos los campos son obligatorios.");
-                return;
+                errorProvider.SetError(PanelUsuario, "El nombre de usuario es obligatorio.");
+                registracionValida = false;
             }
 
-            if (nuevaPassword != confirmarPassword)
+            // Validar Email (Vacío/Formato)
+            if (string.IsNullOrWhiteSpace(email))
             {
-                MessageBox.Show("Las contraseñas no coinciden.");
-                return;
+                errorProvider.SetError(PanelEmail, "El email es obligatorio.");
+                registracionValida = false;
+            }
+            else if (!Regex.IsMatch(email, emailPattern, RegexOptions.IgnoreCase))
+            {
+                errorProvider.SetError(PanelEmail, "El formato del email no es válido.");
+                registracionValida = false;
             }
 
-            bool cambiado = AdministradorUsuarios.CambiarPasswordUsuario(usuario, email, nuevaPassword);
-
-            if (cambiado)
+            // Validar Nueva Contraseña
+            if (string.IsNullOrWhiteSpace(nuevaPassword))
             {
-                MessageBox.Show("Contraseña actualizada con éxito.");
-
-                string asunto = "Cambio de contraseña confirmado";
-                string cuerpo = $@"
-                    <h3>Hola {usuario},</h3>
-                    <p>Tu contraseña ha sido cambiada correctamente.</p>
-                    <p>Si no realizaste este cambio, contacta con soporte inmediatamente.</p>
-                    <br>
-                    <b>Equipo ProyectoNuevo</b>
-                ";
-
-                CorreoHelper.EnviarCorreo(email, asunto, cuerpo);
-
-                this.Close();
+                errorProvider.SetError(PanelPassword, "La nueva contraseña es obligatoria.");
+                registracionValida = false;
             }
-            else
+
+            // Validar Confirmar Contraseña
+            if (string.IsNullOrWhiteSpace(confirmarPassword))
             {
-                MessageBox.Show("El usuario y el correo no coinciden.");
+                errorProvider.SetError(PanelConfirmarPassword, "La confirmación de contraseña es obligatoria y debe coincidir.");
+                registracionValida = false;
+            }
+
+            // --- 2. VALIDACIÓN DE COINCIDENCIA DE CONTRASEÑAS ---
+
+            if (registracionValida && nuevaPassword != confirmarPassword)
+            {
+                errorProvider.SetError(PanelPassword, "Las contraseñas no coinciden.");
+                errorProvider.SetError(PanelConfirmarPassword, "Las contraseñas no coinciden.");
+                registracionValida = false;
+            }
+
+            // --- 3. PROCESO DE CAMBIO DE CONTRASEÑA ---
+
+            if (registracionValida)
+            {
+                bool cambiado = AdministradorUsuarios.CambiarPasswordUsuario(usuario, email, nuevaPassword);
+
+                if (cambiado)
+                {
+                    MessageBox.Show("Contraseña actualizada con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    string asunto = "Cambio de contraseña confirmado";
+                    string cuerpo = $@"
+                        <h3>Hola {usuario},</h3>
+                        <p>Tu contraseña ha sido cambiada correctamente.</p>
+                        <p>Si no realizaste este cambio, contacta con soporte inmediatamente.</p>
+                        <br>
+                        <b>Equipo de Reelnode</b>
+                    ";
+
+                    CorreoHelper.EnviarCorreo(email, asunto, cuerpo);
+
+                    this.Close();
+                }
+                else
+                {
+                    // Error en la lógica de negocio (ej. usuario y correo no coinciden en la base de datos)
+                    MessageBox.Show("El usuario o el correo electrónico no coinciden con los registros.", "Error de Autenticación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

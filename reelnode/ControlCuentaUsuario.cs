@@ -39,7 +39,7 @@ namespace Reelnode
             AdministradorVisualizaciones.onVisualizacionRegistrada += MostrarVisualizaciones;
             /* !--- CARGAR DATOS DE USUARIO ---! */
 
-            PicAvatar.Image = Utils.DescargarImagenDesdeURL(
+            PicAvatar.Image = string.IsNullOrEmpty(AdministradorUsuarios.usuarioActual.Avatar) ? Properties.Resources.usuariosinavatar : Utils.DescargarImagenDesdeURL(
                 AdministradorUsuarios.usuarioActual.Avatar
             );
             LblEmail.Text = AdministradorUsuarios.usuarioActual.Email;

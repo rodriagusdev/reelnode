@@ -72,7 +72,9 @@ namespace Reelnode
                 Size = new Size(40, 40),
                 Location = new Point(5, 5),
                 SizeMode = PictureBoxSizeMode.StretchImage,
-                Image = null,
+                Image = string.IsNullOrEmpty(c.UsuarioAvatar)
+                ? Properties.Resources.usuariosinavatar
+                : Utils.DescargarImagenDesdeURL(c.UsuarioAvatar)
             };
 
             // Nombre de usuario
@@ -102,17 +104,52 @@ namespace Reelnode
                 Location = new Point(50, 45),
                 Size = new Size(700, 100),
                 Padding = new Padding(5),
+                AutoSize = true
             };
-
-            lblTexto.Width = 1000;
 
             int textoHeight = lblTexto.PreferredHeight;
             panel.Height = Math.Max(100, 50 + textoHeight);
+
+            // Botón eliminar
+            Button btnEliminar = new Button
+            {
+                Text = "X",
+                Size = new Size(25, 25),
+                Location = new Point(panel.Width - 30, 5),
+                BackColor = Color.Red,
+                ForeColor = Color.White,
+                FlatStyle = FlatStyle.Flat
+            };
+            btnEliminar.FlatAppearance.BorderSize = 0;
+
+            btnEliminar.Click += (s, e) =>
+            {
+                if (c == null)
+                {
+                    MessageBox.Show("Comentario nulo");
+                    return;
+                }
+
+                if (AdministradorUsuarios.usuarioActual == null)
+                {
+                    MessageBox.Show("Usuario actual nulo");
+                    return;
+                }
+
+                AdministradorComentarios.EliminarComentario(c);
+            };
 
             panel.Controls.Add(pbAvatar);
             panel.Controls.Add(lblUsuario);
             panel.Controls.Add(lblFecha);
             panel.Controls.Add(lblTexto);
+            panel.Controls.Add(btnEliminar);
+
+            // Ajustar posición del botón si se redimensiona el panel
+            panel.SizeChanged += (s, e) =>
+            {
+                btnEliminar.Location = new Point(panel.Width - 30, 5);
+            };
 
             return panel;
         }
@@ -465,6 +502,8 @@ namespace Reelnode
         }
         public static void CrearPanelesComentarios(FlowLayoutPanel flowPanelComentarios, List<Comentario> comentarios)
         {
+            if (comentarios == null) return;
+
             foreach (var c in comentarios)
             {
                 Panel panel = CrearComentario(c);

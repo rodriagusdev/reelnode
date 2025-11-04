@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -34,6 +35,7 @@ namespace Reelnode
                         ObtenerRolUsuario(nuevoUsuario.RolUsuario)
                     );
                     cmd.Parameters.AddWithValue("p_email", nuevoUsuario.Email);
+                    cmd.Parameters.AddWithValue("p_avatar", "");
 
                     cmd.ExecuteNonQuery();
 

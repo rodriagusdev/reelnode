@@ -8,6 +8,7 @@ namespace Reelnode
     public partial class ControlGestionDashboard : UserControl
     {
         private PanelGradiente PanelMain;
+        const int LIMITE_DEFAULT_METRICA = 5;
         bool usarCalificacionMinima = false;
         bool usarDuracionMinima = false;
         bool usarCantTemporadas = false;
@@ -35,7 +36,7 @@ namespace Reelnode
         private void ControlGestionDashboard_Load(object sender, EventArgs e)
         {
             CargarDatosUsuario();
-            CargarDatosDashboard();
+            CargarDatosDashboard(5);
 
             AdministradorTema.AplicarTema(this);
         }
@@ -52,7 +53,7 @@ namespace Reelnode
             LblUsuario.Text = AdministradorUsuarios.usuarioActual.NombreUsuario;
         }
 
-        private void CargarDatosDashboard()
+        private void CargarDatosDashboard(int limit)
         {
             /* !--- MOSTRAR DATOS EN UI ---! */
 
@@ -64,20 +65,20 @@ namespace Reelnode
 
             CreadorUI.MostrarAudiovisualMasVistos(
                 flowPanelSeriesMasVistas,
-                AdministradorSeries.CargarSeriesMasVistas(5)
+                AdministradorSeries.CargarSeriesMasVistas(LIMITE_DEFAULT_METRICA)
             );
             CreadorUI.MostrarAudiovisualMasVistos(
                 flowPanelPelisMasVistas,
-                AdministradorPeliculas.CargarPeliculasMasVistas(5)
+                AdministradorPeliculas.CargarPeliculasMasVistas(LIMITE_DEFAULT_METRICA)
             );
 
             CreadorUI.MostrarAudiovisualMejorCalificados(
                 flowPanelSeriesMejorCalificadas,
-                AdministradorSeries.CargarSeriesMejorCalificadas(5)
+                AdministradorSeries.CargarSeriesMejorCalificadas(LIMITE_DEFAULT_METRICA)
             );
             CreadorUI.MostrarAudiovisualMejorCalificados(
                 flowPanelPeliculasMejorCalificadas,
-                AdministradorPeliculas.CargarPeliculasMejorCalificadas(5)
+                AdministradorPeliculas.CargarPeliculasMejorCalificadas(LIMITE_DEFAULT_METRICA)
             );
             /* !--- FIN DE METRICAS GENERALES ---! */
 
@@ -146,7 +147,6 @@ namespace Reelnode
         {
             if (CboTipoReporte.Text == "Peliculas")
             {
-
                 ChkFiltroCantTemporadas.Visible = false;
                 ChkFiltroCantTemporadas.Enabled = false;
 
@@ -201,8 +201,7 @@ namespace Reelnode
                         usarNetwork == true ? CboNetwork.SelectedItem?.ToString() : "",
                         DtpDesde.Value,
                         DtpHasta.Value,
-                        usarCantTemporadas == true ? Convert.ToInt32(NumUpCantTemporadas.Value)
-                            : 0,
+                        usarCantTemporadas == true ? Convert.ToInt32(NumUpCantTemporadas.Value) : 0,
                         usarCalificacionMinima == true
                             ? Convert.ToInt32(NumUpCalificacionMinima.Value)
                             : 0,
@@ -318,7 +317,6 @@ namespace Reelnode
             }
         }
 
-
         private void BtnExportarExcel_Click(object sender, EventArgs e)
         {
             using (SaveFileDialog dialogoGuardar = new SaveFileDialog())
@@ -339,8 +337,49 @@ namespace Reelnode
 
         private void BtnRefrescar_Click(object sender, EventArgs e)
         {
-            CargarDatosDashboard();
+            NumPelisCalifLim.Value = LIMITE_DEFAULT_METRICA;
+            NumPelisVistasLim.Value = LIMITE_DEFAULT_METRICA;
+            NumSeriesCalifLim.Value = LIMITE_DEFAULT_METRICA;
+            NumSeriesCalifLim.Value = LIMITE_DEFAULT_METRICA;
+            CargarDatosDashboard(LIMITE_DEFAULT_METRICA);
         }
+
+        private void NumPelisVistasLim_ValueChanged(object sender, EventArgs e)
+        {
+            CreadorUI.MostrarAudiovisualMasVistos(
+                flowPanelPelisMasVistas,
+                AdministradorPeliculas.CargarPeliculasMasVistas((int)NumPelisVistasLim.Value)
+            );
+            AdministradorTema.AplicarTema(flowPanelPelisMasVistas);
+        }
+
+        private void NumSeriesVistasLim_ValueChanged(object sender, EventArgs e)
+        {
+            CreadorUI.MostrarAudiovisualMasVistos(
+                flowPanelSeriesMasVistas,
+                AdministradorSeries.CargarSeriesMasVistas((int)NumSeriesVistasLim.Value)
+            );
+            AdministradorTema.AplicarTema(flowPanelSeriesMasVistas);
+        }
+
+        private void NumPelisCalifLim_ValueChanged(object sender, EventArgs e)
+        {
+            CreadorUI.MostrarAudiovisualMejorCalificados(
+                flowPanelPeliculasMejorCalificadas,
+                AdministradorPeliculas.CargarPeliculasMejorCalificadas((int)NumPelisCalifLim.Value)
+            );
+            AdministradorTema.AplicarTema(flowPanelPeliculasMejorCalificadas);
+        }
+
+        private void NumSeriesCalifLim_ValueChanged(object sender, EventArgs e)
+        {
+            CreadorUI.MostrarAudiovisualMejorCalificados(
+                flowPanelSeriesMejorCalificadas,
+                AdministradorSeries.CargarSeriesMejorCalificadas((int)NumSeriesCalifLim.Value)
+            );
+            AdministradorTema.AplicarTema(flowPanelSeriesMejorCalificadas);
+        }
+
 
         /* !--- FIN EXPORTACION DATOS ---! */
     }

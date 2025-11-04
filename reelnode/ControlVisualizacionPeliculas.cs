@@ -31,9 +31,9 @@ namespace Reelnode
 
         private void BtnComentar_Click(object sender, EventArgs e)
         {
-            controlComentarios.procedimiento = "sp_obtener_comentarios_pelis";
-            controlComentarios.p_id = "p_id_pelicula";
-            controlComentarios.idAudiovisual = AdministradorPeliculas.peliculaSeleccionada.Id;
+            AdministradorComentarios.procedimiento = "sp_obtener_comentarios_pelis";
+            AdministradorComentarios.p_id = EnumTipoId.p_id_pelicula.ToString();
+            AdministradorComentarios.idAudiovisual = AdministradorPeliculas.peliculaSeleccionada.Id;
             Utils.ShowControl(controlComentarios, PanelMain);
         }
         public void DetenerTrailer()
@@ -46,7 +46,7 @@ namespace Reelnode
             catch { }
         }
 
-        public void CargarPelicula(Pelicula pelicula)
+        public async void CargarPelicula(Pelicula pelicula)
         {
             if (pelicula == null)
                 return;
@@ -62,12 +62,13 @@ namespace Reelnode
 
             if (!string.IsNullOrEmpty(pelicula.TrailerURL))
             {
-                string trailerURL = pelicula.TrailerURL;
+                string trailerURL = await Utils.VerificarTrailer(PanelTrailerPeli, pelicula.TrailerURL);
                 if (trailerURL.Contains("watch?v="))
                     trailerURL = trailerURL.Replace("watch?v=", "embed/");
 
                 string URLDefault = $"{trailerURL}?rel=0&controls=1&autoplay=1";
 
+                trailer = new WebView2 { Dock = DockStyle.Fill };
                 PanelTrailerPeli.Controls.Add(trailer);
                 trailer.Source = new Uri(URLDefault);
             }

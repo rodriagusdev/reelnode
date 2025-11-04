@@ -33,13 +33,13 @@ namespace Reelnode
 
         private void BtnComentar_Click(object sender, EventArgs e)
         {
-            controlComentarios.procedimiento = "sp_obtener_comentarios_serie";
-            controlComentarios.p_id = "p_id_serie";
-            controlComentarios.idAudiovisual = AdministradorSeries.serieSeleccionada.Id;
+            AdministradorComentarios.procedimiento = "sp_obtener_comentarios_serie";
+            AdministradorComentarios.p_id = EnumTipoId.p_id_serie.ToString();
+            AdministradorComentarios.idAudiovisual = AdministradorSeries.serieSeleccionada.Id;
             Utils.ShowControl(controlComentarios, PanelMain);
         }
 
-        public void CargarSerie(Serie serie)
+        public async void CargarSerie(Serie serie)
         {
             if (serie == null)
                 return;
@@ -55,7 +55,7 @@ namespace Reelnode
 
             if (!string.IsNullOrEmpty(serie.TrailerURL))
             {
-                string trailerURL = serie.TrailerURL;
+                string trailerURL = await Utils.VerificarTrailer(PanelTrailerSerie, serie.TrailerURL);
                 if (trailerURL.Contains("watch?v="))
                     trailerURL = trailerURL.Replace("watch?v=", "embed/");
 
@@ -81,6 +81,11 @@ namespace Reelnode
                     trailer.CoreWebView2.Navigate("about:blank");
             }
             catch { }
+        }
+
+        private void PanelVisualizar_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

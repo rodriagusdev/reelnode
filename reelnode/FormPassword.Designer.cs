@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPassword));
             this.PanelMain = new System.Windows.Forms.Panel();
             this.BtnSalir = new System.Windows.Forms.Button();
@@ -49,12 +50,14 @@
             this.TxtUsuario = new System.Windows.Forms.TextBox();
             this.BtnCambiar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.PanelMain.SuspendLayout();
             this.PanelConfirmarPassword.SuspendLayout();
             this.PanelEmail.SuspendLayout();
             this.PanelPassword.SuspendLayout();
             this.PanelUsuario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // PanelMain
@@ -302,6 +305,10 @@
             this.pictureBox1.TabIndex = 23;
             this.pictureBox1.TabStop = false;
             // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            // 
             // FormPassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -325,6 +332,7 @@
             this.PanelUsuario.ResumeLayout(false);
             this.PanelUsuario.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -351,5 +359,6 @@
         private System.Windows.Forms.Panel PanelConfirmarLinea;
         private System.Windows.Forms.TextBox TxtConfirmarPassword;
         private System.Windows.Forms.Button BtnSalir;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

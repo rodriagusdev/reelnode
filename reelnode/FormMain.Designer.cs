@@ -35,10 +35,11 @@
             this.ToolStpMenuSalir = new System.Windows.Forms.ToolStripMenuItem();
             this.PanelBack = new System.Windows.Forms.Panel();
             this.Panel = new System.Windows.Forms.Panel();
+            this.LblSeries = new System.Windows.Forms.Label();
+            this.LblPeliculas = new System.Windows.Forms.Label();
             this.FlowPanelSeries = new System.Windows.Forms.FlowLayoutPanel();
             this.FlowPanelPeliculas = new System.Windows.Forms.FlowLayoutPanel();
-            this.LblPeliculas = new System.Windows.Forms.Label();
-            this.LblSeries = new System.Windows.Forms.Label();
+            this.BtnTema = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.PanelBack.SuspendLayout();
             this.Panel.SuspendLayout();
@@ -57,41 +58,41 @@
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(6);
             this.menuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.menuStrip1.ShowItemToolTips = true;
-            this.menuStrip1.Size = new System.Drawing.Size(1280, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1280, 35);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // ToolStpMenuHome
             // 
-            this.ToolStpMenuHome.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ToolStpMenuHome.Font = new System.Drawing.Font("Consolas", 12F);
             this.ToolStpMenuHome.Name = "ToolStpMenuHome";
-            this.ToolStpMenuHome.Size = new System.Drawing.Size(47, 18);
+            this.ToolStpMenuHome.Size = new System.Drawing.Size(57, 23);
             this.ToolStpMenuHome.Text = "Home";
             this.ToolStpMenuHome.Click += new System.EventHandler(this.ToolStpMenuHome_Click);
             // 
             // ToolStpMenuAdmin
             // 
-            this.ToolStpMenuAdmin.Font = new System.Drawing.Font("Consolas", 9F);
+            this.ToolStpMenuAdmin.Font = new System.Drawing.Font("Consolas", 12F);
             this.ToolStpMenuAdmin.Name = "ToolStpMenuAdmin";
             this.ToolStpMenuAdmin.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.ToolStpMenuAdmin.Size = new System.Drawing.Size(96, 18);
+            this.ToolStpMenuAdmin.Size = new System.Drawing.Size(120, 23);
             this.ToolStpMenuAdmin.Text = "Administrar";
             this.ToolStpMenuAdmin.Click += new System.EventHandler(this.ToolStpMenuAdmin_Click_1);
             // 
             // ToolStpMenuCuenta
             // 
-            this.ToolStpMenuCuenta.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ToolStpMenuCuenta.Font = new System.Drawing.Font("Consolas", 12F);
             this.ToolStpMenuCuenta.Name = "ToolStpMenuCuenta";
-            this.ToolStpMenuCuenta.Size = new System.Drawing.Size(61, 18);
+            this.ToolStpMenuCuenta.Size = new System.Drawing.Size(75, 23);
             this.ToolStpMenuCuenta.Text = "Cuenta";
             this.ToolStpMenuCuenta.Click += new System.EventHandler(this.ToolStpMenuCuenta_Click);
             // 
             // ToolStpMenuSalir
             // 
-            this.ToolStpMenuSalir.Font = new System.Drawing.Font("Consolas", 9F);
+            this.ToolStpMenuSalir.Font = new System.Drawing.Font("Consolas", 12F);
             this.ToolStpMenuSalir.Name = "ToolStpMenuSalir";
             this.ToolStpMenuSalir.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ToolStpMenuSalir.Size = new System.Drawing.Size(54, 18);
+            this.ToolStpMenuSalir.Size = new System.Drawing.Size(66, 23);
             this.ToolStpMenuSalir.Text = "Salir";
             this.ToolStpMenuSalir.Click += new System.EventHandler(this.ToolStpMenuSalir_Click);
             // 
@@ -99,6 +100,7 @@
             // 
             this.PanelBack.AutoSize = true;
             this.PanelBack.BackColor = System.Drawing.Color.Transparent;
+            this.PanelBack.Controls.Add(this.BtnTema);
             this.PanelBack.Controls.Add(this.Panel);
             this.PanelBack.Controls.Add(this.menuStrip1);
             this.PanelBack.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -115,10 +117,32 @@
             this.Panel.Controls.Add(this.FlowPanelSeries);
             this.Panel.Controls.Add(this.FlowPanelPeliculas);
             this.Panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Panel.Location = new System.Drawing.Point(0, 30);
+            this.Panel.Location = new System.Drawing.Point(0, 35);
             this.Panel.Name = "Panel";
-            this.Panel.Size = new System.Drawing.Size(1280, 690);
+            this.Panel.Size = new System.Drawing.Size(1280, 685);
             this.Panel.TabIndex = 2;
+            // 
+            // LblSeries
+            // 
+            this.LblSeries.AutoSize = true;
+            this.LblSeries.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblSeries.Location = new System.Drawing.Point(61, 336);
+            this.LblSeries.Name = "LblSeries";
+            this.LblSeries.Size = new System.Drawing.Size(60, 20);
+            this.LblSeries.TabIndex = 73;
+            this.LblSeries.Tag = "Titulo";
+            this.LblSeries.Text = "Series";
+            // 
+            // LblPeliculas
+            // 
+            this.LblPeliculas.AutoSize = true;
+            this.LblPeliculas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblPeliculas.Location = new System.Drawing.Point(61, 10);
+            this.LblPeliculas.Name = "LblPeliculas";
+            this.LblPeliculas.Size = new System.Drawing.Size(80, 20);
+            this.LblPeliculas.TabIndex = 71;
+            this.LblPeliculas.Tag = "Titulo";
+            this.LblPeliculas.Text = "Peliculas";
             // 
             // FlowPanelSeries
             // 
@@ -144,27 +168,17 @@
             this.FlowPanelPeliculas.Tag = "Default";
             this.FlowPanelPeliculas.WrapContents = false;
             // 
-            // LblPeliculas
+            // BtnTema
             // 
-            this.LblPeliculas.AutoSize = true;
-            this.LblPeliculas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblPeliculas.Location = new System.Drawing.Point(61, 10);
-            this.LblPeliculas.Name = "LblPeliculas";
-            this.LblPeliculas.Size = new System.Drawing.Size(80, 20);
-            this.LblPeliculas.TabIndex = 71;
-            this.LblPeliculas.Tag = "Titulo";
-            this.LblPeliculas.Text = "Peliculas";
-            // 
-            // LblSeries
-            // 
-            this.LblSeries.AutoSize = true;
-            this.LblSeries.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblSeries.Location = new System.Drawing.Point(61, 336);
-            this.LblSeries.Name = "LblSeries";
-            this.LblSeries.Size = new System.Drawing.Size(60, 20);
-            this.LblSeries.TabIndex = 73;
-            this.LblSeries.Tag = "Titulo";
-            this.LblSeries.Text = "Series";
+            this.BtnTema.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnTema.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnTema.Location = new System.Drawing.Point(1146, 0);
+            this.BtnTema.Name = "BtnTema";
+            this.BtnTema.Size = new System.Drawing.Size(42, 35);
+            this.BtnTema.TabIndex = 3;
+            this.BtnTema.Text = "👁";
+            this.BtnTema.UseVisualStyleBackColor = true;
+            this.BtnTema.Click += new System.EventHandler(this.BtnTema_Click);
             // 
             // FormMain
             // 
@@ -204,6 +218,7 @@
         private System.Windows.Forms.FlowLayoutPanel FlowPanelSeries;
         private System.Windows.Forms.Label LblPeliculas;
         private System.Windows.Forms.Label LblSeries;
+        private System.Windows.Forms.Button BtnTema;
     }
 }
 

@@ -15,6 +15,8 @@ namespace Reelnode
 
         public MySqlConnection GetConnection()
         {
+            if (conexion.State != System.Data.ConnectionState.Open)
+                conexion.Open();
             return conexion;
         }
 

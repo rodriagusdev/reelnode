@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.PanelPeliculaCreacion = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
             this.ChkListGeneros = new System.Windows.Forms.CheckedListBox();
@@ -66,6 +67,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.PanelPeliculaCreacion.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -77,6 +79,7 @@
             this.PanelDirector.SuspendLayout();
             this.PanelFecha.SuspendLayout();
             this.PanelUsuario.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // PanelPeliculaCreacion
@@ -348,7 +351,7 @@
             this.PanelDescripcion.Location = new System.Drawing.Point(140, 541);
             this.PanelDescripcion.Name = "PanelDescripcion";
             this.PanelDescripcion.Padding = new System.Windows.Forms.Padding(5);
-            this.PanelDescripcion.Size = new System.Drawing.Size(578, 89);
+            this.PanelDescripcion.Size = new System.Drawing.Size(582, 89);
             this.PanelDescripcion.TabIndex = 29;
             // 
             // TxtDescripcion
@@ -361,7 +364,7 @@
             this.TxtDescripcion.Location = new System.Drawing.Point(5, 5);
             this.TxtDescripcion.Multiline = true;
             this.TxtDescripcion.Name = "TxtDescripcion";
-            this.TxtDescripcion.Size = new System.Drawing.Size(568, 79);
+            this.TxtDescripcion.Size = new System.Drawing.Size(572, 79);
             this.TxtDescripcion.TabIndex = 7;
             // 
             // label6
@@ -542,6 +545,10 @@
             this.label1.TabIndex = 23;
             this.label1.Text = "Fecha de estreno";
             // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            // 
             // ControlGestionPeliculasCargar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -569,6 +576,7 @@
             this.PanelFecha.ResumeLayout(false);
             this.PanelUsuario.ResumeLayout(false);
             this.PanelUsuario.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -613,5 +621,6 @@
         private System.Windows.Forms.ComboBox CboNetwork;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.CheckedListBox ChkListGeneros;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

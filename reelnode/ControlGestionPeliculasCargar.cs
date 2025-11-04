@@ -27,6 +27,8 @@ namespace Reelnode
 
         private void BtnCargar_Click(object sender, EventArgs e)
         {
+            errorProvider.Clear();
+
             /* !--- INICIO VALIDACIONES --- ! */
             if (PicPelicula.Image == null)
             {

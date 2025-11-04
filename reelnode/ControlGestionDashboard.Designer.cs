@@ -39,30 +39,6 @@
             this.PicAvatar = new System.Windows.Forms.PictureBox();
             this.BtnVerMetricasUsuarios = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.PanelDashboardMain = new System.Windows.Forms.Panel();
-            this.label26 = new System.Windows.Forms.Label();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.PicUltimaPelicula = new System.Windows.Forms.PictureBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.LblUltimaPeli = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.PicUltimaSerie = new System.Windows.Forms.PictureBox();
-            this.LblUltimaSerie = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.LblVisualizacionesUltimoMes = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.flowPanelSeriesMejorCalificadas = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowPanelPeliculasMejorCalificadas = new System.Windows.Forms.FlowLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.flowPanelSeriesMasVistas = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowPanelPelisMasVistas = new System.Windows.Forms.FlowLayoutPanel();
             this.PanelDashboardMetricasUsuario = new System.Windows.Forms.Panel();
             this.label27 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -119,14 +95,36 @@
             this.BtnExportarJSON = new System.Windows.Forms.Button();
             this.BtnExportarGrilla = new System.Windows.Forms.Button();
             this.label28 = new System.Windows.Forms.Label();
+            this.flowPanelPelisMasVistas = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowPanelSeriesMasVistas = new System.Windows.Forms.FlowLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.flowPanelPeliculasMejorCalificadas = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowPanelSeriesMejorCalificadas = new System.Windows.Forms.FlowLayoutPanel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.LblVisualizacionesUltimoMes = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.LblUltimaSerie = new System.Windows.Forms.Label();
+            this.PicUltimaSerie = new System.Windows.Forms.PictureBox();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.label23 = new System.Windows.Forms.Label();
+            this.LblUltimaPeli = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.PicUltimaPelicula = new System.Windows.Forms.PictureBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.NumPelisVistasLim = new System.Windows.Forms.NumericUpDown();
+            this.NumPelisCalifLim = new System.Windows.Forms.NumericUpDown();
+            this.NumSeriesVistasLim = new System.Windows.Forms.NumericUpDown();
+            this.NumSeriesCalifLim = new System.Windows.Forms.NumericUpDown();
+            this.PanelDashboardMain = new System.Windows.Forms.Panel();
             this.PanelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicAvatar)).BeginInit();
-            this.PanelDashboardMain.SuspendLayout();
-            this.panel10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PicUltimaPelicula)).BeginInit();
-            this.panel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PicUltimaSerie)).BeginInit();
-            this.panel4.SuspendLayout();
             this.PanelDashboardMetricasUsuario.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -140,6 +138,16 @@
             this.PanelReportesAvanzados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumUpCantTemporadas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumUpDuracion)).BeginInit();
+            this.panel4.SuspendLayout();
+            this.panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PicUltimaSerie)).BeginInit();
+            this.panel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PicUltimaPelicula)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumPelisVistasLim)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumPelisCalifLim)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumSeriesVistasLim)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumSeriesCalifLim)).BeginInit();
+            this.PanelDashboardMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // PanelMenu
@@ -261,275 +269,6 @@
             this.panel5.TabIndex = 19;
             this.panel5.Tag = "";
             // 
-            // PanelDashboardMain
-            // 
-            this.PanelDashboardMain.Controls.Add(this.label26);
-            this.PanelDashboardMain.Controls.Add(this.panel10);
-            this.PanelDashboardMain.Controls.Add(this.panel9);
-            this.PanelDashboardMain.Controls.Add(this.panel4);
-            this.PanelDashboardMain.Controls.Add(this.label3);
-            this.PanelDashboardMain.Controls.Add(this.label4);
-            this.PanelDashboardMain.Controls.Add(this.flowPanelSeriesMejorCalificadas);
-            this.PanelDashboardMain.Controls.Add(this.flowPanelPeliculasMejorCalificadas);
-            this.PanelDashboardMain.Controls.Add(this.label2);
-            this.PanelDashboardMain.Controls.Add(this.label1);
-            this.PanelDashboardMain.Controls.Add(this.flowPanelSeriesMasVistas);
-            this.PanelDashboardMain.Controls.Add(this.flowPanelPelisMasVistas);
-            this.PanelDashboardMain.Location = new System.Drawing.Point(252, 0);
-            this.PanelDashboardMain.Name = "PanelDashboardMain";
-            this.PanelDashboardMain.Size = new System.Drawing.Size(1061, 720);
-            this.PanelDashboardMain.TabIndex = 20;
-            this.PanelDashboardMain.Tag = "Default";
-            // 
-            // label26
-            // 
-            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(3, 24);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(1005, 43);
-            this.label26.TabIndex = 38;
-            this.label26.Tag = "Titulo";
-            this.label26.Text = "MÉTRICAS GENERALES";
-            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel10
-            // 
-            this.panel10.Controls.Add(this.PicUltimaPelicula);
-            this.panel10.Controls.Add(this.label21);
-            this.panel10.Controls.Add(this.LblUltimaPeli);
-            this.panel10.Controls.Add(this.label23);
-            this.panel10.Location = new System.Drawing.Point(44, 81);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(292, 224);
-            this.panel10.TabIndex = 32;
-            this.panel10.Tag = "";
-            // 
-            // PicUltimaPelicula
-            // 
-            this.PicUltimaPelicula.Location = new System.Drawing.Point(54, 43);
-            this.PicUltimaPelicula.Name = "PicUltimaPelicula";
-            this.PicUltimaPelicula.Size = new System.Drawing.Size(185, 148);
-            this.PicUltimaPelicula.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PicUltimaPelicula.TabIndex = 3;
-            this.PicUltimaPelicula.TabStop = false;
-            // 
-            // label21
-            // 
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(7, 43);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(43, 35);
-            this.label21.TabIndex = 2;
-            this.label21.Text = "🎬";
-            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LblUltimaPeli
-            // 
-            this.LblUltimaPeli.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblUltimaPeli.Location = new System.Drawing.Point(4, 197);
-            this.LblUltimaPeli.Name = "LblUltimaPeli";
-            this.LblUltimaPeli.Size = new System.Drawing.Size(285, 22);
-            this.LblUltimaPeli.TabIndex = 1;
-            this.LblUltimaPeli.Text = "LblUltimaPeli";
-            this.LblUltimaPeli.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label23
-            // 
-            this.label23.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(0, 0);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(292, 43);
-            this.label23.TabIndex = 0;
-            this.label23.Tag = "Titulo";
-            this.label23.Text = "Ultima pelicula cargada";
-            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.PicUltimaSerie);
-            this.panel9.Controls.Add(this.LblUltimaSerie);
-            this.panel9.Controls.Add(this.label15);
-            this.panel9.Controls.Add(this.label19);
-            this.panel9.Location = new System.Drawing.Point(698, 81);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(292, 224);
-            this.panel9.TabIndex = 31;
-            this.panel9.Tag = "";
-            // 
-            // PicUltimaSerie
-            // 
-            this.PicUltimaSerie.Location = new System.Drawing.Point(58, 43);
-            this.PicUltimaSerie.Name = "PicUltimaSerie";
-            this.PicUltimaSerie.Size = new System.Drawing.Size(185, 148);
-            this.PicUltimaSerie.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PicUltimaSerie.TabIndex = 4;
-            this.PicUltimaSerie.TabStop = false;
-            // 
-            // LblUltimaSerie
-            // 
-            this.LblUltimaSerie.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblUltimaSerie.Location = new System.Drawing.Point(4, 197);
-            this.LblUltimaSerie.Name = "LblUltimaSerie";
-            this.LblUltimaSerie.Size = new System.Drawing.Size(285, 22);
-            this.LblUltimaSerie.TabIndex = 3;
-            this.LblUltimaSerie.Text = "LblUltimaSerie";
-            this.LblUltimaSerie.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label15
-            // 
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(11, 37);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(44, 46);
-            this.label15.TabIndex = 2;
-            this.label15.Text = "🎬";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label19
-            // 
-            this.label19.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(0, 0);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(292, 43);
-            this.label19.TabIndex = 0;
-            this.label19.Tag = "Titulo";
-            this.label19.Text = "Ultima serie cargada";
-            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.label7);
-            this.panel4.Controls.Add(this.LblVisualizacionesUltimoMes);
-            this.panel4.Controls.Add(this.label5);
-            this.panel4.Location = new System.Drawing.Point(398, 160);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(229, 100);
-            this.panel4.TabIndex = 30;
-            this.panel4.Tag = "";
-            // 
-            // label7
-            // 
-            this.label7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(0, 43);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(59, 57);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "👁";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // LblVisualizacionesUltimoMes
-            // 
-            this.LblVisualizacionesUltimoMes.Dock = System.Windows.Forms.DockStyle.Right;
-            this.LblVisualizacionesUltimoMes.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblVisualizacionesUltimoMes.Location = new System.Drawing.Point(150, 43);
-            this.LblVisualizacionesUltimoMes.Name = "LblVisualizacionesUltimoMes";
-            this.LblVisualizacionesUltimoMes.Size = new System.Drawing.Size(79, 57);
-            this.LblVisualizacionesUltimoMes.TabIndex = 1;
-            this.LblVisualizacionesUltimoMes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label5
-            // 
-            this.label5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(0, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(229, 43);
-            this.label5.TabIndex = 0;
-            this.label5.Tag = "Titulo";
-            this.label5.Text = "Visualizaciones último mes";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label3.Location = new System.Drawing.Point(559, 525);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(143, 16);
-            this.label3.TabIndex = 25;
-            this.label3.Tag = "Titulo";
-            this.label3.Text = "Series mas calificadas";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label4.Location = new System.Drawing.Point(559, 340);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(167, 16);
-            this.label4.TabIndex = 24;
-            this.label4.Tag = "Titulo";
-            this.label4.Text = "Peliculas mejor calificadas";
-            // 
-            // flowPanelSeriesMejorCalificadas
-            // 
-            this.flowPanelSeriesMejorCalificadas.AutoScroll = true;
-            this.flowPanelSeriesMejorCalificadas.Location = new System.Drawing.Point(562, 545);
-            this.flowPanelSeriesMejorCalificadas.Name = "flowPanelSeriesMejorCalificadas";
-            this.flowPanelSeriesMejorCalificadas.Padding = new System.Windows.Forms.Padding(4);
-            this.flowPanelSeriesMejorCalificadas.Size = new System.Drawing.Size(428, 137);
-            this.flowPanelSeriesMejorCalificadas.TabIndex = 23;
-            // 
-            // flowPanelPeliculasMejorCalificadas
-            // 
-            this.flowPanelPeliculasMejorCalificadas.AutoScroll = true;
-            this.flowPanelPeliculasMejorCalificadas.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowPanelPeliculasMejorCalificadas.Location = new System.Drawing.Point(562, 361);
-            this.flowPanelPeliculasMejorCalificadas.Name = "flowPanelPeliculasMejorCalificadas";
-            this.flowPanelPeliculasMejorCalificadas.Padding = new System.Windows.Forms.Padding(4);
-            this.flowPanelPeliculasMejorCalificadas.Size = new System.Drawing.Size(428, 137);
-            this.flowPanelPeliculasMejorCalificadas.TabIndex = 22;
-            this.flowPanelPeliculasMejorCalificadas.WrapContents = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label2.Location = new System.Drawing.Point(41, 525);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(113, 16);
-            this.label2.TabIndex = 21;
-            this.label2.Tag = "Titulo";
-            this.label2.Text = "Series mas vistas";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(41, 340);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(129, 16);
-            this.label1.TabIndex = 20;
-            this.label1.Tag = "Titulo";
-            this.label1.Text = "Peliculas mas vistas";
-            // 
-            // flowPanelSeriesMasVistas
-            // 
-            this.flowPanelSeriesMasVistas.AutoScroll = true;
-            this.flowPanelSeriesMasVistas.Location = new System.Drawing.Point(44, 545);
-            this.flowPanelSeriesMasVistas.Name = "flowPanelSeriesMasVistas";
-            this.flowPanelSeriesMasVistas.Padding = new System.Windows.Forms.Padding(4);
-            this.flowPanelSeriesMasVistas.Size = new System.Drawing.Size(428, 137);
-            this.flowPanelSeriesMasVistas.TabIndex = 19;
-            // 
-            // flowPanelPelisMasVistas
-            // 
-            this.flowPanelPelisMasVistas.AutoScroll = true;
-            this.flowPanelPelisMasVistas.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowPanelPelisMasVistas.Location = new System.Drawing.Point(44, 361);
-            this.flowPanelPelisMasVistas.Name = "flowPanelPelisMasVistas";
-            this.flowPanelPelisMasVistas.Padding = new System.Windows.Forms.Padding(4);
-            this.flowPanelPelisMasVistas.Size = new System.Drawing.Size(428, 137);
-            this.flowPanelPelisMasVistas.TabIndex = 18;
-            this.flowPanelPelisMasVistas.WrapContents = false;
-            // 
             // PanelDashboardMetricasUsuario
             // 
             this.PanelDashboardMetricasUsuario.AutoScroll = true;
@@ -552,7 +291,7 @@
             // label27
             // 
             this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(3, 24);
+            this.label27.Location = new System.Drawing.Point(3, 33);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(986, 43);
             this.label27.TabIndex = 39;
@@ -844,7 +583,7 @@
             // label18
             // 
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(3, 24);
+            this.label18.Location = new System.Drawing.Point(3, 33);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(1005, 43);
             this.label18.TabIndex = 37;
@@ -989,9 +728,9 @@
             this.PanelReportesAvanzados.Controls.Add(this.BtnAplicarFiltrosConsultar);
             this.PanelReportesAvanzados.Controls.Add(this.label18);
             this.PanelReportesAvanzados.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PanelReportesAvanzados.Location = new System.Drawing.Point(1286, 0);
+            this.PanelReportesAvanzados.Location = new System.Drawing.Point(1257, 0);
             this.PanelReportesAvanzados.Name = "PanelReportesAvanzados";
-            this.PanelReportesAvanzados.Size = new System.Drawing.Size(27, 720);
+            this.PanelReportesAvanzados.Size = new System.Drawing.Size(56, 720);
             this.PanelReportesAvanzados.TabIndex = 22;
             this.PanelReportesAvanzados.Tag = "Default";
             this.PanelReportesAvanzados.Visible = false;
@@ -1227,6 +966,371 @@
             this.label28.Text = "Desde";
             this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // flowPanelPelisMasVistas
+            // 
+            this.flowPanelPelisMasVistas.AutoScroll = true;
+            this.flowPanelPelisMasVistas.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowPanelPelisMasVistas.Location = new System.Drawing.Point(44, 361);
+            this.flowPanelPelisMasVistas.Name = "flowPanelPelisMasVistas";
+            this.flowPanelPelisMasVistas.Padding = new System.Windows.Forms.Padding(4);
+            this.flowPanelPelisMasVistas.Size = new System.Drawing.Size(428, 137);
+            this.flowPanelPelisMasVistas.TabIndex = 18;
+            this.flowPanelPelisMasVistas.WrapContents = false;
+            // 
+            // flowPanelSeriesMasVistas
+            // 
+            this.flowPanelSeriesMasVistas.AutoScroll = true;
+            this.flowPanelSeriesMasVistas.Location = new System.Drawing.Point(44, 545);
+            this.flowPanelSeriesMasVistas.Name = "flowPanelSeriesMasVistas";
+            this.flowPanelSeriesMasVistas.Padding = new System.Windows.Forms.Padding(4);
+            this.flowPanelSeriesMasVistas.Size = new System.Drawing.Size(428, 137);
+            this.flowPanelSeriesMasVistas.TabIndex = 19;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(41, 340);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(129, 16);
+            this.label1.TabIndex = 20;
+            this.label1.Tag = "Titulo";
+            this.label1.Text = "Peliculas mas vistas";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.label2.Location = new System.Drawing.Point(41, 525);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(113, 16);
+            this.label2.TabIndex = 21;
+            this.label2.Tag = "Titulo";
+            this.label2.Text = "Series mas vistas";
+            // 
+            // flowPanelPeliculasMejorCalificadas
+            // 
+            this.flowPanelPeliculasMejorCalificadas.AutoScroll = true;
+            this.flowPanelPeliculasMejorCalificadas.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowPanelPeliculasMejorCalificadas.Location = new System.Drawing.Point(562, 361);
+            this.flowPanelPeliculasMejorCalificadas.Name = "flowPanelPeliculasMejorCalificadas";
+            this.flowPanelPeliculasMejorCalificadas.Padding = new System.Windows.Forms.Padding(4);
+            this.flowPanelPeliculasMejorCalificadas.Size = new System.Drawing.Size(428, 137);
+            this.flowPanelPeliculasMejorCalificadas.TabIndex = 22;
+            this.flowPanelPeliculasMejorCalificadas.WrapContents = false;
+            // 
+            // flowPanelSeriesMejorCalificadas
+            // 
+            this.flowPanelSeriesMejorCalificadas.AutoScroll = true;
+            this.flowPanelSeriesMejorCalificadas.Location = new System.Drawing.Point(562, 545);
+            this.flowPanelSeriesMejorCalificadas.Name = "flowPanelSeriesMejorCalificadas";
+            this.flowPanelSeriesMejorCalificadas.Padding = new System.Windows.Forms.Padding(4);
+            this.flowPanelSeriesMejorCalificadas.Size = new System.Drawing.Size(428, 137);
+            this.flowPanelSeriesMejorCalificadas.TabIndex = 23;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.label4.Location = new System.Drawing.Point(559, 340);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(167, 16);
+            this.label4.TabIndex = 24;
+            this.label4.Tag = "Titulo";
+            this.label4.Text = "Peliculas mejor calificadas";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.label3.Location = new System.Drawing.Point(559, 525);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(143, 16);
+            this.label3.TabIndex = 25;
+            this.label3.Tag = "Titulo";
+            this.label3.Text = "Series mas calificadas";
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.label7);
+            this.panel4.Controls.Add(this.LblVisualizacionesUltimoMes);
+            this.panel4.Controls.Add(this.label5);
+            this.panel4.Location = new System.Drawing.Point(398, 160);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(229, 100);
+            this.panel4.TabIndex = 30;
+            this.panel4.Tag = "";
+            // 
+            // label5
+            // 
+            this.label5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(0, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(229, 43);
+            this.label5.TabIndex = 0;
+            this.label5.Tag = "Titulo";
+            this.label5.Text = "Visualizaciones último mes";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // LblVisualizacionesUltimoMes
+            // 
+            this.LblVisualizacionesUltimoMes.Dock = System.Windows.Forms.DockStyle.Right;
+            this.LblVisualizacionesUltimoMes.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblVisualizacionesUltimoMes.Location = new System.Drawing.Point(150, 43);
+            this.LblVisualizacionesUltimoMes.Name = "LblVisualizacionesUltimoMes";
+            this.LblVisualizacionesUltimoMes.Size = new System.Drawing.Size(79, 57);
+            this.LblVisualizacionesUltimoMes.TabIndex = 1;
+            this.LblVisualizacionesUltimoMes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label7
+            // 
+            this.label7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(0, 43);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(59, 57);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "👁";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.PicUltimaSerie);
+            this.panel9.Controls.Add(this.LblUltimaSerie);
+            this.panel9.Controls.Add(this.label15);
+            this.panel9.Controls.Add(this.label19);
+            this.panel9.Location = new System.Drawing.Point(698, 81);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(292, 224);
+            this.panel9.TabIndex = 31;
+            this.panel9.Tag = "";
+            // 
+            // label19
+            // 
+            this.label19.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(0, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(292, 43);
+            this.label19.TabIndex = 0;
+            this.label19.Tag = "Titulo";
+            this.label19.Text = "Ultima serie cargada";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label15
+            // 
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(11, 37);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(44, 46);
+            this.label15.TabIndex = 2;
+            this.label15.Text = "🎬";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // LblUltimaSerie
+            // 
+            this.LblUltimaSerie.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblUltimaSerie.Location = new System.Drawing.Point(4, 197);
+            this.LblUltimaSerie.Name = "LblUltimaSerie";
+            this.LblUltimaSerie.Size = new System.Drawing.Size(285, 22);
+            this.LblUltimaSerie.TabIndex = 3;
+            this.LblUltimaSerie.Text = "LblUltimaSerie";
+            this.LblUltimaSerie.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PicUltimaSerie
+            // 
+            this.PicUltimaSerie.Location = new System.Drawing.Point(58, 43);
+            this.PicUltimaSerie.Name = "PicUltimaSerie";
+            this.PicUltimaSerie.Size = new System.Drawing.Size(185, 148);
+            this.PicUltimaSerie.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PicUltimaSerie.TabIndex = 4;
+            this.PicUltimaSerie.TabStop = false;
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.PicUltimaPelicula);
+            this.panel10.Controls.Add(this.label21);
+            this.panel10.Controls.Add(this.LblUltimaPeli);
+            this.panel10.Controls.Add(this.label23);
+            this.panel10.Location = new System.Drawing.Point(44, 81);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(292, 224);
+            this.panel10.TabIndex = 32;
+            this.panel10.Tag = "";
+            // 
+            // label23
+            // 
+            this.label23.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(0, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(292, 43);
+            this.label23.TabIndex = 0;
+            this.label23.Tag = "Titulo";
+            this.label23.Text = "Ultima pelicula cargada";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // LblUltimaPeli
+            // 
+            this.LblUltimaPeli.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblUltimaPeli.Location = new System.Drawing.Point(4, 197);
+            this.LblUltimaPeli.Name = "LblUltimaPeli";
+            this.LblUltimaPeli.Size = new System.Drawing.Size(285, 22);
+            this.LblUltimaPeli.TabIndex = 1;
+            this.LblUltimaPeli.Text = "LblUltimaPeli";
+            this.LblUltimaPeli.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label21
+            // 
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(7, 43);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(43, 35);
+            this.label21.TabIndex = 2;
+            this.label21.Text = "🎬";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PicUltimaPelicula
+            // 
+            this.PicUltimaPelicula.Location = new System.Drawing.Point(54, 43);
+            this.PicUltimaPelicula.Name = "PicUltimaPelicula";
+            this.PicUltimaPelicula.Size = new System.Drawing.Size(185, 148);
+            this.PicUltimaPelicula.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PicUltimaPelicula.TabIndex = 3;
+            this.PicUltimaPelicula.TabStop = false;
+            // 
+            // label26
+            // 
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(3, 33);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(1005, 43);
+            this.label26.TabIndex = 38;
+            this.label26.Tag = "Titulo";
+            this.label26.Text = "MÉTRICAS GENERALES";
+            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // NumPelisVistasLim
+            // 
+            this.NumPelisVistasLim.Location = new System.Drawing.Point(431, 336);
+            this.NumPelisVistasLim.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.NumPelisVistasLim.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NumPelisVistasLim.Name = "NumPelisVistasLim";
+            this.NumPelisVistasLim.Size = new System.Drawing.Size(41, 20);
+            this.NumPelisVistasLim.TabIndex = 39;
+            this.NumPelisVistasLim.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.NumPelisVistasLim.ValueChanged += new System.EventHandler(this.NumPelisVistasLim_ValueChanged);
+            // 
+            // NumPelisCalifLim
+            // 
+            this.NumPelisCalifLim.Location = new System.Drawing.Point(946, 336);
+            this.NumPelisCalifLim.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.NumPelisCalifLim.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NumPelisCalifLim.Name = "NumPelisCalifLim";
+            this.NumPelisCalifLim.Size = new System.Drawing.Size(41, 20);
+            this.NumPelisCalifLim.TabIndex = 40;
+            this.NumPelisCalifLim.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.NumPelisCalifLim.ValueChanged += new System.EventHandler(this.NumPelisCalifLim_ValueChanged);
+            // 
+            // NumSeriesVistasLim
+            // 
+            this.NumSeriesVistasLim.Location = new System.Drawing.Point(431, 519);
+            this.NumSeriesVistasLim.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.NumSeriesVistasLim.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NumSeriesVistasLim.Name = "NumSeriesVistasLim";
+            this.NumSeriesVistasLim.Size = new System.Drawing.Size(41, 20);
+            this.NumSeriesVistasLim.TabIndex = 41;
+            this.NumSeriesVistasLim.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.NumSeriesVistasLim.ValueChanged += new System.EventHandler(this.NumSeriesVistasLim_ValueChanged);
+            // 
+            // NumSeriesCalifLim
+            // 
+            this.NumSeriesCalifLim.Location = new System.Drawing.Point(946, 521);
+            this.NumSeriesCalifLim.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.NumSeriesCalifLim.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NumSeriesCalifLim.Name = "NumSeriesCalifLim";
+            this.NumSeriesCalifLim.Size = new System.Drawing.Size(41, 20);
+            this.NumSeriesCalifLim.TabIndex = 42;
+            this.NumSeriesCalifLim.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.NumSeriesCalifLim.ValueChanged += new System.EventHandler(this.NumSeriesCalifLim_ValueChanged);
+            // 
+            // PanelDashboardMain
+            // 
+            this.PanelDashboardMain.Controls.Add(this.NumSeriesCalifLim);
+            this.PanelDashboardMain.Controls.Add(this.NumSeriesVistasLim);
+            this.PanelDashboardMain.Controls.Add(this.NumPelisCalifLim);
+            this.PanelDashboardMain.Controls.Add(this.NumPelisVistasLim);
+            this.PanelDashboardMain.Controls.Add(this.label26);
+            this.PanelDashboardMain.Controls.Add(this.panel10);
+            this.PanelDashboardMain.Controls.Add(this.panel9);
+            this.PanelDashboardMain.Controls.Add(this.panel4);
+            this.PanelDashboardMain.Controls.Add(this.label3);
+            this.PanelDashboardMain.Controls.Add(this.label4);
+            this.PanelDashboardMain.Controls.Add(this.flowPanelSeriesMejorCalificadas);
+            this.PanelDashboardMain.Controls.Add(this.flowPanelPeliculasMejorCalificadas);
+            this.PanelDashboardMain.Controls.Add(this.label2);
+            this.PanelDashboardMain.Controls.Add(this.label1);
+            this.PanelDashboardMain.Controls.Add(this.flowPanelSeriesMasVistas);
+            this.PanelDashboardMain.Controls.Add(this.flowPanelPelisMasVistas);
+            this.PanelDashboardMain.Location = new System.Drawing.Point(252, 0);
+            this.PanelDashboardMain.Name = "PanelDashboardMain";
+            this.PanelDashboardMain.Size = new System.Drawing.Size(1061, 720);
+            this.PanelDashboardMain.TabIndex = 20;
+            this.PanelDashboardMain.Tag = "Default";
+            // 
             // ControlGestionDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1243,13 +1347,6 @@
             this.VisibleChanged += new System.EventHandler(this.ControlGestionDashboard_VisibleChanged);
             this.PanelMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PicAvatar)).EndInit();
-            this.PanelDashboardMain.ResumeLayout(false);
-            this.PanelDashboardMain.PerformLayout();
-            this.panel10.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.PicUltimaPelicula)).EndInit();
-            this.panel9.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.PicUltimaSerie)).EndInit();
-            this.panel4.ResumeLayout(false);
             this.PanelDashboardMetricasUsuario.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
@@ -1264,6 +1361,17 @@
             this.PanelReportesAvanzados.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumUpCantTemporadas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumUpDuracion)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PicUltimaSerie)).EndInit();
+            this.panel10.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PicUltimaPelicula)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumPelisVistasLim)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumPelisCalifLim)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumSeriesVistasLim)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumSeriesCalifLim)).EndInit();
+            this.PanelDashboardMain.ResumeLayout(false);
+            this.PanelDashboardMain.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1274,19 +1382,6 @@
         private System.Windows.Forms.PictureBox PicAvatar;
         private System.Windows.Forms.Label LblUsuario;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Panel PanelDashboardMain;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label LblVisualizacionesUltimoMes;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.FlowLayoutPanel flowPanelSeriesMejorCalificadas;
-        private System.Windows.Forms.FlowLayoutPanel flowPanelPeliculasMejorCalificadas;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.FlowLayoutPanel flowPanelSeriesMasVistas;
-        private System.Windows.Forms.FlowLayoutPanel flowPanelPelisMasVistas;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel PanelDashboardMetricasUsuario;
         private System.Windows.Forms.Panel panel8;
@@ -1316,18 +1411,7 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label LblCantidadCalif;
         private System.Windows.Forms.Label LblCantidadComentario;
-        private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label LblUltimaPeli;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.PictureBox PicUltimaPelicula;
-        private System.Windows.Forms.Label LblUltimaSerie;
-        private System.Windows.Forms.PictureBox PicUltimaSerie;
         private System.Windows.Forms.Button BtnReportesAvanzados;
-        private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button BtnAplicarFiltrosConsultar;
@@ -1359,5 +1443,33 @@
         private System.Windows.Forms.NumericUpDown NumUpCantTemporadas;
         private System.Windows.Forms.Button BtnExportarExcel;
         private System.Windows.Forms.Button BtnRefrescar;
+        private System.Windows.Forms.FlowLayoutPanel flowPanelPelisMasVistas;
+        private System.Windows.Forms.FlowLayoutPanel flowPanelSeriesMasVistas;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.FlowLayoutPanel flowPanelPeliculasMejorCalificadas;
+        private System.Windows.Forms.FlowLayoutPanel flowPanelSeriesMejorCalificadas;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label LblVisualizacionesUltimoMes;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.PictureBox PicUltimaSerie;
+        private System.Windows.Forms.Label LblUltimaSerie;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.PictureBox PicUltimaPelicula;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label LblUltimaPeli;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.NumericUpDown NumPelisVistasLim;
+        private System.Windows.Forms.NumericUpDown NumPelisCalifLim;
+        private System.Windows.Forms.NumericUpDown NumSeriesVistasLim;
+        private System.Windows.Forms.NumericUpDown NumSeriesCalifLim;
+        private System.Windows.Forms.Panel PanelDashboardMain;
     }
 }

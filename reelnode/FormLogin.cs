@@ -43,6 +43,7 @@ namespace Reelnode
         {
             BtnIngresar.FlatAppearance.BorderColor = Color.FromArgb(0, 29, 35);
             BtnSalir.FlatAppearance.BorderColor = Color.FromArgb(0, 29, 35);
+
         }
 
         private void BtnIngresar_Click_1(object sender, EventArgs e)

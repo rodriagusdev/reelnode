@@ -140,22 +140,6 @@ namespace Reelnode
             else MessageBox.Show("No se ha seleccionado ninguna fila.");
         }
 
-        private void LimpiarCampos()
-        {
-            TxtNombre.Text = "";
-            TxtDirector.Text = "";
-            TxtCantTemporadas.Text = "";
-            TxtDescripcion.Text = "";
-            DtpFechaEstreno.Value = DateTime.Now;
-            DtpFechaFin.Value = DateTime.Now;
-            TxtURLImagen.Text = "";
-            PicSerie.Image = null;
-            TxtURLTrailer.Text = "";
-            trailerFinalURL = null;
-            ChkListGeneros.ClearSelected();
-            CboNetwork.SelectedIndex = -1;
-        }
-
         private void DataGridActualizarSerie_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)

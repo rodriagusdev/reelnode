@@ -11,13 +11,11 @@ namespace Reelnode
 
         private List<Comentario> listaComentarios = new List<Comentario>();
 
-        public string procedimiento;
-        public string p_id;
-        public int idAudiovisual;
-
         public ControlComentarios()
         {
             InitializeComponent();
+
+            AdministradorComentarios.onComentarioEliminado += CargarComentarios;
 
             flowPanelComentarios.FlowDirection = FlowDirection.TopDown;
             flowPanelComentarios.WrapContents = false;
@@ -91,21 +89,6 @@ namespace Reelnode
                         TxtComentario.Text,
                         AdministradorPeliculas.peliculaSeleccionada != null ? "Pelicula" : "Serie"
                     );
-
-                    CargarComentarios();
-                    if (flowPanelComentarios != null && listaComentarios != null)
-                    {
-                        CreadorUI.CrearPanelesComentarios(flowPanelComentarios, listaComentarios);
-                    }
-                    else
-                    {
-                        MessageBox.Show(
-                            "Error: Panel o lista de comentarios no inicializados",
-                            "Error",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error
-                        );
-                    }
                 }
                 else
                 {
@@ -128,38 +111,38 @@ namespace Reelnode
             }
         }
 
+        private void CargarComentarios()
+        {
+            listaComentarios.Clear();
+            flowPanelComentarios.Controls.Clear();
+
+            // Traer comentarios actualizados desde BD
+            listaComentarios = AdministradorComentarios.ObtenerComentarios(
+                AdministradorComentarios.procedimiento,
+                AdministradorComentarios.p_id,
+                AdministradorComentarios.idAudiovisual
+            );
+
+            // Crear los paneles si hay comentarios
+            if (listaComentarios != null && listaComentarios.Count > 0)
+            {
+                CreadorUI.CrearPanelesComentarios(flowPanelComentarios, listaComentarios);
+            }
+        }
         private void BtnVerComentarios_Click(object sender, EventArgs e)
         {
             flowPanelComentarios.Visible = !flowPanelComentarios.Visible;
 
             if (flowPanelComentarios.Visible)
             {
+                BtnVerComentarios.Text = "Ocultar comentarios";
                 CargarComentarios();
-
-                if (listaComentarios.Count > 0)
-                {
-                    BtnVerComentarios.Text = "Ocultar comentarios";
-
-                    CreadorUI.CrearPanelesComentarios(flowPanelComentarios, listaComentarios);
-                }
             }
             else
             {
-                flowPanelComentarios.Visible = false;
                 BtnVerComentarios.Text = "Ver comentarios";
             }
         }
 
-        private void CargarComentarios()
-        {
-            listaComentarios.Clear();
-            flowPanelComentarios.Controls.Clear();
-
-            listaComentarios = AdministradorComentarios.ObtenerComentarios(
-                procedimiento,
-                p_id,
-                idAudiovisual
-            );
-        }
     }
 }
